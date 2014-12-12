@@ -1,0 +1,200 @@
+
+@font-face{
+	font-family:"jua";
+	src: url("../fonts/BM-JUA.ttf");
+}
+
+#main_page_body {
+  /* background: url("../img/green_lines.png");*/
+   background-size: cover;
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-color: #ecf0f1;
+
+}
+	.header{
+		position: relative;
+		width: 100%;
+		text-align: center;
+		font-size: 80px;
+		line-height: 108px;
+		height: 100px;
+		background: #e74c3c;
+		/*background: rgba(231,76,60,0.5);
+*/		color: #fff;
+		font-family: 'jua', sans-serif;
+		transition: all 0.4s ease;
+		top: 0px;
+	}
+
+	.header.sticky {
+		font-size: 40px;
+		line-height: 48px;
+		height: 48px;
+		background: #e74c3c;
+		text-align: left;
+		padding-left: 10px;
+		padding-top: 3px;
+	/*	position: fixed;
+		z-index: 1;
+*/	}
+
+	.sticky .test{
+		display: none;
+	}
+
+	.header p {
+		position: relative;
+		top: -5px;
+		left: -30px;
+	}
+
+	.header img{
+		position: relative;
+		top: -10px;
+		left:-20px;
+		width: 100px;
+		height: 100px;
+		display: inline-block;
+		/*padding-bottom: 10px; */
+
+	}
+
+	.jikbak {
+		height: 400px;
+		background: url("../img/jikbakintree.jpg");
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		position: relative;
+		top: 0px;
+		width: 100%;
+
+	}
+		
+	.main_info {
+
+		height: 300px;
+		width: 100%;
+		
+	}
+
+	.folder_mouse{
+		position: relative;
+		background: url("../img/snow.png");
+		background-repeat: repeat;
+		
+	}
+
+	.folder_mouse img {
+		position: relative;
+		left: 30%;
+		width: 35%;
+		height: 270px;
+	}
+	
+	.main_slogan{
+		background-color: #f7f7f9;
+		position: relative;
+		top: 30px;
+		height: 200px;
+		border-color: #60ceb5;
+		border-style: solid;
+		border-width: 3px;
+		font-family: 'jua', sans-serif;
+		font-size: 30px;
+		text-align: center;
+		color: #60ceb5;
+
+	}
+	.join {
+		background-color: #ecf0f1;
+		position: relative;
+		top: 30px;
+		height: 250px;
+	}
+
+	.join img {
+		width: 280px;
+		height: 250px;
+	}
+	.log_in{
+		background-color: #ecf0f1;
+		position: relative;
+		top: 30px;
+		height: 250px;
+	}
+	.log_in img {
+		width: 280px;
+		height: 250px;
+	}
+
+	a {
+   	color:white;
+	text-decoration: none;
+	}
+	a:link {
+
+	color: white;
+	text-decoration: none;
+	}
+
+	a:visited {
+	color: white;
+	text-decoration: none;
+	}
+
+	a:hover {
+	color: gray;
+	text-decoration: none;
+
+	}
+
+	.body_background {
+		background-color: #f7f7f9;
+	}
+ 	
+ 	.category_body {
+ 		background: #f7f7f9;
+		height: 900px;
+		width: 100%;
+ 	}
+
+ 	.rank_chart {
+ 		background-color: #FC5B5B;
+ 		height: 840px;
+ 		position: relative;
+ 		top: 70px;
+ 		border-radius: 10px;
+ 	}
+
+ 	.thumbnail_folder {
+		position: relative;
+ 		top: 70px;
+ 		border-radius: 10px;
+ 		height: 280px;
+ 		background-color: #EDA8A8;
+ 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 	
+	
