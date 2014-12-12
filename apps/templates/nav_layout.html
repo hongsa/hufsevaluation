@@ -125,7 +125,7 @@ $(window).load(function(){
 
 <body class="body_background">
   <nav class="navbar navbar-default" role="navigation" style="border-radius:0px;background-color: #e74c3c;">
-  <!-- 모바일 전환시 생기는 네비게이션 바 Brand and toggle get grouped for better mobile display -->
+  <!-- 모바일 전환시 생기는 네비게이션 바 -->
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
       <span class="sr-only">Toggle navigation</span>
@@ -147,17 +147,17 @@ $(window).load(function(){
         <a href="{{url_for('index')}}"></a>
       </li>
       <li style="width:120px;text-align:left;font-size:16px;">
-        <a href="#">배우평가</a>
+        <a href="{{url_for('actress_main')}}">배우평가</a>
       </li>
       <li style="width:120px;text-align:left;font-size:16px;">
-        <a href="#">영상평가</a>
+        <a href="{{url_for('video_main')}}">영상평가</a>
       </li>
       <li style="width:120px;text-align:left;font-size:16px;">
-        <a href="#">신작평가</a>
+        <a href="{{url_for('new_video_main')}}">신작평가</a>
       </li>
     </ul>
     <!--검색 창 부분-->
-    <form class="navbar-form navbar-left" role="search">
+    <form class="navbar-form navbar-left" role="search" action="/crawl" method="get">
       <div class="form-group">
         <input type="text" class="form-control" placeholder="검색하기!" style="width:220px;height:30px;
         font-size:13px;display:inline-block;position:relative;top:1px;">

@@ -12,6 +12,21 @@ def index():
 def category_main():
 	return render_template("category_layout.html")
 
+@app.route('/video_main')
+def video_main():
+	return render_template("video_main.html")
 
+@app.route('/actress_main')
+def actress_main():
+	return render_template("actress_main.html")
 
+@app.route('/new_video_main')
+def new_video_main():
+	return render_template("new_video_main.html")
 
+@app.route('/crawl')
+def crawl():
+    if request.method == 'GET':
+        basicurl = "https://www.google.co.kr/search?q="
+        url = basicurl + request.args['search'] + ' ' + 'torrent'
+        return redirect(url)
