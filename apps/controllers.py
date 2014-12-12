@@ -24,9 +24,17 @@ def actress_main():
 def new_video_main():
 	return render_template("new_video_main.html")
 
-@app.route('/crawl')
-def crawl():
-    if request.method == 'GET':
-        basicurl = "https://www.google.co.kr/search?q="
-        url = basicurl + request.args['search'] + ' ' + 'torrent'
-        return redirect(url)
+#구글검색 
+@app.route('/db_search')
+def db_search():
+
+	a = request.args['submitbutton']
+
+	if a==u'first':
+		return "first"
+	elif a==u'second':
+		basicurl = "https://www.google.co.kr/search?q="
+		url = basicurl + request.args['search'] + ' ' + 'torrent'
+		return redirect(url)
+
+	return "db_search"
