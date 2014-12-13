@@ -12,11 +12,8 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="../static/css/style.css">
-	<link rel="stylesheet" href="../static/css/modal.css">
-	<script src="../static/js/modal.js"></script>
-	<script src="../static/js/modernizr.js"></script>
-	
+	<link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+		
 	<script type="text/javascript">
 	//직박구리 상단 모양 컸다가 줄어들게 
 	$(document).scroll(function() {
@@ -27,79 +24,163 @@
 		else{
 			$('.header').removeClass("sticky");
 		}
-		//모달창 
-		$('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-});
 	});
-
 	</script>
-	
+	<style type="text/css">
+	/*버튼 모양 꾸미기*/
+	.btn-custom-login {
+		background-color: hsl(47, 22%, 99%) !important;
+		background-repeat: repeat-x;
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fdfcfb", endColorstr="#fdfcfb");
+		background-image: -khtml-gradient(linear, left top, left bottom, from(#fdfcfb), to(#fdfcfb));
+		background-image: -moz-linear-gradient(top, #fdfcfb, #fdfcfb);
+		background-image: -ms-linear-gradient(top, #fdfcfb, #fdfcfb);
+		background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fdfcfb), color-stop(100%, #fdfcfb));
+		background-image: -webkit-linear-gradient(top, #fdfcfb, #fdfcfb);
+		background-image: -o-linear-gradient(top, #fdfcfb, #fdfcfb);
+		background-image: linear-gradient(#fdfcfb, #fdfcfb);
+		border-color: #fdfcfb #fdfcfb hsl(47, 22%, 99%);
+		color: #333 !important;
+		text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+		-webkit-font-smoothing: antialiased;
+	}	
+	</style>
 </head>
-<body id="main_page_body">
+
+<body class="body_background">
 
 	<!--상단의 제목/폴더그림 부분-->
 	<div class="header">
-		<img src="../static/img/just_folder.png"/>
+		<img src="{{url_for('static', filename='img/just_folder.png')}}"/>
 		<p style="display:inline-block;">직박구리</p>
 	</div>
 
 	<!--직박구리 어 왔어? 부분-->
 	<div class="jikbak"></div>
-
-	<div class="main_info">
-		<div class="folder_mouse">
-		<img src="../static/img/christmas_logo3.png"/>
-		</div>
-	</div>
+	
 	<div>
 		<div class="col-md-1"></div>
 		<div class="col-md-5 main_slogan">
 			<p>직박구리 사이트에 대한 설명이 들어갈 자리 입니다.</p>
 		</div>
-		<div class="col-md-3 join" data-toggle="modal" data-target="#exampleModal">	
-			<img src="../static/img/join3.png"/>			
-		</div>
-		<div class="col-md-3 log_in" data-toggle="modal" data-target="#exampleModal">
-			<img src="../static/img/log_in2.png"/>
+		<div class="col-md-3 log_in" data-toggle="modal" data-target="#myModal">
+			<img src="{{url_for('static', filename='img/log_in2.png')}}"/>
 		</div>
 		<div class="col-md-1"></div>
 	</div>
-	
 
-	<!--모달 창-->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title" id="exampleModalLabel">New message</h4>
-				</div>
-				<div class="modal-body">
-					<form role="form">
-						<div class="form-group">
-							<label for="recipient-name" class="control-label">Recipient:</label>
-							<input type="text" class="form-control" id="recipient-name">
-						</div>
-						<div class="form-group">
-							<label for="message-text" class="control-label">Message:</label>
-							<textarea class="form-control" id="message-text"></textarea>
-						</div>
+<!-- 회원가입/로그인 모달창 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:#EB6F62;">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel" style="color:white;">직박구리 들어가기</h4>
+      </div>
+      <div class="modal-body" style="background-color:#EB6F62;">
+        <ul class="nav nav-tabs">
+				<li class="active"><a href="#login" data-toggle="tab">로그인</a></li>
+				<li><a href="#create" data-toggle="tab">회원가입</a></li>
+		</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane active in" id="login">
+					<form class="form-horizontal" action='' method="POST" style="font-family:'jua';">
+						<fieldset>
+						</br>
+							<div>								
+								<div class="col-md-3">
+									<img src="{{url_for('static', filename='img/come_in.png')}}"
+									style="width:200px;position:relative;left:30px;"/>
+								</div>
+							</div>    
+							<div class="control-group col-md-offset-1 col-md-4" style="position:relative;left:80px;">
+								<!-- Username -->
+								<label class="control-label" for="username">아이디</label>
+								<div class="controls">
+									<input type="text" id="username" name="username" placeholder="등록했던 이메일주소!" class="input-xlarge" style="width:200px;">
+								</div>
+							</div>
+							
+							<div class="control-group col-md-offset-1 col-md-4" style="position:relative;left:80px;">
+								<!-- Password-->
+								<label class="control-label" for="password">비밀번호</label>
+								<div class="controls">
+									<input type="password" id="password" name="password" placeholder="비번!" class="input-xlarge"
+									style="width:200px;">
+								</div>
+							</div>
+													
+							<div class="control-group col-md-12">
+							</br>
+								<!-- Button -->
+								<div class="controls"style="display:block;position:relative;left:50%;">
+									<button class="btn btn-custom-login" style="width:50px;">가자!</button>
+								</div>
+							</div>
+						</fieldset>
 					</form>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Send message</button>
-				</div>
+
+				<div class="tab-pane" id="create" style="font-family:'jua';">
+					<form id="tab" class="form-horizontal" action='' method="POST" style="font-family:'jua';">
+						<fieldset>
+						</br>
+							<div>								
+								<div class="col-md-3">
+									<img src="{{url_for('static', filename='img/come_in.png')}}"
+									style="width:200px;position:relative;left:30px;"/>
+								</div>
+							</div>  
+							<div class="control-group col-md-offset-1 col-md-4" style="position:relative;left:80px;">
+								<!-- Username -->
+								<label class="control-label" for="username">닉네임</label>
+								<div class="controls">
+									<input type="text" id="username" name="username" placeholder="원하시는 닉네임!" class="input-xlarge" style="width:200px;">
+								</div>
+							</div>  
+						
+							<div class="control-group col-md-offset-1 col-md-4" style="position:relative;left:80px;">
+								<!-- Username -->
+								<label class="control-label" for="username">아이디</label>
+								<div class="controls">
+									<input type="text" id="username" name="username" placeholder="이메일주소!" class="input-xlarge" style="width:200px;">
+								</div>
+							</div>
+							
+							<div class="control-group col-md-offset-4 col-md-4" style="position:relative;left:80px;">
+								<!-- Password-->
+								<label class="control-label" for="password">비밀번호</label>
+								<div class="controls">
+									<input type="password" id="password" name="password" placeholder="비~밀" class="input-xlarge"
+									style="width:200px;">
+								</div>
+							</div>
+							<div class="control-group col-md-offset-4 col-md-4" style="position:relative;left:80px;">
+								<!-- Password-->
+								<label class="control-label" for="password">비밀번호 확인</label>
+								<div class="controls">
+									<input type="password" id="password" name="password" placeholder="비~밀" class="input-xlarge"
+									style="width:200px;">
+								</div>
+							</div>
+
+													
+							<div class="control-group col-md-12">
+							</br>
+								<!-- Button -->
+								<div class="controls"style="display:block;position:relative;left:50%;">
+									<button class="btn btn-custom-login" style="width:50px;">가자!</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				
 			</div>
-		</div>
-	</div>
+      </div>
+    </div>
+  </div>
+</div>
+	
 
 </body>
 </html>

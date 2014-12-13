@@ -4,15 +4,6 @@
 	src: url("../fonts/BM-JUA.ttf");
 }
 
-#main_page_body {
-  /* background: url("../img/green_lines.png");*/
-   background-size: cover;
-   background-position: center center;
-   background-repeat: no-repeat;
-   background-attachment: fixed;
-   background-color: #ecf0f1;
-
-}
 	.header{
 		position: relative;
 		width: 100%;
@@ -62,7 +53,7 @@
 	}
 
 	.jikbak {
-		height: 400px;
+		height: 500px;
 		background: url("../img/jikbakintree.jpg");
 		background-size: cover;
 		background-position: center center;
@@ -100,13 +91,11 @@
 		position: relative;
 		top: 30px;
 		height: 200px;
-		border-color: #60ceb5;
-		border-style: solid;
-		border-width: 3px;
 		font-family: 'jua', sans-serif;
 		font-size: 30px;
 		text-align: center;
 		color: #60ceb5;
+		z-index: 1;
 
 	}
 	.join {
