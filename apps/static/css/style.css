@@ -164,15 +164,15 @@
 
  	.rank_chart {
  		background-color: #FC5B5B;
- 		height: 840px;
+ 		height: 877px;
  		position: relative;
- 		top: 70px;
+ 		top: 100px;
  		border-radius: 10px;
  	}
 
  	.thumbnail_folder {
 		position: relative;
- 		top: 70px;
+ 		top: 100px;
  		border-radius: 10px;
  		height: 280px;
  		background-color: #EDA8A8;
