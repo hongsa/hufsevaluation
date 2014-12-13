@@ -48,7 +48,7 @@ def db_search(searching_word):
 			try:
 				selected[0]
 			except Exception, e:
-				selected.append(u"해당하는 검색결과가 없습니다.ㅠㅜ")
+				selected.append(u"검색결과가 없습니다.ㅠㅜ")
 		return render_template("search_result.html", selected=selected, searching_word=searching_word)
 
 	selected.append(u"검색어를 입력해주세요!")

@@ -1,18 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>직박구리</title>
-</head>
-<body>
+{% extends "nav_layout.html" %}
+
+	{% block css %}
+
+	<style type="text/css">
+	.search_result {
+		
+		position: relative;
+		top: 200px;
+		height: 600px;
+		color: black;
+		font-family: 'jua';
+		font-size: 40px;
+		text-align: center;
+
+	}
 	
-	{{searching_word}} 검색결과 입니다. 
-
-	{% for i in selected %}
+	</style>
 	
-		{{i}}
+	{%endblock%}
 
-	{% endfor %}
+	{% block content %}
 
-</body>
-</html>
+		<div class="search_result col-md-offset-4 col-md-4">
+			
+			<img style="height:200px" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
+			<p>{{searching_word}} 검색결과 입니다.</p> 
+			<div style="background-color:#e74c3c;">
+			{% for i in selected %}
+	
+				<a href="#"><p>{{i}}</p></a>
+
+			{% endfor %}
+			</div>
+		</div>
+
+	{% endblock %}
+
