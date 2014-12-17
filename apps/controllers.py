@@ -11,39 +11,62 @@ from sqlalchemy import desc
 @app.route('/index')
 def index():
     return render_template("main_page.html")
-#
-# @app.route('/category')
-# def category_main():
-# 	return render_template("category_layout.html")
-
-@app.route('/a_category')
-def actress_category():
-	return render_template("actor_category.html")
-
-@app.route('/v_category')
-def video_category():
-	return render_template("video_category.html")
-
 
 @app.route('/video_main')
 def video_main():
 
-    total_rank ={}
-    total_rank =  Video.query.order_by(desc(Video.average)).limit(9)
+    totalRank = Video.query.order_by(desc(Video.average)).limit(10)
+    categoryOne =Video.query.filter_by(category="1").order_by(desc(Video.average)).limit(5)
+    categoryTwo =Video.query.filter_by(category="2").order_by(desc(Video.average)).limit(5)
+    categoryThree =Video.query.filter_by(category="3").order_by(desc(Video.average)).limit(5)
+    categoryFour =Video.query.filter_by(category="4").order_by(desc(Video.average)).limit(5)
+    categoryFive =Video.query.filter_by(category="5").order_by(desc(Video.average)).limit(5)
+    categorySix =Video.query.filter_by(category="6").order_by(desc(Video.average)).limit(5)
+
+    return render_template("video_main.html", totalRank=totalRank, categoryOne=categoryOne, categoryTwo=categoryTwo,categoryThree=categoryThree,categoryFour=categoryFour, categoryFive=categoryFive, categorySix=categorySix)
 
 
-
-
-
-    return render_template("video_main.html")
+@app.route('/show1/<key>', methods=['GET','POST'])
+def show1(key):
+	video = Actor.query.get(key)
+	mimetype ="image/png"
+	return current_app.response_class(video.image, mimetype = mimetype)
 
 @app.route('/actor_main')
 def actor_main():
-	return render_template("actor_main.html")
+
+    totalRank = Actor.query.order_by(desc(Actor.average)).limit(10)
+    categoryOne =Actor.query.filter_by(category="1").order_by(desc(Actor.average)).limit(5)
+    categoryTwo =Actor.query.filter_by(category="2").order_by(desc(Actor.average)).limit(5)
+    categoryThree =Actor.query.filter_by(category="3").order_by(desc(Actor.average)).limit(5)
+    categoryFour =Actor.query.filter_by(category="4").order_by(desc(Actor.average)).limit(5)
+    categoryFive =Actor.query.filter_by(category="5").order_by(desc(Actor.average)).limit(5)
+    categorySix =Actor.query.filter_by(category="6").order_by(desc(Actor.average)).limit(5)
+
+    return render_template("actor_main.html",totalRank=totalRank, categoryOne=categoryOne, categoryTwo=categoryTwo,categoryThree=categoryThree,categoryFour=categoryFour, categoryFive=categoryFive, categorySix=categorySix)
+
+@app.route('/show2/<key>', methods=['GET','POST'])
+def show2(key):
+	actor = Actor.query.get(key)
+	mimetype ="image/png"
+	return current_app.response_class(actor.image, mimetype = mimetype)
+
+@app.route('/a_category/<path:name>')
+def actor_category(name):
+    content={}
+    content['actorCategory'] = Actor.query.filter_by(category='name')
+    return render_template("actor_category.html",content=content, name=name)
+
+@app.route('/v_category/<path:name>')
+def video_category(name):
+    content={}
+    content['videoCategory'] = Video.query.filter_by(category='name')
+    return render_template("video_category.html",content=content, name=name)
 
 @app.route('/new_video_main')
 def new_video_main():
 	return render_template("new_video_main.html")
+
 
 #디비검색
 @app.route('/db_search', methods=['GET', 'POST'])
