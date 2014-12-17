@@ -2,7 +2,7 @@
 from flask import Flask, redirect, url_for, render_template, request, flash, session, jsonify, make_response,current_app
 from apps import app,db, models
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import Actor,Video,User,Actor_review,Video_review,Actor_Video,Rating,Bookmark
+from models import User,Actor,Video,ActorReview,VideoReview,Filmo,Rating,Favorite,Bookmark
 
 from sqlalchemy import desc
 
@@ -11,12 +11,12 @@ from sqlalchemy import desc
 @app.route('/index')
 def index():
     return render_template("main_page.html")
+#
+# @app.route('/category')
+# def category_main():
+# 	return render_template("category_layout.html")
 
 @app.route('/a_category')
-def category_main():
-	return render_template("category_layout.html")
-
-@app.route('/category')
 def actress_category():
 	return render_template("actor_category.html")
 
@@ -27,7 +27,15 @@ def video_category():
 
 @app.route('/video_main')
 def video_main():
-	return render_template("video_main.html")
+
+    total_rank ={}
+    total_rank =  Video.query.order_by(desc(Video.average)).limit(9)
+
+
+
+
+
+    return render_template("video_main.html")
 
 @app.route('/actor_main')
 def actor_main():
