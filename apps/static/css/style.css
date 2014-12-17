@@ -1,171 +1,190 @@
 
 @font-face{
-	font-family:"jua";
-	src: url("../fonts/BM-JUA.ttf");
+    font-family:"jua";
+    src: url("../fonts/BM-JUA.ttf");
 }
 
-	.header{
-		position: relative;
-		width: 100%;
-		text-align: center;
-		font-size: 80px;
-		line-height: 108px;
-		height: 100px;
-		background: #e74c3c;
-		/*background: rgba(231,76,60,0.5);
+.header{
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-size: 80px;
+    line-height: 108px;
+    height: 100px;
+    background: #e74c3c;
+    /*background: rgba(231,76,60,0.5);
 */		color: #fff;
-		font-family: 'jua', sans-serif;
-		transition: all 0.4s ease;
-		top: 0px;
-	}
+    font-family: 'jua', sans-serif;
+    transition: all 0.4s ease;
+    top: 0px;
+}
 
-	.header.sticky {
-		font-size: 40px;
-		line-height: 48px;
-		height: 48px;
-		background: #e74c3c;
-		text-align: left;
-		padding-left: 10px;
-		padding-top: 3px;
-	/*	position: fixed;
-		z-index: 1;
+.header.sticky {
+    font-size: 40px;
+    line-height: 48px;
+    height: 48px;
+    background: #e74c3c;
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 3px;
+    /*	position: fixed;
+        z-index: 1;
 */	}
 
-	.sticky .test{
-		display: none;
-	}
+.sticky .test{
+    display: none;
+}
 
-	.header p {
-		position: relative;
-		top: -5px;
-		left: -30px;
-	}
+.header p {
+    position: relative;
+    top: -5px;
+    left: -30px;
+}
 
-	.header img{
-		position: relative;
-		top: -10px;
-		left:-20px;
-		width: 100px;
-		height: 100px;
-		display: inline-block;
-		/*padding-bottom: 10px; */
+.header img{
+    position: relative;
+    top: -10px;
+    left:-20px;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    /*padding-bottom: 10px; */
 
-	}
+}
 
-	.jikbak {
-		height: 500px;
-		background: url("../img/jikbakintree.jpg");
-		background-size: cover;
-		background-position: center center;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		position: relative;
-		top: 0px;
-		width: 100%;
+.jikbak {
+    height: 500px;
+    background: url("../img/jikbakintree.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    top: 0px;
+    width: 100%;
 
-	}
-		
-	.main_info {
+}
 
-		height: 300px;
-		width: 100%;
-		
-	}
+.main_info {
 
-	.folder_mouse{
-		position: relative;
-		background: url("../img/snow.png");
-		background-repeat: repeat;
-		
-	}
+    height: 300px;
+    width: 100%;
 
-	.folder_mouse img {
-		position: relative;
-		left: 30%;
-		width: 35%;
-		height: 270px;
-	}
-	
-	.main_slogan{
-		background-color: #f7f7f9;
-		position: relative;
-		top: 30px;
-		height: 200px;
-		font-family: 'jua', sans-serif;
-		font-size: 30px;
-		text-align: center;
-		color: #60ceb5;
-		z-index: 1;
+}
 
-	}
-	.join {
-		background-color: #ecf0f1;
-		position: relative;
-		top: 30px;
-		height: 250px;
-	}
+.folder_mouse{
+    position: relative;
+    background: url("../img/snow.png");
+    background-repeat: repeat;
 
-	.join img {
-		width: 280px;
-		height: 250px;
-	}
-	.log_in{
-		background-color: #ecf0f1;
-		position: relative;
-		top: 30px;
-		height: 250px;
-	}
-	.log_in img {
-		width: 280px;
-		height: 250px;
-	}
+}
 
-	a {
-   	color:white;
-	text-decoration: none;
-	}
-	a:link {
+.folder_mouse img {
+    position: relative;
+    left: 30%;
+    width: 35%;
+    height: 270px;
+}
 
-	color: white;
-	text-decoration: none;
-	}
+.main_slogan{
+    background-color: #f7f7f9;
+    position: relative;
+    top: 30px;
+    height: 200px;
+    font-family: 'jua', sans-serif;
+    font-size: 30px;
+    text-align: center;
+    color: #60ceb5;
+    z-index: 1;
 
-	a:visited {
-	color: white;
-	text-decoration: none;
-	}
+}
+.join {
+    background-color: #ecf0f1;
+    position: relative;
+    top: 30px;
+    height: 250px;
+}
 
-	a:hover {
-	color: gray;
-	text-decoration: none;
+.join img {
+    width: 280px;
+    height: 250px;
+}
+.log_in{
+    background-color: #ecf0f1;
+    position: relative;
+    top: 30px;
+    height: 250px;
+}
+.log_in img {
+    width: 280px;
+    height: 250px;
+}
 
-	}
+a {
+    color:white;
+    text-decoration: none;
+}
+a:link {
 
-	.body_background {
-		background-color: #f7f7f9;
-	}
- 	
- 	.category_body {
- 		background: #f7f7f9;
-		height: 900px;
-		width: 100%;
- 	}
+    color: white;
+    text-decoration: none;
+}
 
- 	.rank_chart {
- 		background-color: #FC5B5B;
- 		height: 877px;
- 		position: relative;
- 		top: 100px;
- 		border-radius: 10px;
- 	}
+a:visited {
+    color: white;
+    text-decoration: none;
+}
 
- 	.thumbnail_folder {
-		position: relative;
- 		top: 100px;
- 		border-radius: 10px;
- 		height: 280px;
- 		background-color: #EDA8A8;
- 	}
+a:hover {
+    color: gray;
+    text-decoration: none;
+
+}
+
+.body_background {
+    background-color: #f7f7f9;
+}
+
+.category_body {
+    background: #f7f7f9;
+    height: 900px;
+    width: 100%;
+}
+
+.rank_chart {
+    background-color: #FC5B5B;
+    height: 877px;
+    position: relative;
+    top: 100px;
+    border-radius: 10px;
+}
+
+.thumbnail_folder {
+    position: relative;
+    top: 100px;
+    border-radius: 10px;
+    height: 280px;
+    background-color: #EDA8A8;
+}
+
+.main_thumnail {
+    position: relative;
+    top: 100px;
+    border-radius: 10px;
+    width: 135px;
+    height: 150px;
+    background-color: #EDA8A8;
+}
+.main_category_name {
+    position: relative;
+    top: 100px;
+}
+
+
+.main_category{
+    margin-left: 20px;
+}
+
 
 
 

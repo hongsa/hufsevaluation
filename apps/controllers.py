@@ -12,9 +12,18 @@ from sqlalchemy import desc
 def index():
     return render_template("main_page.html")
 
-@app.route('/category')
+@app.route('/a_category')
 def category_main():
 	return render_template("category_layout.html")
+
+@app.route('/category')
+def actress_category():
+	return render_template("actress_category.html")
+
+@app.route('/v_category')
+def video_category():
+	return render_template("video_category.html")
+
 
 @app.route('/video_main')
 def video_main():
