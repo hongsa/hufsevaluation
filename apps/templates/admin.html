@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>actor입력</title>
+
+	<!-- <link href="../static/css/video_style.css" rel="stylesheet" type='text/css'> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+</head>
+{% if get_flashed_messages() %}
+
+<div class="flahsed_box">
+	{% for each in get_flashed_messages() %}
+	<div class="flashed_text">
+		{{each}}
+	</div>
+	{% endfor %}
+</div>
+
+{% endif %}
+<body>
+	<div>
+		<div>
+			<div>				
+				<form action="{{url_for("admin_actor")}}", enctype="multipart/form-data", method="post">
+					<h3>배우</h3>
+					<p> 이름: <input type="text", name="name"></p>					
+					<p> 나이: <input type="text", name="age"></p>
+					<p> category: <input type="text", name="category"></p>
+					<p>배우사진: <input type="file" name ="actor_image"></p>
+					<p><input type="submit" value="배우DB 저장하기"></p>
+				</form>
+
+			</div>
+
+			<div>
+				<form action="{{url_for("admin_video")}}", enctype="multipart/form-data", method="post">
+					<h3>영상</h3>
+					<p> 품번: <input type="text", name="name"></p>					
+					<p> category: <input type="text", name="category"></p>
+					<p> 출시연도: <input type="text", name="release_year"></p>
+					<p> 유모노모: <input type="text", name="exposure"></p>
+					<p>영상사진: <input type="file" name ="video_image"></p>
+					<p><input type="submit" value="영상DB 저장하기"></p>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

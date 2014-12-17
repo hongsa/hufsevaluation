@@ -21,6 +21,7 @@ class Video(db.Model):
     category = db.Column(db.String(255))
     #노모가 0, 유모가 1
     exposure = db.Column(db.Integer, default=1)
+    release = db.Column(db.Integer, default=0)
     score = db.Column(db.Float, default =0)
     count = db.Column(db.Integer, default = 0)
     average = db.Column(db.Float, default=0)
