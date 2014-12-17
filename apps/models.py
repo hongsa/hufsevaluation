@@ -1,91 +1,78 @@
 # -*- coding:utf-8 -*-
 from apps import db
 
-
-# actor_video = db.Table('actor_video',
-#     db.Column('actor_name', db.String(255), db.ForeignKey('actor.name')),
-#     db.Column('video_name', db.String(255), db.ForeignKey('video.name'))
-# )
-
-
 class User(db.Model):
-    email = db.Column(db.String(255), primary_key = True)
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(255))
     password = db.Column(db.String(255))
     nickname = db.Column(db.String(255))
-    join_date = db.Column(db.DateTime(),default = db.func.now())
-
+    joinDATE = db.Column(db.DateTime(),default = db.func.now())
 
 class Actor(db.Model):
-    name = db.Column(db.String(255), primary_key = True)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
     image = db.Column(db.LargeBinary)
-    age = db.Column(db.Integer, default=0)
-    body_size = db.Column(db.String(255), default =0)
-    active_year = db.Column(db.Integer, default=0)
-    similar_actor = db.Column(db.String(255))
     category =db.Column(db.String(255))
-    score = db.Column(db.Integer, default =1)
-    count = db.Column(db.Integer, default = 1)
-    # actor_video = db.relationship('actor_video', secondary=actor_video, backref=db.backref('actors', lazy='dynamic'))
-
-
-class Actor_review(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    actor = db.relationship('Actor', backref=db.backref('actor_reviews', cascade='all, delete-orphan', lazy='dynamic'))
-    actor_name = db.Column(db.String(255), db.ForeignKey(Actor.name))
-    user = db.relationship('User', backref=db.backref('user_actor_reviews', cascade='all, delete-orphan', lazy='dynamic'))
-    user_email = db.Column(db.String(255), db.ForeignKey(User.email))
-    content = db.Column(db.Text())
-    date_created=db.Column(db.DateTime(), default=db.func.now())
+    score = db.Column(db.Float, default =0)
+    count = db.Column(db.Float, default = 0)
+    average = db.Column(db.Float, default=0)
 
 class Video(db.Model):
-    name = db.Column(db.String(255), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
     image = db.Column(db.LargeBinary)
     category = db.Column(db.String(255))
-    release_year = db.Column(db.Integer, default=0)
-    exposure = db.Column(db.String(255))
-    score_total = db.Column(db.Integer, default=1)
-    score_count = db.Column(db.Integer, default=1)
+    #노모가 0, 유모가 1
+    exposure = db.Column(db.Integer, default=1)
+    score = db.Column(db.Float, default =0)
+    count = db.Column(db.Float, default = 0)
+    average = db.Column(db.Float, default=0)
 
-    # def image_url(self):
-    #     # return '/show2/ff1234'
-    #     return url_for('show2', key=self.name)
-
-    # video_actor = db.relationship('actor_video', secondary=actor_video, backref=db.backref('videos', lazy='dynamic'))
-    # review=db.Column(db.Text())
-
-class Video_review(db.Model):
+class ActorReview(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    video = db.relationship('Video', backref=db.backref('video_reviews', cascade='all, delete-orphan', lazy='dynamic'))
-    video_name = db.Column(db.String(255), db.ForeignKey(Video.name))
-    # test=Video_review()
-    # test.User.nickname
-    user = db.relationship('User', backref=db.backref('user_grade', cascade='all, delete-orphan', lazy='dynamic'))
-    # author=db.relationship('User', backref=db.backref('user_grade', cascade='all, delete-orphan', lazy='dynamic'))
-    user_email = db.Column(db.String(255), db.ForeignKey(User.email))
-    # grade = db.Column(db.Integer, default=0)
+    actor = db.relationship('Actor', backref=db.backref('actorReview', cascade='all, delete-orphan', lazy='dynamic'))
+    actorID = db.Column(db.Integer, db.ForeignKey(Actor.id))
+    user = db.relationship('User', backref=db.backref('actorReview', cascade='all, delete-orphan', lazy='dynamic'))
+    userID = db.Column(db.Integer, db.ForeignKey(User.id))
     content = db.Column(db.Text())
-    date_created=db.Column(db.DateTime(), default=db.func.now())
+    created=db.Column(db.Date(), default=db.func.now())
 
-class Actor_Video(db.Model):
+class VideoReview(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    actor_video = db.relationship('Actor', backref=db.backref('actor_video', cascade='all, delete-orphan', lazy='dynamic'))
-    video_actor = db.relationship('Video', backref=db.backref('video_actor', cascade='all, delete-orphan', lazy='dynamic'))
-    actor_name = db.Column(db.String(255), db.ForeignKey(Actor.name))
-    video_name = db.Column(db.String(255), db.ForeignKey(Video.name))
+    video = db.relationship('Video', backref=db.backref('videoReview', cascade='all, delete-orphan', lazy='dynamic'))
+    videoID = db.Column(db.String(255), db.ForeignKey(Video.id))
+    user = db.relationship('User', backref=db.backref('videoReview', cascade='all, delete-orphan', lazy='dynamic'))
+    userID = db.Column(db.Integer, db.ForeignKey(User.id))
+    content = db.Column(db.Text())
+    created=db.Column(db.Date(), default=db.func.now())
+
+class Filmo(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    actor = db.relationship('Actor', backref=db.backref('Filmo', cascade='all, delete-orphan', lazy='dynamic'))
+    video = db.relationship('Video', backref=db.backref('Filmo', cascade='all, delete-orphan', lazy='dynamic'))
+    videoID = db.Column(db.Integer, db.ForeignKey(Video.id))
+    ActorID = db.Column(db.Integer, db.ForeignKey(Actor.id))
 
 class Rating(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    video = db.relationship('Video', backref=db.backref('video_rating', cascade='all, delete-orphan', lazy='dynamic'))
-    video_rating = db.Column(db.String(255), db.ForeignKey(Video.name))
-    user = db.relationship('User', backref=db.backref('user_rating', cascade='all, delete-orphan', lazy='dynamic'))
-    user_rating = db.Column(db.String(255), db.ForeignKey(User.email))
+    video = db.relationship('Video', backref=db.backref('rating', cascade='all, delete-orphan', lazy='dynamic'))
+    videoID = db.Column(db.Integer, db.ForeignKey(Video.id))
+    user = db.relationship('User', backref=db.backref('rating', cascade='all, delete-orphan', lazy='dynamic'))
+    userID = db.Column(db.Integer, db.ForeignKey(User.id))
     rating = db.Column(db.Integer, default=0)
 
-class Bookmark(db.Model):
+class Favorite(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    user = db.relationship('User', backref=db.backref('user_bookmark', cascade='all, delete-orphan', lazy='dynamic'))
-    user_email = db.Column(db.String(255), db.ForeignKey(User.email))
-    actor = db.relationship('Actor', backref=db.backref('actor_bookmark', cascade='all, delete-orphan', lazy='dynamic'))
-    actor_name = db.Column(db.String(255), db.ForeignKey(Actor.name))
+    user = db.relationship('User', backref=db.backref('favorite', cascade='all, delete-orphan', lazy='dynamic'))
+    userID = db.Column(db.Integer, db.ForeignKey(User.id))
+    actor = db.relationship('Actor', backref=db.backref('favorite', cascade='all, delete-orphan', lazy='dynamic'))
+    actorID = db.Column(db.Integer, db.ForeignKey(Actor.id))
+
+class Bookmark(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    video = db.relationship('Video', backref=db.backref('bookmark',cascade='all, delete-orphan',lazy='dynamic'))
+    videoID=db.Column(db.Integer, db.ForeignKey(Video.id))
+    user = db.relationship('User', backref=db.backref('bookmark',cascade='all, delete-orphan',lazy='dynamic'))
+    userID=db.Column(db.Integer, db.ForeignKey(User.id))
 
 

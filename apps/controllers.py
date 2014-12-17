@@ -18,7 +18,7 @@ def category_main():
 
 @app.route('/category')
 def actress_category():
-	return render_template("actress_category.html")
+	return render_template("actor_category.html")
 
 @app.route('/v_category')
 def video_category():
@@ -29,9 +29,9 @@ def video_category():
 def video_main():
 	return render_template("video_main.html")
 
-@app.route('/actress_main')
-def actress_main():
-	return render_template("actress_main.html")
+@app.route('/actor_main')
+def actor_main():
+	return render_template("actor_main.html")
 
 @app.route('/new_video_main')
 def new_video_main():
