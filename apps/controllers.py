@@ -53,15 +53,18 @@ def show2(key):
 
 @app.route('/a_category/<path:name>')
 def actor_category(name):
-    content={}
-    content['actorCategory'] = Actor.query.filter_by(category='name')
-    return render_template("actor_category.html",content=content, name=name)
+    actorCategory = Actor.query.filter_by(category=name)
+    categoryList = set([each.category for each in Actor.query.all()])
+
+    return render_template("actor_category.html",actorCategory=actorCategory, categoryList=categoryList, name=name)
 
 @app.route('/v_category/<path:name>')
 def video_category(name):
     content={}
     content['videoCategory'] = Video.query.filter_by(category='name')
     return render_template("video_category.html",content=content, name=name)
+
+
 
 @app.route('/new_video_main')
 def new_video_main():
@@ -131,10 +134,6 @@ def admin_actor():
         actor_write=Actor(
             name=request.form['name'],
             image = filestream,
-            age=request.form['age'],
-            body_size=request.form['body_size'],
-            active_year=request.form['active_year'],
-            similar_actor=request.form['similar_actor'],
             category=request.form['category']
             )
         db.session.add(actor_write)
@@ -156,7 +155,7 @@ def admin_video():
             name=request.form['name'],
             image = filestream,
             category=request.form['category'],
-            release_year=request.form['release_year'],
+            release=request.form['release_year'],
             exposure=request.form['exposure'],
             )
         db.session.add(video_write)

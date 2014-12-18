@@ -5,31 +5,26 @@
 {% endblock css %}
 {% block content %}
 
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
-  
+<div class="col-md-1"></div>
+<div class="col-md-10">
+
     <div class="col-md-2 rank_chart">
-        영상 카테고리
+        {% for each in categoryList %}
+        <a href="/a_category/{{each}}"><button type="button" class="btn btn-default" style="font-size:40px;">{{each}}</button></a>
+        {% endfor %}
     </div>
 
     <div class="col-md-10">
-    <div class="col-md-3 thumbnail_folder thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder thumbnail"></div>
+        {% for each in actorCategory %}
+        <div class="col-md-3 thumbnail_folder">
+            <img class="category_image" src="/show1/{{each.name}}" alt=""/>
+            {{each.name}}
+        </div>
+        {% endfor %}
 
-    <div class="col-md-3 thumbnail_folder thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder thumbnail"></div>
-
-    <div class="col-md-3 thumbnail_folder thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder thumbnail"></div>
     </div>
-  
-  </div>  
-  <div class="col-md-1"></div>
+
+</div>
+<div class="col-md-1"></div>
 
 {% endblock %} 

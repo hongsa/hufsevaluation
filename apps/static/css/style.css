@@ -165,14 +165,16 @@ a:hover {
     border-radius: 10px;
     height: 280px;
     background-color: #EDA8A8;
+    margin-bottom: 20px;
 }
 
 .main_thumnail {
     position: relative;
     top: 100px;
     border-radius: 10px;
-    width: 135px;
+    /*width: 135px;*/
     height: 150px;
+    margin-bottom: 20px;
     background-color: #EDA8A8;
 }
 .main_category_name {
@@ -183,6 +185,17 @@ a:hover {
 
 .main_category{
     margin-left: 20px;
+}
+.main_image{
+    width: 125px;
+    height: 125px;
+    background-size: cover;
+}
+
+.category_image{
+    width: 180px;
+    height: 180px;
+    background-size: cover;
 }
 
 
