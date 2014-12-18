@@ -5,12 +5,92 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from models import User,Actor,Video,ActorReview,VideoReview,Filmo,Rating,Favorite,Bookmark
 
 from sqlalchemy import desc
+from apps import forms
 
 @app.route('/')
 
 @app.route('/index')
 def index():
-    return render_template("main_page.html")
+    form = forms.JoinForm()
+    form2 = forms.LoginForm()
+    return render_template("main_page.html",form=form,form2=form2)
+
+#회원가입
+@app.route('/signup', methods = ['GET', 'POST'])
+def signup():
+    try:
+        if session['session_user_email']:
+            flash(u"이미 회원가입 하셨습니다!","error")
+            return redirect(url_for('index'))
+    except Exception, e:
+        pass
+
+    form = forms.JoinForm()
+    form2 = forms.LoginForm()
+    if request.method == 'POST':
+        if not form.validate_on_submit():
+            flash(u"올바른 형식으로 입력해주세요!","error")
+            return render_template("main_page.html",form=form,form2=form2)
+        if models.User.query.get(request.form['email']):
+            flash(u"이미 등록된 메일 주소 입니다!","error")
+            return render_template("main_page.html",form=form,form2=form2)
+        nickname_list = []          
+        for i in models.User.query.all():
+            nickname_list.append(i.nickname)
+        if form.nickname.data in nickname_list:
+            flash(u"이미 사용중인 닉네임입니다!","error")
+            return render_template("main_page.html",form=form,form2=form2)
+        user = models.User(email=form.email.data, password=generate_password_hash(form.password.data), nickname=form.nickname.data)
+
+        db.session.add(user)
+        db.session.commit()
+        flash(u"회원가입 되셨습니다!")
+
+        session['session_user_email'] = form.email.data
+        session['session_user_nickname'] = form.nickname.data 
+
+        return redirect(url_for('category'))
+    return redirect(url_for('category'))
+
+#로그인
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+
+    try:
+        if session['session_user_email']:
+            flash(u'이미 로그인 하셨습니다!')
+            return redirect(url_for('index'))
+    except Exception, e:
+        pass
+    form = forms.JoinForm()
+    form2 = forms.LoginForm()
+    if request.method == "POST":
+        if form.validate_on_submit():
+            email = form.email.data
+            pwd = form.password.data
+            user = models.User.query.get(email)
+            if user is None:
+                flash(u"존재하지 않는 이메일 입니다.", "error")
+            elif not check_password_hash(user.password, pwd):
+                flash(u"비밀번호가 일치하지 않습니다.", "error")
+            else:
+                session.permanent = True
+                session['session_user_id'] = user.id
+                session['session_user_nickname'] = user.nickname
+
+                return redirect(url_for('category'))
+    return redirect(url_for('category'))
+
+#로그아웃 부분.
+@app.route('/logout')
+def logout():
+    if "session_user_id" in session:
+        session.clear()
+        flash(u"로그아웃 되었습니다.")
+    else:
+        flash(u"로그인 되어있지 않습니다.", "error")
+    return redirect(url_for('index'))
+
 
 @app.route('/video_main')
 def video_main():

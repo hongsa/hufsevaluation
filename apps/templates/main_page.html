@@ -84,100 +84,76 @@
 		</ul>
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane active in" id="login">
-					<form class="form-horizontal" action='' method="POST" style="font-family:'jua';">
+					<form class="form-horizontal" action='{{url_for("login")}}' method="POST">
 						<fieldset>
 						</br>
 							<div>								
-								<div class="col-md-3">
+								<div class="col-md-12">
 									<img src="{{url_for('static', filename='img/come_in.png')}}"
-									style="width:200px;position:relative;left:30px;"/>
+									style="width:200px;position:relative;left:30%;"/>
 								</div>
 							</div>    
-							<div class="control-group col-md-offset-1 col-md-4" style="position:relative;left:80px;">
-								<!-- Username -->
-								<label class="control-label" for="username">아이디</label>
-								<div class="controls">
-									<input type="text" id="username" name="username" placeholder="등록했던 이메일주소!" class="input-xlarge" style="width:200px;">
-								</div>
-							</div>
+							<div class="control-group col-md-9" style="position:relative;left:80px;top:10px;">
 							
-							<div class="control-group col-md-offset-1 col-md-4" style="position:relative;left:80px;">
-								<!-- Password-->
-								<label class="control-label" for="password">비밀번호</label>
-								<div class="controls">
-									<input type="password" id="password" name="password" placeholder="비번!" class="input-xlarge"
-									style="width:200px;">
-								</div>
+								{{ form2.hidden_tag() }}
+								{% from "_form_field.html" import render_field %}
+								{% for field in form2 %}
+								{% if field.widget.input_type != 'hidden' %}
+								{{ render_field(field, class="form-control") }}
+								{% endif %}
+								{% endfor %}
+							
 							</div>
 													
 							<div class="control-group col-md-12">
 							</br>
-								<!-- Button -->
-								<div class="controls"style="display:block;position:relative;left:50%;">
-									<button class="btn btn-custom-login" style="width:50px;">가자!</button>
+								
+								<div class="controls"style="display:block;position:relative;left:45%;">
+									<button class="btn btn-custom-login" style="width:50px;font-family:'jua';">가자!</button>
 								</div>
 							</div>
 						</fieldset>
 					</form>
 				</div>
 
-				<div class="tab-pane" id="create" style="font-family:'jua';">
-					<form id="tab" class="form-horizontal" action='' method="POST" style="font-family:'jua';">
+				<div class="tab-pane" id="create">
+					<form class="form-horizontal" action='{{url_for("signup")}}' method="POST">
 						<fieldset>
 						</br>
 							<div>								
-								<div class="col-md-3">
+								<div class="col-md-12">
 									<img src="{{url_for('static', filename='img/come_in.png')}}"
-									style="width:200px;position:relative;left:30px;"/>
+									style="width:200px;position:relative;left:30%;"/>
 								</div>
-							</div>  
-							<div class="control-group col-md-offset-1 col-md-4" style="position:relative;left:80px;">
-								<!-- Username -->
-								<label class="control-label" for="username">닉네임</label>
-								<div class="controls">
-									<input type="text" id="username" name="username" placeholder="원하시는 닉네임!" class="input-xlarge" style="width:200px;">
-								</div>
-							</div>  
-						
-							<div class="control-group col-md-offset-1 col-md-4" style="position:relative;left:80px;">
-								<!-- Username -->
-								<label class="control-label" for="username">아이디</label>
-								<div class="controls">
-									<input type="text" id="username" name="username" placeholder="이메일주소!" class="input-xlarge" style="width:200px;">
-								</div>
-							</div>
+							</div>    
+							<div class="control-group col-md-9" style="position:relative;left:80px;top:10px;">
 							
-							<div class="control-group col-md-offset-4 col-md-4" style="position:relative;left:80px;">
-								<!-- Password-->
-								<label class="control-label" for="password">비밀번호</label>
-								<div class="controls">
-									<input type="password" id="password" name="password" placeholder="비~밀" class="input-xlarge"
-									style="width:200px;">
-								</div>
+								{{ form.hidden_tag() }}
+								{% from "_form_field.html" import render_field %}
+								{% for field in form %}
+								{% if field.widget.input_type != 'hidden' %}
+								{{ render_field(field, class="form-control") }}
+								{% endif %}
+								{% endfor %}
+							
 							</div>
-							<div class="control-group col-md-offset-4 col-md-4" style="position:relative;left:80px;">
-								<!-- Password-->
-								<label class="control-label" for="password">비밀번호 확인</label>
-								<div class="controls">
-									<input type="password" id="password" name="password" placeholder="비~밀" class="input-xlarge"
-									style="width:200px;">
-								</div>
-							</div>
-
 													
 							<div class="control-group col-md-12">
 							</br>
-								<!-- Button -->
-								<div class="controls"style="display:block;position:relative;left:50%;">
-									<button class="btn btn-custom-login" style="width:50px;">가자!</button>
+								
+								<div class="controls"style="display:block;position:relative;left:45%;">
+									<button class="btn btn-custom-login" style="width:50px;font-family:'jua';">가자!</button>
 								</div>
 							</div>
 						</fieldset>
 					</form>
 				
-			</div>
-      </div>
-    </div>
+				</div>
+
+
+      		</div>
+    	</div>
+  	</div>
   </div>
 </div>
 	
