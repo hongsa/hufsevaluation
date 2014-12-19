@@ -55,15 +55,16 @@ def signup():
 #로그인
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-
     try:
         if session['session_user_email']:
             flash(u'이미 로그인 하셨습니다!')
             return redirect(url_for('index'))
+
     except Exception, e:
         pass
     form = forms.JoinForm()
     form2 = forms.LoginForm()
+
     if request.method == "POST":
         if form.validate_on_submit():
             email = form.email.data
@@ -77,9 +78,8 @@ def login():
                 session.permanent = True
                 session['session_user_id'] = user.id
                 session['session_user_nickname'] = user.nickname
-
                 return redirect(url_for('actor_main'))
-    return redirect(url_for('actor_main'))
+    return redirect(url_for('index'))
 
 #로그아웃 부분.
 @app.route('/logout')
