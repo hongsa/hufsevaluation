@@ -56,7 +56,7 @@ def login():
     try:
         if session['session_user_email']:
             flash(u'이미 로그인 하셨습니다!')
-            return redirect(url_for('index'))
+            return redirect(url_for('actor_main'))
 
     except Exception, e:
         pass

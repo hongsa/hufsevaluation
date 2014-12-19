@@ -36,7 +36,17 @@
 </head>
 
 <body>
+    {% if get_flashed_messages() %}
 
+        <div class="flahsed_box">
+          {% for each in get_flashed_messages() %}
+          <div class="flashed_text">
+            {{each}}
+          </div>
+          {% endfor %}
+        </div>
+
+      {% endif %}
 	<!--&lt;!&ndash;상단의 제목/폴더그림 부분&ndash;&gt;-->
 	<!--<div class="header">-->
 		<!--<img src="{{url_for('static', filename='img/just_folder.png')}}"/>-->
