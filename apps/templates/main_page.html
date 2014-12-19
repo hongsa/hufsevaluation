@@ -3,29 +3,17 @@
 <head>
 	<meta charset="UTF-8">
 	<title>직박구리</title>
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <!--style-->
+    <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	<link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
-		
-	<script type="text/javascript">
-	//직박구리 상단 모양 컸다가 줄어들게 
-	$(document).scroll(function() {
-		if ($(this).scrollTop() > 1){
-			$('.header').addClass("sticky");
-			$('.header>img').addClass("test");
-		}
-		else{
-			$('.header').removeClass("sticky");
-		}
-	});
-	</script>
+	<link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <!--jquery-->
+	<script src="{{url_for('static', filename='js/jquery-1.11.2.js')}}"></script>
+    <!-- Latest compiled and minified JavaScript -->
+	<script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
+
+
+
 	<style type="text/css">
 	/*버튼 모양 꾸미기*/
 	.btn-custom-login {
@@ -47,29 +35,36 @@
 	</style>
 </head>
 
-<body class="body_background">
+<body>
 
-	<!--상단의 제목/폴더그림 부분-->
-	<div class="header">
-		<img src="{{url_for('static', filename='img/just_folder.png')}}"/>
-		<p style="display:inline-block;">직박구리</p>
-	</div>
+	<!--&lt;!&ndash;상단의 제목/폴더그림 부분&ndash;&gt;-->
+	<!--<div class="header">-->
+		<!--<img src="{{url_for('static', filename='img/just_folder.png')}}"/>-->
+		<!--<p style="display:inline-block;">직박구리</p>-->
+	<!--</div>-->
 
 	<!--직박구리 어 왔어? 부분-->
-	<div class="jikbak"></div>
-	
-	<div>
+	<div class="jikbak row">
+	</div>
+    <!--어 왔어 끝-->
+
+    <!--설명 및 버튼-->
+	<div class="row">
 		<div class="col-md-1"></div>
-		<div class="col-md-5 main_slogan">
+
+        <div class="col-md-4 main_slogan">
 			<p>직박구리 사이트에 대한 설명이 들어갈 자리 입니다.</p>
 		</div>
-		<div class="col-md-3 log_in" data-toggle="modal" data-target="#myModal">
-			<img src="{{url_for('static', filename='img/log_in2.png')}}"/>
-		</div>
-		<div class="col-md-1"></div>
-	</div>
+        <div class="col-md-1"></div>
 
-<!-- 회원가입/로그인 모달창 -->
+        <div class="col-md-3 log_in" data-toggle="modal" data-target="#myModal">
+			<img id="mainModalButton" src="{{url_for('static', filename='img/log_in2.png')}}"/>
+		</div>
+        <div class="col-md-1"></div>
+	</div>
+    <!--설명 및 버튼  끝-->
+
+    <!-- 회원가입/로그인 모달창 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -87,14 +82,14 @@
 					<form class="form-horizontal" action='{{url_for("login")}}' method="POST">
 						<fieldset>
 						</br>
-							<div>								
+							<div>
 								<div class="col-md-12">
 									<img src="{{url_for('static', filename='img/come_in.png')}}"
 									style="width:200px;position:relative;left:30%;"/>
 								</div>
-							</div>    
+							</div>
 							<div class="control-group col-md-9" style="position:relative;left:80px;top:10px;">
-							
+
 								{{ form2.hidden_tag() }}
 								{% from "_form_field.html" import render_field %}
 								{% for field in form2 %}
@@ -102,12 +97,12 @@
 								{{ render_field(field, class="form-control") }}
 								{% endif %}
 								{% endfor %}
-							
+
 							</div>
-													
+
 							<div class="control-group col-md-12">
 							</br>
-								
+
 								<div class="controls"style="display:block;position:relative;left:45%;">
 									<button class="btn btn-custom-login" style="width:50px;font-family:'jua';">가자!</button>
 								</div>
@@ -120,14 +115,14 @@
 					<form class="form-horizontal" action='{{url_for("signup")}}' method="POST">
 						<fieldset>
 						</br>
-							<div>								
+							<div>
 								<div class="col-md-12">
 									<img src="{{url_for('static', filename='img/come_in.png')}}"
 									style="width:200px;position:relative;left:30%;"/>
 								</div>
-							</div>    
+							</div>
 							<div class="control-group col-md-9" style="position:relative;left:80px;top:10px;">
-							
+
 								{{ form.hidden_tag() }}
 								{% from "_form_field.html" import render_field %}
 								{% for field in form %}
@@ -135,19 +130,19 @@
 								{{ render_field(field, class="form-control") }}
 								{% endif %}
 								{% endfor %}
-							
+
 							</div>
-													
+
 							<div class="control-group col-md-12">
 							</br>
-								
+
 								<div class="controls"style="display:block;position:relative;left:45%;">
 									<button class="btn btn-custom-login" style="width:50px;font-family:'jua';">가자!</button>
 								</div>
 							</div>
 						</fieldset>
 					</form>
-				
+
 				</div>
 
 
@@ -156,7 +151,7 @@
   	</div>
   </div>
 </div>
-	
+<!--모달창 끝-->
 
 </body>
 </html>
