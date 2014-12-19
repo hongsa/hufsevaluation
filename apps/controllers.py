@@ -2,7 +2,7 @@
 from flask import Flask, redirect, url_for, render_template, request, flash, session, jsonify, make_response,current_app
 from apps import app,db, models
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import User,Actor,Video,ActorReview,VideoReview,Filmo,Rating,Favorite,Bookmark
+from models import User,Actor,Video,ActorReview,VideoReview,Filmo,RatingActor,RatingVideo,Favorite,Bookmark
 
 from sqlalchemy import desc
 from apps import forms
@@ -244,9 +244,16 @@ def admin_video():
     return render_template("admin.html")
 	# return redirect(url_for("index"))
 
+@app.route('/a_collection',methods=['GET','POST'])
+def actor_collection():
+
+    return render_template("actor_collection.html")
 
 
+@app.route('/v_collection',methods=['GET','POST'])
+def video_collection():
 
+    return render_template("video_collection.html")
 
 
 

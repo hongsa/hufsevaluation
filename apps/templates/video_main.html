@@ -11,9 +11,9 @@
     <div class="col-md-2 rank_chart">
         <div class="text-center" style="font-size: 25px; color: #ffffff;margin-top: 10px; border-bottom: 2px;">전체 랭킹</div>
         <hr style="border-bottom:2px;"/>
-        <ol style="font-size: 16px; margin-bottom: 10px;">
+        <ol style="font-size:16px;">
             {% for each in totalRank %}
-            <div><li><a href="#">{{each.name}}</a></li></div>
+            <div><li style="margin-bottom: 10px;"><a href="#">{{each.name}}</a></li></div>
             {% endfor %}
         </ol>
 
