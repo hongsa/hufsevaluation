@@ -12,13 +12,13 @@ from apps import forms
 @app.route('/')
 @app.route('/index')
 def index():
-
     if not 'session_user_email' in session:
         form=forms.JoinForm()
         form2=forms.LoginForm()
         return render_template("main_page.html", form=form,form2=form2)
-
     return redirect(url_for('actor_main'))
+
+
 
 # 회원가입
 @app.route('/signup', methods=['GET', 'POST'])
@@ -99,6 +99,12 @@ def logout():
 
 @app.route('/video_main')
 def video_main():
+# 로그인 안한 상태로 오면 index로 빠꾸
+    if not session['session_user_email'] in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+
+
     totalRank = Video.query.order_by(desc(Video.average)).limit(10)
     categoryOne = Video.query.filter_by(category="1").order_by(desc(Video.average)).limit(5)
     categoryTwo = Video.query.filter_by(category="2").order_by(desc(Video.average)).limit(5)
@@ -121,6 +127,8 @@ def show1(key):
 
 @app.route('/actor_main')
 def actor_main():
+
+
     totalRank = Actor.query.order_by(desc(Actor.average)).limit(10)
     categoryOne = Actor.query.filter_by(category="1").order_by(desc(Actor.average)).limit(5)
     categoryTwo = Actor.query.filter_by(category="2").order_by(desc(Actor.average)).limit(5)
