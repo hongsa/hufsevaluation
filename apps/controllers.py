@@ -284,7 +284,9 @@ def video_save_star():
     email = session['session_user_email']
     logging.error(email)
 
-    rating = video.ratingvideo_video.filter_by(user_email=email).first()
+    rating = video.ratingVideo_video.filter_by(user_email=email).first()
+    logging.error(rating)
+
 
     if rating:  # 이미 평점을 매겼었음
         video.score += star - rating.rating
@@ -318,7 +320,7 @@ def actor_save_star():
     email = session['session_user_email']
 
 
-    rating = actor.ratingactor_actor.filter_by(user_email=email).first()
+    rating = actor.ratingActor_actor.filter_by(user_email=email).first()
 
     if rating:  # 이미 평점을 매겼었음
         actor.score += star - rating.rating

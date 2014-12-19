@@ -6,9 +6,9 @@
 <script>
     {% for each in actorCategory %}
         var name = "{{each.name}}";
-    {% endfor %}
+        {% endfor %}
 </script>
-<script type="text/javascript" src="{{url_for('static', filename='js/star.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/actor_star.js')}}"></script>
 {% endblock %}
 
 
@@ -29,14 +29,12 @@
         <div class="col-md-3 thumbnail_folder_actor">
             <img class="category_image" src="/show2/{{each.name}}" alt=""/>
 
-            <div class="img_name_text">{{each.name}}</div>
-            <div class="text-center" id="star_area">
+            <div class="text-center" id="a_star_area">
                 {% for i in range(1, 6) %}
                 <div id="{{i}}" class="glyphicon glyphicon-heart-empty"></div>
                 {% endfor %}
             </div>
-
-            <div class="text-center">{{each.name}}</div>
+            <div class="img_name_text">{{each.name}}</div>
 
         </div>
         {% endfor %}

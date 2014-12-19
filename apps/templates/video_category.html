@@ -1,8 +1,17 @@
 <!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지-->
 {% extends "nav_layout.html" %}
 {% block css %}
-
 {% endblock css %}
+{% block js %}
+<script>
+    {% for each in videoCategory %}
+        var name = "{{each.name}}";
+    {% endfor %}
+</script>
+<script type="text/javascript" src="{{url_for('static', filename='js/video_star.js')}}"></script>
+{% endblock %}
+
+
 {% block content %}
 
 <div class="col-md-1"></div>
@@ -16,9 +25,16 @@
 
     <div class="col-md-10">
         {% for each in videoCategory %}
-        <div class="col-md-3 thumbnail_folder_videoCategory">
+        <div class="col-md-3 thumbnail_folder_actor">
             <img class="category_image" src="/show1/{{each.name}}" alt=""/>
-            <p class="video_category_text">{{each.name}}<p>
+
+            <div class="text-center" id="a_star_area">
+                {% for i in range(1, 6) %}
+                <div id="{{i}}" class="glyphicon glyphicon-heart-empty"></div>
+                {% endfor %}
+            </div>
+            <div class="img_name_text">{{each.name}}</div>
+
         </div>
         {% endfor %}
 
