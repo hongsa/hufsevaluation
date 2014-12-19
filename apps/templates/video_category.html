@@ -3,6 +3,16 @@
 {% block css %}
 
 {% endblock css %}
+
+{% block js %}
+<script>
+    {% for each in videoCategory %}
+        var name = "{{each.name}}";
+    {% endfor %}
+</script>
+<script type="text/javascript" src="{{url_for('static', filename='js/video_star.js')}}"></script>
+{% endblock %}
+
 {% block content %}
 
 <div class="col-md-1"></div>
@@ -17,8 +27,14 @@
     <div class="col-md-10">
         {% for each in videoCategory %}
         <div class="col-md-3 thumbnail_folder">
-            <img class="category_image" src="/show1/{{each.name}}" alt=""/>
-            {{each.name}}
+            <img class="category_image" src="/show2/{{each.name}}" alt=""/>
+            <div class="text-center" id="v_star_area">
+                {% for i in range(1, 6) %}
+                <div id="{{i}}" class="glyphicon glyphicon-heart-empty"></div>
+                {% endfor %}
+            </div>
+
+            <div class="text-center">{{each.name}}</div>
         </div>
         {% endfor %}
 
