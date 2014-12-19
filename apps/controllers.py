@@ -24,33 +24,31 @@ def signup():
             return redirect(url_for('index'))
     except Exception, e:
         pass
-
     form = forms.JoinForm()
     form2 = forms.LoginForm()
+
     if request.method == 'POST':
         if not form.validate_on_submit():
             flash(u"올바른 형식으로 입력해주세요!","error")
             return render_template("main_page.html",form=form,form2=form2)
-        if models.User.query.get(request.form['email']):
+        if User.query.get(form.email.data):
             flash(u"이미 등록된 메일 주소 입니다!","error")
             return render_template("main_page.html",form=form,form2=form2)
-        nickname_list = []          
-        for i in models.User.query.all():
-            nickname_list.append(i.nickname)
-        if form.nickname.data in nickname_list:
+        if User.query.get(form.nickname.data):
             flash(u"이미 사용중인 닉네임입니다!","error")
             return render_template("main_page.html",form=form,form2=form2)
-        user = models.User(email=form.email.data, password=generate_password_hash(form.password.data), nickname=form.nickname.data)
-
+        user = User(email=form.email.data, password=generate_password_hash(form.password.data), nickname=form.nickname.data)
         db.session.add(user)
         db.session.commit()
         flash(u"회원가입 되셨습니다!")
-
         session['session_user_email'] = form.email.data
         session['session_user_nickname'] = form.nickname.data 
 
         return redirect(url_for('actor_main'))
-    return redirect(url_for('actor_main'))
+
+
+
+    return redirect(url_for('index'))
 
 #로그인
 @app.route('/login', methods = ['GET', 'POST'])
@@ -69,7 +67,7 @@ def login():
         if form.validate_on_submit():
             email = form.email.data
             pwd = form.password.data
-            user = models.User.query.get(email)
+            user = User.query.get(email)
             if user is None:
                 flash(u"존재하지 않는 이메일 입니다.", "error")
             elif not check_password_hash(user.password, pwd):
