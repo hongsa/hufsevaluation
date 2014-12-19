@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
 @font-face{
     font-family:"jua";
     src: url("../fonts/BM-JUA.ttf");
@@ -19,7 +19,7 @@ body{
     height: 100px;
     background: #e74c3c;
     /*background: rgba(231,76,60,0.5);
-*/		color: #fff;
+*/	color: #fff;
     font-family: 'jua', sans-serif;
     transition: all 0.4s ease;
     top: 0px;
@@ -148,11 +148,11 @@ a:hover {
 }
 
 .body_background {
-    background-color: #f7f7f9;
+    background-color: #e5e5e5;
 }
 
 .category_body {
-    background: #f7f7f9;
+    background: #e5e5e5;
     height: 900px;
     width: 100%;
 }
@@ -175,8 +175,11 @@ a:hover {
 }
 
 .main_thumnail {
-    position: relative;
+    /*position: relative;
     top: 100px;
+*/  
+    position: relative;
+    top:15px;
     border-radius: 10px;
     /*width: 135px;*/
     height: 150px;
@@ -193,12 +196,18 @@ a:hover {
 
 .main_category{
     margin-left: 20px;
+    background-color: #d89696;
+    position: relative;
+    top: 100px;
+    border-radius: 10px;
+
 }
 
 .main_image{
     width: 125px;
     height: 125px;
     background-size: cover;
+
 }
 
 .category_image{

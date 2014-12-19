@@ -86,6 +86,15 @@
 								<div class="col-md-12">
 									<img src="{{url_for('static', filename='img/come_in.png')}}"
 									style="width:200px;position:relative;left:30%;"/>
+									{% with errors = get_flashed_messages(category_filter=["error"]) %}
+										{% if errors %}
+											{% for msg in errors %}
+												{{ msg }}
+											{% endfor %}
+										{% endif %}
+									{% endwith %}
+
+
 								</div>
 							</div>
 							<div class="control-group col-md-9" style="position:relative;left:80px;top:10px;">
@@ -102,7 +111,7 @@
 
 							<div class="control-group col-md-12">
 							</br>
-
+								
 								<div class="controls"style="display:block;position:relative;left:45%;">
 									<button class="btn btn-custom-login" style="width:50px;font-family:'jua';">가자!</button>
 								</div>

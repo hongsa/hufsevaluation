@@ -49,8 +49,8 @@ def signup():
         session['session_user_email'] = form.email.data
         session['session_user_nickname'] = form.nickname.data 
 
-        return redirect(url_for('category'))
-    return redirect(url_for('category'))
+        return redirect(url_for('actor_main'))
+    return redirect(url_for('actor_main'))
 
 #로그인
 @app.route('/login', methods = ['GET', 'POST'])
@@ -78,8 +78,8 @@ def login():
                 session['session_user_id'] = user.id
                 session['session_user_nickname'] = user.nickname
 
-                return redirect(url_for('category'))
-    return redirect(url_for('category'))
+                return redirect(url_for('actor_main'))
+    return redirect(url_for('actor_main'))
 
 #로그아웃 부분.
 @app.route('/logout')
