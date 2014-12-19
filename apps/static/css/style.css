@@ -19,7 +19,7 @@ body{
     height: 100px;
     background: #e74c3c;
     /*background: rgba(231,76,60,0.5);
-*/	color: #fff;
+*/  color: #fff;
     font-family: 'jua', sans-serif;
     transition: all 0.4s ease;
     top: 0px;
@@ -33,9 +33,9 @@ body{
     text-align: left;
     padding-left: 10px;
     padding-top: 3px;
-    /*	position: fixed;
+    /*  position: fixed;
         z-index: 1;
-*/	}
+*/  }
 
 .sticky .test{
     display: none;
@@ -161,7 +161,7 @@ a:hover {
     background-color: #FC5B5B;
     height: 430px;
     position: relative;
-    top: 100px;
+    top: 103px;
     border-radius: 10px;
 }
 
@@ -169,21 +169,23 @@ a:hover {
     position: relative;
     top: 100px;
     border-radius: 10px;
-    height: 280px;
-    background-color: #EDA8A8;
+    height: 300px;
+    /*background-color: #EDA8A8;*/
     margin-bottom: 20px;
+    background: url("../img/folder_layout8.png");
+    background-size: cover;
 }
 
 .main_thumnail {
-    /*position: relative;
-    top: 100px;
-*/  
+
     position: relative;
     top:15px;
     border-radius: 10px;
     /*width: 135px;*/
-    height: 150px;
+    height: 180px;
     margin-bottom: 20px;
+    background: url("../img/folder_layout8.png");
+    background-size: cover;
     /*background-color: #EDA8A8;*/
 }
 .main_category_name {
@@ -196,24 +198,95 @@ a:hover {
 
 .main_category{
     margin-left: 20px;
-    background-color: #d89696;
+    /*background-color: #d89696;*/
     position: relative;
     top: 100px;
     border-radius: 10px;
-
+   
 }
 
 .main_image{
-    width: 125px;
-    height: 125px;
+    width: 110px;
+    height: 105px;
     background-size: cover;
+    position: relative;
+    top:30px;
+    left:4px;
+    border-radius: 5px;
 
 }
 
 .category_image{
     width: 180px;
-    height: 180px;
+    height: 150px;
     background-size: cover;
+    position: relative;
+    top:65px;
+    left:15px;
+    border-radius: 5px;
+    margin: auto;
+}
+
+.img_name_text{
+    position: relative;
+    top:115px;
+    text-align: center;
+    font-family: 'jua';
+    font-size: 15px;
+}
+
+.video_name_text{
+    position: relative;
+    top: 50px;
+    text-align: center;
+    font-family: 'jua';
+    font-size: 15px;
+}
+
+.actor_name_text {
+    position: relative;
+    top: 50px;
+    text-align: center;
+    font-family: 'jua';
+    font-size: 15px;
+
+}
+
+.video_more_text {
+    position: relative;
+    top: 40px;
+    color: black;
+}
+.video_category_text{
+    position: relative;
+    top:112px;
+    color:black;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'jua';
+}
+.thumbnail_folder_videoCategory{
+    position: relative;
+    top: 100px;
+    border-radius: 10px;
+    height: 300px;
+    /*background-color: #EDA8A8;*/
+    margin-bottom: 20px;
+    background: url("../img/folder_layout9.png");
+    background-size: cover;
+
+}
+
+.thumbnail_folder_actor{
+    position: relative;
+    top: 100px;
+    border-radius: 10px;
+    height: 300px;
+    /*background-color: #EDA8A8;*/
+    margin-bottom: 20px;
+    background: url("../img/folder_layout9.png");
+    background-size: cover;
+
 }
 
 
@@ -226,12 +299,5 @@ a:hover {
 
 
 
-
-
-
-
-
-
-
- 	
-	
+    
+    

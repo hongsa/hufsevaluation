@@ -16,7 +16,7 @@ def index():
     if not 'session_user_email' in session:
         form=forms.JoinForm()
         form2=forms.LoginForm()
-        return render_template("index.html", form=form,form2=form2)
+        return render_template("main_page.html", form=form,form2=form2)
 
     return redirect(url_for('actor_main'))
 
