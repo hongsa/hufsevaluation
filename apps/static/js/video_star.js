@@ -5,13 +5,13 @@ $(document).ready(function(){
 
    $('#v_star_area').find('div').hover(function(){
       // alert("hehe");
-      for(v=1; v<=5; v++)
+      for(vv=1; vv<=5; vv++)
       {
-         if( v <= this.id )
-            $('#' + v).attr("class", "glyphicon glyphicon-heart");
+         if( vv <= this.id )
+            $('#' + vv).attr("class", "glyphicon glyphicon-heart");
 
          else
-            $('#' + v).attr("class", "glyphicon glyphicon-heart-empty");
+            $('#' + vv).attr("class", "glyphicon glyphicon-heart-empty");
       }
 
    });

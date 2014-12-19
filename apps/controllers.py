@@ -275,6 +275,7 @@ import math
 import logging
 @app.route('/v_save_star', methods=['POST'])
 def video_save_star():
+
     star = int(request.form.get('star'))
     logging.error(star)
     name = request.form.get('name')
@@ -313,6 +314,7 @@ def video_save_star():
 
 @app.route('/a_save_star', methods=['POST'])
 def actor_save_star():
+
     star = int(request.form.get('star'))
     name = request.form.get('name')
 
