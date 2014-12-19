@@ -2,7 +2,6 @@
 
 {% extends "nav_layout.html" %}
 {% block css %}
-
 {% endblock css %}
 {% block content %}
 
@@ -10,108 +9,111 @@
 <div class="col-md-10">
 
     <div class="col-md-2 rank_chart">
-        <div class="text-center" style="font-size: 20px; color: #ffffff">전체랭킹</div>
-        <div class="col-md-4">
-            {% for each in range(1,11) %}
-            <div class="badge">{{each}}.</div>
-            {% endfor %}
-        </div>
-
-        <div class="col-md-7">
+        <div class="text-center" style="font-size: 25px; color: #ffffff;margin-top: 10px; border-bottom: 2px;">전체 랭킹</div>
+        <hr style="border-bottom:2px;"/>
+        <ol style="font-size: 16px; margin-bottom: 10px;">
             {% for each in totalRank %}
-            <div class="row">
-                {{each.name}}
-            </div>
+            <div><li><a href="#">{{each.name}}</a></li></div>
             {% endfor %}
-        </div>
+        </ol>
+
+        <!--<div class="col-md-4 text-left">-->
+        <!--{% for each in range(1,11) %}-->
+        <!--<!--<div class="badge">{{each}}.</div>-->
+        <!--<div><button type="button" class="btn btn-default btn-xs" style="margin-bottom: 10px;">{{each}}</button></div>-->
+        <!--{% endfor %}-->
+        <!--</div>-->
+
+        <!--<div class="col-md-8">-->
+        <!--{% for each in totalRank %}-->
+        <!--<div style="font-size: 16px; margin-bottom: 10px;">-->
+        <!--<a href="#">{{each.name}}</a>-->
+        <!--</div>-->
+        <!--{% endfor %}-->
+        <!--</div>-->
 
     </div>
 
     <div class="col-md-10">
 
-        <div class="row main_category">
+        <div >
             <span class="main_category_name">페티쉬랭킹</span>
         </div>
         <div class="row main_category">
             {% for each in categoryOne %}
             <div class="col-md-2 main_thumnail ">
-                <img class="main_image" src="/show1/{{each.name}}"/>
-                <div class="text-center">{{each.name}}</div>
+                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
+                    <div class="text-center" style="color: #000000">{{each.name}}</div></a>
             </div>
             {% endfor %}
-            <div class="col-md-2 main_thumnail "> <a href="/a_category/1">더보기</a></div>
+            <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/1">더보기</a></div>
         </div>
 
-        <div class="row main_category">
+        <div>
             <span class="main_category_name">농밀랭킹</span>
         </div>
         <div class="row main_category">
             {% for each in categoryTwo %}
             <div class="col-md-2 main_thumnail ">
-
-                <img class="main_image" src="/show1/{{each.name}}"/>
-                <div class="text-center">{{each.name}}</div>
+                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
+                    <div class="text-center" style="color: #000000">{{each.name}}</div></a>
             </div>
             {% endfor %}
-            <div class="col-md-2 main_thumnail "> <a href="/a_category/2">더보기</a></div>
+            <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/2">더보기</a></div>
         </div>
 
-        <div class="row main_category">
+        <div>
             <span class="main_category_name">데뷔작랭킹</span>
         </div>
         <div class="row main_category">
             {% for each in categoryThree %}
             <div class="col-md-2 main_thumnail ">
-
-                <img class="main_image" src="/show1/{{each.name}}"/>
-                <div class="text-center">{{each.name}}</div>
+                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
+                    <div class="text-center" style="color: #000000">{{each.name}}</div></a>
             </div>
             {% endfor %}
-            <div class="col-md-2 main_thumnail "> <a href="/a_category/3">더보기</a></div>
+            <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/3">더보기</a></div>
         </div>
 
-        <div class="row main_category">
+        <div>
             <span class="main_category_name">가슴랭킹</span>
         </div>
         <div class="row main_category">
             {% for each in categoryFour %}
             <div class="col-md-2 main_thumnail ">
-
-                <img class="main_image" src="/show1/{{each.name}}"/>
-                <div class="text-center">{{each.name}}</div>
+                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
+                    <div class="text-center" style="color: #000000">{{each.name}}</div></a>
             </div>
             {% endfor %}
-            <div class="col-md-2 main_thumnail "> <a href="/a_category/4">더보기</a></div>
+            <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/4">더보기</a></div>
         </div>
 
 
-        <div class="row main_category">
+        <div>
             <span class="main_category_name">엉덩이랭킹</span>
         </div>
         <div class="row main_category">
             {% for each in categoryFive %}
             <div class="col-md-2 main_thumnail ">
-
-                <img class="main_image" src="/show1/{{each.name}}"/>
-                <div class="text-center">{{each.name}}</div>
+                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
+                    <div class="text-center" style="color: #000000">{{each.name}}</div></a>
             </div>
             {% endfor %}
-            <div class="col-md-2 main_thumnail "> <a href="/a_category/5">더보기</a></div>
+            <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/5">더보기</a></div>
         </div>
 
 
-        <div class="row main_category">
+        <div>
             <span class="main_category_name">골반랭킹</span>
         </div>
         <div class="row main_category">
             {% for each in categorySix %}
             <div class="col-md-2 main_thumnail ">
-
-                <img class="main_image" src="/show1/{{each.name}}"/>
-                <div class="text-center">{{each.name}}</div>
+                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
+                    <div class="text-center" style="color: #000000">{{each.name}}</div></a>
             </div>
             {% endfor %}
-            <div class="col-md-2 main_thumnail "> <a href="/a_category/6">더보기</a></div>
+            <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/6">더보기</a></div>
         </div>
 
     </div>

@@ -2,202 +2,205 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>직박구리</title>
+    @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>직박구리</title>
 
-  <script type='text/javascript' src='http://code.jquery.com/jquery-2.0.2.js'></script>  
-  <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-  <script type='text/javascript' src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://doc.smarchal.com/so/fiddle.css">
-  <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
-  <link href="{{url_for('static', filename='js/modernizr.js')}}" rel="stylesheet">
-
-{% block css %}
-{% endblock css%}
-{% block js %}
-{% endblock js %}
- 
-  <style type='text/css'>
-
-  @font-face{
-  font-family:"jua";
-  src: url("../static/fonts/BM-JUA.ttf");
-}
-    .navbar-default {
-  background-color: #e74c3c;
-  border-color: #c0392b; }
-  .navbar-default .navbar-brand {
-    color: white; }
-    .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-      color: #ffbbbc; }
-  .navbar-default .navbar-nav > li > a {
-    color: white; }
-    .navbar-default .navbar-nav > li > a:hover,
-    .navbar-default .navbar-nav > li > a:focus {
-      color: #ffbbbc; }
-  .navbar-default .navbar-nav .active > a,
-  .navbar-default .navbar-nav .active > a:hover,
-  .navbar-default .navbar-nav .active > a:focus {
-    color: #ffbbbc;
-    background-color: #c0392b; }
-  .navbar-default .navbar-nav .open > a, .navbar-default .navbar-nav .open > a:hover,
-  .navbar-default .navbar-nav .open > a:focus {
-    color: #ffbbbc;
-    background-color: #c0392b; }
-    .navbar-default .navbar-nav .open > a .caret,
-    .navbar-default .navbar-nav .open > a:hover .caret,
-    .navbar-default .navbar-nav .open > a:focus .caret {
-      border-top-color: #ffbbbc;
-      border-bottom-color: #ffbbbc; }
-  .navbar-default .navbar-nav > .dropdown > a .caret {
-    border-top-color: white;
-    border-bottom-color: white; }
-    .navbar-default .navbar-nav > .dropdown > a:hover .caret,
-    .navbar-default .navbar-nav > .dropdown > a:focus .caret {
-      border-top-color: #ffbbbc;
-      border-bottom-color: #ffbbbc; }
-  .navbar-default .navbar-toggle {
-    border-color: #c0392b; }
-    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-      background-color: #c0392b; }
-      .navbar-default .navbar-toggle .icon-bar {
-        background-color: white; }
- 
- @media (max-width: 767px) {
-  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: white;   }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-      color: #ffbbbc;
-      background-color: #c0392b;   }
-}
-
-.btn-custom {
-  background-color: hsl(45, 84%, 80%) !important;
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f6e1a1", endColorstr="#f6e1a1");
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#f6e1a1), to(#f6e1a1));
-  background-image: -moz-linear-gradient(top, #f6e1a1, #f6e1a1);
-  background-image: -ms-linear-gradient(top, #f6e1a1, #f6e1a1);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6e1a1), color-stop(100%, #f6e1a1));
-  background-image: -webkit-linear-gradient(top, #f6e1a1, #f6e1a1);
-  background-image: -o-linear-gradient(top, #f6e1a1, #f6e1a1);
-  background-image: linear-gradient(#f6e1a1, #f6e1a1);
-  border-color: #f6e1a1 #f6e1a1 hsl(45, 84%, 80%);
-  color: gray !important;
-  font-weight: bold;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
-  -webkit-font-smoothing: antialiased;
-}
-
-.btn-custom2 {
-  background-color: hsl(198, 93%, 79%) !important;
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#97ddfb", endColorstr="#97ddfb");
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#97ddfb), to(#97ddfb));
-  background-image: -moz-linear-gradient(top, #97ddfb, #97ddfb);
-  background-image: -ms-linear-gradient(top, #97ddfb, #97ddfb);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #97ddfb), color-stop(100%, #97ddfb));
-  background-image: -webkit-linear-gradient(top, #97ddfb, #97ddfb);
-  background-image: -o-linear-gradient(top, #97ddfb, #97ddfb);
-  background-image: linear-gradient(#97ddfb, #97ddfb);
-  border-color: #97ddfb #97ddfb hsl(198, 93%, 79%);
-  color: gray !important;
-  font-weight: bold;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
-  -webkit-font-smoothing: antialiased;
-}
-
-  </style>
+    <script type='text/javascript' src='http://code.jquery.com/jquery-2.0.2.js'></script>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <script type='text/javascript' src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://doc.smarchal.com/so/fiddle.css">
+    <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='js/modernizr.js')}}" rel="stylesheet">
 
 
 
-<script type='text/javascript'>//<![CDATA[ 
-$(window).load(function(){
+    {% block css %}
+    {% endblock css%}
+    {% block js %}
+    {% endblock js %}
 
-});//]]>  
+    <style type='text/css'>
 
-</script>
+        @font-face{
+            font-family:"jua";
+            src: url("../static/fonts/BM-JUA.ttf");
+        }
+        .navbar-default {
+            background-color: #e74c3c;
+            border-color: #c0392b; }
+        .navbar-default .navbar-brand {
+            color: white; }
+        .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+            color: #ffbbbc; }
+        .navbar-default .navbar-nav > li > a {
+            color: white; }
+        .navbar-default .navbar-nav > li > a:hover,
+        .navbar-default .navbar-nav > li > a:focus {
+            color: #ffbbbc; }
+        .navbar-default .navbar-nav .active > a,
+        .navbar-default .navbar-nav .active > a:hover,
+        .navbar-default .navbar-nav .active > a:focus {
+            color: #ffbbbc;
+            background-color: #c0392b; }
+        .navbar-default .navbar-nav .open > a, .navbar-default .navbar-nav .open > a:hover,
+        .navbar-default .navbar-nav .open > a:focus {
+            color: #ffbbbc;
+            background-color: #c0392b; }
+        .navbar-default .navbar-nav .open > a .caret,
+        .navbar-default .navbar-nav .open > a:hover .caret,
+        .navbar-default .navbar-nav .open > a:focus .caret {
+            border-top-color: #ffbbbc;
+            border-bottom-color: #ffbbbc; }
+        .navbar-default .navbar-nav > .dropdown > a .caret {
+            border-top-color: white;
+            border-bottom-color: white; }
+        .navbar-default .navbar-nav > .dropdown > a:hover .caret,
+        .navbar-default .navbar-nav > .dropdown > a:focus .caret {
+            border-top-color: #ffbbbc;
+            border-bottom-color: #ffbbbc; }
+        .navbar-default .navbar-toggle {
+            border-color: #c0392b; }
+        .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+            background-color: #c0392b; }
+        .navbar-default .navbar-toggle .icon-bar {
+            background-color: white; }
+
+        @media (max-width: 767px) {
+            .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+                color: white;   }
+            .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+            .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+                color: #ffbbbc;
+                background-color: #c0392b;   }
+        }
+
+        .btn-custom {
+            background-color: hsl(45, 84%, 80%) !important;
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f6e1a1", endColorstr="#f6e1a1");
+            background-image: -khtml-gradient(linear, left top, left bottom, from(#f6e1a1), to(#f6e1a1));
+            background-image: -moz-linear-gradient(top, #f6e1a1, #f6e1a1);
+            background-image: -ms-linear-gradient(top, #f6e1a1, #f6e1a1);
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6e1a1), color-stop(100%, #f6e1a1));
+            background-image: -webkit-linear-gradient(top, #f6e1a1, #f6e1a1);
+            background-image: -o-linear-gradient(top, #f6e1a1, #f6e1a1);
+            background-image: linear-gradient(#f6e1a1, #f6e1a1);
+            border-color: #f6e1a1 #f6e1a1 hsl(45, 84%, 80%);
+            color: gray !important;
+            font-weight: bold;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .btn-custom2 {
+            background-color: hsl(198, 93%, 79%) !important;
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#97ddfb", endColorstr="#97ddfb");
+            background-image: -khtml-gradient(linear, left top, left bottom, from(#97ddfb), to(#97ddfb));
+            background-image: -moz-linear-gradient(top, #97ddfb, #97ddfb);
+            background-image: -ms-linear-gradient(top, #97ddfb, #97ddfb);
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #97ddfb), color-stop(100%, #97ddfb));
+            background-image: -webkit-linear-gradient(top, #97ddfb, #97ddfb);
+            background-image: -o-linear-gradient(top, #97ddfb, #97ddfb);
+            background-image: linear-gradient(#97ddfb, #97ddfb);
+            border-color: #97ddfb #97ddfb hsl(198, 93%, 79%);
+            color: gray !important;
+            font-weight: bold;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+            -webkit-font-smoothing: antialiased;
+        }
+
+    </style>
+
+
+
+    <script type='text/javascript'>//<![CDATA[
+    $(window).load(function(){
+
+    });//]]>
+
+    </script>
 
 
 </head>
- 
+
 
 <body class="body_background">
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="border-radius:0px;background-color: #e74c3c;">
-  <!-- 모바일 전환시 생기는 네비게이션 바 -->
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="border-radius:0px;background-color: #e74c3c;">
+    <!-- 모바일 전환시 생기는 네비게이션 바 -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
 
-  <!-- 웹사이트 네비게이션 바 안의 로고 부분부터 -->
-    <a class="navbar-brand" style="padding:0px;" href="{{url_for('index')}}">
-      <img style="height:50px;width:150px;position:relative;top:-3px;left:120px;" src="{{url_for('static', filename='img/logo_making.png')}}">
-    </a>
-  </div>
-
-  <!-- 네비게이션 링크 제목들 -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
-      <li style="width:150px">
-        <a href="{{url_for('index')}}"></a>
-      </li>
-      <li style="width:120px;text-align:left;font-size:16px;">
-        <a href="{{url_for('actor_main')}}">배우평가</a>
-      </li>
-      <li style="width:120px;text-align:left;font-size:16px;">
-        <a href="{{url_for('video_main')}}">영상평가</a>
-      </li>
-      <li style="width:120px;text-align:left;font-size:16px;">
-        <a href="{{url_for('new_video_main')}}">신작평가</a>
-      </li>
-    </ul>
-    <!--검색 창 부분-->
-    <form class="navbar-form navbar-left" role="search" action="/g_search" method="get">
-      <div class="form-group">
-        <input type="text" name="search" class="form-control" placeholder="검색하기!" style="width:220px;height:30px;font-size:13px;display:inline-block;position:relative;top:1px;">
-      </div>
-       <button name="submitbutton" value="first" type="submit" class="btn btn-custom" style="position:relative;top:1px;
-      font-size:12px;padding:5px;color:gray;">
-        직박검색
-       </button>
-       <button name="submitbutton" value="second" type="submit" class="btn btn-custom2" style="position:relative;top:1px;
-      font-size:12px;padding:5px;color:gray;">
-        구글검색
-       </button>
-
-
-    </form>
-   
-
-    <ul class="nav navbar-nav">
-      <li ><a href="#"></a></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          닉네임 님
-          <b class="caret"></b>
+        <!-- 웹사이트 네비게이션 바 안의 로고 부분부터 -->
+        <a class="navbar-brand" style="padding:0px;" href="{{url_for('index')}}">
+            <img style="height:50px;width:150px;position:relative;top:-3px;left:120px;" src="{{url_for('static', filename='img/logo_making.png')}}">
         </a>
-        <ul class="dropdown-menu">
-          <li><a href="#">배우 컬렉션</a></li>
-          <li><a href="#">영상 컬렉션</a></li>
-          <li><a href="#"></a></li>
-          <li class="divider"></li>
-          <li><a href="#">회원정보 수정</a></li>
-          <li><a href="#">로그아웃</a></li>
+    </div>
+
+    <!-- 네비게이션 링크 제목들 -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li style="width:150px">
+                <a href="{{url_for('index')}}"></a>
+            </li>
+            <li style="width:120px;text-align:left;font-size:16px;">
+                <a href="{{url_for('actor_main')}}">배우평가</a>
+            </li>
+            <li style="width:120px;text-align:left;font-size:16px;">
+                <a href="{{url_for('video_main')}}">영상평가</a>
+            </li>
+            <li style="width:120px;text-align:left;font-size:16px;">
+                <a href="{{url_for('new_video_main')}}">신작평가</a>
+            </li>
         </ul>
-      </li>
-    </ul>
-  </div><!-- /.navbar-collapse -->
+        <!--검색 창 부분-->
+        <form class="navbar-form navbar-left" role="search" action="/g_search" method="get">
+            <div class="form-group">
+                <input type="text" name="search" class="form-control" placeholder="검색하기!" style="width:220px;height:30px;font-size:13px;display:inline-block;position:relative;top:1px;">
+            </div>
+            <button name="submitbutton" value="first" type="submit" class="btn btn-custom" style="position:relative;top:1px;
+      font-size:12px;padding:5px;color:gray;">
+                직박검색
+            </button>
+            <button name="submitbutton" value="second" type="submit" class="btn btn-custom2" style="position:relative;top:1px;
+      font-size:12px;padding:5px;color:gray;">
+                구글검색
+            </button>
+
+
+        </form>
+
+
+        <ul class="nav navbar-nav">
+            <li ><a href="#"></a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    닉네임 님
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">배우 컬렉션</a></li>
+                    <li><a href="#">영상 컬렉션</a></li>
+                    <li><a href="#"></a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">회원정보 수정</a></li>
+                    <li><a href="#">로그아웃</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
 </nav>
 
 {% block content %}
 {% endblock %}
 
-    
+
 </body>
 
 

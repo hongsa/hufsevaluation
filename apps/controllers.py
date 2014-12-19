@@ -108,9 +108,9 @@ def video_main():
 
 @app.route('/show1/<key>', methods=['GET','POST'])
 def show1(key):
-	video = Actor.query.get(key)
-	mimetype ="image/png"
-	return current_app.response_class(video.image, mimetype = mimetype)
+    video = Video.query.get(key)
+    mimetype ="image/png"
+    return current_app.response_class(video.image, mimetype = mimetype)
 
 @app.route('/actor_main')
 def actor_main():
@@ -127,9 +127,9 @@ def actor_main():
 
 @app.route('/show2/<key>', methods=['GET','POST'])
 def show2(key):
-	actor = Actor.query.get(key)
-	mimetype ="image/png"
-	return current_app.response_class(actor.image, mimetype = mimetype)
+    actor = Actor.query.get(key)
+    mimetype ="image/png"
+    return current_app.response_class(actor.image, mimetype = mimetype)
 
 @app.route('/a_category/<path:name>')
 def actor_category(name):
@@ -140,9 +140,10 @@ def actor_category(name):
 
 @app.route('/v_category/<path:name>')
 def video_category(name):
-    content={}
-    content['videoCategory'] = Video.query.filter_by(category='name')
-    return render_template("video_category.html",content=content, name=name)
+    videoCategory = Video.query.filter_by(category=name)
+    categoryList = set([each.category for each in Video.query.all()])
+
+    return render_template("video_category.html",videoCategory=videoCategory, categoryList=categoryList, name=name)
 
 
 

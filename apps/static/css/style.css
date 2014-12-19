@@ -1,7 +1,13 @@
-
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 @font-face{
     font-family:"jua";
     src: url("../fonts/BM-JUA.ttf");
+    font-family: "nanum";
+    src: url("../fonts/NanumBarunGothic.ttf");
+}
+
+body{
+    font-family: 'nanum','Nanum Gothic';
 }
 
 .header{
@@ -153,7 +159,7 @@ a:hover {
 
 .rank_chart {
     background-color: #FC5B5B;
-    height: 877px;
+    height: 430px;
     position: relative;
     top: 100px;
     border-radius: 10px;
@@ -175,17 +181,20 @@ a:hover {
     /*width: 135px;*/
     height: 150px;
     margin-bottom: 20px;
-    background-color: #EDA8A8;
+    /*background-color: #EDA8A8;*/
 }
 .main_category_name {
     position: relative;
     top: 100px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 20px;
 }
-
 
 .main_category{
     margin-left: 20px;
 }
+
 .main_image{
     width: 125px;
     height: 125px;
