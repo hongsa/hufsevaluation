@@ -26,6 +26,8 @@ class Video(db.Model):
     count = db.Column(db.Integer, default = 0)
     average = db.Column(db.Float, default=0)
 
+
+
 class ActorReview(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     actor = db.relationship('Actor', backref=db.backref('actorReview_actor', cascade='all, delete-orphan', lazy='dynamic'))

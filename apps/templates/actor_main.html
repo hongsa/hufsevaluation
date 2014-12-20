@@ -1,11 +1,29 @@
-<!--영상 메인 페이지-->
+<!--영상 s메인 페이지-->
 
 {% extends "nav_layout.html" %}
 {% block css %}
 <style type="text/css">
-    #quickLink { position:fixed; _position:absolute; width:170px; left:100px; top:100px; z-index:10px;}
+    #quickLink { position:fixed; _position:absolute; width:170px; left:100px; top:100px; z-index:1;}
 </style>
 {% endblock css %}
+{% block js %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('name') // Extract info from data-* attributes
+            var comment = []
+            var comment = button.data('comment')
+            console.log(comment)
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+        })
+    })
+</script>
+{% endblock %}
 {% block content %}
 
 <div class="col-md-1"></div>
@@ -20,21 +38,6 @@
             {% endfor %}
         </ol>
 
-        <!--<div class="col-md-4 text-left">-->
-        <!--{% for each in range(1,11) %}-->
-        <!--<div class="badge">{{each}}.</div>-->
-        <!--<div><button type="button" class="btn btn-default btn-xs" style="margin-bottom: 10px;">{{each}}</button></div>-->
-        <!--{% endfor %}-->
-        <!--</div>-->
-
-        <!--<div class="col-md-8">-->
-        <!--{% for each in totalRank %}-->
-        <!--<div style="font-size: 16px; margin-bottom: 10px;">-->
-        <!--<a href="#">{{each.name}}</a>-->
-        <!--</div>-->
-        <!--{% endfor %}-->
-        <!--</div>-->
-
     </div>
     <div class="col-md-2"></div>
     <div class="col-md-10">
@@ -42,10 +45,11 @@
         <div>
             <span class="main_category_name">페티쉬랭킹</span>
         </div>
+
         <div class="row main_category">
             {% for each in categoryOne %}
             <div class="col-md-2 main_thumnail ">
-                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
+                <a href="#" data-toggle="modal" data-target="#exampleModal" data-name="{{each.name}}" data-comment="{{each.actorReview_actor}}"><img class="main_image" src="/show2/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div></a>
             </div>
             {% endfor %}
@@ -58,7 +62,7 @@
         <div class="row main_category">
             {% for each in categoryTwo %}
             <div class="col-md-2 main_thumnail ">
-                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
+                <a href="#" data-toggle="modal" data-target="#exampleModal" data-name="{{each.name}}"><img class="main_image" src="/show2/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div></a>
             </div>
             {% endfor %}
@@ -71,7 +75,7 @@
         <div class="row main_category">
             {% for each in categoryThree %}
             <div class="col-md-2 main_thumnail ">
-                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
+                <a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="2"><img class="main_image" src="/show2/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div></a>
             </div>
             {% endfor %}
@@ -84,7 +88,7 @@
         <div class="row main_category">
             {% for each in categoryFour %}
             <div class="col-md-2 main_thumnail ">
-                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
+                <a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="{{each.name}}"><img class="main_image" src="/show2/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div></a>
             </div>
             {% endfor %}
@@ -98,7 +102,7 @@
         <div class="row main_category">
             {% for each in categoryFive %}
             <div class="col-md-2 main_thumnail ">
-                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
+                <a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="{{each.name}}"><img class="main_image" src="/show2/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div></a>
             </div>
             {% endfor %}
@@ -112,7 +116,7 @@
         <div class="row main_category">
             {% for each in categorySix %}
             <div class="col-md-2 main_thumnail ">
-                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
+                <a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="{{each.name}}"><img class="main_image" src="/show2/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div></a>
             </div>
             {% endfor %}
@@ -125,5 +129,32 @@
 
 </div>
 <div class="col-md-1"></div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">Recipient:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %} 
