@@ -100,10 +100,9 @@ def logout():
 @app.route('/video_main')
 def video_main():
 # 로그인 안한 상태로 오면 index로 빠꾸
-    if not session['session_user_email'] in session:
+    if not 'session_user_email' in session:
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
-
 
     totalRank = Video.query.order_by(desc(Video.average)).limit(10)
     categoryOne = Video.query.filter_by(category="1").order_by(desc(Video.average)).limit(5)
@@ -128,6 +127,9 @@ def show1(key):
 @app.route('/actor_main')
 def actor_main():
 
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
 
     totalRank = Actor.query.order_by(desc(Actor.average)).limit(10)
     categoryOne = Actor.query.filter_by(category="1").order_by(desc(Actor.average)).limit(5)
@@ -285,16 +287,16 @@ import logging
 def video_save_star():
 
     star = int(request.form.get('star'))
-    logging.error(star)
+    # logging.error(star)
     name = request.form.get('name')
-    logging.error(name)
+    # logging.error(name)
     video = Video.query.get(name)
-    logging.error(video)
+    # logging.error(video)
     email = session['session_user_email']
-    logging.error(email)
+    # logging.error(email)
 
-    rating = video.ratingVideo_video.filter_by(user_email=email).first()
-    logging.error(rating)
+    rating = video.ratingVideo_video.filter_by(userEmail=email).first()
+    # logging.error(rating)
 
 
     if rating:  # 이미 평점을 매겼었음
@@ -319,18 +321,20 @@ def video_save_star():
 
     return jsonify(success=True)
 
-
+import logging
 @app.route('/a_save_star', methods=['POST'])
 def actor_save_star():
 
     star = int(request.form.get('star'))
+    logging.error(star)
     name = request.form.get('name')
-
+    logging.error(name)
     actor = Actor.query.get(name)
+    logging.error(actor)
     email = session['session_user_email']
+    logging.error(email)
 
-
-    rating = actor.ratingActor_actor.filter_by(user_email=email).first()
+    rating = actor.ratingActor_actor.filter_by(userEmail=email).first()
 
     if rating:  # 이미 평점을 매겼었음
         actor.score += star - rating.rating
