@@ -21,7 +21,7 @@ $(document).ready(function(){
          type: 'POST',
          dataType: 'JSON',
          data:{
-            name: name,
+            name: $('this').parent().parent().attr("id"),
             star: this.id
          },
          success: function(data) {

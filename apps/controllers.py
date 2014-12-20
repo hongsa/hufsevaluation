@@ -156,6 +156,9 @@ def actor_category(name):
     actorCategory = Actor.query.filter_by(category=name)
     categoryList = set([each.category for each in Actor.query.all()])
 
+
+
+
     return render_template("actor_category.html", actorCategory=actorCategory, categoryList=categoryList, name=name)
 
 
