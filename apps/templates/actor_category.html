@@ -18,33 +18,34 @@
                     else
                         $('#' + aa).attr("class", "glyphicon glyphicon-heart-empty");
                 }
+                {% endfor %}
 
             });
 
-
-            $( '#{{each.name}}' ).find('div').click(function(){
-                .alert("test");
-                $.ajax({
-                    url: '/a_save_star',
-                    type: 'POST',
-                    dataType: 'JSON',
-                    data:{
-                        name: $('this').parent().attr("id"),
-                        star: this.id
-                    },
-                    success: function(data) {
-                        if(data.success){
-                            alert("평가되었습니다!");
+            {% for each in actorCategory %}
+                $( '#{{each.name}}' ).find('div').click(function(){
+                    .alert("test");
+                    $.ajax({
+                        url: '/a_save_star',
+                        type: 'POST',
+                        dataType: 'JSON',
+                        data:{
+                            name: $('this').parent().attr("id"),
+                            star: this.id
+                        },
+                        success: function(data) {
+                            if(data.success){
+                                alert("평가되었습니다!");
+                            }
+                            else{
+                                alert("error");
+                            }
                         }
-                        else{
-                            alert("error");
-                        }
-                    }
+                    });
                 });
+                {% endfor %}
             });
 
-        });
-        {% endfor %}
 
 </script>
 
@@ -81,4 +82,4 @@
 </div>
 <div class="col-md-1"></div>
 
-{% endblock %} 
+{% endblock %}
