@@ -10,7 +10,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('#exampleModal').on('show.bs.modal', function (event) {
-s            var button = $(event.relatedTarget) // Button that triggered the modal
+            var button = $(event.relatedTarget) // Button that triggered the modal
             var recipient = button.data('name') // Extract info from data-* attributes
             var comment = []
             var comment = button.data('comment')
@@ -130,7 +130,6 @@ s            var button = $(event.relatedTarget) // Button that triggered the mo
 </div>
 <div class="col-md-1"></div>
 
-
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -157,4 +156,5 @@ s            var button = $(event.relatedTarget) // Button that triggered the mo
         </div>
     </div>
 </div>
+
 {% endblock %} 
