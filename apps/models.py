@@ -14,6 +14,8 @@ class Actor(db.Model):
     score = db.Column(db.Float, default =0)
     count = db.Column(db.Integer, default = 0)
     average = db.Column(db.Float, default=0)
+    company =db.Column(db.String(255))
+    release = db.Column(db.Float, default=0)
 
 class Video(db.Model):
     name = db.Column(db.String(255),primary_key=True)
@@ -21,12 +23,11 @@ class Video(db.Model):
     category = db.Column(db.String(255))
     #노모가 0, 유모가 1
     exposure = db.Column(db.Integer, default=1)
-    release = db.Column(db.Integer, default=0)
+    release = db.Column(db.Float, default=0)
     score = db.Column(db.Float, default =0)
     count = db.Column(db.Integer, default = 0)
     average = db.Column(db.Float, default=0)
-
-
+    company =db.Column(db.String(255))
 
 class ActorReview(db.Model):
     id = db.Column(db.Integer, primary_key = True)

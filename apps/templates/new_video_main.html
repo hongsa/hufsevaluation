@@ -1,35 +1,64 @@
 <!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지-->
 {% extends "nav_layout.html" %}
 {% block css %}
-
 {% endblock css %}
+{% block js %}
+<script type="text/javascript" src="{{url_for('static', filename='js/video_star.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
+
+{% endblock %}
+
 {% block content %}
 
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
+<div class="col-md-1"></div>
+<div class="col-md-10">
 
-    <div class="col-md-2 rank_chart">
-        <div class="text-center" style="font-size: 25px; color: #ffffff;margin-top: 10px; border-bottom: 2px;">기획사별</br>카테고리</div>
+    <div id="STATICMENU" class="rank_chart">
+        <div class="text-center" style="font-size: 18px; color: #000000;margin-top: 10px; border-bottom: 2px;">기획사별 분류</div>
+        <hr style="border-bottom:2px;"/>
+        <div style="margin-left: 15px;">
+            {% for each in companyList %}
+            <div style="margin-top: 10px; font-size: 14px;">
+                <a href="/n_video/{{each}}"><button type="button" class="btn btn-default" style="font-size:18px;">{{each}}</button></a>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-
     <div class="col-md-offset-2 col-md-10">
-    <div class="col-md-3 thumbnail_folder_actor thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder_actor thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder_actor thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder_actor thumbnail"></div>
+        {% for each in videoCompany %}
+        <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
+            <div style="font-size: 13px; margin-left:10px; margin-top:10px; color: blue">{{each.average}} 점</div>
+            <div style="font-size: 13px; margin-left:10px; color: blue">({{each.count}} 명)</div>
+            <img class="category_image" src="/show1/{{each.name}}" alt=""/>
 
-    <div class="col-md-3 thumbnail_folder_actor thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder_actor thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder_actor thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder_actor thumbnail"></div>
+            <div class="text-center img_name_text v_star_area">
+                <input id="v_star" type="hidden" class="rating"/>
+                <div>{{each.name}}</div>
+            </div>
 
-    <div class="col-md-3 thumbnail_folder_actor thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder_actor thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder_actor thumbnail"></div>
-    <div class="col-md-3 thumbnail_folder_actor thumbnail"></div>
+
+
+        </div>
+        {% endfor %}
     </div>
 
-  </div>
-  <div class="col-md-1"></div>
+    <div class="row text-center">
+        <ul class="pagination" style="margin-top: 100px; margin-left: 100px;">
+            <li>
+                <a href="">&laquo;</a>
+            </li>
+            {% for page in total_page %}
+            <li>
+                <a href="/n_video/{{company}}/{{page}}">{{page}}</a>
+            </li>
+            {% endfor %}
+            <li>
+                <a href="#">&raquo;</a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<div class="col-md-1"></div>
 
 {% endblock %}

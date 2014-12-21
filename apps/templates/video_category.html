@@ -13,11 +13,32 @@
 <div class="col-md-1"></div>
 <div class="col-md-10">
 
-    <div class="col-md-2 rank_chart">
-        {% for each in categoryList %}
-        <a href="/v_category/{{each}}"><button type="button" class="btn btn-default" style="font-size:40px;">{{each}}</button></a>
-        {% endfor %}
+    <div id="STATICMENU" class="rank_chart">
+        <!--{% for each in categoryList %}-->
+        <!--<a href="/v_category/{{each}}"><button type="button" class="btn btn-default" style="font-size:40px;">{{each}}</button></a>-->
+        <!--{% endfor %}-->
+
+        <div class="text-center" style="font-size: 18px; color: #000000;margin-top: 20px; border-bottom: 2px;">느낌있는 영상 분류</div>
+        <hr style="border-bottom:2px;"/>
+        <div style="margin-left: 20px;">
+            <div>
+                <a href="/v_category/1"><button type="button" class="btn btn-default" style="font-size:14px; margin-top:10px; ">마치 연인처럼</button>
+                </a></div>
+            <div>
+                <a href="/v_category/2"><button type="button" class="btn btn-default" style="font-size:14px; margin-top:10px; ">지인과 함께</button>
+                </a></div>
+            <div>
+                <a href="/v_category/3"><button type="button" class="btn btn-default" style="font-size:14px;margin-top:10px; ">특별한 장소에서</button>
+                </a></div>
+            <div>
+                <a href="/v_category/4"><button type="button" class="btn btn-default" style="font-size:14px;margin-top:10px; ">우리는 팀플</button>
+                </a></div>
+            <div>
+                <a href="/v_category/5"><button type="button" class="btn btn-default" style="font-size:14px;margin-top:10px; ">기발한 상황극</button>
+                </a></div>
+        </div>
     </div>
+
 
     <div class="col-md-offset-2 col-md-10">
         {% for each in videoCategory %}
@@ -37,6 +58,23 @@
         {% endfor %}
 
     </div>
+    <div class="row text-center">
+        <ul class="pagination" style="margin-top: 100px; margin-left: 100px;">
+            <li>
+                <a href="#">&laquo;</a>
+            </li>
+            {% for page in total_page %}
+            <li>
+                <a href="/v_category/{{category}}/{{page}}">{{page}}</a>
+            </li>
+            {% endfor %}
+            <li>
+                <a href="#">&raquo;</a>
+            </li>
+        </ul>
+
+    </div>
+
 
 </div>
 <div class="col-md-1"></div>

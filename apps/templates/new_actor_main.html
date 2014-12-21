@@ -14,29 +14,19 @@
 <div class="col-md-10">
 
     <div id="STATICMENU" class="rank_chart">
-        <!--{% for each in categoryList %}-->
-        <!--<a href="/a_category/{{each}}"><button type="button" class="btn btn-default" style="font-size:40px;">{{each}}</button></a>-->
-        <!--{% endfor %}-->
-        <div class="text-center" style="font-size: 18px; color: #000000;margin-top: 10px; border-bottom: 2px;">센스있는 배우 분류</div>
+        <div class="text-center" style="font-size: 18px; color: #000000;margin-top: 10px; border-bottom: 2px;">기획사별 분류</div>
         <hr style="border-bottom:2px;"/>
         <div style="margin-left: 15px;">
-            <div>
-                <a href="/a_category/1"><button type="button" class="btn btn-default" style="font-size:14px;margin-top:10px;  ">
-                    군살없이 마른</button></a></div>
-            <div>
-                <a href="/a_category/2"><button type="button" class="btn btn-default" style="font-size:14px; margin-top:10px; ">우리는 그냥체형</button>
-                </a></div>
-            <div>
-                <a href="/a_category/4"><button type="button" class="btn btn-default" style="font-size:14px; margin-top:10px; ">육감적이고 육덕스러운</button>
-                </a></div>
-            <div>
-                <a href="/a_category/4"><button type="button" class="btn btn-default" style="font-size:14px;margin-top:10px; ">조금은 귀여운 뱃살</button>
-                </a></div>
+            {% for each in companyList %}
+            <div style="margin-top: 10px; font-size: 14px;">
+                <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default" style="font-size:18px;">{{each}}</button></a>
+            </div>
+            {% endfor %}
         </div>
     </div>
 
     <div class="col-md-offset-2 col-md-10">
-        {% for each in actorCategory %}
+        {% for each in actorCompany %}
         <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
             <div style="font-size: 13px; margin-left:10px; margin-top:10px; color: blue">{{each.average}} 점</div>
             <div style="font-size: 13px; margin-left:10px; color: blue">({{each.count}} 명)</div>
@@ -60,7 +50,7 @@
             </li>
             {% for page in total_page %}
             <li>
-                <a href="/v_category/{{category}}/{{page}}">{{page}}</a>
+                <a href="/n_actor/{{company}}/{{page}}">{{page}}</a>
             </li>
             {% endfor %}
             <li>

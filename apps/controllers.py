@@ -7,7 +7,7 @@ from models import User, Actor, Video, ActorReview, VideoReview, Filmo, RatingAc
 
 from sqlalchemy import desc
 from apps import forms
-
+import math
 
 @app.route('/')
 @app.route('/index')
@@ -177,28 +177,62 @@ def show2(key):
     return current_app.response_class(actor.image, mimetype=mimetype)
 
 
-@app.route('/a_category/<path:name>')
-def actor_category(name):
-    categoryList = set([each.category for each in Actor.query.all()])
-    actorCategory = Actor.query.filter_by(category=name).order_by(desc(Actor.average)).all()
+@app.route('/a_category/<path:name>',defaults={'page': 1})
+@app.route('/a_category/<path:name>/<int:page>',methods=['GET','POST'])
+def actor_category(name,page):
+
+    actorCategory = Actor.query.filter_by(category=name).order_by(desc(Actor.average)).offset(
+        (page - 1) * 12).limit(12)
+    total = Actor.query.filter_by(category=name).count()
+    calclulate = float(float(total) / 12)
+    total_page = math.ceil(calclulate)
+    category = Actor.query.first().category
+
+    return render_template("actor_category.html", actorCategory=actorCategory, category=category, total_page=range(1, int(total_page + 1)))
 
 
+@app.route('/v_category/<path:name>',defaults={'page': 1})
+@app.route('/v_category/<path:name>/<int:page>',methods=['GET','POST'])
+def video_category(name,page):
+
+    videoCategory = Video.query.filter_by(category=name).order_by(desc(Video.average)).offset(
+        (page - 1) * 12).limit(12)
+    total = Video.query.filter_by(category=name).count()
+    calclulate = float(float(total) / 12)
+    total_page = math.ceil(calclulate)
+    category = Video.query.first().category
+
+    return render_template("video_category.html",videoCategory=videoCategory, category=category, total_page=range(1, int(total_page + 1)))
 
 
-    return render_template("actor_category.html", actorCategory=actorCategory, categoryList=categoryList, name=name)
+@app.route('/n_actor/<path:name>',defaults={'page': 1})
+@app.route('/n_actor/<path:name>/<int:page>',methods=['GET','POST'])
+def new_actor(name,page):
 
+    companyList = set([each.company for each in Actor.query.all()])
+    actorCompany = Actor.query.filter_by(company=name).order_by(desc(Actor.release)).offset(
+        (page - 1) * 12).limit(12)
+    total = Actor.query.filter_by(company=name).count()
+    calclulate = float(float(total) / 12)
+    total_page = math.ceil(calclulate)
+    company = Actor.query.first().company
 
-@app.route('/v_category/<path:name>')
-def video_category(name):
-    categoryList = set([each.category for each in Video.query.all()])
-    videoCategory = Video.query.filter_by(category=name).order_by(desc(Video.average)).all()
+    return render_template("new_actor_main.html", companyList=companyList,actorCompany=actorCompany, company=company, total_page=range(1, int(total_page + 1)))
 
-    return render_template("video_category.html", videoCategory=videoCategory, categoryList=categoryList, name=name)
+@app.route('/n_video/<path:name>',defaults={'page': 1})
+@app.route('/n_video/<path:name>/<int:page>',methods=['GET','POST'])
+def new_video(name,page):
 
+    companyList = set([each.company for each in Video.query.all()])
+    videoCompany = Video.query.filter_by(company=name).order_by(desc(Video.release)).offset(
+        (page - 1) * 12).limit(12)
+    total = Video.query.filter_by(company=name).count()
+    calclulate = float(float(total) / 12)
+    total_page = math.ceil(calclulate)
+    company = Video.query.first().company
 
-@app.route('/new_video_main')
-def new_video_main():
-    return render_template("new_video_main.html")
+    return render_template("new_video_main.html", companyList=companyList,videoCompany=videoCompany, company=company, total_page=range(1, int(total_page + 1)))
+
 
 
 #디비검색
@@ -274,7 +308,7 @@ def admin_actor():
     return render_template("admin.html")
 
 
-# return redirect(url_for("index"))
+    return redirect(url_for("index"))
 
 
 @app.route('/admin_video', methods=['GET', 'POST'])
@@ -298,7 +332,7 @@ def admin_video():
     return render_template("admin.html")
 
 
-# return redirect(url_for("index"))
+    return redirect(url_for("index"))
 
 @app.route('/a_collection', methods=['GET', 'POST'])
 def actor_collection():
@@ -310,7 +344,7 @@ def video_collection():
     return render_template("video_collection.html")
 
 
-import math
+
 import logging
 @app.route('/v_save_star', methods=['GET','POST'])
 def video_save_star():

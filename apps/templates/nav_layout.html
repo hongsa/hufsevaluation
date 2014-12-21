@@ -93,21 +93,21 @@
         }
 
         .btn-custom2 {
-          background-color: hsl(265, 52%, 79%) !important;
-          background-repeat: repeat-x;
-          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c4ade5", endColorstr="#c4ade5");
-          background-image: -khtml-gradient(linear, left top, left bottom, from(#c4ade5), to(#c4ade5));
-          background-image: -moz-linear-gradient(top, #c4ade5, #c4ade5);
-          background-image: -ms-linear-gradient(top, #c4ade5, #c4ade5);
-          background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c4ade5), color-stop(100%, #c4ade5));
-          background-image: -webkit-linear-gradient(top, #c4ade5, #c4ade5);
-          background-image: -o-linear-gradient(top, #c4ade5, #c4ade5);
-          background-image: linear-gradient(#c4ade5, #c4ade5);
-          border-color: #c4ade5 #c4ade5 hsl(265, 52%, 79%);
-          color: #333 !important;
-          text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
-          -webkit-font-smoothing: antialiased;
-      }
+            background-color: hsl(265, 52%, 79%) !important;
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c4ade5", endColorstr="#c4ade5");
+            background-image: -khtml-gradient(linear, left top, left bottom, from(#c4ade5), to(#c4ade5));
+            background-image: -moz-linear-gradient(top, #c4ade5, #c4ade5);
+            background-image: -ms-linear-gradient(top, #c4ade5, #c4ade5);
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c4ade5), color-stop(100%, #c4ade5));
+            background-image: -webkit-linear-gradient(top, #c4ade5, #c4ade5);
+            background-image: -o-linear-gradient(top, #c4ade5, #c4ade5);
+            background-image: linear-gradient(#c4ade5, #c4ade5);
+            border-color: #c4ade5 #c4ade5 hsl(265, 52%, 79%);
+            color: #333 !important;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+            -webkit-font-smoothing: antialiased;
+        }
     </style>
 
 
@@ -152,9 +152,21 @@
             <li style="width:120px;text-align:left;font-size:16px;">
                 <a href="{{url_for('video_main')}}">영상평가</a>
             </li>
-            <li style="width:120px;text-align:left;font-size:16px;">
-                <a href="{{url_for('new_video_main')}}">신작평가</a>
+            <li class="dropdown" style="width:120px;text-align:left;font-size:16px;">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    신작평가
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/n_actor/a">신인배우</a></li>
+                    <li><a href="/n_video/a">신작영상</a></li>
+                    <li><a href="#"></a></li>
+                </ul>
             </li>
+
+
+
+
         </ul>
         <!--검색 창 부분-->
         <form class="navbar-form navbar-left" role="search" action="/g_search" method="get">
