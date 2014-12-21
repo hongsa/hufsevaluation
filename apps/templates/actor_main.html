@@ -19,7 +19,7 @@
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this)
             modal.find('.modal-title').text(actorName+'의 상세페이지')
-            modal.find('.modal-body').val(actorComment)
+            modal.find('.modal-body img').attr('src',"/show2/"+actorName)
             modal.find('.modal-commentList ').val(actorComment)
         })
     })
@@ -142,7 +142,7 @@
                 <h4 class="modal-title" id="exampleModalLabel"></h4>
             </div>
             <div class="modal-body">
-
+                <img src="" alt=""/>
             </div>
             <div class="modal-commentList">
 
