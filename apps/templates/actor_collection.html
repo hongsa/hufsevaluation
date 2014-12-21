@@ -22,7 +22,7 @@
 
     {% for each in myRating %}
     <div id="rating_list" class="col-md-3 thumbnail_folder_actor active">
-        <img class="category_image" src="/show2/{{each.name}}" alt=""/>
+        <img class="category_image" src="/show2/{{each.actorName}}" alt=""/>
 
         <div class="text-center img_name_text" style="top:20px; right: 20px;">
             <div style="color: blue">내 평점{{each.rating}} 점</div>
@@ -34,7 +34,7 @@
 
     {% for each in myBookmark %}
     <div id="bookmark_list" class="col-md-3 thumbnail_folder_actor hidden">
-        <img class="category_image" src="/show2/{{each.name}}" alt=""/>
+        <img class="category_image" src="/show2/{{each.actorName}}" alt=""/>
         <div class="text-center img_name_text" style="top:20px; right: 20px;">
             <div>{{each.actorName}}</div>
         </div>
