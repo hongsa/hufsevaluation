@@ -11,7 +11,7 @@ body{
 }
 /* 스크롤 따라다니는 부분 CSS JS는 floatDiv 참조 */
 #STATICMENU {
-    margin: 0pt; padding: 0pt; position: absolute; left: 0px; top: 0px;
+    margin: 0pt; padding: 0pt; position: absolute; left: 0px; top: 103px;
 }
 /*스크롤 따라다니는 부분 종료*/
 
