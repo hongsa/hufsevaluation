@@ -22,6 +22,8 @@
     <div class="col-md-offset-2 col-md-10">
         {% for each in videoCategory %}
         <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
+            <div style="font-size: 13px; margin-left:10px; margin-top:10px; color: blue">{{each.average}} 점</div>
+            <div style="font-size: 13px; margin-left:10px; color: blue">({{each.count}} 명)</div>
             <img class="category_image" src="/show1/{{each.name}}" alt=""/>
 
             <div class="text-center img_name_text v_star_area">

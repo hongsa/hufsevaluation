@@ -179,8 +179,8 @@ def show2(key):
 
 @app.route('/a_category/<path:name>')
 def actor_category(name):
-    actorCategory = Actor.query.filter_by(category=name).order_by(desc(Actor.average)).all()
     categoryList = set([each.category for each in Actor.query.all()])
+    actorCategory = Actor.query.filter_by(category=name).order_by(desc(Actor.average)).all()
 
 
 
@@ -190,8 +190,8 @@ def actor_category(name):
 
 @app.route('/v_category/<path:name>')
 def video_category(name):
-    videoCategory = Video.query.filter_by(category=name).order_by(desc(Video.average)).all()
     categoryList = set([each.category for each in Video.query.all()])
+    videoCategory = Video.query.filter_by(category=name).order_by(desc(Video.average)).all()
 
     return render_template("video_category.html", videoCategory=videoCategory, categoryList=categoryList, name=name)
 

@@ -88,7 +88,7 @@ a:hover {
 .main_thumnail {
 
     position: relative;
-    top:15px;
+    top:10px;
     border-radius: 10px;
     /*width: 135px;*/
     height: 180px;
@@ -102,12 +102,12 @@ a:hover {
     top: 100px;
     font-size: 25px;
     font-weight: bold;
-    margin-left: 20px;
-    font-family: sans-serif;
+    margin-left: 10px;
+    font-family: 'jua';
 }
 
 .main_category{
-    margin-left: 20px;
+    margin-left: 10px;
     /*background-color: #d89696;*/
     position: relative;
     top: 100px;
@@ -116,30 +116,30 @@ a:hover {
 }
 
 .main_image{
-    width: 110px;
-    height: 105px;
+    width: 120px;
+    height: 115px;
     background-size: cover;
     position: relative;
     top:30px;
-    left:4px;
+    /*left:4px;*/
     border-radius: 5px;
 
 }
 
 .category_image{
-    width: 150px;
-    height: 170px;
+    width: 170px;
+    height: 180px;
     background-size: cover;
     position: relative;
-    top: 57px;
-    left: 20px;
+    top: 10px;
+    left: 10px;
     border-radius: 5px;
     margin: auto;
 }
 
 .img_name_text{
     position: relative;
-    top: 82px;
+    top: 30px;
     /*left: 61px;*/
     font-family: 'jua';
     font-size: 15px;

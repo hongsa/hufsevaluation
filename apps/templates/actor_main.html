@@ -39,15 +39,16 @@
     </div>
     <div class="col-md-2"></div>
     <div class="col-md-10">
-</br>
+        </br>
         <div>
-            <span class="main_category_name">페티쉬랭킹</span>
+            <span class="main_category_name">군살없이 마른</span>
         </div>
 
         <div class="row main_category">
             {% for each in categoryOne %}
             <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
                 <a href="#">
+                    <div style="font-size: 13px; margin-left:3px; margin-top:5px; color: blue">{{each.average}} 점</div>
                     <img class="main_image" src="/show2/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
                 </a>
@@ -59,14 +60,15 @@
                 </a>
             </div>
         </div>
-</br>
+        </br>
         <div>
-            <span class="main_category_name">농밀랭킹</span>
+            <span class="main_category_name">우리는 그냥체형</span>
         </div>
         <div class="row main_category">
             {% for each in categoryTwo %}
             <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}">
                 <a href="#">
+                    <div style="font-size: 13px; margin-left:3px; margin-top:5px; color: blue">{{each.average}} 점</div>
                     <img class="main_image" src="/show2/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
                 </a>
@@ -74,14 +76,15 @@
             {% endfor %}
             <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/2" style="color:black; font-family:'jua';font-size:20px;text-align:center;">더보기</a></div>
         </div>
-</br>
+        </br>
         <div>
-            <span class="main_category_name">데뷔작랭킹</span>
+            <span class="main_category_name">육감적이고 육덕스러운</span>
         </div>
         <div class="row main_category">
             {% for each in categoryThree %}
             <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}">
                 <a href="#">
+                    <div style="font-size: 13px; margin-left:3px; margin-top:5px; color: blue">{{each.average}} 점</div>
                     <img class="main_image" src="/show2/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
                 </a>
@@ -89,14 +92,15 @@
             {% endfor %}
             <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/3" style="color:black; font-family:'jua';font-size:20px;text-align:center;">더보기</a></div>
         </div>
-</br>
+        </br>
         <div>
-            <span class="main_category_name">가슴랭킹</span>
+            <span class="main_category_name">조금 뱃살이 있다는</span>
         </div>
         <div class="row main_category">
             {% for each in categoryFour %}
             <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="{{each.name}}">
                 <a href="#">
+                    <div style="font-size: 13px; margin-left:3px; margin-top:5px; color: blue">{{each.average}} 점</div>
                     <img class="main_image" src="/show2/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
                 </a>
@@ -109,45 +113,12 @@
             </div>
         </div>
 
-</br>
-        <div>
-            <span class="main_category_name">엉덩이랭킹</span>
-        </div>
-        <div class="row main_category">
-            {% for each in categoryFive %}
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="{{each.name}}">
-                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
-                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
-                </a>
-            </div>
-            {% endfor %}
-            <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/5" style="color:black; font-family:'jua';font-size:20px;text-align:center;">더보기</a></div>
-        </div>
-
-</br>
-        <div>
-            <span class="main_category_name">골반랭킹</span>
-        </div>
-        <div class="row main_category">
-            {% for each in categorySix %}
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="{{each.name}}">
-                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
-                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
-                </a>
-            </div>
-            {% endfor %}
-            <div class="col-md-2 main_thumnail" style="color:black;">
-                <a href="/a_category/6" style="color:black; font-family:'jua';font-size:20px;text-align:center;">
-                    더보기
-                </a>
-            </div>
-        </div>
+        </br>
 
     </div>
 </div>
 
 
-</div>
 <div class="col-md-1"></div>
 
 
@@ -155,23 +126,23 @@
 <!--모달창 시작-->
 
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-<div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title"></h4>
-            </div>
-            <div class="modal-body">
-                <img src="" alt=""/>
-            </div>
-            <div class="modal-commentList">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <img src="" alt=""/>
+                </div>
+                <div class="modal-commentList">
 
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!--모달창 끝-->
+    <!--모달창 끝-->
 
-{% endblock %} 
+    {% endblock %}
