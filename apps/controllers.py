@@ -51,7 +51,7 @@ def signup():
 
         user = User(email=form.email.data, password=generate_password_hash(form.password.data),
                     nickname=form.nickname.data)
-        
+
         db.session.add(user)
         db.session.commit()
 
@@ -125,7 +125,7 @@ def logout():
 
 @app.route('/video_main')
 def video_main():
-# 로그인 안한 상태로 오면 index로 빠꾸
+    # 로그인 안한 상태로 오면 index로 빠꾸
     if not 'session_user_email' in session:
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
@@ -290,7 +290,7 @@ def admin_video():
                 category=request.form['category'],
                 release=request.form['release_year'],
                 exposure=request.form['exposure'],
-            )
+                )
             db.session.add(video_write)
             db.session.commit()
             flash(u"영상 DB에 저장되었습니다.")
@@ -312,20 +312,20 @@ def video_collection():
 
 import math
 import logging
-@app.route('/v_save_star', methods=['POST'])
+@app.route('/v_save_star', methods=['GET','POST'])
 def video_save_star():
 
     star = int(request.form.get('star'))
-    # logging.error(star)
+    logging.error(star)
     name = request.form.get('name')
-    # logging.error(name)
+    logging.error(name)
     video = Video.query.get(name)
-    # logging.error(video)
+    logging.error(video)
     email = session['session_user_email']
-    # logging.error(email)
+    logging.error(email)
 
     rating = video.ratingVideo_video.filter_by(userEmail=email).first()
-    # logging.error(rating)
+    logging.error(rating)
 
 
     if rating:  # 이미 평점을 매겼었음
@@ -351,7 +351,7 @@ def video_save_star():
     return jsonify(success=True)
 
 import logging
-@app.route('/a_save_star', methods=['POST'])
+@app.route('/a_save_star', methods=['GET','POST'])
 def actor_save_star():
 
     star = int(request.form.get('star'))

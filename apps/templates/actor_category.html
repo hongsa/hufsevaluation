@@ -3,55 +3,10 @@
 {% block css %}
 {% endblock css %}
 {% block js %}
-<!--<script type="text/javascript" src="{{url_for('static', filename='js/actor_star.js')}}"></script>-->
-<script>
-    $(document).ready(function(){
-        {% for x in actorCategory %}
-            $('#{{x.name}}').find('div').hover(function(){
-                .alert("test");
-                for(aa=1; aa<=5; aa++)
-                {
-                    if( aa <= this.id )
-                        $('#' + aa).attr("class", "glyphicon glyphicon-heart");
-
-                    else
-                        $('#' + aa).attr("class", "glyphicon glyphicon-heart-empty");
-                }
-            });
-            {% endfor %}
-
-            {% for each in actorCategory %}
-                $( '#{{each.name}}' ).find('div').click(function(){
-                    .alert("test");
-                    $.ajax({
-                        url: '/a_save_star',
-                        type: 'POST',
-                        dataType: 'JSON',
-                        data:{
-                            name: $('this').parent().attr("id"),
-                            star: this.id
-                        },
-                        success: function(data) {
-                            if(data.success){
-                                alert("평가되었습니다!");
-                            }
-                            else{
-                                alert("error");
-                            }
-                        }
-                    });
-                });
-
-
-                {% endfor %}
-            });
-        });
-    }
-</script>
+<script type="text/javascript" src="{{url_for('static', filename='js/actor_star.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
 
 {% endblock %}
-
-
 
 {% block content %}
 
@@ -66,14 +21,13 @@
 
     <div class="col-md-offset-2 col-md-10">
         {% for each in actorCategory %}
-        <div class="col-md-3 thumbnail_folder_actor">
+        <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
             <img class="category_image" src="/show2/{{each.name}}" alt=""/>
 
-            <div class="text-center" id="{{each.name}}">
-                {% for aa in range(1, 6) %}
-                <div id="{{aa}}" class="glyphicon glyphicon-heart-empty"></div>
-                {% endfor %}
+            <div style="margin-top: 70px;" class="text-center" id="a_star_area">
+                <input id="a_star" type="hidden" class="rating"/>
             </div>
+
             <div class="img_name_text">{{each.name}}</div>
 
         </div>
