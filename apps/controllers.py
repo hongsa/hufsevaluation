@@ -298,15 +298,16 @@ def admin_actor():
             actor_write = Actor(
                 name=request.form['name'],
                 image=filestream,
-                category=request.form['category']
+                category=request.form['category'],
+                company=request.form['company'],
+                release=request.form['release']
             )
             db.session.add(actor_write)
             db.session.commit()
             flash(u"배우 DB에 저장되었습니다.")
             return redirect(url_for("admin"))
 
-    return render_template("admin.html")
-
+        return render_template("admin.html")
 
     return redirect(url_for("index"))
 
@@ -322,15 +323,37 @@ def admin_video():
                 name=request.form['name'],
                 image=filestream,
                 category=request.form['category'],
-                release=request.form['release_year'],
-                exposure=request.form['exposure'],
+                company=request.form['company'],
+                release=request.form['release'],
+                exposure=request.form['exposure']
                 )
             db.session.add(video_write)
             db.session.commit()
             flash(u"영상 DB에 저장되었습니다.")
             return redirect(url_for("admin"))
-    return render_template("admin.html")
 
+        return render_template("admin.html")
+
+    return redirect(url_for("index"))
+
+
+
+@app.route('/admin_connect', methods=['GET', 'POST'])
+def admin_connect():
+    if session['session_user_email']=='ydproject777@gmail.com':
+        if request.method == 'POST':
+
+            connect= Filmo(
+            ActorName=request.form['actor_name'],
+            videoName=request.form['video_name']
+            )
+            db.session.add(connect)
+            db.session.commit()
+            flash(u"잘 연결되었습니다.")
+
+            return redirect(url_for("admin"))
+
+        return render_template("admin.html")
 
     return redirect(url_for("index"))
 
