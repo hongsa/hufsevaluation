@@ -12,10 +12,8 @@
     <!-- Latest compiled and minified JavaScript -->
 	<script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
 
-
-
 	<style type="text/css">
-	/*버튼 모양 꾸미기*/
+	/*버튼 모양*/
 	.btn-custom-login {
 		background-color: hsl(47, 22%, 99%) !important;
 		background-repeat: repeat-x;
@@ -32,57 +30,58 @@
 		text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
 		-webkit-font-smoothing: antialiased;
 	}	
+
+	#mainModalButton{
+		height: 200px;
+		position:relative;
+		top:250px;
+		background: url("../static/img/logo_stroke_black.png");
+		background-size: cover;
+				
+	}
 	</style>
 </head>
 
 <body>
-    {% if get_flashed_messages() %}
+	
+	<div id="main_page_body">
+	<!--들어가기 버튼-->
+	<div class="row">
+		<div class="col-md-offset-3 col-md-6" data-toggle="modal" data-target="#myModal">
+			<div id="mainModalButton"></div>
+		</div>
+        <div class="col-md-1"></div>
+	</div>
+    <!--들어가기 버튼 끝-->
+	</div>
 
-        <div class="flahsed_box">
-          {% for each in get_flashed_messages() %}
-          <div class="flashed_text">
-            {{each}}
-          </div>
-          {% endfor %}
-        </div>
-
-      {% endif %}
-	<!--&lt;!&ndash;상단의 제목/폴더그림 부분&ndash;&gt;-->
-	<!--<div class="header">-->
-		<!--<img src="{{url_for('static', filename='img/just_folder.png')}}"/>-->
-		<!--<p style="display:inline-block;">직박구리</p>-->
-	<!--</div>-->
 
 	<!--직박구리 어 왔어? 부분-->
-	<div class="jikbak row">
-	</div>
+	<!-- <div class="jikbak row">
+	</div> -->
     <!--어 왔어 끝-->
 
-    <!--설명 및 버튼-->
-	<div class="row">
-		<div class="col-md-1"></div>
 
-        <div class="col-md-4 main_slogan">
-			<p>직박구리 사이트에 대한 설명이 들어갈 자리 입니다.</p>
-		</div>
-        <div class="col-md-1"></div>
+{% if not session['if_confirm'] %}
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#mainModalButton').trigger("click");
+});
+</script>
+{% endif %}
 
-        <div class="col-md-3 log_in" data-toggle="modal" data-target="#myModal">
-			<img id="mainModalButton" src="{{url_for('static', filename='img/log_in2.png')}}"/>
-		</div>
-        <div class="col-md-1"></div>
-	</div>
-    <!--설명 및 버튼  끝-->
-
-    <!-- 회원가입/로그인 모달창 -->
+<!-- 회원가입/로그인 모달창 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header" style="background-color:#EB6F62;">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <div class="modal-header" style="background-color:#B49CCE;">
+      	<!-- {% if not session['session_user_email'] %} -->
+        <button type="button" class="close" data-dismiss="modal">
+        	<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<!-- 		{% endif %} -->
         <h4 class="modal-title" id="myModalLabel" style="color:white;">직박구리 들어가기</h4>
       </div>
-      <div class="modal-body" style="background-color:#EB6F62;">
+      <div class="modal-body" style="background-color:#B49CCE;">
         <ul class="nav nav-tabs">
 				<li class="active"><a href="#login" data-toggle="tab">로그인</a></li>
 				<li><a href="#create" data-toggle="tab">회원가입</a></li>
@@ -96,15 +95,17 @@
 								<div class="col-md-12">
 									<img src="{{url_for('static', filename='img/come_in.png')}}"
 									style="width:200px;position:relative;left:30%;"/>
-									{% with errors = get_flashed_messages(category_filter=["error"]) %}
-										{% if errors %}
-											{% for msg in errors %}
-												{{ msg }}
-											{% endfor %}
-										{% endif %}
-									{% endwith %}
-
-
+										</br>
+										<div class="error_message" style="font-family:'jua';">
+										{% with errors = get_flashed_messages(category_filter=["error"]) %}
+											{% if errors %}
+												{% for msg in errors %}
+													{{ msg }}
+												{% endfor %}
+											{% endif %}
+										{% endwith %}
+										</div>
+								
 								</div>
 							</div>
 							<div class="control-group col-md-9" style="position:relative;left:80px;top:10px;">
@@ -154,7 +155,7 @@
 
 							<div class="control-group col-md-12">
 							</br>
-
+							
 								<div class="controls"style="display:block;position:relative;left:45%;">
 									<button class="btn btn-custom-login" style="width:50px;font-family:'jua';">가자!</button>
 								</div>

@@ -15,6 +15,7 @@ def index():
     if not 'session_user_email' in session:
         form=forms.JoinForm()
         form2=forms.LoginForm()
+        session['if_confirm'] = "true"
         return render_template("main_page.html", form=form,form2=form2)
     return redirect(url_for('actor_main'))
 
@@ -23,67 +24,92 @@ def index():
 # 회원가입
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    try:
-        if session['session_user_email']:
-            flash(u"이미 회원가입 하셨습니다!", "error")
-            return redirect(url_for('index'))
-    except Exception, e:
-        pass
+
     form = forms.JoinForm()
     form2 = forms.LoginForm()
 
-    if request.method == 'POST':
-        if not form.validate_on_submit():
-            flash(u"올바른 형식으로 입력해주세요!", "error")
+    try:
+        if session['session_user_email']:
+            flash(u"이미 회원가입 하셨습니다!", "error")
             return render_template("main_page.html", form=form, form2=form2)
+    except Exception, e:
+        pass
+
+    if request.method == 'POST':
         if User.query.get(form.email.data):
+            session.clear()
             flash(u"이미 등록된 메일 주소 입니다!", "error")
             return render_template("main_page.html", form=form, form2=form2)
         if User.query.get(form.nickname.data):
+            session.clear()
             flash(u"이미 사용중인 닉네임입니다!", "error")
             return render_template("main_page.html", form=form, form2=form2)
+        if not form.validate_on_submit():
+            session.clear()
+            flash(u"올바른 형식으로 입력해주세요!", "error")
+            return render_template("main_page.html", form=form, form2=form2)
+
         user = User(email=form.email.data, password=generate_password_hash(form.password.data),
                     nickname=form.nickname.data)
+        
         db.session.add(user)
         db.session.commit()
-        flash(u"회원가입 되셨습니다!")
+
+        session.clear()
+
+        # flash(u"회원가입 되셨습니다!")
         session['session_user_email'] = form.email.data
         session['session_user_nickname'] = form.nickname.data
 
         return redirect(url_for('actor_main'))
 
-    return redirect(url_for('index'))
+    session.clear()
+    flash(u"잘못 입력하셨습니다!","error")
+    return render_template("main_page.html", form=form, form2=form2)
+
 
 
 #로그인
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+
+    form = forms.JoinForm()
+    form2 = forms.LoginForm()
+
     try:
         if session['session_user_email']:
-            flash(u'이미 로그인 하셨습니다!')
+            flash(u'이미 로그인 하셨습니다!', "error")
             return redirect(url_for('actor_main'))
 
     except Exception, e:
         pass
-    # form = forms.JoinForm()
-    form = forms.LoginForm()
+
 
     if request.method == "POST":
-        if form.validate_on_submit():
+        if form2.validate_on_submit():
             email = form.email.data
             pwd = form.password.data
             user = User.query.get(email)
             if user is None:
+                session.clear()
                 flash(u"존재하지 않는 이메일 입니다.", "error")
+                return render_template("main_page.html", form=form, form2=form2)
             elif not check_password_hash(user.password, pwd):
+                session.clear()
                 flash(u"비밀번호가 일치하지 않습니다.", "error")
+                return render_template("main_page.html", form=form, form2=form2)
             else:
                 session.permanent = True
                 session['session_user_email'] = user.email
                 session['session_user_nickname'] = user.nickname
                 return redirect(url_for('actor_main'))
-    return redirect(url_for('index'))
 
+
+    session.clear()
+
+    flash(u"잘못 입력하셨습니다!","error")
+
+    return render_template("main_page.html", form=form, form2=form2)
 
 #로그아웃 부분.
 @app.route('/logout')
@@ -91,7 +117,7 @@ def logout():
 
     if "session_user_email" in session:
         session.clear()
-        flash(u"로그아웃 되었습니다.")
+        # flash(u"로그아웃 되었습니다.")
     else:
         flash(u"로그인 되어있지 않습니다.", "error")
     return redirect(url_for('index'))
@@ -126,7 +152,7 @@ def show1(key):
 
 @app.route('/actor_main')
 def actor_main():
-
+    # 로그인 안한 상태로 오면 index로 빠꾸
     if not 'session_user_email' in session:
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
