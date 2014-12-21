@@ -6,9 +6,8 @@
 <!--<script type="text/javascript" src="{{url_for('static', filename='js/actor_star.js')}}"></script>-->
 <script>
     $(document).ready(function(){
-        {% for each in actorCategory %}
-
-            $( '#{{each.name}}' ).find('div').hover(function(){
+        {% for x in actorCategory %}
+            $('#{{x.name}}').find('div').hover(function(){
                 .alert("test");
                 for(aa=1; aa<=5; aa++)
                 {
@@ -18,9 +17,8 @@
                     else
                         $('#' + aa).attr("class", "glyphicon glyphicon-heart-empty");
                 }
-                {% endfor %}
-
             });
+            {% endfor %}
 
             {% for each in actorCategory %}
                 $( '#{{each.name}}' ).find('div').click(function(){
@@ -43,10 +41,12 @@
                         }
                     });
                 });
+
+
                 {% endfor %}
             });
-
-
+        });
+    }
 </script>
 
 {% endblock %}
