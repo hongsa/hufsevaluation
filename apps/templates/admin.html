@@ -29,7 +29,7 @@
             <h3>배우</h3>
             <p> 이름: <input type="text" name="name"></p>
             <p> category: <input type="text" name="category" placeholder="1:마른,2:보통,3:육덕,4:뚱뚱"></p>
-            <p> 출시연도: <input type="text" name="release" size="30" placeholder="예시:1월-2014.1, 10월 11월 12월은 - 2014.90,2014.91,2014.92"></p>
+            <p> 출시연도: <input type="text" name="release" size="35" placeholder="예시:1월-2014.1, 10월 11월 12월은 - 2014.90,2014.91,2014.92"></p>
             <p> 회사: <input type="text" name="company" placeholder="회사명"></p>
             <p>배우사진: <input type="file" name ="actor_image"></p>
             <p><input type="submit" value="배우DB 저장하기"></p>
@@ -42,7 +42,7 @@
             <h3>영상</h3>
             <p> 품번: <input type="text" name="name"></p>
             <p> category: <input type="text" name="category" placeholder="1:연인,2:지인,3:특별장소,4:팀플,5:상황극" ></p>
-            <p> 출시연도: <input type="text" name="release" size="30" placeholder="예시:1월-2014.1, 10월 11월 12월은 - 2014.90,2014.91,2014.92"></p>
+            <p> 출시연도: <input type="text" name="release" size="35" placeholder="예시:1월-2014.1, 10월 11월 12월은 - 2014.90,2014.91,2014.92"></p>
             <p> 회사: <input type="text" name="company" placeholder="회사명"></p>
             <p> 유모노모: <input type="text" name="exposure" placeholder="노모:0, 유모:1"></p>
             <p>영상사진: <input type="file" name ="video_image"></p>
@@ -50,12 +50,11 @@
             </form>
 
         </div>
-
         <div>
             <form action="{{url_for("admin_connect")}}" method="post">
-
-            <p> 이름: <input type="text" name="actor_name"></p>
-            <p> 품번: <input type="text" name="video_name"></p>
+            <h3>연결하기</h3>
+            <p> 배우이름: <input type="text" name="actor_name"></p>
+            <p> 출연품번: <input type="text" name="video_name"></p>
             <p><input type="submit" value="배우 - 영상 연결하기"></p>
 
             </form>
