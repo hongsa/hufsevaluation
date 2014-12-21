@@ -59,18 +59,16 @@ a:hover {
     height: 900px;
     width: 100%;
 }
-
 .rank_chart {
     background-color: #8D5CBF;
-    height: 430px;
     position: fixed;
-    position: absolute;
+    _position: absolute;
+    height: 430px;
     width: 170px;
     top: 103px;
     z-index: 1;
     border-radius: 10px;
 }
-
 .thumbnail_folder {
     position: relative;
     top: 100px;
