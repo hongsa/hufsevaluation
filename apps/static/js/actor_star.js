@@ -3,7 +3,11 @@
  */
 $(document).ready(function(){
 
-    $('#a_star').on('change',function() {
+    $('.a_star_area').find('input').on('change', function () {
+        alert($(this).val()+'점이 평가되었습니다!');
+    });
+
+    $('.a_star_area').find('input').on('change', function () {
         $.ajax({
             url: '/a_save_star',
             type: 'POST',

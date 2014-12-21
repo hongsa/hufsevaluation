@@ -21,14 +21,15 @@
 
     <div class="col-md-offset-2 col-md-10">
         {% for each in videoCategory %}
-       <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
+        <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
             <img class="category_image" src="/show1/{{each.name}}" alt=""/>
 
-            <div style="margin-top: 70px;" class="text-center" id="v_star_area">
+            <div class="text-center img_name_text v_star_area">
                 <input id="v_star" type="hidden" class="rating"/>
+                <div>{{each.name}}</div>
             </div>
 
-            <div class="img_name_text">{{each.name}}</div>
+
 
         </div>
         {% endfor %}
