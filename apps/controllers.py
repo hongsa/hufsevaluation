@@ -373,8 +373,8 @@ def video_collection():
 
     email = session['session_user_email']
     user=User.query.get(email)
-    myRating = user.ratingActor_user.order_by(RatingActor.rating.desc()).all()
-    myBookmark = user.favorite_user.all()
+    myRating = user.ratingVideo_user.order_by(RatingVideo.rating.desc()).all()
+    myBookmark = user.bookmark_user.all()
 
     return render_template("video_collection.html",myRating=myRating,myBookmark=myBookmark)
 
