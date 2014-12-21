@@ -61,10 +61,13 @@ a:hover {
 }
 
 .rank_chart {
-    background-color: #FC5B5B;
+    background-color: #8D5CBF;
     height: 430px;
-    position: relative;
+    position: fixed;
+    position: absolute;
+    width: 170px;
     top: 103px;
+    z-index: 1;
     border-radius: 10px;
 }
 
@@ -199,10 +202,6 @@ a:hover {
     color: white;
     text-align: center;
 }
-
-
-
-
 
 
 
