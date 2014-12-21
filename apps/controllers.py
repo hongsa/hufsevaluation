@@ -359,12 +359,24 @@ def admin_connect():
 
 @app.route('/a_collection', methods=['GET', 'POST'])
 def actor_collection():
-    return render_template("actor_collection.html")
+
+    email = session['session_user_email']
+    user=User.query.get(email)
+    myRating = user.ratingActor_user.order_by(RatingActor.rating.desc()).all()
+    myBookmark = user.favorite_user.all()
+
+    return render_template("actor_collection.html",myRating=myRating,myBookmark=myBookmark)
 
 
 @app.route('/v_collection', methods=['GET', 'POST'])
 def video_collection():
-    return render_template("video_collection.html")
+
+    email = session['session_user_email']
+    user=User.query.get(email)
+    myRating = user.ratingActor_user.order_by(RatingActor.rating.desc()).all()
+    myBookmark = user.favorite_user.all()
+
+    return render_template("video_collection.html",myRating=myRating,myBookmark=myBookmark)
 
 
 
@@ -440,6 +452,54 @@ def actor_save_star():
         actor.average = float(math.ceil(a * 100) / 100)
 
     db.session.add(rating)
+    db.session.commit()
+
+    return jsonify(success=True)
+
+@app.route('/a_bookmark',methods=['GET','POST'])
+def actor_bookmark():
+
+    name = request.form.get('name')
+    logging.error(name)
+    actor = Actor.query.get(name)
+    logging.error(actor)
+    email = session['session_user_email']
+    logging.error(email)
+    bookmark = actor.favorite_actor.filter_by(userEmail=email).first()
+    logging.error(email)
+
+    if bookmark:
+        return jsonify(success=True)
+
+    my_bookmark=Favorite(
+		actorName=name,
+		userEmail=email
+		)
+    db.session.add(my_bookmark)
+    db.session.commit()
+
+    return jsonify(success=True)
+
+@app.route('/v_bookmark',methods=['GET','POST'])
+def video_bookmark():
+
+    name = request.form.get('name')
+    logging.error(name)
+    video = Video.query.get(name)
+    logging.error(video)
+    email = session['session_user_email']
+    logging.error(email)
+    bookmark = video.bookmark_video.filter_by(userEmail=email).first()
+    logging.error(email)
+
+    if bookmark:
+        return jsonify(success=True)
+
+    my_bookmark=Bookmark(
+		videoName=name,
+		userEmail=email
+		)
+    db.session.add(my_bookmark)
     db.session.commit()
 
     return jsonify(success=True)

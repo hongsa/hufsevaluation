@@ -4,6 +4,7 @@
 {% endblock css %}
 {% block js %}
 <script type="text/javascript" src="{{url_for('static', filename='js/video_star.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/video_bookmark.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
 {% endblock %}
 
@@ -49,6 +50,7 @@
 
             <div class="text-center img_name_text v_star_area">
                 <input id="v_star" type="hidden" class="rating"/>
+                <button class="v_bookmark btn btn-warning-xs" type="button">보고싶어요!</button>
                 <div>{{each.name}}</div>
             </div>
 
@@ -59,7 +61,7 @@
 
     </div>
     <div class="row text-center">
-        <ul class="pagination" style="margin-top: 100px; margin-left: 100px;">
+        <ul class="pagination" style="margin-top: 140px; margin-left: 100px;">
             <li>
                 <a href="#">&laquo;</a>
             </li>
