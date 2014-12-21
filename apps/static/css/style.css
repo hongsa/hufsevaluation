@@ -9,6 +9,11 @@
 body{
     font-family: 'nanum','Nanum Gothic';
 }
+/* 스크롤 따라다니는 부분 CSS JS는 floatDiv 참조 */
+#STATICMENU {
+    margin: 0pt; padding: 0pt; position: absolute; left: 0px; top: 103px;
+}
+/*스크롤 따라다니는 부분 종료*/
 
 #main_page_body{
     background-color: #8D5CBF;
@@ -53,21 +58,25 @@ a:hover {
 .body_background {
     background-color: #e5e5e5;
 }
-
 .category_body {
     background: #e5e5e5;
     height: 900px;
     width: 100%;
 }
-
 .rank_chart {
+<<<<<<< HEAD
     background-color: #BF9BCC;
+=======
+    background-color: #8D5CBF;
+    position: fixed;
+    _position: absolute;
+>>>>>>> d232d28ec462234ef9845ae3edea424eb79ebd58
     height: 430px;
-    position: relative;
+    width: 170px;
     top: 103px;
+    z-index: 1;
     border-radius: 10px;
 }
-
 .thumbnail_folder {
     position: relative;
     top: 100px;
@@ -199,10 +208,6 @@ a:hover {
     color: white;
     text-align: center;
 }
-
-
-
-
 
 
 
