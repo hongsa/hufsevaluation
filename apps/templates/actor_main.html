@@ -9,7 +9,7 @@
 {% block js %}
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#exampleModal').on('show.bs.modal', function (event) {
+        $('.bs-example-modal-lg').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
             var actorName = button.data('name') // Extract info from data-* attributes
 //            var actorComment = []
@@ -49,12 +49,18 @@
 
         <div class="row main_category">
             {% for each in categoryOne %}
-            <div class="col-md-2 main_thumnail ">
-                <a href="#" data-toggle="modal" data-target="#exampleModal" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}"><img class="main_image" src="/show2/{{each.name}}"/>
-                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div></a>
+            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
+                <a href="#">
+                    <img class="main_image" src="/show2/{{each.name}}"/>
+                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
+                </a>
             </div>
             {% endfor %}
-            <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/1" style="color:black; font-family:'jua';font-size:20px;text-align:center;">더보기</a></div>
+            <div class="col-md-2 main_thumnail" style="color:black;">
+                <a href="/a_category/1" style="color:black; font-family:'jua';font-size:20px;text-align:center;">
+                    더보기
+                </a>
+            </div>
         </div>
 
         <div>
@@ -62,9 +68,11 @@
         </div>
         <div class="row main_category">
             {% for each in categoryTwo %}
-            <div class="col-md-2 main_thumnail ">
-                <a href="#" data-toggle="modal" data-target="#exampleModal" data-name="{{each.name}}"><img class="main_image" src="/show2/{{each.name}}"/>
-                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div></a>
+            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}">
+                <a href="#">
+                    <img class="main_image" src="/show2/{{each.name}}"/>
+                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
+                </a>
             </div>
             {% endfor %}
             <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/2" style="color:black; font-family:'jua';font-size:20px;text-align:center;">더보기</a></div>
@@ -75,9 +83,11 @@
         </div>
         <div class="row main_category">
             {% for each in categoryThree %}
-            <div class="col-md-2 main_thumnail ">
-                <a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="2"><img class="main_image" src="/show2/{{each.name}}"/>
-                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div></a>
+            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}">
+                <a href="#">
+                    <img class="main_image" src="/show2/{{each.name}}"/>
+                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
+                </a>
             </div>
             {% endfor %}
             <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/3" style="color:black; font-family:'jua';font-size:20px;text-align:center;">더보기</a></div>
@@ -88,12 +98,18 @@
         </div>
         <div class="row main_category">
             {% for each in categoryFour %}
-            <div class="col-md-2 main_thumnail ">
-                <a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="{{each.name}}"><img class="main_image" src="/show2/{{each.name}}"/>
-                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div></a>
+            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="{{each.name}}">
+                <a href="#">
+                    <img class="main_image" src="/show2/{{each.name}}"/>
+                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
+                </a>
             </div>
             {% endfor %}
-            <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/4" style="color:black; font-family:'jua';font-size:20px;text-align:center;">더보기</a></div>
+            <div class="col-md-2 main_thumnail" style="color:black;">
+                <a href="/a_category/4" style="color:black; font-family:'jua';font-size:20px;text-align:center;">
+                    더보기
+                </a>
+            </div>
         </div>
 
 
@@ -102,9 +118,10 @@
         </div>
         <div class="row main_category">
             {% for each in categoryFive %}
-            <div class="col-md-2 main_thumnail ">
-                <a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="{{each.name}}"><img class="main_image" src="/show2/{{each.name}}"/>
-                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div></a>
+            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="{{each.name}}">
+                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
+                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
+                </a>
             </div>
             {% endfor %}
             <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/5" style="color:black; font-family:'jua';font-size:20px;text-align:center;">더보기</a></div>
@@ -116,12 +133,17 @@
         </div>
         <div class="row main_category">
             {% for each in categorySix %}
-            <div class="col-md-2 main_thumnail ">
-                <a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="{{each.name}}"><img class="main_image" src="/show2/{{each.name}}"/>
-                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div></a>
+            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="{{each.name}}">
+                <a href="#"><img class="main_image" src="/show2/{{each.name}}"/>
+                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
+                </a>
             </div>
             {% endfor %}
-            <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/6" style="color:black; font-family:'jua';font-size:20px;text-align:center;">더보기</a></div>
+            <div class="col-md-2 main_thumnail" style="color:black;">
+                <a href="/a_category/6" style="color:black; font-family:'jua';font-size:20px;text-align:center;">
+                    더보기
+                </a>
+            </div>
         </div>
 
     </div>
@@ -134,22 +156,18 @@
 
 
 <!--모달창 시작-->
-<div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel"></h4>
+                <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body">
                 <img src="" alt=""/>
             </div>
             <div class="modal-commentList">
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
             </div>
         </div>
     </div>
