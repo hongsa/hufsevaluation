@@ -135,6 +135,10 @@ a:hover {
     left: 10px;
     border-radius: 5px;
     margin: auto;
+    opacity: 1;
+}
+.blur_image {
+    opacity: 0.5;
 }
 
 .img_name_text{
