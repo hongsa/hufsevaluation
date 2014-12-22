@@ -11,13 +11,12 @@
             var actorName = button.data('name') // Extract info from data-* attributes
 //            var actorComment = []
             var actorComment = button.data('comment')
-            console.log(actorComment)
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this)
             modal.find('.modal-title').text(actorName+'의 상세페이지')
             modal.find('.modal-body img').attr('src',"/show2/"+actorName)
-            modal.find('.modal-commentList ').val(actorComment)
+            modal.find('.modal-commentList').html(actorComment)
         })
     })
 </script>
@@ -135,8 +134,9 @@
             </div>
             <div class="modal-body">
                 <img src="" alt=""/>
-                <hr/>
+                <br/>
                 <div class="row">
+
                     <form role="form" action="#" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="assignment_id" value="" />
                         <div class="modal-body">
@@ -157,8 +157,7 @@
                     <div class="col-md-1"></div>
                 </div>
             </div>
-            <div class="modal-commentList">
-
+            <div class="modal-commentList" style="background-color:blue;height:100px;width:500px;">
             </div>
         </div>
     </div>

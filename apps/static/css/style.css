@@ -120,8 +120,8 @@ a:hover {
     height: 115px;
     background-size: cover;
     position: relative;
-    top:10px;
-    /*left:4px;*/
+    left:-2px;
+    top:5px;
     border-radius: 5px;
 
 }
@@ -155,7 +155,8 @@ a:hover {
 
 .actor_name_text {
     position: relative;
-    top: 20px;
+    top: 17px;
+    left: -3px;
     text-align: center;
     font-family: 'jua';
     font-size: 15px;
