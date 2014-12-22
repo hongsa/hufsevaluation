@@ -344,7 +344,19 @@ a:hover {
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
 }
+.symbol {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
 
+.symbol-empty {
+  background-image: url(../img/star-off.png);
+}
+
+.symbol-filled {
+  background-image: url(../img/star-on.png);
+}
 
 
 
