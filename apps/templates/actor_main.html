@@ -9,7 +9,7 @@
         $('.bs-example-modal-lg').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
             var actorName = button.data('name') // Extract info from data-* attributes
-//            var actorComm22ent = []
+//            var actorComment = []
             var actorComment = button.data('comment')
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -134,7 +134,7 @@
             </div>
             <div class="modal-body">
                 <img src="" alt=""/>
-                <br/>
+                <hr/>
                 <div class="row">
 
                     <form role="form" action="#" method="POST" enctype="multipart/form-data">

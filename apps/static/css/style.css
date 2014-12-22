@@ -214,7 +214,23 @@ a:hover {
     left: 50px;
     opacity: 0;
 }
+.v_star_area {
+    position: relative;
+    top: -95px;
+    left: 50px;
+    opacity: 0;
+
+}
 
 .show_star_class {
     opacity: 1;
 }
+
+.actor_score_text{
+    font-size: 13px; 
+    margin-left:3px; 
+    margin-top:5px; 
+    color: black;
+    font-family: 'jua';
+}
+
