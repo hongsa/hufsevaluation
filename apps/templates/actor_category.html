@@ -6,7 +6,15 @@
 <script type="text/javascript" src="{{url_for('static', filename='js/actor_star.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/actor_bookmark.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
-
+<script type="text/javascript">
+     $(document).ready(function () {
+        $('.a_star_area').hover(function () {
+            $(this).addClass('show_star_class');
+        }, function () {
+            $(this).removeClass('show_star_class');
+        });
+    });
+</script>
 {% endblock %}
 
 {% block content %}
@@ -35,17 +43,18 @@
                 </a></div>
         </div>
     </div>
-
+    
     <div class="col-md-offset-2 col-md-10">
         {% for each in actorCategory %}
         <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
-            <div style="font-size: 13px; margin-left:10px; margin-top:10px; color: blue">{{each.average}} 점</div>
-            <div style="font-size: 13px; margin-left:10px; color: blue">({{each.count}} 명)</div>
+            <div style="font-family:'jua';font-size:13px;margin-left:15px;margin-top:10px;color:black">{{each.average}} 점</div>
+            <div style="font-family:'jua';font-size: 13px; margin-left:13px;color:black">({{each.count}} 명)</div>
             <img class="category_image" src="/show2/{{each.name}}" alt=""/>
-
-            <div class="text-center img_name_text a_star_area">
+            <div class="a_star_area">  
                 <input id="a_star" type="hidden" class="rating"/>
                 <button class="a_bookmark btn btn-warning-xs" type="button">보고싶어요!</button>
+            </div>
+            <div class="text-center img_name_text">          
                 <div>{{each.name}}</div>
             </div>
 
