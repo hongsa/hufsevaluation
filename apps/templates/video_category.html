@@ -7,13 +7,13 @@
 <script type="text/javascript" src="{{url_for('static', filename='js/video_bookmark.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
 <script type="text/javascript">
-     $(document).ready(function () {
-        $('.v_star_area').hover(function () {
-            $(this).addClass('show_star_class');
-        }, function () {
-            $(this).removeClass('show_star_class');
-        });
-    });
+    //  $(document).ready(function () {
+    //     $('.v_star_area').hover(function () {
+    //         $(this).addClass('show_star_class');
+    //     }, function () {
+    //         $(this).removeClass('show_star_class');
+    //     });
+    // });
 </script>
 
 {% endblock %}
@@ -55,7 +55,7 @@
         <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
             <div class="video_category_average">{{each.average}} 점</div>
             <div class="video_category_people">({{each.count}} 명)</div>
-            <img class="category_image" src="/show1/{{each.name}}" alt=""/>
+            <img class="category_image_video" src="/show1/{{each.name}}" alt=""/>
             <div class="v_star_area">  
                 <input id="v_star" type="hidden" class="rating"/>
                 <button class="v_bookmark btn btn-warning-xs" type="button">보고싶어요!</button>
@@ -66,7 +66,7 @@
         </div>
         {% endfor %}
     </div>
-    
+
     <div class="row text-center">
         <ul class="pagination" style="margin-top: 140px; margin-left: 100px;">
             <li>
