@@ -132,7 +132,7 @@ a:hover {
     background-size: cover;
     position: relative;
     top: 10px;
-    left: -15px;
+    left: 10.5px;
     border-radius: 5px;
     margin: auto;
     opacity: 1;
@@ -249,8 +249,8 @@ a:hover {
 .a_star_area {
     position: relative;
     opacity: 1;
-    top: 140px;
-    padding-left: 47px;
+    top: 10px;
+    padding-left: 55px;
     padding-top: 0px;
     height: 45px;
 }
