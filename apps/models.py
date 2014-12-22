@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 from apps import db
+import json
 
 class User(db.Model):
     email = db.Column(db.String(255),primary_key=True)
@@ -16,6 +17,15 @@ class Actor(db.Model):
     average = db.Column(db.Float, default=0)
     company =db.Column(db.String(255))
     release = db.Column(db.Float, default=0)
+
+    def reviews(self):
+        ret = [] # return할 list
+
+        for review in self.actorReview_actor:
+            ret.append( dict(author=review.user.nickname, content=review.content) )
+
+        return json.dumps( ret )
+
 
 class Video(db.Model):
     name = db.Column(db.String(255),primary_key=True)
