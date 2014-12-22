@@ -221,11 +221,9 @@ a:hover {
     opacity: 0;
 
 }
-
 .show_star_class {
     opacity: 1;
 }
-
 .actor_score_text{
     font-size: 13px; 
     margin-left:3px; 
@@ -233,4 +231,45 @@ a:hover {
     color: black;
     font-family: 'jua';
 }
+.actor_category_average{
+    font-family:'jua';
+    font-size:13px;
+    margin-left:15px;
+    margin-top:10px;
+    color:black
+}
+.actor_category_people{
+    font-family:'jua';
+    font-size: 13px; 
+    margin-left:13px;
+    color:black;
+}
+.video_category_average{
+    font-family:'jua';
+    font-size: 13px;
+    margin-left:10px; 
+    margin-top:10px; 
+    color: black;
+}
+.video_category_people{
+    font-family:'jua';
+    font-size: 13px; 
+    margin-left:10px; 
+    color: black;
+}
+.video_score_text{
+    font-size: 13px;
+    margin-left:3px; 
+    margin-top:5px; 
+    color: black;
+    font-family: 'jua';
+}
+
+
+
+
+
+
+
+
 

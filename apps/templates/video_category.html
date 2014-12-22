@@ -50,12 +50,11 @@
         </div>
     </div>
 
-
     <div class="col-md-offset-2 col-md-10">
         {% for each in videoCategory %}
         <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
-            <div style="font-family:'jua';font-size: 13px; margin-left:10px; margin-top:10px; color: black">{{each.average}} 점</div>
-            <div style="font-family:'jua';font-size: 13px; margin-left:10px; color: black">({{each.count}} 명)</div>
+            <div class="video_category_average">{{each.average}} 점</div>
+            <div class="video_category_people">({{each.count}} 명)</div>
             <img class="category_image" src="/show1/{{each.name}}" alt=""/>
             <div class="v_star_area">  
                 <input id="v_star" type="hidden" class="rating"/>
@@ -64,13 +63,10 @@
             <div class="text-center img_name_text">
                 <div>{{each.name}}</div>
             </div>
-
-
-
         </div>
         {% endfor %}
-
     </div>
+    
     <div class="row text-center">
         <ul class="pagination" style="margin-top: 140px; margin-left: 100px;">
             <li>

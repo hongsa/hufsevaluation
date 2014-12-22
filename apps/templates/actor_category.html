@@ -47,8 +47,8 @@
     <div class="col-md-offset-2 col-md-10">
         {% for each in actorCategory %}
         <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
-            <div style="font-family:'jua';font-size:13px;margin-left:15px;margin-top:10px;color:black">{{each.average}} 점</div>
-            <div style="font-family:'jua';font-size: 13px; margin-left:13px;color:black">({{each.count}} 명)</div>
+            <div class="actor_category_average">{{each.average}} 점</div>
+            <div class="actor_category_people">({{each.count}} 명)</div>
             <img class="category_image" src="/show2/{{each.name}}" alt=""/>
             <div class="a_star_area">  
                 <input id="a_star" type="hidden" class="rating"/>
@@ -57,9 +57,6 @@
             <div class="text-center img_name_text">          
                 <div>{{each.name}}</div>
             </div>
-
-
-
         </div>
         {% endfor %}
     </div>
