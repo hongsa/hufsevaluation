@@ -10,15 +10,7 @@
             var button = $(event.relatedTarget) // Button that triggered the modal
             var actorName = button.data('name') // Extract info from data-* attributes
 //            var actorComm22ent = []
-            var actorComment = button.data('comment');
-
-            $.each(actorComment, function(index, value) {
-                alert(index + ': ' + value);
-            });
-
-            console.log(actorName);
-            console.log(actorComment);
-
+            var actorComment = button.data('comment')
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this)
@@ -53,8 +45,6 @@
 
         <div class="row main_category">
             {% for each in categoryOne %}
-
-
             <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
                 <a href="#">
                     <div style="font-size: 13px; margin-left:3px; margin-top:5px; color: blue">{{each.average}} 점</div>
@@ -75,15 +65,7 @@
         </div>
         <div class="row main_category">
             {% for each in categoryTwo %}
-            <div id="test" style="background-color: red;">
-                {{ each.name }}
-                {{ each.reviews() }}
-
-                <!--{% for review in each.actorReview_actor %}-->
-                <!--{{ review }}-->
-                <!--{% endfor %}-->
-            </div>
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.reviews()}}">
+            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}">
                 <a href="#">
                     <div style="font-size: 13px; margin-left:3px; margin-top:5px; color: blue">{{each.average}} 점</div>
                     <img class="main_image" src="/show2/{{each.name}}"/>
@@ -99,7 +81,7 @@
         </div>
         <div class="row main_category">
             {% for each in categoryThree %}
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
+            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}">
                 <a href="#">
                     <div style="font-size: 13px; margin-left:3px; margin-top:5px; color: blue">{{each.average}} 점</div>
                     <img class="main_image" src="/show2/{{each.name}}"/>
@@ -115,7 +97,7 @@
         </div>
         <div class="row main_category">
             {% for each in categoryFour %}
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
+            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="{{each.name}}">
                 <a href="#">
                     <div style="font-size: 13px; margin-left:3px; margin-top:5px; color: blue">{{each.average}} 점</div>
                     <img class="main_image" src="/show2/{{each.name}}"/>

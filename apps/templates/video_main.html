@@ -48,7 +48,7 @@
             {% for each in categoryOne %}
             <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.videoReview_video.content}}">
                 <a href="#">
-                    <div style="font-size: 13px; margin-left:3px; margin-top:5px; color: blue">{{each.average}} 점</div>
+                    <div class="video_score_text">{{each.average}} 점</div>
                     <img class="main_image" src="/show1/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
                 </a>
@@ -68,7 +68,7 @@
             {% for each in categoryTwo %}
             <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}">
                 <a href="#">
-                    <div style="font-size: 13px; margin-left:3px; margin-top:5px; color: blue">{{each.average}} 점</div>
+                    <div class="video_score_text">{{each.average}} 점</div>
                     <img class="main_image" src="/show1/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
                 </a>
@@ -84,7 +84,7 @@
             {% for each in categoryThree %}
             <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}">
                 <a href="#">
-                    <div style="font-size: 13px; margin-left:3px; margin-top:5px; color: blue">{{each.average}} 점</div>
+                    <div class="video_score_text">{{each.average}} 점</div>
                     <img class="main_image" src="/show1/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
                 </a>
@@ -100,7 +100,7 @@
             {% for each in categoryFour %}
             <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="{{each.name}}">
                 <a href="#">
-                    <div style="font-size: 13px; margin-left:3px; margin-top:5px; color: blue">{{each.average}} 점</div>
+                    <div class="video_score_text">{{each.average}} 점</div>
                     <img class="main_image" src="/show1/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
                 </a>
@@ -121,7 +121,7 @@
             {% for each in categoryFive %}
             <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="{{each.name}}">
                 <a href="#">
-                    <div style="font-size: 13px; margin-left:3px; margin-top:5px; color: blue">{{each.average}} 점</div>
+                    <div class="video_score_text">{{each.average}} 점</div>
                     <img class="main_image" src="/show1/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
                 </a>
@@ -148,11 +148,11 @@
 
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header"style="background-color:#BF9BCC;">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title"></h4>
+                    <h4 class="modal-title" style="color:white;"></h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="background-color:#BF9BCC;">
                     <img src="" alt=""/>
                 </div>
                 <div class="modal-commentList">

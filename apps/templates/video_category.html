@@ -6,6 +6,16 @@
 <script type="text/javascript" src="{{url_for('static', filename='js/video_star.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/video_bookmark.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
+<script type="text/javascript">
+    //  $(document).ready(function () {
+    //     $('.v_star_area').hover(function () {
+    //         $(this).addClass('show_star_class');
+    //     }, function () {
+    //         $(this).removeClass('show_star_class');
+    //     });
+    // });
+</script>
+
 {% endblock %}
 
 
@@ -40,26 +50,23 @@
         </div>
     </div>
 
-
     <div class="col-md-offset-2 col-md-10">
         {% for each in videoCategory %}
         <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
-            <div style="font-size: 13px; margin-left:10px; margin-top:10px; color: blue">{{each.average}} 점</div>
-            <div style="font-size: 13px; margin-left:10px; color: blue">({{each.count}} 명)</div>
-            <img class="category_image" src="/show1/{{each.name}}" alt=""/>
-
-            <div class="text-center img_name_text v_star_area">
+            <div class="video_category_average">{{each.average}} 점</div>
+            <div class="video_category_people">({{each.count}} 명)</div>
+            <img class="category_image_video" src="/show1/{{each.name}}" alt=""/>
+            <div class="v_star_area">  
                 <input id="v_star" type="hidden" class="rating"/>
-                <button class="v_bookmark btn btn-warning-xs" type="button">보고싶어요!</button>
+                <button class="v_bookmark btn btn-custom3" type="button">보고싶어요!</button>
+            </div>
+            <div class="text-center img_name_text_video">
                 <div>{{each.name}}</div>
             </div>
-
-
-
         </div>
         {% endfor %}
-
     </div>
+
     <div class="row text-center">
         <ul class="pagination" style="margin-top: 140px; margin-left: 100px;">
             <li>
