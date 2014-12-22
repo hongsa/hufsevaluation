@@ -26,18 +26,21 @@
         </div>
     </div>
 
-    <div class="col-md-offset-2 col-md-10">
+    <div class="col-md-offset-2 col-md-10"style="position:relative;top:50px;">
         {% for each in actorCompany %}
         <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
-            <div style="font-size: 13px; margin-left:10px; margin-top:10px; color: blue">{{each.average}} 점</div>
-            <div style="font-size: 13px; margin-left:10px; color: blue">({{each.count}} 명)</div>
-            <img class="category_image" src="/show2/{{each.name}}" alt=""/>
-
-            <div class="text-center img_name_text a_star_area">
-                <input id="a_star" type="hidden" class="rating"/>
-                <button class="a_bookmark btn btn-warning-xs" type="button">보고싶어요!</button>
+            <div class="newActor_category_average">{{each.average}} 점</div>
+            <div class="newActor_category_people">({{each.count}} 명)</div>
+            <div class="category_image_newActor" style="background:url('/show2/{{each.name}}');background-size:cover;">
+                <div class="new_a_star_area">  
+                    <input id="a_star" type="hidden" class="rating" style="display:inline-block"/>
+                    <button class="a_bookmark btn btn-custom3" type="button" style="display:inline-block;">보고싶어요!</button>
+                </div>
+            </div>
+            <div class="text-center img_name_text_actor">          
                 <div>{{each.name}}</div>
             </div>
+
 
 
 
