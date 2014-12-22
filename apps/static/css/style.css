@@ -148,7 +148,7 @@ a:hover {
     margin: auto;
     opacity: 1;
 }
-.category_image_newActor{
+.category_image_new{
     width: 170px;
     height: 140px;
     background-size: cover;
@@ -314,14 +314,14 @@ a:hover {
     color: black;
     font-family: 'jua';
 }
-.newActor_category_average{
+.new_category_average{
     font-size: 13px; 
     margin-left:10px; 
     margin-top:10px; 
     color: black;
     font-family: 'jua';
 }
-.newActor_category_people{
+.new_category_people{
     font-size: 13px; 
     margin-left:10px; 
     color: black;
