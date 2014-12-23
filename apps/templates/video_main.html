@@ -26,6 +26,8 @@
             var modal = $(this)
             modal.find('.modal-title').text(videoName+'의 상세페이지')
             modal.find('.modal-body img').attr('src',"/show1/"+videoName)
+            modal.html('stuff to add here');
+
         })
     })
 </script>
@@ -150,19 +152,21 @@
 
 
 <!--모달창 시작-->
-<div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color:#BF9BCC;">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" style="color:white;"></h4>
-            </div>
-            <div class="modal-body" style="background-color:#BF9BCC;">
-                <img src="" alt="" style="border-radius:5px;"/>
-                <br/>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header"style="background-color:#BF9BCC;">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" style="color:white;"></h4>
+                </div>
+                <div class="modal-body" style="background-color:#BF9BCC;">
+                    <img src="" alt="" style="border-radius:5px;"/>
+                </br>
                 <div class="row">
-                    <hr>
+                <hr>
                     <form role="form" action="#" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="assignment_id" value="" />
                         <div class="modal-body" style="position:relative;top:-15px;">
@@ -175,18 +179,14 @@
                         </div>
                     </form>
                 </div>
-                <!--<div class="modal-commentList row">-->
-                    <!--<div class="modal-commentList-name col-md-1"></div>-->
-                    <!--<div class="modal-commentList-content col-md-10"></div>-->
-                    <!--<div class="col-md-1"></div>-->
-                <!--</div>-->
-            </div>
-            <div class="modal-commentList" style="background-color:#BF9BCC;height:100px;width:100%; color:white;">
+                </div>
+                <div class="modal-commentList" style="background-color:#BF9BCC;height:100px;width:100%; color:white;">
+
+                </div>
             </div>
         </div>
     </div>
-</div>   
- <!--모달창 끝-->
+    <!--모달창 끝-->
 
     {% endblock %}
 
