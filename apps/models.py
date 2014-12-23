@@ -21,11 +21,17 @@ class Actor(db.Model):
     # each.reviews() 실행하면 댓글 각 한 줄을 dict로 갖는 리스트를 리턴함
     # 댓글 각 한줄 및 전체 리스트는 javascript가 인식 가능하게 json형태로 리턴!
     def reviews(self):
-        ret = [] # return할 list
+        list = [] # return할 list
 
         for review in self.actorReview_actor:
-            ret.append( json.dumps(dict(author=review.user.nickname, content=review.content)) )
-        return json.dumps( ret )
+            list.append( dict(author=review.user.nickname, content=review.content))
+        return list
+
+    def videos(self):
+        list=[]
+        for each in self.filmo_actor:
+            list.append(each.video.name)
+        return list
 
 
 class Video(db.Model):
@@ -64,6 +70,9 @@ class Filmo(db.Model):
     video = db.relationship('Video', backref=db.backref('filmo_video', cascade='all, delete-orphan', lazy='dynamic'))
     videoName = db.Column(db.String(255), db.ForeignKey(Video.name))
     ActorName = db.Column(db.String(255), db.ForeignKey(Actor.name))
+
+
+
 
 class RatingActor(db.Model):
     id = db.Column(db.Integer, primary_key = True)
