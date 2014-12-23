@@ -9,9 +9,9 @@
 {% block content %}
 
 
-<div class="col-md-1"></div>
+<div class="col-md-2"></div>
 
-<div class="col-md-10">
+<div class="col-md-8">
 
     <div id = "buttons" class="text-center" style="margin-top: 70px;">
         <a href="/v_collection_r/1"><button type="button" id="rating_button" class="btn btn-default">평가한 영상</button></a>
@@ -20,17 +20,17 @@
 
     <div class="row">
         {% for each in myBookmark %}
-        <div class="col-md-3 thumbnail_folder_actor bookmark_list">
+        <div class="col-md-3 thumbnail_folder_actor" style="top:40px;">
             <img class="collection_image" src="/show1/{{each.actorName}}" alt=""/>
             <div class="text-center collection_text">
-                <div>{{each.actorName}}</div>
+                <div>{{each.videoName}}</div>
             </div>
 
         </div>
         {% endfor %}
     </div>
     <div class="row text-center">
-        <ul class="pagination" style="margin-top: 140px; margin-left: 100px;">
+        <ul class="pagination" style="margin-top: 80px;">
             <li>
                 <a href="#">&laquo;</a>
             </li>
@@ -48,7 +48,7 @@
 
 </div>
 
-<div class="col-md-1"></div>
+<div class="col-md-2"></div>
 
 
 
