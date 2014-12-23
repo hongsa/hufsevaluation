@@ -568,3 +568,43 @@ def video_bookmark():
     db.session.commit()
 
     return jsonify(success=True)
+
+
+
+
+
+# 배우 디테일
+@app.route('/actorDetail/<string:name>',methods=['GET','POST'])
+def actorDetail(name):
+# 해당하는 배우추출
+    actorRow = Actor.query.get(name)
+# 배우이름
+    actorName = actorRow.name
+
+#출연작품 가져오기
+    appearVideo=actorRow.videos()
+#댓글 가져오기
+    comments=actorRow.reviews()
+    if request.method=='POST':
+        if not 'session_user_email' in session:
+            return redirect(url_for("login"))
+
+        thisComment=ActorReview(
+        actorName=name,
+		userEmail=session['session_user_email'],
+		content=request.form['content']
+		)
+        db.session.add(thisComment)
+        db.session.commit()
+        return redirect(url_for("actorDetail", name = name))
+
+    average = float(actorRow.average)
+    average = float("{0:.2f}".format(average))
+
+
+    logging.error(appearVideo)
+    logging.error(comments)
+
+
+
+    return render_template("actorDetail.html", actorName=actorName, appearVideo=appearVideo, comments=comments, average=average, )

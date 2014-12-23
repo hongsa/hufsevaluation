@@ -1,0 +1,40 @@
+{% extends "nav_layout.html" %}
+{% block css %}
+{% endblock css %}
+{% block js %}
+{% endblock js %}
+{% block content %}
+
+<div clas="row">
+<!--asd-->
+    <div class="col-sm-1">
+    </div>
+
+    <div class="row col-sm-10">
+        <div class="col-sm-3">
+            <img src="/show2/{{actorName}}" alt="" style="max-width: 100%"/>
+            <p>{{actorName}}</p>
+        </div>
+
+        <div class="col-sm9">
+            {% for each in appearVideo %}
+            {{each}}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row">
+        {% for each in comments %}
+        <p>{{each['author']}}'+'{{each['content']}}</p>
+        {% endfor %}
+    </div>
+
+
+</div>
+<div class="col-sm-1"></div>
+</div>
+
+
+
+
+{% endblock content%}
