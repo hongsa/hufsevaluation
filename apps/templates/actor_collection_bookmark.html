@@ -1,0 +1,71 @@
+{% extends "nav_layout.html" %}
+{% block css %}
+{% endblock css %}
+{% block js %}
+<!--<script type="text/javascript" src="{{url_for('static', filename='js/actor_collection.js')}}"></script>-->
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="col-md-1"></div>
+
+<div class="col-md-10">
+
+    <div id = "buttons" class="text-center" style="margin-top: 70px;">
+        <a href="/a_collection_r/1"><button type="button" id="rating_button" class="btn btn-default">평가한 배우</button></a>
+        <a href="/a_collection_b/1"><button type="button" id="bookmark_button" class="btn btn-default">보고싶은 배우</button></a>
+    </div>
+
+    <div class="row">
+        {% for each in myBookmark %}
+        <div class="col-md-3 thumbnail_folder_actor bookmark_list">
+            <img class="collection_image" src="/show2/{{each.actorName}}" alt=""/>
+            <div class="text-center collection_text">
+                <div>{{each.actorName}}</div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="row text-center">
+        <ul class="pagination" style="margin-top: 140px; margin-left: 100px;">
+            <li>
+                <a href="#">&laquo;</a>
+            </li>
+            {% for page in total_page %}
+            <li>
+                <a href="/a_collection_b}/{{page}}">{{page}}</a>
+            </li>
+            {% endfor %}
+            <li>
+                <a href="#">&raquo;</a>
+            </li>
+        </ul>
+
+    </div>
+
+</div>
+
+<div class="col-md-1"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
