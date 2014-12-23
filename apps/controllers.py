@@ -4,7 +4,6 @@ from flask import Flask, redirect, url_for, render_template, request, flash, ses
 from apps import app, db, models
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import User, Actor, Video, ActorReview, VideoReview, Filmo, RatingActor, RatingVideo, Favorite, Bookmark
-
 from sqlalchemy import desc
 from apps import forms
 import math
@@ -123,7 +122,7 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/video_main')
+@app.route('/video_main', methods=['GET', 'POST'])
 def video_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
     if not 'session_user_email' in session:
@@ -150,7 +149,7 @@ def show1(key):
     return current_app.response_class(video.image, mimetype=mimetype)
 
 
-@app.route('/actor_main')
+@app.route('/actor_main', methods=['GET', 'POST'])
 def actor_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
     if not 'session_user_email' in session:
@@ -357,26 +356,58 @@ def admin_connect():
 
     return redirect(url_for("index"))
 
-@app.route('/a_collection', methods=['GET', 'POST'])
-def actor_collection():
+
+@app.route('/a_collection_b/<int:page>',defaults={'page': 1})
+@app.route('/a_collection_b/<int:page>', methods=['GET', 'POST'])
+def actor_collection_bookmark(page):
 
     email = session['session_user_email']
     user=User.query.get(email)
-    myRating = user.ratingActor_user.order_by(RatingActor.rating.desc()).all()
-    myBookmark = user.favorite_user.all()
+    myBookmark = user.favorite_user.offset((page - 1) * 12).limit(12)
+    total = user.favorite_user.count()
+    calclulate = float(float(total) / 12)
+    total_page = math.ceil(calclulate)
 
-    return render_template("actor_collection.html",myRating=myRating,myBookmark=myBookmark)
+    return render_template("actor_collection_bookmark.html",myBookmark=myBookmark,total_page=range(1, int(total_page + 1)))
 
-
-@app.route('/v_collection', methods=['GET', 'POST'])
-def video_collection():
+@app.route('/a_collection_r/<int:page>',defaults={'page': 1})
+@app.route('/a_collection_r/<int:page>', methods=['GET', 'POST'])
+def actor_collection_rating(page):
 
     email = session['session_user_email']
     user=User.query.get(email)
-    myRating = user.ratingVideo_user.order_by(RatingVideo.rating.desc()).all()
-    myBookmark = user.bookmark_user.all()
+    myRating = user.ratingActor_user.order_by(RatingActor.rating.desc()).offset((page - 1) * 12).limit(12)
+    total = user.ratingActor_user.count()
+    calclulate = float(float(total) / 12)
+    total_page = math.ceil(calclulate)
 
-    return render_template("video_collection.html",myRating=myRating,myBookmark=myBookmark)
+    return render_template("actor_collection_rating.html",myRating=myRating,total_page=range(1, int(total_page + 1)))
+
+@app.route('/v_collection_b/<int:page>',defaults={'page': 1})
+@app.route('/v_collection_b/<int:page>', methods=['GET', 'POST'])
+def video_collection_bookmark(page):
+
+    email = session['session_user_email']
+    user=User.query.get(email)
+    myBookmark = user.bookmark_user.offset((page - 1) * 12).limit(12)
+    total = user.bookmark_user.count()
+    calclulate = float(float(total) / 12)
+    total_page = math.ceil(calclulate)
+
+    return render_template("video_collection_bookmark.html",myBookmark=myBookmark,total_page=range(1, int(total_page + 1)))
+
+@app.route('/v_collection_r/<int:page>',defaults={'page': 1})
+@app.route('/v_collection_r/<int:page>', methods=['GET', 'POST'])
+def video_collection_rating(page):
+
+    email = session['session_user_email']
+    user=User.query.get(email)
+    myRating = user.ratingVideo_user.order_by(RatingVideo.rating.desc()).offset((page - 1) * 12).limit(12)
+    total = user.ratingVideo_user.count()
+    calclulate = float(float(total) / 12)
+    total_page = math.ceil(calclulate)
+
+    return render_template("video_collection_rating.html",myRating=myRating,total_page=range(1, int(total_page + 1)))
 
 
 

@@ -56,7 +56,9 @@ a:hover {
 }
 
 .body_background {
-    background-color: #EFEFEF;
+    background-color: #FBFBFB;
+    /*background: url("../img/jikbak_wall_white_blur.png");*/
+
 }
 .category_body {
     background: #EFEFEF;
@@ -112,7 +114,7 @@ a:hover {
     position: relative;
     top: 100px;
     border-radius: 10px;
-   
+
 }
 
 .main_image{
@@ -168,7 +170,7 @@ a:hover {
 .img_name_text_actor{
     position: relative;
     top: 80px;
-    left: -13px;    
+    left: -13px;
     font-family: 'jua';
     font-size: 17px;
 }
@@ -176,7 +178,7 @@ a:hover {
 .img_name_text_video{
     position: relative;
     top: 30px;
-    left: -13px;    
+    left: -13px;
     font-family: 'jua';
     font-size: 17px;
 }
@@ -275,9 +277,9 @@ a:hover {
     opacity: 1;
 }
 .actor_score_text{
-    font-size: 13px; 
-    margin-left:3px; 
-    margin-top:5px; 
+    font-size: 13px;
+    margin-left:3px;
+    margin-top:5px;
     color: black;
     font-family: 'jua';
 }
@@ -290,76 +292,109 @@ a:hover {
 }
 .actor_category_people{
     font-family:'jua';
-    font-size: 13px; 
+    font-size: 13px;
     margin-left:13px;
     color:black;
 }
 .video_category_average{
     font-family:'jua';
     font-size: 13px;
-    margin-left:10px; 
-    margin-top:10px; 
+    margin-left:10px;
+    margin-top:10px;
     color: black;
 }
 .video_category_people{
     font-family:'jua';
-    font-size: 13px; 
-    margin-left:10px; 
+    font-size: 13px;
+    margin-left:10px;
     color: black;
 }
 .video_score_text{
     font-size: 13px;
-    margin-left:3px; 
-    margin-top:5px; 
+    margin-left:3px;
+    margin-top:5px;
     color: black;
     font-family: 'jua';
 }
 .new_category_average{
-    font-size: 13px; 
-    margin-left:10px; 
-    margin-top:10px; 
+    font-size: 13px;
+    margin-left:10px;
+    margin-top:10px;
     color: black;
     font-family: 'jua';
 }
 .new_category_people{
-    font-size: 13px; 
-    margin-left:10px; 
+    font-size: 13px;
+    margin-left:10px;
     color: black;
     font-family: 'jua';
 }
 .btn-custom3 {
-  background-color: hsl(269, 71%, 81%) !important;
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cdacf0", endColorstr="#cdacf0");
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#cdacf0), to(#cdacf0));
-  background-image: -moz-linear-gradient(top, #cdacf0, #cdacf0);
-  background-image: -ms-linear-gradient(top, #cdacf0, #cdacf0);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cdacf0), color-stop(100%, #cdacf0));
-  background-image: -webkit-linear-gradient(top, #cdacf0, #cdacf0);
-  background-image: -o-linear-gradient(top, #cdacf0, #cdacf0);
-  background-image: linear-gradient(#cdacf0, #cdacf0);
-  border-color: #cdacf0 #cdacf0 hsl(269, 71%, 81%);
-  color: white !important;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
-  font-weight: bold;
-  -webkit-font-smoothing: antialiased;
+    background-color: hsl(269, 71%, 81%) !important;
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cdacf0", endColorstr="#cdacf0");
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#cdacf0), to(#cdacf0));
+    background-image: -moz-linear-gradient(top, #cdacf0, #cdacf0);
+    background-image: -ms-linear-gradient(top, #cdacf0, #cdacf0);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cdacf0), color-stop(100%, #cdacf0));
+    background-image: -webkit-linear-gradient(top, #cdacf0, #cdacf0);
+    background-image: -o-linear-gradient(top, #cdacf0, #cdacf0);
+    background-image: linear-gradient(#cdacf0, #cdacf0);
+    border-color: #cdacf0 #cdacf0 hsl(269, 71%, 81%);
+    color: white !important;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
 }
+.btn-custom4 {
+    background-color: hsl(277, 86%, 92%) !important;
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#eed9fc", endColorstr="#eed9fc");
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#eed9fc), to(#eed9fc));
+    background-image: -moz-linear-gradient(top, #eed9fc, #eed9fc);
+    background-image: -ms-linear-gradient(top, #eed9fc, #eed9fc);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eed9fc), color-stop(100%, #eed9fc));
+    background-image: -webkit-linear-gradient(top, #eed9fc, #eed9fc);
+    background-image: -o-linear-gradient(top, #eed9fc, #eed9fc);
+    background-image: linear-gradient(#eed9fc, #eed9fc);
+    border-color: #eed9fc #eed9fc hsl(277, 86%, 92%);
+    color: #333 !important;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+    -webkit-font-smoothing: antialiased;
+}
+
 .symbol {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
 }
 
 .symbol-empty {
-  background-image: url(../img/star-off.png);
+    background-image: url(../img/star-off.png);
 }
 
 .symbol-filled {
-  background-image: url(../img/star-on.png);
+    background-image: url(../img/star-on.png);
 }
 
-/*모달 댓글창*/
-
+.collection_image{
+    width: 170px;
+    height: 150px;
+    background-size: cover;
+    position: relative;
+    top: 50px;
+    left: 10.5px;
+    border-radius: 5px;
+    margin: auto;
+    opacity: 1;
+}
+.collection_text{
+    position: relative;
+    top: 50px;
+    right: 20px;
+    font-family: 'jua';
+    font-size: 17px;
+}
 
 
 

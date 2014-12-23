@@ -1,15 +1,15 @@
 $(document).ready(function(){
 
-	$("#bookmark_button").click(function(){
-		$("#bookmark_list").addClass("active").removeClass("hidden");
-		$("#rating_list").addClass("hidden").removeClass("active");
-	});
+    $("#rating_button").click(function(){
+        // alert("rate");
+        $(".rating_list").show();
+        $(".bookmark_list").hide();
+    });
 
-	$("#rating_button").click(function(){
-		// alert("rate");
-		$("#bookmark_list").addClass("hidden").removeClass("active");
-		$("#rating_list").addClass("active").removeClass("hidden");
-	});
+    $("#bookmark_button").click(function(){
+        $(".rating_list").hide();
+        $(".bookmark_list").show();
+    });
 
 
 });/**

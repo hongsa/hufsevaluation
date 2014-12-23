@@ -42,6 +42,8 @@
             var modal = $(this)
             modal.find('.modal-title').text(actorName+'의 상세페이지')
             modal.find('.modal-body img').attr('src',"/show2/"+actorName)
+            modal.html('stuff to add here');
+
         })
     })
 	</script>
@@ -51,7 +53,7 @@
 
 <div class="search_result col-md-offset-4 col-md-4">
 			
-			<img style="height:200px" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
+			<img style="height:200px" src="{{url_for('static', filename='img/jikbak_gray_stroke.png')}}">
 			<p>{{searching_word}} 검색결과 입니다.</p> 
 			<div style="background-color:#8D5CBF;">
 			{% for i in selected %}
@@ -94,7 +96,7 @@
                                 <label>댓글작성</label>
                                 <textarea class="form-control" name="assignment_content" rows="1"></textarea>
                                 <!--<input class='text-right' type="file" name="assignment_file"/>-->
-                                <button type="submit" class="btn btn-default btn-sm">제출하기</button>
+                                <button type="submit" class="btn btn-custom4">제출하기</button>
                             </div>
                         </div>
                     </form>
