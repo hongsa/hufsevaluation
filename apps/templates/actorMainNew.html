@@ -33,7 +33,7 @@
 
             <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
                 <a href="/">
-                    <div class="actor_score_text">{{each.average}} 점</div>
+                    <div class="actor_score_text"><a href="#">{{each.average}} 점</a></div>
                     <img class="main_image" src="/show2/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
                 </a>
@@ -62,7 +62,7 @@
 
             <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.reviews()}}">
                 <a href="#">
-                    <div class="actor_score_text">{{each.average}} 점</div>
+                    <div class="actor_score_text"><a href="#">{{each.average}} 점</a></div>
                     <img class="main_image" src="/show2/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
                 </a>
@@ -78,7 +78,7 @@
             {% for each in categoryThree %}
             <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
                 <a href="#">
-                    <div class="actor_score_text">{{each.average}} 점</div>
+                    <div class="actor_score_text"><a href="#">{{each.average}} 점</a></div>
                     <img class="main_image" src="/show2/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
                 </a>
@@ -94,7 +94,7 @@
             {% for each in categoryFour %}
             <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
                 <a href="#">
-                    <div class="actor_score_text">{{each.average}} 점</div>
+                    <div class="actor_score_text"><a href="#">{{each.average}} 점</a></div>
                     <img class="main_image" src="/show2/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
                 </a>

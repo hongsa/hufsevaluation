@@ -51,20 +51,20 @@
 	{% endblock js %}
 	{% block content %}
 
-<div class="search_result col-md-offset-4 col-md-4">
+<div class="search_result col-md-offset-4 col-md-4" style="position:relative;top:150px;">
 			
-			<img style="height:200px" src="{{url_for('static', filename='img/jikbak_gray_stroke.png')}}">
+			<img style="height:200px" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
 			<p>{{searching_word}} 검색결과 입니다.</p> 
 			<div style="background-color:#8D5CBF;">
 			{% for i in selected %}
 			<div>
 				<div>
 					<div class="row">
-						{% for i in selected %}
+						
 						<div id="search_result_{{i}}" data-toggle="modal" data-target=".bs-example-modal-lg">
 							<a href="#">{{i}}</a>
 						</div>
-						{% endfor %}
+
 					</div>
 				</div>
 			</div>
