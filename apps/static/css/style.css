@@ -16,7 +16,7 @@ body{
 /*스크롤 따라다니는 부분 종료*/
 
 #main_page_body{
-    background-color: rgba(141, 92, 191, 0.5);
+    background-color: rgba(141, 92, 191, 0.8);
     height: 380px;
     position: relative;
     top: 0px;

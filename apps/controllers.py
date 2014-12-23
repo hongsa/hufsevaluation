@@ -608,3 +608,13 @@ def actorDetail(name):
 
 
     return render_template("actorDetail.html", actorName=actorName, appearVideo=appearVideo, comments=comments, average=average, )
+
+
+
+
+
+
+
+
+
+
