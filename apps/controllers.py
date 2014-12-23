@@ -123,7 +123,7 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/video_main')
+@app.route('/video_main', methods=['GET', 'POST'])
 def video_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
     if not 'session_user_email' in session:
@@ -150,7 +150,7 @@ def show1(key):
     return current_app.response_class(video.image, mimetype=mimetype)
 
 
-@app.route('/actor_main')
+@app.route('/actor_main', methods=['GET', 'POST'])
 def actor_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
     if not 'session_user_email' in session:

@@ -344,6 +344,23 @@ a:hover {
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
 }
+.btn-custom4 {
+  background-color: hsl(277, 86%, 92%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#eed9fc", endColorstr="#eed9fc");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#eed9fc), to(#eed9fc));
+  background-image: -moz-linear-gradient(top, #eed9fc, #eed9fc);
+  background-image: -ms-linear-gradient(top, #eed9fc, #eed9fc);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eed9fc), color-stop(100%, #eed9fc));
+  background-image: -webkit-linear-gradient(top, #eed9fc, #eed9fc);
+  background-image: -o-linear-gradient(top, #eed9fc, #eed9fc);
+  background-image: linear-gradient(#eed9fc, #eed9fc);
+  border-color: #eed9fc #eed9fc hsl(277, 86%, 92%);
+  color: #333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+  -webkit-font-smoothing: antialiased;
+}
+
 .symbol {
   display: inline-block;
   width: 16px;

@@ -150,41 +150,43 @@
 
 
 <!--모달창 시작-->
+<div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header"style="background-color:#BF9BCC;">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" style="color:white;"></h4>
-                </div>
-                <div class="modal-body" style="background-color:#BF9BCC;">
-                    <img src="" alt="" style="border-radius:5px;"/>
-                </br>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#BF9BCC;">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" style="color:white;"></h4>
+            </div>
+            <div class="modal-body" style="background-color:#BF9BCC;">
+                <img src="" alt="" style="border-radius:5px;"/>
+                <br/>
                 <div class="row">
-
+                    <hr>
                     <form role="form" action="#" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="assignment_id" value="" />
-                        <div class="modal-body">
+                        <div class="modal-body" style="position:relative;top:-15px;">
                             <div class="form-group">
-                                <label>댓글작성</label>
-                                <textarea class="form-control" name="assignment_content" rows="1"></textarea>
+                                <label style="color:#3D104D;">댓글작성</label>
+                                <textarea class="form-control" name="assignment_content" rows="1" style="width:90%;"></textarea>
                                 <!--<input class='text-right' type="file" name="assignment_file"/>-->
-                                <button type="submit" class="btn btn-default btn-sm">제출하기</button>
+                                <button type="submit" class="btn btn-custom4" style="float:right;position:relative;top:-33px;height:33px;">제출하기</button>
                             </div>
                         </div>
                     </form>
                 </div>
-                </div>
-                <div class="modal-commentList" style="background-color:#BF9BCC;height:100px;width:100%; color:white;">
-
-                </div>
+                <!--<div class="modal-commentList row">-->
+                    <!--<div class="modal-commentList-name col-md-1"></div>-->
+                    <!--<div class="modal-commentList-content col-md-10"></div>-->
+                    <!--<div class="col-md-1"></div>-->
+                <!--</div>-->
+            </div>
+            <div class="modal-commentList" style="background-color:#BF9BCC;height:100px;width:100%; color:white;">
             </div>
         </div>
     </div>
-    <!--모달창 끝-->
+</div>   
+ <!--모달창 끝-->
 
     {% endblock %}
 
