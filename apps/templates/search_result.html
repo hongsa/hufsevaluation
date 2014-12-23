@@ -18,21 +18,99 @@
 	</style>
 	
 	{%endblock%}
+	{% block js %}
 
+	<script type="text/javascript">
+    $(document).ready(function(){
+        $('.bs-example-modal-lg').on('show.bs.modal', function (event) {
+//            event를 변수로 저장
+            var button = $(event.relatedTarget) // Button that triggered the modal
+//            배우명을 변수로 저장
+            var actorName = button.data('name') // Extract info from data-* attributes
+//            댓글 목록을 변수로 저장
+            var actorComment = button.data('comment');
+//            댓글 목록에서 각 댓글 한 row를 추출
+//            댓글 한 row는 그 값(작성자, 내용)을 딕셔너리로 갖고있지만 javascript로 넘길때는 스트링으로 넘긴다 json.dumps()
+//            function은 그 row들을 list로 저장한다
+            $.each(actorComment, function(index, value) {
+//            각 row의 value가 스트링으로 저장돼있으니 딕셔너리로 다시 바꾼다 JSON.parse()
+//               row의 value 즉 딕셔너리에서 key값을 기준으로 html로 삽입
+                $('.modal-commentList').append('<p>'+JSON.parse(value)['content']+'</p>')
+            });
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text(actorName+'의 상세페이지')
+            modal.find('.modal-body img').attr('src',"/show2/"+actorName)
+        })
+    })
+	</script>
+
+	{% endblock js %}
 	{% block content %}
 
-		<div class="search_result col-md-offset-4 col-md-4">
+<div class="search_result col-md-offset-4 col-md-4">
 			
-			<img style="height:200px" src="{{url_for('static', filename='img/jikbak_gray_stroke.png')}}">
+			<img style="height:200px" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
 			<p>{{searching_word}} 검색결과 입니다.</p> 
 			<div style="background-color:#8D5CBF;">
 			{% for i in selected %}
-	
-				<a href="#"><p>{{i}}</p></a>
+			<div>
+				<div>
+					<div class="row">
+						{% for i in selected %}
+						<div id="search_result_{{i}}" data-toggle="modal" data-target=".bs-example-modal-lg">
+							<a href="#">{{i}}</a>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
 
 			{% endfor %}
 			</div>
 		</div>
+
+<!-- Large modal -->
+<!--모달창 시작-->
+
+<div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#BF9BCC;">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" style="color:white;"></h4>
+            </div>
+            <div class="modal-body" style="background-color:#BF9BCC;">
+                <img src="" alt="" style="border-radius:5px;"/>
+                <br/>
+                <div class="row">
+
+                    <form role="form" action="#" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="assignment_id" value="" />
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>댓글작성</label>
+                                <textarea class="form-control" name="assignment_content" rows="1"></textarea>
+                                <!--<input class='text-right' type="file" name="assignment_file"/>-->
+                                <button type="submit" class="btn btn-default btn-sm">제출하기</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--<div class="modal-commentList row">-->
+                    <!--<div class="modal-commentList-name col-md-1"></div>-->
+                    <!--<div class="modal-commentList-content col-md-10"></div>-->
+                    <!--<div class="col-md-1"></div>-->
+                <!--</div>-->
+            </div>
+            <div class="modal-commentList" style="background-color:#BF9BCC;height:100px;width:100%; color:white;">
+            </div>
+        </div>
+    </div>
+</div>
+<!--모달창 끝-->
 
 	{% endblock %}
 
