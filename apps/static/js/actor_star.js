@@ -3,6 +3,17 @@
  */
 $(document).ready(function(){
 
+    $('.a_star_area').find('input').rating({
+        extendSymbol: function (rate) {
+            $(this).tooltip({
+                container: 'body',
+                placement: 'top',
+                title: '평점 ' + rate+ "점!"
+            });
+        }
+    });
+
+
     $('.a_star_area').find('input').on('change', function () {
         alert($(this).val()+'점이 평가되었습니다!');
     });
