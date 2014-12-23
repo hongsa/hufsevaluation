@@ -19,7 +19,6 @@ def index():
     return redirect(url_for('actor_main'))
 
 
-
 # 회원가입
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -267,17 +266,19 @@ def new_video(name,page):
     return render_template("new_video_main.html", companyList=companyList,videoCompany=videoCompany, company=company, total_page=range(1, int(total_page + 1)))
 
 
-
+import logging
 #디비검색
 @app.route('/db_search', methods=['GET', 'POST'])
 def db_search(searching_word):
-    video_list = models.Video.query.all()
-    actor_list = models.Actor.query.all()
+
+    video_list = Video.query.all()
+    actor_list = Actor.query.all()
     selected = []
     if searching_word != "":
         for i in video_list:
             if (i.name.lower()).find(searching_word.lower()) != -1:
                 selected.append(i.name)
+                logging.error(selected)
         try:
             selected[0]
         except Exception, e:
@@ -568,9 +569,6 @@ def video_bookmark():
     db.session.commit()
 
     return jsonify(success=True)
-
-
-
 
 
 # 배우 디테일
