@@ -49,7 +49,7 @@ def signup():
             return render_template("main_page.html", form=form, form2=form2)
 
         user = User(email=form.email.data, password=generate_password_hash(form.password.data),
-                    nickname=form.nickname.data)
+                    nickname=form.nickname.data, sex=form.sex.data)
 
         db.session.add(user)
         db.session.commit()
@@ -120,6 +120,40 @@ def logout():
     else:
         flash(u"로그인 되어있지 않습니다.", "error")
     return redirect(url_for('index'))
+
+@app.route('/m_pw', methods=['GET', 'POST'])
+def modify_password():
+    if request.method == 'POST':
+        email = session['session_user_email']
+        user= User.query.get(email)
+        user.password = generate_password_hash(request.form['password'])
+        db.session.commit()
+        flash(u"변경 완료되었습니다.", "password")
+        return redirect(url_for('modify_password'))
+
+    return render_template("modify.html")
+
+@app.route('/m_nick', methods=['GET', 'POST'])
+def modify_nickname():
+    if request.method == 'POST':
+        email = session['session_user_email']
+        user= User.query.get(email)
+
+        nickname=request.form['nickname']
+        nickname_list=[]
+        for i in User.query.all():
+		    nickname_list.append(i.nickname)
+        if nickname in nickname_list:
+            flash(u"이미 사용 중인 닉네임 입니다.", "nickname")
+            return redirect(url_for('modify_nickname'))
+
+        user.nickname=nickname
+        db.session.commit()
+        session['session_user_nickname'] = user.nickname
+        flash(u"변경 완료되었습니다.", "nickname")
+        return redirect(url_for('modify_nickname'))
+
+    return render_template("modify.html")
 
 
 @app.route('/video_main', methods=['GET', 'POST'])

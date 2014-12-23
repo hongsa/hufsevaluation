@@ -6,6 +6,8 @@ class User(db.Model):
     email = db.Column(db.String(255),primary_key=True)
     password = db.Column(db.String(255))
     nickname = db.Column(db.String(255))
+    #0은 남자 1은 여자
+    sex = db.Column(db.Integer, default = 0)
     joinDATE = db.Column(db.DateTime(),default = db.func.now())
 
 class Actor(db.Model):

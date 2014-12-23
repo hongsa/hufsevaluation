@@ -1,0 +1,56 @@
+<!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지-->
+{% extends "nav_layout.html" %}
+{% block css %}
+{% endblock css %}
+{% block js %}
+{% endblock %}
+
+{% block content %}
+<div class="col-md-1"></div>
+
+<div class="col-md-10" style="margin-top: 100px;">
+    <h2>비밀번호 변경하기</h2>
+    <form action="{{url_for('modify_password')}}" method="post">
+        <input type="password" name="password"/>
+        <br/>
+        {% with errors = get_flashed_messages(category_filter=["password"]) %}
+        {% if errors %}
+        {% for msg in errors %}
+        {{ msg }}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <br/>
+        <input type="submit" value="변경하기"/>
+    </form>
+
+    <h2>닉네임 변경하기</h2>
+    <form action="{{url_for('modify_nickname')}}" method="post">
+        <input type="text" name="nickname"/>
+        <br/>
+        {% with errors = get_flashed_messages(category_filter=["nickname"]) %}
+        {% if errors %}
+        {% for msg in errors %}
+        {{ msg }}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <br/>
+        <input type="submit" value="변경하기"/>
+    </form>
+
+
+
+
+
+
+</div>
+
+<div class="col-md-1"></div>
+
+
+
+
+
+
+{% endblock %}
