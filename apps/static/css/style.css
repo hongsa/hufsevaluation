@@ -56,7 +56,9 @@ a:hover {
 }
 
 .body_background {
-    background-color: #EFEFEF;
+    background-color: #FBFBFB;
+    /*background: url("../img/jikbak_wall_white_blur.png");*/
+
 }
 .category_body {
     background: #EFEFEF;
