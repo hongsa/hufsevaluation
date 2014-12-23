@@ -30,36 +30,60 @@
 		text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
 		-webkit-font-smoothing: antialiased;
 	}	
+	.logo{
+		width: 200px;
+		height: 100px;
+		background: url("../static/img/logo_black_main3.png");
+		/*background-size: cover;
+*/		background-repeat: no-repeat;
+		position: relative;
+		top: -290px;
+		left: 15px;
+	}
 
 	#mainModalButton{
-		height: 200px;
+		height: 300px;
+		width: 300px;
 		position:relative;
-		top:250px;
-		background: url("../static/img/logo_stroke_black.png");
+		top:60px;
+		left: -20px;
+		background: url("../static/img/go_in.png");
+		background-repeat: no-repeat;
+	}
+	.jikbak {
+		background: url("../static/img/jikbakintreeCome.png");
 		background-size: cover;
-				
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+	}
+	
+	#mainExplain{
+		height: 400px;
+		position: relative;
+		left: 40px;
+		top:35px;
+		background: url("../static/img/yadong.png");
+		background-repeat: no-repeat;
+		
 	}
 	</style>
 </head>
 
-<body>
-	
+<body class="jikbak">
+	<div class="logo"></div>
 	<div id="main_page_body">
 	<!--들어가기 버튼-->
 	<div class="row">
-		<div class="col-md-offset-3 col-md-6" data-toggle="modal" data-target="#myModal">
-			<div id="mainModalButton"></div>
+		<div class="col-md-2"></div>
+		<div class="col-md-4" id="mainExplain"></div>
+		<div class="col-md-4" data-toggle="modal" data-target="#myModal">
+			<div id="mainModalButton" style="position:relative;left:20px;"></div>
 		</div>
-        <div class="col-md-1"></div>
-	</div>
+		<div class="col-md-2"></div>
+  	</div>
     <!--들어가기 버튼 끝-->
 	</div>
-
-
-	<!--직박구리 어 왔어? 부분-->
-	<!-- <div class="jikbak row">
-	</div> -->
-    <!--어 왔어 끝-->
 
 
 {% if not session['if_confirm'] %}
