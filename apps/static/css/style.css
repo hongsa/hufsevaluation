@@ -55,6 +55,9 @@ a:hover {
     text-decoration: none;
 
 }
+input:focus {
+    outline-color: #ECBEF4;
+}
 
 .body_background {
     background-color: #FBFBFB;
@@ -401,6 +404,69 @@ a:hover {
     color: black;
     margin-top:10px;
 }
+
+/*detail page CSS*/
+
+.detailFolder{
+    background: url("../img/folder_layout8.png");
+    background-size: cover;
+    position:relative;top:130px;height:300px;width:250px;left:90px;
+}
+.detailImg{
+    width:200px;position:relative;top:43px;left:5px;border-radius: 5px;
+}
+.detailInfo1{
+    position: relative;
+    top: 130px;
+    /* left: 20px; */
+    background-color: rgba(191,155,204,0.3);
+    height: 300px;
+    border-radius: 5px;
+    border-color: rgba(191,155,204,0.3);
+    border-style: solid;
+    border-width: 3px;
+    display: inline-block;
+    margin-left: 85px;
+
+}
+.detailInfo2{
+    position: relative;
+    top: 130px;
+    /* left: -20px; */
+    background-color: rgba(191,155,204,0.3);
+    height: 300px;
+    border-radius: 5px;
+    border-color: rgba(191,155,204,0.3);
+    border-style: solid;
+    border-width: 3px;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.detailName{
+    position: relative;
+    top: 60px;
+    left: 60px;
+    font-family: 'jua';
+    font-size: 25px;
+}
+.detailCommentBox{
+    height: 280px;
+    background-color: rgba(191,155,204,0.3);
+    position: relative;
+    top: 155px;
+    left: -10px;
+    /*width: 68%;*/
+    /* margin-left: 220px; */
+    border-radius: 5px;
+    border-color: rgba(191,155,204,0.3);
+    border-style: solid;
+    border-width: 3px;
+}
+.detailBoxTitle{
+    color:black;font-size:25px;font-family:'jua';
+}
+
 
 
 

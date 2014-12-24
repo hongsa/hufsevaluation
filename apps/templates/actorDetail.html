@@ -11,29 +11,33 @@
     </div>
 
     <div class="row col-sm-10">
-        <div class="col-sm-3">
-            <img src="/show2/{{actorName}}" alt="" style="max-width: 100%"/>
-            <p>{{actorName}}</p>
+        <div class="col-sm-3 detailFolder">
+            <img class="detailImg"src="/show2/{{actorName}}" alt=""/>
+            <p class="detailName">{{actorName}}</p>
         </div>
 
-        <div class="col-sm9">
+        <div class="col-sm-9">
+            <div class="col-sm-offset-1 col-sm-5 detailInfo1">
+                <p class="detailBoxTitle">기본 정보</p>
+            </div>
+            <div class="col-sm-offset-1 col-sm-5 detailInfo2">
+                <p class="detailBoxTitle">출연 작품</p>
             {% for each in appearVideo %}
             {{each}}
             {% endfor %}
+            </div>
         </div>
     </div>
-
-    <div class="row">
-        {% for each in comments %}
-        <p>{{each['author']}}'+'{{each['content']}}</p>
-        {% endfor %}
+    <div class="col-sm-1"></div>
+    
+    <div class="col-sm-offset-2 col-sm-8 detailCommentBox">
+        <p class="detailBoxTitle">댓글</p>
+            {% for each in comments %}
+                <p>{{each['author']}}'+'{{each['content']}}</p>
+            {% endfor %}
     </div>
-
-
-</div>
-<div class="col-sm-1"></div>
-</div>
-
+    <div class="col-sm-1"></div>
+</div> 
 
 
 
