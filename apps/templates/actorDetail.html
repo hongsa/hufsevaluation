@@ -2,12 +2,12 @@
 {% block css %}
 {% endblock css %}
 {% block js %}
-<script type='text/javascript' src="{{url_for('static', filename='js/floatDiv.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/comment.js')}}"></script>
 {% endblock js %}
 {% block content %}
 
 <div clas="row">
-<!--asd-->
+    <!--asd-->
     <div class="col-sm-1">
     </div>
 
@@ -23,32 +23,42 @@
             </div>
             <div class="col-sm-offset-1 col-sm-5 detailInfo2">
                 <p class="detailBoxTitle">출연 작품</p>
-            {% for each in appearVideo %}
-            {{each}}
-            {% endfor %}
+                {% for each in appearVideo %}
+                {{each}}
+                {% endfor %}
             </div>
         </div>
     </div>
 
     <div class="row">
 
-    <input type="text" name="myinput" />
-    <br />
-    <button onclick="void(sendData());">댓글입력</button>
-    <hr>
-    <span id="result"></span>
+        <input type="text" name="comment" />
+        <input type="hidden" name="actorname" value="{{actorName}}" />
+
+        <br />
+        <button onclick="void(sendData());">댓글입력</button>
+        <hr>
+        <span id="result"></span>
     </div>
     <div class="col-sm-1"></div>
 
     <div class="col-sm-offset-2 col-sm-8 detailCommentBox">
         <p class="detailBoxTitle">댓글</p>
-            {% for each in comments %}
-                <p>{{each['author']}}'+'{{each['content']}}</p>
-            {% endfor %}
+        {% for each in comments %}
+        <p>{{each['author']}}'+'{{each['content']}}</p>
+        {% endfor %}
     </div>
     <div class="col-sm-1"></div>
 </div>
 
 
+
+<!--<script type="text/javascript">-->
+
+    <!--var injectionAssId = function( aId ) {-->
+        <!--$('input[name=assignment_id]').val( aId );-->
+    <!--}-->
+
+<!--</script>-->
 
 {% endblock content%}

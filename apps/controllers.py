@@ -7,6 +7,7 @@ from models import User, Actor, Video, ActorReview, VideoReview, Filmo, RatingAc
 from sqlalchemy import desc
 from apps import forms
 import math
+import json
 
 @app.route('/')
 @app.route('/index')
@@ -583,18 +584,6 @@ def actorDetail(name):
     appearVideo=actorRow.videos()
 #댓글 가져오기
     comments=actorRow.reviews()
-    if request.method=='POST':
-        if not 'session_user_email' in session:
-            return redirect(url_for("login"))
-
-        thisComment=ActorReview(
-        actorName=name,
-		userEmail=session['session_user_email'],
-		content=request.form['content']
-		)
-        db.session.add(thisComment)
-        db.session.commit()
-        return redirect(url_for("actorDetail", name = name))
 
     average = float(actorRow.average)
     average = float("{0:.2f}".format(average))
@@ -608,42 +597,37 @@ def actorDetail(name):
     return render_template("actorDetail.html", actorName=actorName, appearVideo=appearVideo, comments=comments, average=average, )
 
 
+#댓글입력
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#댓글
 @app.route('/actor/comment', methods=['POST'] )
 def comment():
 
-    sValue = -1 # Default Value of result.
     try:
-        sInput = request.form['input']
+        sComment = request.form['comment']
+        sName = request.form['actorName']
 
-    except Exception,e:
+#댓글 입력부분
+        if request.method=='POST':
+            if not 'session_user_email' in session:
+                return redirect(url_for("login"))
+
+            thisComment=ActorReview(
+            actorName=sName,
+            userEmail=session['session_user_email'],
+            content=request.form['content']
+            )
+
+            db.session.add(thisComment)
+            db.session.commit()
+
+            # Create JSON String
+            jsonDict = {}
+            jsonDict['comments'] = sComment
+            # jsonDict['actorName'] = sName
+            logging.error(jsonDict)
+            return jsonify(success=True,result=jsonDict)
+
+    except Exception, e:
         print " Occuring Exception. " , e
-        sValue = -1
 
-    # Create JSON String
-    jsonDict = {}
-    jsonDict['data'] = sInput
 
-    return json.dumps( jsonDict )

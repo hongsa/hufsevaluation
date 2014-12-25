@@ -1,13 +1,15 @@
 /* 서버쪽으로 데이터를 보내보자 */
         var sendData = function() {
             /* 일단 처리할 정보를 가져오자. ( jquery 이용 ) */
-            var inputValue = $('input[name=myinput]').val();
+            var inputComment = $('input[name=comment]').val();
+            var inputActorName = $('input[name=actorname]').val();
 
             /* 보낼 데이터 객체로 준비 ( 이게 제일 심플함. )
                서버에서는 input 이라는 이름으로 데이터를 받기로 약속되어져있다. AjaxSample.py 참고 */
 
             var sParam = {
-                input : inputValue
+                comment : inputComment,
+                actorName : inputActorName
             }
 
             /* 보내보자 시바 */
@@ -39,8 +41,12 @@
             var myData = JSON.parse(result);
 
             // 뷰에 뿌리자.
-            $('#result').html( myData.data );
+            $('#result').html( myData.comments );
 
         }/**
  * Created by Administrator on 2014-12-25.
  */
+/**
+ * Created by bebop on 2014-12-23.
+ */
+
