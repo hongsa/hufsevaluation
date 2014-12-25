@@ -616,3 +616,34 @@ def actorDetail(name):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#댓글
+@app.route('/actor/comment', methods=['POST'] )
+def comment():
+
+    sValue = -1 # Default Value of result.
+    try:
+        sInput = request.form['input']
+
+    except Exception,e:
+        print " Occuring Exception. " , e
+        sValue = -1
+
+    # Create JSON String
+    jsonDict = {}
+    jsonDict['data'] = sInput
+
+    return json.dumps( jsonDict )
