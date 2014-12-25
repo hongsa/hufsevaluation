@@ -623,7 +623,7 @@ def comment():
             # Create JSON String
             jsonDict = {}
             jsonDict['comments'] = sComment
-            # jsonDict['actorName'] = sName
+            jsonDict['actorName'] = sName
             logging.error(jsonDict)
             return jsonify(success=True,result=jsonDict)
 

@@ -7,7 +7,6 @@
 {% block content %}
 
 <div clas="row">
-    <!--asd-->
     <div class="col-sm-1">
     </div>
 
@@ -30,8 +29,8 @@
         </div>
     </div>
 
+    <!--댓글 입력부분 시작-->
     <div class="row">
-
         <input type="text" name="comment" />
         <input type="hidden" name="actorname" value="{{actorName}}" />
 
@@ -40,23 +39,28 @@
         <hr>
         <span id="result"></span>
     </div>
+    <!--댓글 입력부분 종료-->
+
     <div class="col-sm-1"></div>
 
+    <!--댓글 출력부분 시작-->
     <div class="col-sm-offset-2 col-sm-8 detailCommentBox">
         <p class="detailBoxTitle">댓글</p>
         {% for each in comments %}
         <p>{{each['author']}}'+'{{each['content']}}</p>
         {% endfor %}
     </div>
+    <!--댓글 출력부분 종료-->
+
     <div class="col-sm-1"></div>
 </div>
 
 
-
+<!--이벤트 발생 시 actorname 전송하는 부분 (당장은 필요없음)-->
 <!--<script type="text/javascript">-->
 
     <!--var injectionAssId = function( aId ) {-->
-        <!--$('input[name=assignment_id]').val( aId );-->
+        <!--$('input[name=actorname]').val( aId );-->
     <!--}-->
 
 <!--</script>-->

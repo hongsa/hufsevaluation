@@ -6,13 +6,12 @@
 
             /* 보낼 데이터 객체로 준비 ( 이게 제일 심플함. )
                서버에서는 input 이라는 이름으로 데이터를 받기로 약속되어져있다. AjaxSample.py 참고 */
-
             var sParam = {
                 comment : inputComment,
                 actorName : inputActorName
             }
-
             /* 보내보자 시바 */
+
             $.ajax({
                 url : '/actor/comment', // 데이터 보낼 주소.
                 data : sParam, // 데이터 보낼것 ( key = value 쌍 구조를 이루고있어야됨 )
@@ -42,8 +41,12 @@
 
             // 뷰에 뿌리자.
             $('#result').html( myData.comments );
+            // actorName을 뿌릴 땐 (myData.actorName) 이용
 
         }/**
+
+
+
  * Created by Administrator on 2014-12-25.
  */
 /**
