@@ -489,19 +489,19 @@ def comment():
         sComment = request.form['comment']
         sName = request.form['actorName']
 
-#댓글 입력부분
+        #댓글 DB에 저장
         if request.method=='POST':
-            if not 'session_user_email' in session:
-                return redirect(url_for("login"))
-
-            thisComment=ActorReview(
-            actorName=sName,
-            userEmail=session['session_user_email'],
-            content=request.form['content']
-            )
-
-            db.session.add(thisComment)
-            db.session.commit()
+            # if not 'session_user_email' in session:
+            #     return redirect(url_for("login"))
+            #
+            # thisComment=ActorReview(
+            # actorName=sName,
+            # userEmail=session['session_user_email'],
+            # content=request.form['content']
+            # )
+            #
+            # db.session.add(thisComment)
+            # db.session.commit()
 
             # Create JSON String
             jsonDict = {}

@@ -3,9 +3,9 @@
 {% extends "nav_layout.html" %}
 {% block css %}
 <style type=text/css>
-#newA{
-    color: blue;
-}
+    #newA{
+        color: blue;
+    }
 </style>
 {% endblock css %}
 {% block js %}
@@ -34,6 +34,7 @@
         })
     })
 </script>
+<script type='text/javascript' src="{{url_for('static', filename='js/comment.js')}}"></script>
 {% endblock %}
 {% block content %}
 
@@ -61,7 +62,7 @@
             {% for each in categoryOne %}
 
 
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
+            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}"  onclick="void( injectionAssId('{{ each.name }}'));">
                 <a href="#">
                     <div class="actor_score_text">{{each.average}} 점</div>
                     <img class="main_image" src="/show2/{{each.name}}"/>
@@ -82,15 +83,15 @@
         <div class="row main_category">
             {% for each in categoryTwo %}
             <!--<div id="test" style="background-color: red;">-->
-                <!--{{ each.name }}-->
-                <!--{{ each.reviews() }}-->
+            <!--{{ each.name }}-->
+            <!--{{ each.reviews() }}-->
 
-                <!--&lt;!&ndash;{% for review in each.actorReview_actor %}&ndash;&gt;-->
-                <!--&lt;!&ndash;{{ review }}&ndash;&gt;-->
-                <!--&lt;!&ndash;{% endfor %}&ndash;&gt;-->
+            <!--&lt;!&ndash;{% for review in each.actorReview_actor %}&ndash;&gt;-->
+            <!--&lt;!&ndash;{{ review }}&ndash;&gt;-->
+            <!--&lt;!&ndash;{% endfor %}&ndash;&gt;-->
             <!--</div>-->
 
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.reviews()}}">
+            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}"  onclick="void( injectionAssId('{{ each.name }}'));">
                 <a href="#">
                     <div class="actor_score_text">{{each.average}} 점</div>
                     <img class="main_image" src="/show2/{{each.name}}"/>
@@ -163,30 +164,47 @@
                 <div class="col-md-4 related_info" style="height:260px;">연관정보</div>
                 </br>
                 <div class="row">
-                    
-                    <form role="form" action="#" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="assignment_id" value="" />
-                        <div class="modal-body" style="position:relative;top:30px;">
-                            <div class="form-group">
-                                <label style="color:#3D104D;">댓글작성</label>
-                                <textarea class="form-control" name="assignment_content" rows="1" style="width:90%;"></textarea>
-                                <!--<input class='text-right' type="file" name="assignment_file"/>-->
-                                <button type="submit" class="btn btn-custom4" style="float:right;position:relative;top:-33px;height:33px;">제출하기</button>
-                            </div>
-                        </div>
-                    </form>
+                    <!--댓글 입력부분 시작-->
+                    <div class="row">
+                        <input type="text" name="comment" />
+                        <input type="hidden" name="actorname" value="{{actorName}}" />
+                        <br />
+                        <button onclick="void(sendData());">댓글입력</button>
+                        <hr>
+                        <span id="result"></span>
+                    </div>
+                    <!--댓글 입력부분 종료-->
                 </div>
-                <!--<div class="modal-commentList row">-->
-                    <!--<div class="modal-commentList-name col-md-1"></div>-->
-                    <!--<div class="modal-commentList-content col-md-10"></div>-->
-                    <!--<div class="col-md-1"></div>-->
-                <!--</div>-->
             </div>
-            <div class="modal-commentList" style="overflow:scroll;background-color:#BF9BCC;width:100%;color:white;height:150px;">
-            </div>
+            </form>
         </div>
+        <!--<div class="modal-commentList row">-->
+        <!--<div class="modal-commentList-name col-md-1"></div>-->
+        <!--<div class="modal-commentList-content col-md-10"></div>-->
+        <!--<div class="col-md-1"></div>-->
+        <!--</div>-->
     </div>
+    <!--댓글 출력부분 시작-->
+    <div class="col-sm-offset-2 col-sm-8 detailCommentBox">
+        <p class="detailBoxTitle">댓글</p>
+        {% for each in comments %}
+        <p>{{each['author']}}'+'{{each['content']}}</p>
+        {% endfor %}
+    </div>
+    <!--댓글 출력부분 종료-->
+</div>
+</div>
+</div>
 </div>
 <!--모달창 끝-->
 
+
+이벤트 발생 시 actorname 전송하는 부분 (당장은 필요없음)
+<script type="text/javascript">
+
+    var injectionAssId = function( aId ) {
+        $('input[name=actorname]').val( aId );
+    }
+
+</script>
 {% endblock %}
