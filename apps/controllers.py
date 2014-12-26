@@ -10,33 +10,33 @@ import math
 from controller import userController
 import json
 
+# userController에서 관리하는 부분 시작
 @app.route('/')
 @app.route('/index')
 def index():
     return userController.index()
-
 # 회원가입
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     return userController.signup()
-
 #로그인
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     return userController.login()
-
 #로그아웃 부분.
 @app.route('/logout')
 def logout():
     return userController.logout()
-
+# 회원 비밀번호 수정
 @app.route('/m_pw', methods=['GET', 'POST'])
 def modify_password():
     return userController.modify_password()
-
+#회원 닉네임 수정
 @app.route('/m_nick', methods=['GET', 'POST'])
 def modify_nickname():
     return userController.modify_nickname()
+# userController 관리부분 끝
+
 
 
 @app.route('/video_main', methods=['GET', 'POST'])
