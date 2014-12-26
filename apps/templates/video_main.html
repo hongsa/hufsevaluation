@@ -4,32 +4,6 @@
 {% block css %}
 {% endblock css %}
 {% block js %}
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('.bs-example-modal-lg').on('show.bs.modal', function (event) {
-//            event를 변수로 저장
-            var button = $(event.relatedTarget) // Button that triggered the modal
-//            배우명을 변수로 저장
-            var videoName = button.data('name') // Extract info from data-* attributes
-//            댓글 목록을 변수로 저장
-            var videoComment = button.data('comment');
-//            댓글 목록에서 각 댓글 한 row를 추출
-//            댓글 한 row는 그 값(작성자, 내용)을 딕셔너리로 갖고있지만 javascript로 넘길때는 스트링으로 넘긴다 json.dumps()
-//            function은 그 row들을 list로 저장한다
-            $.each(videoComment, function(index, value) {
-//            각 row의 value가 스트링으로 저장돼있으니 딕셔너리로 다시 바꾼다 JSON.parse()
-//               row의 value 즉 딕셔너리에서 key값을 기준으로 html로 삽입
-                $('.modal-commentList').append('<p>'+JSON.parse(value)['content']+'</p>')
-            });
-            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-            var modal = $(this)
-            modal.find('.modal-title').text(videoName+'의 상세페이지')
-            modal.find('.modal-body img').attr('src',"/show1/"+videoName)
-            
-        })
-    })
-</script>
 {% endblock %}
 {% block content %}
 
@@ -41,7 +15,7 @@
         <hr style="border-bottom:2px;"/>
         <ol style="font-size: 16px;">
             {% for each in totalRank %}
-            <div><li style="margin-bottom: 10px;"><a href="#">{{each.name}}</a></li></div>
+            <div><li style="margin-bottom: 10px;"><a href="../videoDetail/{{each.name}}">{{each.name}}</a></li></div>
             {% endfor %}
         </ol>
 
@@ -55,8 +29,8 @@
 
         <div class="row main_category">
             {% for each in categoryOne %}
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.videoReview_video.content}}">
-                <a href="#">
+            <div class="col-md-2 main_thumnail">
+                <a href="videoDetail/{{each.name}}">
                     <div class="video_score_text">{{each.average}} 점</div>
                     <img class="main_image" src="/show1/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
@@ -75,8 +49,8 @@
         </div>
         <div class="row main_category">
             {% for each in categoryTwo %}
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}">
-                <a href="#">
+            <div class="col-md-2 main_thumnail">
+                <a href="videoDetail/{{each.name}}">
                     <div class="video_score_text">{{each.average}} 점</div>
                     <img class="main_image" src="/show1/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
@@ -91,8 +65,8 @@
         </div>
         <div class="row main_category">
             {% for each in categoryThree %}
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}">
-                <a href="#">
+            <div class="col-md-2 main_thumnail">
+                <a href="videoDetail/{{each.name}}">
                     <div class="video_score_text">{{each.average}} 점</div>
                     <img class="main_image" src="/show1/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
@@ -107,8 +81,8 @@
         </div>
         <div class="row main_category">
             {% for each in categoryFour %}
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="{{each.name}}">
-                <a href="#">
+            <div class="col-md-2 main_thumnail">
+                <a href="videoDetail/{{each.name}}">
                     <div class="video_score_text">{{each.average}} 점</div>
                     <img class="main_image" src="/show1/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
@@ -128,8 +102,8 @@
         </div>
         <div class="row main_category">
             {% for each in categoryFive %}
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-whatever="{{each.name}}">
-                <a href="#">
+            <div class="col-md-2 main_thumnail">
+                <a href="videoDetail/{{each.name}}">
                     <div class="video_score_text">{{each.average}} 점</div>
                     <img class="main_image" src="/show1/{{each.name}}"/>
                     <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
@@ -149,45 +123,7 @@
 <div class="col-md-1"></div>
 
 
-
-<!--모달창 시작-->
-<div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header"style="background-color:#A781CD;">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" style="color:white;"></h4>
-                </div>
-                <div class="modal-body" style="background-color:#BF9BCC;">
-                    <img class="col-md-4" src="" alt="" style="height:260px;"/>
-                    <div class="col-md-4 main_info" style="height:260px;">기본정보</div>
-                    <div class="col-md-4 related_info" style="height:260px;">연관정보</div>
-                </br>
-                <div class="row">
-                
-                    <form role="form" action="#" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="assignment_id" value="" />
-                        <div class="modal-body" style="position:relative;top:30px;">
-                            <div class="form-group">
-                                <label style="color:#3D104D;">댓글작성</label>
-                                <textarea class="form-control" name="assignment_content" rows="1" style="width:90%;"></textarea>
-                                <!--<input class='text-right' type="file" name="assignment_file"/>-->
-                                <button type="submit" class="btn btn-custom4" style="float:right;position:relative;top:-33px;height:33px;">제출하기</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                </div>
-                <div class="modal-commentList" style="overflow:scroll;background-color:#BF9BCC;height:150px;width:100%; color:white;">
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--모달창 끝-->
-
-    {% endblock %}
+{% endblock %}
 
 
 

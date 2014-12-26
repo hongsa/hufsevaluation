@@ -155,12 +155,12 @@ input:focus {
     opacity: 1;
 }
 .category_image_video{
-    width: 170px;
+    width: 150px;
     height: 140px;
     background-size: cover;
     position: relative;
     top: 10px;
-    left: 10.5px;
+    left: 20px;
     border-radius: 5px;
     margin: auto;
     opacity: 1;
@@ -195,6 +195,7 @@ input:focus {
     top: 30px;
     font-family: 'jua';
     font-size: 17px;
+    color: #000000;
 }
 
 .video_name_text{
@@ -424,14 +425,20 @@ input:focus {
     position:relative;top:130px;height:300px;width:250px;left:90px;
 }
 .detailImg{
-    width:200px;position:relative;top:43px;left:5px;border-radius: 5px;
+    width:170px;
+    height: 150px;
+    background-size: cover;
+    position:relative;
+    top:43px;
+    left:20px;
+    border-radius: 5px;
 }
 .detailInfo1{
     position: relative;
     top: 130px;
     /* left: 20px; */
     background-color: rgba(191,155,204,0.3);
-    height: 300px;
+    height: 250px;
     border-radius: 5px;
     border-color: rgba(191,155,204,0.3);
     border-style: solid;
@@ -445,19 +452,20 @@ input:focus {
     top: 130px;
     /* left: -20px; */
     background-color: rgba(191,155,204,0.3);
-    height: 300px;
+    height: 250px;
     border-radius: 5px;
     border-color: rgba(191,155,204,0.3);
     border-style: solid;
     border-width: 3px;
     display: inline-block;
     margin-left: 20px;
+    overflow: scroll;
 }
 
 .detailName{
     position: relative;
     top: 60px;
-    left: 60px;
+    /*left: 80px;*/
     font-family: 'jua';
     font-size: 25px;
 }
@@ -477,7 +485,17 @@ input:focus {
 .detailBoxTitle{
     color:black;font-size:25px;font-family:'jua';
 }
+.detail_rating{
+    top: 45px;
+    left: 10px;
 
+}
 
+.review_input{
+    margin-left:80px;
+    padding:5px;
+    font-size:18px;
+    font-weight: bold;
+}
 
 

@@ -49,6 +49,19 @@ class Video(db.Model):
     average = db.Column(db.Float, default=0)
     company =db.Column(db.String(255))
 
+    def reviews(self):
+        list = [] # return할 list
+
+        for review in self.videoReview_video:
+            list.append( dict(author=review.user.nickname, content=review.content))
+        return list
+
+    def actors(self):
+        list=[]
+        for each in self.filmo_video:
+            list.append(each.actor.name)
+        return list
+
 class ActorReview(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     actor = db.relationship('Actor', backref=db.backref('actorReview_actor', cascade='all, delete-orphan', lazy='dynamic'))

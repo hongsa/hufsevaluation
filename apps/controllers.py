@@ -77,13 +77,12 @@ def actor_main():
     categoryOne = Actor.query.filter_by(category="1").order_by(desc(Actor.average)).limit(5)
     categoryTwo = Actor.query.filter_by(category="2").order_by(desc(Actor.average)).limit(5)
     categoryThree = Actor.query.filter_by(category="3").order_by(desc(Actor.average)).limit(5)
-    categoryFour = Actor.query.filter_by(category="4").order_by(desc(Actor.average)).limit(5)
-    categoryFive = Actor.query.filter_by(category="5").order_by(desc(Actor.average)).limit(5)
-    categorySix = Actor.query.filter_by(category="6").order_by(desc(Actor.average)).limit(5)
+    # categoryFour = Actor.query.filter_by(category="4").order_by(desc(Actor.average)).limit(5)
+    # categoryFive = Actor.query.filter_by(category="5").order_by(desc(Actor.average)).limit(5)
+    # categorySix = Actor.query.filter_by(category="6").order_by(desc(Actor.average)).limit(5)
 
     return render_template("actor_main.html", totalRank=totalRank, categoryOne=categoryOne, categoryTwo=categoryTwo,
-                           categoryThree=categoryThree, categoryFour=categoryFour, categoryFive=categoryFive,
-                           categorySix=categorySix)
+                           categoryThree=categoryThree)
 
 
 @app.route('/show2/<key>', methods=['GET', 'POST'])
@@ -497,30 +496,20 @@ def video_bookmark():
 def actorDetail(name):
 # 해당하는 배우추출
     actorRow = Actor.query.get(name)
-# 배우이름
-    actorName = actorRow.name
 
 #출연작품 가져오기
     appearVideo=actorRow.videos()
 #댓글 가져오기
     comments=actorRow.reviews()
 
-    average = float(actorRow.average)
-    average = float("{0:.2f}".format(average))
 
-
-    logging.error(appearVideo)
-    logging.error(comments)
-
-
-
-    return render_template("actorDetail.html", actorName=actorName, appearVideo=appearVideo, comments=comments, average=average, )
+    return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments)
 
 
 #댓글입력
 
 @app.route('/actor/comment', methods=['POST'] )
-def comment():
+def actor_comment():
 
     try:
         sComment = request.form['comment']
@@ -550,4 +539,50 @@ def comment():
     except Exception, e:
         print " Occuring Exception. " , e
 
+@app.route('/videoDetail/<string:name>',methods=['GET','POST'])
+def videoDetail(name):
+# 해당하는 배우추출
+    videoRow = Video.query.get(name)
+
+#출연작품 가져오기
+    appearActor=videoRow.actors()
+#댓글 가져오기
+    comments=videoRow.reviews()
+
+
+    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments)
+
+
+#댓글입력
+
+@app.route('/video/comment', methods=['POST'] )
+def video_comment():
+
+    try:
+        sComment = request.form['comment']
+        sName = request.form['actorName']
+
+        #댓글 DB에 저장
+        if request.method=='POST':
+            # if not 'session_user_email' in session:
+            #     return redirect(url_for("login"))
+            #
+            # thisComment=ActorReview(
+            # actorName=sName,
+            # userEmail=session['session_user_email'],
+            # content=request.form['content']
+            # )
+            #
+            # db.session.add(thisComment)
+            # db.session.commit()
+
+            # Create JSON String
+            jsonDict = {}
+            jsonDict['comments'] = sComment
+            jsonDict['actorName'] = sName
+            logging.error(jsonDict)
+            return jsonify(success=True,result=jsonDict)
+
+    except Exception, e:
+        print " Occuring Exception. " , e
 

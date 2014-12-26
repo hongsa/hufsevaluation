@@ -1,0 +1,111 @@
+{% extends "nav_layout.html" %}
+{% block css %}
+{% endblock css %}
+{% block js %}
+<script type='text/javascript' src="{{url_for('static', filename='js/video_comment.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/video_star.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/video_bookmark.js')}}"></script>
+{% endblock js %}
+{% block content %}
+
+<div class="col-md-1">
+</div>
+
+<div class="row col-md-10">
+    <div class="row">
+        <div class="col-md-3 detailFolder" id="{{videoRow.name}}">
+            <img class="detailImg" src="/show1/{{videoRow.name}}" alt=""/>
+            <div class="v_star_area detail_rating">
+                <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
+                <button class="v_bookmark btn btn-custom3" type="button">보고싶어요!</button>
+            </div>
+            <p class="detailName text-center">{{videoRow.name}}</p>
+        </div>
+
+        <div class="col-md-9">
+            <div class="col-md-offset-1 col-md-5 detailInfo1">
+                <p class="detailBoxTitle">기본 정보</p>
+                <p>평균평점 : <span style="color: blue">{{videoRow.average}}</span> 점</p>
+                <p>평가인원 : <span style="color:blue">{{videoRow.count}}</span> 점</p>
+                <p>카테고리 :
+                    {% if videoRow.category == '1'%}
+                    <a href="../v_category/1"><span style="color: blue">마치 연인처럼</span></a>
+                    {% endif %}
+                    {% if videoRow.category  == '2' %}
+                    <a href="../v_category/2"><span style="color: blue">지인과 함께</span></a>
+                    {% endif %}
+                    {% if videoRow.category == '3' %}
+                    <a href="../v_category/3"><span style="color: blue">우리는 팀플</span></a>
+                    {% endif %}
+                    {% if videoRow.category == '4' %}
+                    <a href="../v_category/4"><span style="color: blue">특별한 장소에서</span></a>
+                    {% endif %}
+                    {% if videoRow.category == '5' %}
+                    <a href="../v_category/5"><span style="color: blue">기발한 상황극</span></a>
+                    {% endif %}
+                </p>
+                <p>출시년도 : <span style="color: blue">{{videoRow.release}}</span> 월</p>
+                <p>회사 : <span style="color: blue">{{videoRow.company}}</span> 년생</p>
+                <p>모자이크 :
+                    {% if videoRow.exposure == '0' %}
+                    <span style="color: blue">없음</span>
+                    {% endif %}
+                    {% if videoRow.exposure == '1' %}
+                    <span style="color: blue">있음</span>
+                    {% endif %}
+                </p>
+
+            </div>
+            <div class="col-md-offset-1 col-md-5 detailInfo2">
+                <p class="detailBoxTitle text-center">출연 배우</p>
+                {% for each in appearActor %}
+                <p><a href="../actorDetail/{{each}}"><span class="text-center" style="color: blue">{{each}}</span></a></p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!--댓글 입력부분 시작-->
+    <div class="row" style="margin-top: 150px;">
+        <div class="form-group">
+            <div class="col-md-2 text-center review_input">한줄평</div>
+            <div class="col-md-7">
+                <input class="form-control" type="text" name="comment" placeholder="나만의 진솔한 한줄평!" maxlength="68"/>
+                <input class="form-control" type="hidden" name="actorname" value="{{videoRow.name}}"maxlength="68"/>
+            </div>
+            <div class="col-md-2">
+                <button  class="btn btn-success btn-lg" onclick="void(sendData());">가자!</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--댓글 입력부분 종료-->
+
+<!--댓글 출력부분 시작-->
+<div class="col-md-offset-2 col-md-8">
+    <p class="detailBoxTitle">댓글</p>
+    {% for each in comments %}
+    <p>{{each['author']}}'+'{{each['content']}}</p>
+    {% endfor %}
+</div>
+<!--댓글 출력부분 종료-->
+</div>
+
+
+<div class="col-md-1"></div>
+
+
+
+
+
+<!--이벤트 발생 시 actorname 전송하는 부분 (당장은 필요없음)-->
+<!--<script type="text/javascript">-->
+
+<!--var injectionAssId = function( aId ) {-->
+<!--$('input[name=actorname]').val( aId );-->
+<!--}-->
+
+<!--</script>-->
+
+{% endblock content%}

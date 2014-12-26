@@ -31,32 +31,34 @@
         <div style="margin-left: 15px;">
             <div>
                 <a href="/a_category/1"><button type="button" class="btn btn-default" style="font-size:14px;margin-top:10px;  ">
-                    군살없이 마른</button></a></div>
+                    귀여운 단신</button></a></div>
             <div>
-                <a href="/a_category/2"><button type="button" class="btn btn-default" style="font-size:14px; margin-top:10px; ">우리는 그냥체형</button>
+                <a href="/a_category/2"><button type="button" class="btn btn-default" style="font-size:14px; margin-top:10px; ">적당한 체형</button>
                 </a></div>
             <div>
-                <a href="/a_category/3"><button type="button" class="btn btn-default" style="font-size:14px; margin-top:10px; ">육감적이고 육덕스러운</button>
+                <a href="/a_category/3"><button type="button" class="btn btn-default" style="font-size:14px; margin-top:10px; ">쭉쭉빵빵</button>
                 </a></div>
-            <div>
-                <a href="/a_category/4"><button type="button" class="btn btn-default" style="font-size:14px;margin-top:10px; ">조금은 귀여운 뱃살</button>
-                </a></div>
+            <!--<div>-->
+                <!--<a href="/a_category/4"><button type="button" class="btn btn-default" style="font-size:14px;margin-top:10px; ">조금은 귀여운 뱃살</button>-->
+                <!--</a></div>-->
         </div>
     </div>
 
     <div class="col-md-offset-2 col-md-10" style="position:relative;top:50px;">
         {% for each in actorCategory %}
         <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
-            <div class="video_category_average">{{each.average}} 점</div>
-            <div class="video_category_people">({{each.count}} 명)</div>
-            <img class="category_image_video" src="/show2/{{each.name}}" alt=""/>
-            <div class="a_star_area">
-                <input id="a_star" type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
-                <button class="a_bookmark btn btn-custom3" type="button">보고싶어요!</button>
-            </div>
-            <div class="text-center img_name_text_video">
-                <div>{{each.name}}</div>
-            </div>
+            <a href="../actorDetail/{{each.name}}">
+                <div class="video_category_average">{{each.average}} 점</div>
+                <div class="video_category_people">({{each.count}} 명)</div>
+                <img class="category_image_video" src="/show2/{{each.name}}" alt=""/>
+                <div class="a_star_area">
+                    <input id="a_star" type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
+                    <button class="a_bookmark btn btn-custom3" type="button">보고싶어요!</button>
+                </div>
+                <div class="text-center img_name_text_video">
+                    <div>{{each.name}}</div>
+                </div>
+            </a>
         </div>
         {% endfor %}
     </div>

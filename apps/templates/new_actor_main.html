@@ -15,7 +15,7 @@
 <div class="col-md-10">
 
     <div id="STATICMENU" class="rank_chart_new_actor">
-        <div class="text-center" style="font-size: 18px; color: #000000;margin-top: 10px; border-bottom: 2px;">연도별 분류</div>
+        <div class="text-center" style="font-size: 25px; color: #000000;margin-top: 10px; border-bottom: 2px;">데뷔연도 </div>
         <hr style="border-bottom:2px;"/>
         <div style="margin-left: 15px;">
             {% for each in releaseList %}
@@ -29,16 +29,18 @@
     <div class="col-md-offset-2 col-md-10" style="position:relative;top:50px;">
         {% for each in actorRelease %}
         <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
-            <div class="video_category_average">{{each.average}} 점</div>
-            <div class="video_category_people">({{each.count}} 명)</div>
-            <img class="category_image_video" src="/show2/{{each.name}}" alt=""/>
-            <div class="a_star_area">
-                <input id="a_star" type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
-                <button class="a_bookmark btn btn-custom3" type="button">보고싶어요!</button>
-            </div>
-            <div class="text-center img_name_text_video">
-                <div>{{each.name}}</div>
-            </div>
+            <a href="../actorDetail/{{each.name}}">
+                <div class="video_category_average">{{each.average}} 점</div>
+                <div class="video_category_people">({{each.count}} 명)</div>
+                <img class="category_image_video" src="/show2/{{each.name}}" alt=""/>
+                <div class="a_star_area">
+                    <input id="a_star" type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
+                    <button class="a_bookmark btn btn-custom3" type="button">보고싶어요!</button>
+                </div>
+                <div class="text-center img_name_text_video">
+                    <div>{{each.name}}</div>
+                </div>
+            </a>
         </div>
         {% endfor %}
     </div>
