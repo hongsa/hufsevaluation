@@ -4,7 +4,7 @@ from flask import Flask, redirect, url_for, render_template, request, flash, ses
 from apps import app, db, models
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import User, Actor, Video, ActorReview, VideoReview, Filmo, RatingActor, RatingVideo, Favorite, Bookmark
-from sqlalchemy import desc,or_
+from sqlalchemy import desc, or_
 from apps import forms
 import math
 from controller import userController
@@ -15,26 +15,38 @@ import json
 @app.route('/index')
 def index():
     return userController.index()
+
+
 # 회원가입
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     return userController.signup()
-#로그인
+
+
+# 로그인
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     return userController.login()
+
+
 #로그아웃 부분.
 @app.route('/logout')
 def logout():
     return userController.logout()
+
+
 # 회원 비밀번호 수정
 @app.route('/m_pw', methods=['GET', 'POST'])
 def modify_password():
     return userController.modify_password()
+
+
 #회원 닉네임 수정
 @app.route('/m_nick', methods=['GET', 'POST'])
 def modify_nickname():
     return userController.modify_nickname()
+
+
 # userController 관리부분 끝
 
 
@@ -92,10 +104,9 @@ def show2(key):
     return current_app.response_class(actor.image, mimetype=mimetype)
 
 
-@app.route('/a_category/<path:name>',defaults={'page': 1})
-@app.route('/a_category/<path:name>/<int:page>',methods=['GET','POST'])
-def actor_category(name,page):
-
+@app.route('/a_category/<path:name>', defaults={'page': 1})
+@app.route('/a_category/<path:name>/<int:page>', methods=['GET', 'POST'])
+def actor_category(name, page):
     actorCategory = Actor.query.filter_by(category=name).order_by(desc(Actor.average)).offset(
         (page - 1) * 12).limit(12)
     total = Actor.query.filter_by(category=name).count()
@@ -103,13 +114,13 @@ def actor_category(name,page):
     total_page = math.ceil(calclulate)
     category = Actor.query.filter_by(category=name).first().category
 
-    return render_template("actor_category.html", actorCategory=actorCategory, category=category, total_page=range(1, int(total_page + 1)))
+    return render_template("actor_category.html", actorCategory=actorCategory, category=category,
+                           total_page=range(1, int(total_page + 1)))
 
 
-@app.route('/v_category/<path:name>',defaults={'page': 1})
-@app.route('/v_category/<path:name>/<int:page>',methods=['GET','POST'])
-def video_category(name,page):
-
+@app.route('/v_category/<path:name>', defaults={'page': 1})
+@app.route('/v_category/<path:name>/<int:page>', methods=['GET', 'POST'])
+def video_category(name, page):
     videoCategory = Video.query.filter_by(category=name).order_by(desc(Video.average)).offset(
         (page - 1) * 12).limit(12)
     total = Video.query.filter_by(category=name).count()
@@ -117,30 +128,33 @@ def video_category(name,page):
     total_page = math.ceil(calclulate)
     category = Video.query.filter_by(category=name).first().release
 
-    return render_template("video_category.html",videoCategory=videoCategory, category=category, total_page=range(1, int(total_page + 1)))
+    return render_template("video_category.html", videoCategory=videoCategory, category=category,
+                           total_page=range(1, int(total_page + 1)))
 
 
-@app.route('/n_actor/<int:name>',defaults={'page': 1})
-@app.route('/n_actor/<int:name>/<int:page>',methods=['GET','POST'])
-def new_actor(name,page):
-
+@app.route('/n_actor/<int:name>', defaults={'page': 1})
+@app.route('/n_actor/<int:name>/<int:page>', methods=['GET', 'POST'])
+def new_actor(name, page):
     releaseList = set([int(each.release) for each in Actor.query.all()])
     logging.error(releaseList)
-    actorRelease = Actor.query.filter(Actor.release*100 > name*100, Actor.release*100 <(name+1)*100 ).order_by(desc(Actor.release)).offset(
+    actorRelease = Actor.query.filter(Actor.release * 100 > name * 100,
+                                      Actor.release * 100 < (name + 1) * 100).order_by(desc(Actor.release)).offset(
         (page - 1) * 12).limit(12)
     logging.error(actorRelease)
-    total = Actor.query.filter(Actor.release*100 > name*100, Actor.release*100 <(name+1)*100 ).count()
+    total = Actor.query.filter(Actor.release * 100 > name * 100, Actor.release * 100 < (name + 1) * 100).count()
     logging.error(total)
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
-    release = int(Actor.query.filter(Actor.release*100 > name*100, Actor.release*100 <(name+1)*100 ).first().release)
+    release = int(
+        Actor.query.filter(Actor.release * 100 > name * 100, Actor.release * 100 < (name + 1) * 100).first().release)
 
-    return render_template("new_actor_main.html", releaseList=releaseList,actorRelease=actorRelease, release=release, total_page=range(1, int(total_page + 1)))
+    return render_template("new_actor_main.html", releaseList=releaseList, actorRelease=actorRelease, release=release,
+                           total_page=range(1, int(total_page + 1)))
 
-@app.route('/n_video/<path:name>',defaults={'page': 1})
-@app.route('/n_video/<path:name>/<int:page>',methods=['GET','POST'])
-def new_video(name,page):
 
+@app.route('/n_video/<path:name>', defaults={'page': 1})
+@app.route('/n_video/<path:name>/<int:page>', methods=['GET', 'POST'])
+def new_video(name, page):
     companyList = set([each.company for each in Video.query.all()])
     videoCompany = Video.query.filter_by(company=name).order_by(desc(Video.release)).offset(
         (page - 1) * 12).limit(12)
@@ -149,37 +163,42 @@ def new_video(name,page):
     total_page = math.ceil(calclulate)
     company = Video.query.filter_by(company=name).first().company
 
-    return render_template("new_video_main.html", companyList=companyList,videoCompany=videoCompany, company=company, total_page=range(1, int(total_page + 1)))
+    return render_template("new_video_main.html", companyList=companyList, videoCompany=videoCompany, company=company,
+                           total_page=range(1, int(total_page + 1)))
 
 
 import logging
 #디비검색
 @app.route('/db_search', methods=['GET', 'POST'])
 def db_search(searching_word):
-
     video_list = Video.query.all()
     actor_list = Actor.query.all()
-    selected = []
+    selected_video = []
+    selected_actor = []
     if searching_word != "":
         for i in video_list:
             if (i.name.lower()).find(searching_word.lower()) != -1:
-                selected.append(i.name)
-                logging.error(selected)
+                selected_video.append(i.name)
+                logging.error(selected_video)
         try:
-            selected[0]
+            selected_video[0]
         except Exception, e:
 
             for j in actor_list:
                 if (j.name).find(searching_word) != -1:
-                    selected.append(j.name)
+                    selected_actor.append(j.name)
             try:
-                selected[0]
+                selected_actor[0]
             except Exception, e:
-                selected.append(u"검색결과가 없습니다.ㅠㅜ")
-        return render_template("search_result.html", selected=selected, searching_word=searching_word)
 
-    selected.append(u"검색어를 입력해주세요!")
-    return render_template("search_result.html", selected=selected, searching_word=searching_word)
+                selected_actor.append(u"검색결과가 없습니다.ㅠㅜ")
+
+        return render_template("search_result.html", selected_video=selected_video, selected_actor=selected_actor,
+                               searching_word=searching_word)
+
+    selected_actor.append(u"검색어를 입력해주세요!")
+    return render_template("search_result.html", selected_video=selected_video, selected_actor=selected_actor,
+                               searching_word=searching_word)
 
 
 #구글검색
@@ -210,7 +229,6 @@ def admin():
     return redirect(url_for("index"))
 
 
-
 @app.route('/admin_actor', methods=['GET', 'POST'])
 def admin_actor():
     email = session['session_user_email']
@@ -238,9 +256,9 @@ def admin_actor():
 
     return redirect(url_for("index"))
 
+
 @app.route('/admin_actor_check', methods=['GET', 'POST'])
 def admin_actor_check():
-
     email = session['session_user_email']
     user = User.query.get(email)
 
@@ -256,8 +274,6 @@ def admin_actor_check():
                 return redirect(url_for("admin"))
 
     return redirect(url_for("index"))
-
-
 
 
 @app.route('/admin_video', methods=['GET', 'POST'])
@@ -277,7 +293,7 @@ def admin_video():
                 company=request.form['company'],
                 release=request.form['release'],
                 exposure=request.form['exposure']
-                )
+            )
             db.session.add(video_write)
             db.session.commit()
             flash(u"영상 DB에 저장되었습니다.")
@@ -288,7 +304,6 @@ def admin_video():
     return redirect(url_for("index"))
 
 
-
 @app.route('/admin_connect', methods=['GET', 'POST'])
 def admin_connect():
     email = session['session_user_email']
@@ -296,10 +311,9 @@ def admin_connect():
 
     if user.level == 1:
         if request.method == 'POST':
-
-            connect= Filmo(
-            ActorName=request.form['actor_name'],
-            videoName=request.form['video_name']
+            connect = Filmo(
+                ActorName=request.form['actor_name'],
+                videoName=request.form['video_name']
             )
             db.session.add(connect)
             db.session.commit()
@@ -312,64 +326,65 @@ def admin_connect():
     return redirect(url_for("index"))
 
 
-@app.route('/a_collection_b/<int:page>',defaults={'page': 1})
+@app.route('/a_collection_b/<int:page>', defaults={'page': 1})
 @app.route('/a_collection_b/<int:page>', methods=['GET', 'POST'])
 def actor_collection_bookmark(page):
-
     email = session['session_user_email']
-    user=User.query.get(email)
+    user = User.query.get(email)
     myBookmark = user.favorite_user.offset((page - 1) * 12).limit(12)
     total = user.favorite_user.count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
 
-    return render_template("actor_collection_bookmark.html",myBookmark=myBookmark,total_page=range(1, int(total_page + 1)))
+    return render_template("actor_collection_bookmark.html", myBookmark=myBookmark,
+                           total_page=range(1, int(total_page + 1)))
 
-@app.route('/a_collection_r/<int:page>',defaults={'page': 1})
+
+@app.route('/a_collection_r/<int:page>', defaults={'page': 1})
 @app.route('/a_collection_r/<int:page>', methods=['GET', 'POST'])
 def actor_collection_rating(page):
-
     email = session['session_user_email']
-    user=User.query.get(email)
+    user = User.query.get(email)
     myRating = user.ratingActor_user.order_by(RatingActor.rating.desc()).offset((page - 1) * 12).limit(12)
     total = user.ratingActor_user.count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
 
-    return render_template("actor_collection_rating.html",myRating=myRating,total_page=range(1, int(total_page + 1)))
+    return render_template("actor_collection_rating.html", myRating=myRating, total_page=range(1, int(total_page + 1)))
 
-@app.route('/v_collection_b/<int:page>',defaults={'page': 1})
+
+@app.route('/v_collection_b/<int:page>', defaults={'page': 1})
 @app.route('/v_collection_b/<int:page>', methods=['GET', 'POST'])
 def video_collection_bookmark(page):
-
     email = session['session_user_email']
-    user=User.query.get(email)
+    user = User.query.get(email)
     myBookmark = user.bookmark_user.offset((page - 1) * 12).limit(12)
     total = user.bookmark_user.count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
 
-    return render_template("video_collection_bookmark.html",myBookmark=myBookmark,total_page=range(1, int(total_page + 1)))
+    return render_template("video_collection_bookmark.html", myBookmark=myBookmark,
+                           total_page=range(1, int(total_page + 1)))
 
-@app.route('/v_collection_r/<int:page>',defaults={'page': 1})
+
+@app.route('/v_collection_r/<int:page>', defaults={'page': 1})
 @app.route('/v_collection_r/<int:page>', methods=['GET', 'POST'])
 def video_collection_rating(page):
-
     email = session['session_user_email']
-    user=User.query.get(email)
+    user = User.query.get(email)
     myRating = user.ratingVideo_user.order_by(RatingVideo.rating.desc()).offset((page - 1) * 12).limit(12)
     total = user.ratingVideo_user.count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
 
-    return render_template("video_collection_rating.html",myRating=myRating,total_page=range(1, int(total_page + 1)))
-
+    return render_template("video_collection_rating.html", myRating=myRating, total_page=range(1, int(total_page + 1)))
 
 
 import logging
-@app.route('/v_save_star', methods=['GET','POST'])
-def video_save_star():
 
+
+@app.route('/v_save_star', methods=['GET', 'POST'])
+def video_save_star():
     star = int(request.form.get('star'))
     logging.error(star)
     name = request.form.get('name')
@@ -381,7 +396,6 @@ def video_save_star():
 
     rating = video.ratingVideo_video.filter_by(userEmail=email).first()
     logging.error(rating)
-
 
     if rating:  # 이미 평점을 매겼었음
         video.score += star - rating.rating
@@ -405,10 +419,12 @@ def video_save_star():
 
     return jsonify(success=True)
 
-import logging
-@app.route('/a_save_star', methods=['GET','POST'])
-def actor_save_star():
 
+import logging
+
+
+@app.route('/a_save_star', methods=['GET', 'POST'])
+def actor_save_star():
     star = int(request.form.get('star'))
     logging.error(star)
     name = request.form.get('name')
@@ -442,9 +458,9 @@ def actor_save_star():
 
     return jsonify(success=True)
 
-@app.route('/a_bookmark',methods=['GET','POST'])
-def actor_bookmark():
 
+@app.route('/a_bookmark', methods=['GET', 'POST'])
+def actor_bookmark():
     name = request.form.get('name')
     logging.error(name)
     actor = Actor.query.get(name)
@@ -457,18 +473,18 @@ def actor_bookmark():
     if bookmark:
         return jsonify(success=True)
 
-    my_bookmark=Favorite(
-		actorName=name,
-		userEmail=email
-		)
+    my_bookmark = Favorite(
+        actorName=name,
+        userEmail=email
+    )
     db.session.add(my_bookmark)
     db.session.commit()
 
     return jsonify(success=True)
 
-@app.route('/v_bookmark',methods=['GET','POST'])
-def video_bookmark():
 
+@app.route('/v_bookmark', methods=['GET', 'POST'])
+def video_bookmark():
     name = request.form.get('name')
     logging.error(name)
     video = Video.query.get(name)
@@ -481,10 +497,10 @@ def video_bookmark():
     if bookmark:
         return jsonify(success=True)
 
-    my_bookmark=Bookmark(
-		videoName=name,
-		userEmail=email
-		)
+    my_bookmark = Bookmark(
+        videoName=name,
+        userEmail=email
+    )
     db.session.add(my_bookmark)
     db.session.commit()
 
@@ -492,31 +508,29 @@ def video_bookmark():
 
 
 # 배우 디테일
-@app.route('/actorDetail/<string:name>',methods=['GET','POST'])
+@app.route('/actorDetail/<string:name>', methods=['GET', 'POST'])
 def actorDetail(name):
-# 해당하는 배우추출
+    # 해당하는 배우추출
     actorRow = Actor.query.get(name)
 
-#출연작품 가져오기
-    appearVideo=actorRow.videos()
-#댓글 가져오기
-    comments=actorRow.reviews()
-
+    #출연작품 가져오기
+    appearVideo = actorRow.videos()
+    #댓글 가져오기
+    comments = actorRow.reviews()
 
     return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments)
 
 
 #댓글입력
 
-@app.route('/actor/comment', methods=['POST'] )
+@app.route('/actor/comment', methods=['POST'])
 def actor_comment():
-
     try:
         sComment = request.form['comment']
         sName = request.form['actorName']
 
         #댓글 DB에 저장
-        if request.method=='POST':
+        if request.method == 'POST':
             # if not 'session_user_email' in session:
             #     return redirect(url_for("login"))
             #
@@ -534,36 +548,35 @@ def actor_comment():
             jsonDict['comments'] = sComment
             jsonDict['actorName'] = sName
             logging.error(jsonDict)
-            return jsonify(success=True,result=jsonDict)
+            return jsonify(success=True, result=jsonDict)
 
     except Exception, e:
-        print " Occuring Exception. " , e
+        print " Occuring Exception. ", e
 
-@app.route('/videoDetail/<string:name>',methods=['GET','POST'])
+
+@app.route('/videoDetail/<string:name>', methods=['GET', 'POST'])
 def videoDetail(name):
-# 해당하는 배우추출
+    # 해당하는 배우추출
     videoRow = Video.query.get(name)
 
-#출연작품 가져오기
-    appearActor=videoRow.actors()
-#댓글 가져오기
-    comments=videoRow.reviews()
-
+    #출연작품 가져오기
+    appearActor = videoRow.actors()
+    #댓글 가져오기
+    comments = videoRow.reviews()
 
     return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments)
 
 
 #댓글입력
 
-@app.route('/video/comment', methods=['POST'] )
+@app.route('/video/comment', methods=['POST'])
 def video_comment():
-
     try:
         sComment = request.form['comment']
         sName = request.form['actorName']
 
         #댓글 DB에 저장
-        if request.method=='POST':
+        if request.method == 'POST':
             # if not 'session_user_email' in session:
             #     return redirect(url_for("login"))
             #
@@ -581,8 +594,8 @@ def video_comment():
             jsonDict['comments'] = sComment
             jsonDict['actorName'] = sName
             logging.error(jsonDict)
-            return jsonify(success=True,result=jsonDict)
+            return jsonify(success=True, result=jsonDict)
 
     except Exception, e:
-        print " Occuring Exception. " , e
+        print " Occuring Exception. ", e
 

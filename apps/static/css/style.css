@@ -85,7 +85,7 @@ input:focus {
     background-color: #BF9BCC;
     position: fixed;
     position: absolute;
-    height: 630px;
+    height: 430px;
     width: 170px;
     top: 103px;
     z-index: 1;

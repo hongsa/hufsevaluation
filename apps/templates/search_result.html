@@ -1,26 +1,26 @@
 {% extends "nav_layout.html" %}
 
-	{% block css %}
+{% block css %}
 
-	<style type="text/css">
-	.search_result {
-		
-		position: relative;
-		top: 200px;
-		height: 600px;
-		color: black;
-		font-family: 'jua';
-		font-size: 40px;
-		text-align: center;
+<style type="text/css">
+    .search_result {
 
-	}
-	
-	</style>
-	
-	{%endblock%}
-	{% block js %}
+        position: relative;
+        top: 200px;
+        height: 600px;
+        color: black;
+        font-family: 'jua';
+        font-size: 40px;
+        text-align: center;
 
-	<script type="text/javascript">
+    }
+
+</style>
+
+{%endblock%}
+{% block js %}
+
+<script type="text/javascript">
     $(document).ready(function(){
         $('.bs-example-modal-lg').on('show.bs.modal', function (event) {
 //            event를 변수로 저장
@@ -46,32 +46,46 @@
 
         })
     })
-	</script>
+</script>
 
-	{% endblock js %}
-	{% block content %}
+{% endblock js %}
+{% block content %}
 
 <div class="search_result col-md-offset-4 col-md-4" style="position:relative;top:150px;">
-			
-			<img style="height:200px" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
-			<p>{{searching_word}} 검색결과 입니다.</p> 
-			<div style="background-color:#8D5CBF;">
-			{% for i in selected %}
-			<div>
-				<div>
-					<div class="row">
-						
-						<div id="search_result_{{i}}" data-toggle="modal" data-target=".bs-example-modal-lg">
-							<a href="#">{{i}}</a>
-						</div>
 
-					</div>
-				</div>
-			</div>
+    <img style="height:200px" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
+    <p>{{searching_word}} 검색결과 입니다.</p>
+    <div style="background-color:#8D5CBF;">
+        {% for i in selected_actor %}
+        <div>
+            <div>
+                <div class="row">
+                    <a href="../actorDetail/{{i}}">
+                        <div id="search_result_{{i}}" data-toggle="modal" data-target=".bs-example-modal-lg">
+                            {{i}}
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% for j in selected_video %}
+        <div>
+            <div>
+                <div class="row">
+                    <a href="../videoDetail/{{j}}">
+                        <div id="search_result_{{j}}" data-toggle="modal" data-target=".bs-example-modal-lg">
+                            {{j}}
+                        </div>
+                    </a>
 
-			{% endfor %}
-			</div>
-		</div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
 
 <!-- Large modal -->
 <!--모달창 시작-->
@@ -102,9 +116,9 @@
                     </form>
                 </div>
                 <!--<div class="modal-commentList row">-->
-                    <!--<div class="modal-commentList-name col-md-1"></div>-->
-                    <!--<div class="modal-commentList-content col-md-10"></div>-->
-                    <!--<div class="col-md-1"></div>-->
+                <!--<div class="modal-commentList-name col-md-1"></div>-->
+                <!--<div class="modal-commentList-content col-md-10"></div>-->
+                <!--<div class="col-md-1"></div>-->
                 <!--</div>-->
             </div>
             <div class="modal-commentList" style="background-color:#BF9BCC;height:100px;width:100%; color:white;">
@@ -114,5 +128,5 @@
 </div>
 <!--모달창 끝-->
 
-	{% endblock %}
+{% endblock %}
 

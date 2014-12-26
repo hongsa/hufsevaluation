@@ -18,11 +18,13 @@
         <div class="text-center" style="font-size: 25px; color: #000000;margin-top: 10px; border-bottom: 2px;">데뷔연도 </div>
         <hr style="border-bottom:2px;"/>
         <div style="margin-left: 15px;">
-            {% for each in releaseList %}
-            <div class="text-center" style="margin-top: 10px; font-size: 14px;">
-                <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default" style="font-size:18px;">{{each}}년도</button></a>
+            <div class="row">
+                {% for each in releaseList %}
+                <div class="col-md-5" style="margin-top: 10px;">
+                    <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px;">{{each}}년도</button></a>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
 
