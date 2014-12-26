@@ -102,7 +102,7 @@ def actor_category(name,page):
     total = Actor.query.filter_by(category=name).count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
-    category = Actor.query.first().category
+    category = Actor.query.filter_by(category=name).first().category
 
     return render_template("actor_category.html", actorCategory=actorCategory, category=category, total_page=range(1, int(total_page + 1)))
 
@@ -116,7 +116,7 @@ def video_category(name,page):
     total = Video.query.filter_by(category=name).count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
-    category = Video.query.first().category
+    category = Video.query.filter_by(category=name).first().release
 
     return render_template("video_category.html",videoCategory=videoCategory, category=category, total_page=range(1, int(total_page + 1)))
 
@@ -134,7 +134,7 @@ def new_actor(name,page):
     logging.error(total)
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
-    release = int(Actor.query.first().release)
+    release = int(Actor.query.filter(Actor.release*100 > name*100, Actor.release*100 <(name+1)*100 ).first().release)
 
     return render_template("new_actor_main.html", releaseList=releaseList,actorRelease=actorRelease, release=release, total_page=range(1, int(total_page + 1)))
 
@@ -148,7 +148,7 @@ def new_video(name,page):
     total = Video.query.filter_by(company=name).count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
-    company = Video.query.first().company
+    company = Video.query.filter_by(company=name).first().company
 
     return render_template("new_video_main.html", companyList=companyList,videoCompany=videoCompany, company=company, total_page=range(1, int(total_page + 1)))
 
