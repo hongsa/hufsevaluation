@@ -198,7 +198,7 @@ def db_search(searching_word):
 
     selected_actor.append(u"검색어를 입력해주세요!")
     return render_template("search_result.html", selected_video=selected_video, selected_actor=selected_actor,
-                               searching_word=searching_word)
+                           searching_word=searching_word)
 
 
 #구글검색
