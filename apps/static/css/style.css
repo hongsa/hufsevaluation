@@ -80,6 +80,17 @@ input:focus {
     z-index: 1;
     border-radius: 10px;
 }
+.rank_chart_new_actor{
+
+    background-color: #BF9BCC;
+    position: fixed;
+    position: absolute;
+    height: 630px;
+    width: 170px;
+    top: 103px;
+    z-index: 1;
+    border-radius: 10px;
+}
 .thumbnail_folder {
     position: relative;
     top: 100px;

@@ -4,7 +4,7 @@ from flask import Flask, redirect, url_for, render_template, request, flash, ses
 from apps import app, db, models
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import User, Actor, Video, ActorReview, VideoReview, Filmo, RatingActor, RatingVideo, Favorite, Bookmark
-from sqlalchemy import desc
+from sqlalchemy import desc,or_
 from apps import forms
 import math
 from controller import userController
@@ -121,19 +121,22 @@ def video_category(name,page):
     return render_template("video_category.html",videoCategory=videoCategory, category=category, total_page=range(1, int(total_page + 1)))
 
 
-@app.route('/n_actor/<path:name>',defaults={'page': 1})
-@app.route('/n_actor/<path:name>/<int:page>',methods=['GET','POST'])
+@app.route('/n_actor/<int:name>',defaults={'page': 1})
+@app.route('/n_actor/<int:name>/<int:page>',methods=['GET','POST'])
 def new_actor(name,page):
 
-    companyList = set([each.company for each in Actor.query.all()])
-    actorCompany = Actor.query.filter_by(company=name).order_by(desc(Actor.release)).offset(
+    releaseList = set([int(each.release) for each in Actor.query.all()])
+    logging.error(releaseList)
+    actorRelease = Actor.query.filter(Actor.release*100 > name*100, Actor.release*100 <(name+1)*100 ).order_by(desc(Actor.release)).offset(
         (page - 1) * 12).limit(12)
-    total = Actor.query.filter_by(company=name).count()
+    logging.error(actorRelease)
+    total = Actor.query.filter(Actor.release*100 > name*100, Actor.release*100 <(name+1)*100 ).count()
+    logging.error(total)
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
-    company = Actor.query.first().company
+    release = int(Actor.query.first().release)
 
-    return render_template("new_actor_main.html", companyList=companyList,actorCompany=actorCompany, company=company, total_page=range(1, int(total_page + 1)))
+    return render_template("new_actor_main.html", releaseList=releaseList,actorRelease=actorRelease, release=release, total_page=range(1, int(total_page + 1)))
 
 @app.route('/n_video/<path:name>',defaults={'page': 1})
 @app.route('/n_video/<path:name>/<int:page>',methods=['GET','POST'])
@@ -235,6 +238,27 @@ def admin_actor():
         return render_template("admin.html")
 
     return redirect(url_for("index"))
+
+@app.route('/admin_actor_check', methods=['GET', 'POST'])
+def admin_actor_check():
+
+    email = session['session_user_email']
+    user = User.query.get(email)
+
+    if user.level == 1:
+        if request.method == 'POST':
+            name = request.form['name']
+            actor = Actor.query.get(name)
+            if actor:
+                flash(u"이미 있는 배우입니다.")
+                return redirect(url_for("admin"))
+            else:
+                flash(u"없는 배우입니다.")
+                return redirect(url_for("admin"))
+
+    return redirect(url_for("index"))
+
+
 
 
 @app.route('/admin_video', methods=['GET', 'POST'])

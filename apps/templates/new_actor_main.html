@@ -14,20 +14,20 @@
 <div class="col-md-1"></div>
 <div class="col-md-10">
 
-    <div id="STATICMENU" class="rank_chart">
-        <div class="text-center" style="font-size: 18px; color: #000000;margin-top: 10px; border-bottom: 2px;">기획사별 분류</div>
+    <div id="STATICMENU" class="rank_chart_new_actor">
+        <div class="text-center" style="font-size: 18px; color: #000000;margin-top: 10px; border-bottom: 2px;">연도별 분류</div>
         <hr style="border-bottom:2px;"/>
         <div style="margin-left: 15px;">
-            {% for each in companyList %}
-            <div style="margin-top: 10px; font-size: 14px;">
-                <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default" style="font-size:18px;">{{each}}</button></a>
+            {% for each in releaseList %}
+            <div class="text-center" style="margin-top: 10px; font-size: 14px;">
+                <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default" style="font-size:18px;">{{each}}년도</button></a>
             </div>
             {% endfor %}
         </div>
     </div>
 
     <div class="col-md-offset-2 col-md-10" style="position:relative;top:50px;">
-        {% for each in actorCompany %}
+        {% for each in actorRelease %}
         <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
             <div class="video_category_average">{{each.average}} 점</div>
             <div class="video_category_people">({{each.count}} 명)</div>
@@ -50,7 +50,7 @@
             </li>
             {% for page in total_page %}
             <li>
-                <a href="/n_actor/{{company}}/{{page}}">{{page}}</a>
+                <a href="/n_actor/{{release}}/{{page}}">{{page}}</a>
             </li>
             {% endfor %}
             <li>
