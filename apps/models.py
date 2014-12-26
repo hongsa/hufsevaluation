@@ -9,6 +9,7 @@ class User(db.Model):
     #0은 남자 1은 여자
     sex = db.Column(db.Integer, default = 0)
     joinDATE = db.Column(db.DateTime(),default = db.func.now())
+    level = db.Column(db.Integer, default = 0)
 
 class Actor(db.Model):
     name = db.Column(db.String(255),primary_key=True)
@@ -17,7 +18,7 @@ class Actor(db.Model):
     score = db.Column(db.Float, default =0)
     count = db.Column(db.Integer, default = 0)
     average = db.Column(db.Float, default=0)
-    company =db.Column(db.String(255))
+    age = db.Column(db.Integer, default = 0)
     release = db.Column(db.Float, default=0)
     # 모델 차원에서 리스트를 생성하는 함수를 생성
     # each.reviews() 실행하면 댓글 각 한 줄을 dict로 갖는 리스트를 리턴함

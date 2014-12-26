@@ -199,7 +199,10 @@ def g_search():
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
-    if session['session_user_email']=='ydproject777@gmail.com':
+    email = session['session_user_email']
+    user = User.query.get(email)
+
+    if user.level == 1:
         return render_template("admin.html")
 
     return redirect(url_for("index"))
@@ -208,7 +211,11 @@ def admin():
 
 @app.route('/admin_actor', methods=['GET', 'POST'])
 def admin_actor():
-    if session['session_user_email']=='ydproject777@gmail.com':
+    email = session['session_user_email']
+    user = User.query.get(email)
+
+    if user.level == 1:
+
         if request.method == 'POST':
             files = request.files['actor_image']
             filestream = files.read()
@@ -217,7 +224,7 @@ def admin_actor():
                 name=request.form['name'],
                 image=filestream,
                 category=request.form['category'],
-                company=request.form['company'],
+                age=request.form['age'],
                 release=request.form['release']
             )
             db.session.add(actor_write)
@@ -232,7 +239,10 @@ def admin_actor():
 
 @app.route('/admin_video', methods=['GET', 'POST'])
 def admin_video():
-    if session['session_user_email']=='ydproject777@gmail.com':
+    email = session['session_user_email']
+    user = User.query.get(email)
+
+    if user.level == 1:
         if request.method == 'POST':
             files = request.files['video_image']
             filestream = files.read()
@@ -258,7 +268,10 @@ def admin_video():
 
 @app.route('/admin_connect', methods=['GET', 'POST'])
 def admin_connect():
-    if session['session_user_email']=='ydproject777@gmail.com':
+    email = session['session_user_email']
+    user = User.query.get(email)
+
+    if user.level == 1:
         if request.method == 'POST':
 
             connect= Filmo(
