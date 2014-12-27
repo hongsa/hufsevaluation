@@ -529,30 +529,22 @@ def actor_comment():
         if request.method == 'POST':
             sComment = request.form['comment']
             sName = request.form['actorName']
+            thisComment={}
+            thisComment=ActorReview(
+            actorName=sName,
+            userEmail=session['session_user_email'],
+            content=sComment
+            )
         #댓글 DB에 저장
             jsonDict = {}
             jsonDict['comments'] = sComment
             jsonDict['actorName'] = sName
             logging.error(json.dumps(jsonDict))
+            db.session.add(thisComment)
+            db.session.commit()
+
             return json.dumps(jsonDict)
 
-            # if not 'session_user_email' in session:
-            #     return redirect(url_for("login"))
-            #
-            # thisComment=ActorReview(
-            # actorName=sName,
-            # userEmail=session['session_user_email'],
-            # content=sComment
-            # )
-            # #
-            # db.session.add(thisComment)
-            # db.session.commit()
-
-            # Create JSON String
-            # dict = {1: "123", 2:"456"}
-
-            # return json.dumps(jsonDict)
-    #
     except Exception, e:
         print " Occuring Exception. ", e
 
