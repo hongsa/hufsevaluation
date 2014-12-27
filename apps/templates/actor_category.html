@@ -1,6 +1,7 @@
 <!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지-->
 {% extends "nav_layout.html" %}
 {% block css %}
+
 {% endblock css %}
 {% block js %}
 <script type="text/javascript" src="{{url_for('static', filename='js/actor_star.js')}}"></script>
@@ -8,10 +9,10 @@
 <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
 <script type="text/javascript">
     //  $(document).ready(function () {
-    //     $('.a_star_area').hover(function () {
-    //         $(this).addClass('show_star_class');
+    //     $('.a_bookmark').hover(function () {
+    //         $(this).addClass('btn-hoverClass');
     //     }, function () {
-    //         $(this).removeClass('show_star_class');
+    //         $(this).removeClass('btn-hoverClass');
     //     });
     // });
 </script>
@@ -26,7 +27,7 @@
         <!--{% for each in categoryList %}-->
         <!--<a href="/a_category/{{each}}"><button type="button" class="btn btn-default" style="font-size:40px;">{{each}}</button></a>-->
         <!--{% endfor %}-->
-        <div class="text-center" style="font-size: 18px; color: #000000;margin-top: 10px; border-bottom: 2px;">센스있는 배우 분류</div>
+        <div class="text-center" style="font-size: 18px;margin-top: 10px; border-bottom: 2px;">센스있는 배우 분류</div>
         <hr style="border-bottom:2px;"/>
         <div style="margin-left: 15px;">
             <div>

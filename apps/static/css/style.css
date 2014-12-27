@@ -71,7 +71,8 @@ input:focus {
 }
 .rank_chart {
 
-    background-color: #BF9BCC;
+    background-color: #47038C;
+    color:white;
     position: fixed;
     position: absolute;
     height: 430px;
@@ -98,7 +99,7 @@ input:focus {
     height: 300px;
     /*background-color: #EDA8A8;*/
     margin-bottom: 20px;
-    background: url("../img/folder_layout8.png");
+    background: url("../img/folder_layout8_1.png");
     background-size: cover;
 }
 
@@ -110,7 +111,7 @@ input:focus {
     /*width: 135px;*/
     height: 180px;
     margin-bottom: 20px;
-    background: url("../img/folder_layout8.png");
+    background: url("../img/folder_layout8_1.png");
     background-size: cover;
     /*background-color: #EDA8A8;*/
 }
@@ -236,7 +237,7 @@ input:focus {
     height: 300px;
     /*background-color: #EDA8A8;*/
     margin-bottom: 20px;
-    background: url("../img/folder_layout9.png");
+    background: url("../img/folder_layout9_3.png");
     background-size: cover;
 
 }
@@ -248,7 +249,7 @@ input:focus {
     height: 300px;
     /*background-color: #EDA8A8;*/
     margin-bottom: 20px;
-    background: url("../img/folder_layout9.png");
+    background: url("../img/folder_layout9_3.png");
     background-size: cover;
     padding-left: 5px;
 
@@ -345,21 +346,24 @@ input:focus {
     font-family: 'jua';
 }
 .btn-custom3 {
-    background-color: hsl(269, 71%, 81%) !important;
+    background-color: hsl(285, 100%, 100%) !important;
     background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cdacf0", endColorstr="#cdacf0");
-    background-image: -khtml-gradient(linear, left top, left bottom, from(#cdacf0), to(#cdacf0));
-    background-image: -moz-linear-gradient(top, #cdacf0, #cdacf0);
-    background-image: -ms-linear-gradient(top, #cdacf0, #cdacf0);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cdacf0), color-stop(100%, #cdacf0));
-    background-image: -webkit-linear-gradient(top, #cdacf0, #cdacf0);
-    background-image: -o-linear-gradient(top, #cdacf0, #cdacf0);
-    background-image: linear-gradient(#cdacf0, #cdacf0);
-    border-color: #cdacf0 #cdacf0 hsl(269, 71%, 81%);
-    color: white !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#ffffff");
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+    background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+    background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #ffffff));
+    background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+    background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+    background-image: linear-gradient(#ffffff, #ffffff);
+    border-color: #ffffff #ffffff hsl(285, 100%, 100%);
+    color: #333 !important;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
-    font-weight: bold;
     -webkit-font-smoothing: antialiased;
+    font-family: 'jua';
+}
+.btn-hoverClass {
+    background-color: #ded4ea;
 }
 .btn-custom4 {
     background-color: hsl(277, 86%, 92%) !important;
@@ -421,7 +425,7 @@ input:focus {
 /*detail page CSS*/
 
 .detailFolder{
-    background: url("../img/folder_layout8.png");
+    background: url("../img/folder_layout8_1.png");
     background-size: cover;
     position:relative;top:130px;height:300px;width:250px;left:90px;
 }
@@ -436,12 +440,12 @@ input:focus {
 }
 .detailInfo1{
     position: relative;
-    top: 130px;
+    top: 160px;
     /* left: 20px; */
-    background-color: rgba(191,155,204,0.3);
+    background-color: white;
     height: 250px;
     border-radius: 5px;
-    border-color: rgba(191,155,204,0.3);
+    border-color: black;
     border-style: solid;
     border-width: 3px;
     display: inline-block;
@@ -450,12 +454,12 @@ input:focus {
 }
 .detailInfo2{
     position: relative;
-    top: 130px;
+    top: 160px;
     /* left: -20px; */
-    background-color: rgba(191,155,204,0.3);
+    background-color: white;
     height: 250px;
     border-radius: 5px;
-    border-color: rgba(191,155,204,0.3);
+    border-color: black;
     border-style: solid;
     border-width: 3px;
     display: inline-block;
@@ -485,6 +489,7 @@ input:focus {
 }
 .detailBoxTitle{
     color:black;font-size:25px;font-family:'jua';
+    text-align: left;
 }
 .detail_rating{
     top: 45px;
@@ -497,6 +502,8 @@ input:focus {
     padding:5px;
     font-size:18px;
     font-weight: bold;
+    position: relative;
+    top: 30px;
 }
 
 
