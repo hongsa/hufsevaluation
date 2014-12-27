@@ -303,6 +303,21 @@ def admin_video():
 
     return redirect(url_for("index"))
 
+@app.route('/admin_video_check', methods=['GET', 'POST'])
+def admin_video_check():
+    email = session['session_user_email']
+    user = User.query.get(email)
+
+    if user.level == 1:
+        if request.method == 'POST':
+            name = request.form['name']
+            video = Video.query.get(name)
+            if video:
+                flash(u"이미 있는 품번입니다.")
+                return redirect(url_for("admin"))
+            else:
+                flash(u"없는 품번입니다.")
+                return redirect(url_for("admin"))
 
 @app.route('/admin_connect', methods=['GET', 'POST'])
 def admin_connect():

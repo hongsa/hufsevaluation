@@ -44,8 +44,15 @@
         </div>
 
         <div>
-            <form action="{{url_for("admin_video")}}", enctype="multipart/form-data", method="post">
             <h3>영상</h3>
+
+            <form action="{{url_for("admin_video_check")}}" method="post">
+            <p> 품번: <input type="text" name="name">
+                <input type="submit" name = "check" value="중복체크" placeholder="중복체크용">
+                </form>
+            </p>
+            <form action="{{url_for("admin_video")}}", enctype="multipart/form-data", method="post">
+
             <p> 품번: <input type="text" name="name"></p>
             <p> category: <input type="text" name="category" placeholder="1:연인,2:지인,3:특별장소,4:팀플,5:상황극" ></p>
             <p> 출시년도: <input type="text" name="release" size="35" placeholder="예시:1월-2014.01, 12월 - 2014.12"></p>
