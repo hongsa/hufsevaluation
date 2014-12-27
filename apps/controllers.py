@@ -527,6 +527,9 @@ def actorDetail(name):
 def actor_comment():
     try:
         if request.method == 'POST':
+            email = session['session_user_email']
+            user= User.query.get(email)
+            sUser=user.nickname
             sComment = request.form['comment']
             sName = request.form['actorName']
             thisComment={}
@@ -537,6 +540,7 @@ def actor_comment():
             )
         #댓글 DB에 저장
             jsonDict = {}
+            jsonDict['user']=sUser
             jsonDict['comments'] = sComment
             jsonDict['actorName'] = sName
             logging.error(json.dumps(jsonDict))
@@ -563,33 +567,32 @@ def videoDetail(name):
 
 
 #댓글입력
-
 @app.route('/video/comment', methods=['POST'])
 def video_comment():
     try:
-        sComment = request.form['comment']
-        sName = request.form['actorName']
-
-        #댓글 DB에 저장
         if request.method == 'POST':
-            # if not 'session_user_email' in session:
-            #     return redirect(url_for("login"))
-            #
-            # thisComment=ActorReview(
-            # actorName=sName,
-            # userEmail=session['session_user_email'],
-            # content=request.form['content']
-            # )
-            #
-            # db.session.add(thisComment)
-            # db.session.commit()
+            email = session['session_user_email']
+            user= User.query.get(email)
 
-            # Create JSON String
+            sUser=user.nickname
+            sComment = request.form['comment']
+            sName = request.form['videoName']
+            thisComment={}
+            thisComment=VideoReview(
+            videoName=sName,
+            userEmail=session['session_user_email'],
+            content=sComment
+            )
+        #댓글 DB에 저장
             jsonDict = {}
+            jsonDict['user'] = sUser
             jsonDict['comments'] = sComment
-            jsonDict['actorName'] = sName
-            logging.error(jsonDict)
-            return jsonify(success=True, result=jsonDict)
+            jsonDict['videoName'] = sName
+            logging.error(json.dumps(jsonDict))
+            db.session.add(thisComment)
+            db.session.commit()
+
+            return json.dumps(jsonDict)
 
     except Exception, e:
         print " Occuring Exception. ", e

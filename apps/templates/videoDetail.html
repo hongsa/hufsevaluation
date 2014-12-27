@@ -72,7 +72,7 @@
             <div class="col-md-2 text-center review_input">한줄평</div>
             <div class="col-md-7">
                 <input class="form-control" type="text" name="comment" placeholder="나만의 진솔한 한줄평!" maxlength="68"/>
-                <input class="form-control" type="hidden" name="actorname" value="{{videoRow.name}}"maxlength="68"/>
+                <input class="form-control" type="hidden" name="videoname" value="{{videoRow.name}}"maxlength="68"/>
             </div>
             <div class="col-md-2">
                 <button  class="btn btn-success btn-lg" onclick="void(sendData());">가자!</button>
@@ -85,6 +85,8 @@
 <!--댓글 출력부분 시작-->
 <div class="col-md-offset-2 col-md-8">
     <p class="detailBoxTitle">댓글</p>
+
+    <p id="current"></p>
     {% for each in comments %}
     <p>{{each['author']}}'+'{{each['content']}}</p>
     {% endfor %}

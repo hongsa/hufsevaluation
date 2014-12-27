@@ -37,7 +37,7 @@ var receiverHandler = function(result, textStatus, xhr) {
     //var myData = JSON.parse(result);
     //alert(myData);
     //뷰에 뿌리자.
-    $('#current').before('<p>'+result['actorName']+': '+result['comments']+'</p>');
+    $('#current').before('<p>'+result['user']+': '+result['comments']+'</p>');
     //actorName을 뿌릴 땐 (myData.actorName) 이용
 }
 
