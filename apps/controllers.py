@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, redirect, url_for, render_template, request, flash, session, jsonify, make_response, \
-    current_app
+    current_app, json
 from apps import app, db, models
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import User, Actor, Video, ActorReview, VideoReview, Filmo, RatingActor, RatingVideo, Favorite, Bookmark
@@ -8,7 +8,6 @@ from sqlalchemy import desc, or_
 from apps import forms
 import math
 from controller import userController
-import json
 
 # userController에서 관리하는 부분 시작
 @app.route('/')
@@ -296,6 +295,7 @@ def admin_video():
             )
             db.session.add(video_write)
             db.session.commit()
+
             flash(u"영상 DB에 저장되었습니다.")
             return redirect(url_for("admin"))
 
@@ -526,30 +526,33 @@ def actorDetail(name):
 @app.route('/actor/comment', methods=['POST'])
 def actor_comment():
     try:
-        sComment = request.form['comment']
-        sName = request.form['actorName']
-
-        #댓글 DB에 저장
         if request.method == 'POST':
+            sComment = request.form['comment']
+            sName = request.form['actorName']
+        #댓글 DB에 저장
+            jsonDict = {}
+            jsonDict['comments'] = sComment
+            jsonDict['actorName'] = sName
+            logging.error(json.dumps(jsonDict))
+            return json.dumps(jsonDict)
+
             # if not 'session_user_email' in session:
             #     return redirect(url_for("login"))
             #
             # thisComment=ActorReview(
             # actorName=sName,
             # userEmail=session['session_user_email'],
-            # content=request.form['content']
+            # content=sComment
             # )
-            #
+            # #
             # db.session.add(thisComment)
             # db.session.commit()
 
             # Create JSON String
-            jsonDict = {}
-            jsonDict['comments'] = sComment
-            jsonDict['actorName'] = sName
-            logging.error(jsonDict)
-            return jsonify(success=True, result=jsonDict)
+            # dict = {1: "123", 2:"456"}
 
+            # return json.dumps(jsonDict)
+    #
     except Exception, e:
         print " Occuring Exception. ", e
 
