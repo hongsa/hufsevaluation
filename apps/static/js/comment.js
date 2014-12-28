@@ -3,6 +3,10 @@ var sendData = function() {
     /* 일단 처리할 정보를 가져오자. ( jquery 이용 ) */
     var inputComment = $('input[name=comment]').val();
     var inputActorName = $('input[name=actorname]').val();
+    $('input[type="text"],textarea').val('');
+    var $target = $('html,body');
+    $target.animate({scrollTop: $target.height()}, 1000);
+
     /* 보낼 데이터 객체로 준비 ( 이게 제일 심플함. )
      서버에서는 input 이라는 이름으로 데이터를 받기로 약속되어져있다. AjaxSample.py 참고 */
     var sParam = {
@@ -22,23 +26,24 @@ var sendData = function() {
 /* 서버에서 계산한 결과가 왔을때 처리할 부분 */
 var receiverHandler = function(result, textStatus, xhr) {
     /**
-    * !! Notice !!
-    * result 부분으로 서버에서 계산후 뿌려주는 json 형태의 (스트링) 이 들어오게된다.
-    result = {
+     * !! Notice !!
+     * result 부분으로 서버에서 계산후 뿌려주는 json 형태의 (스트링) 이 들어오게된다.
+     result = {
                 data : 10
              }
-    이런식으로 들어올거임. ( 하지만 문자열 이니깐 자바스크립트 객체로 변환할 작업이 필요하다 )
-    textStatus, xhr 은 아직 당장은 필요없으니깐 재끼자.
-    */
-    //if( typeof result !== 'string')
-    //
-    //    return alert(result['comments']);
-    //객체화 해보자.
-    //var myData = JSON.parse(result);
-    //alert(myData);
-    //뷰에 뿌리자.
-    $('#current').before('<p>'+result['user']+': '+result['comments']+'</p>');
+     이런식으로 들어올거임. ( 하지만 문자열 이니깐 자바스크립트 객체로 변환할 작업이 필요하다 )
+     textStatus, xhr 은 아직 당장은 필요없으니깐 재끼자.
+     */
+        //if( typeof result !== 'string')
+        //
+        //    return alert(result['comments']);
+        //객체화 해보자.
+        //var myData = JSON.parse(result);
+        //alert(myData);
+        //뷰에 뿌리자.
+    $('#current').before('<div class="panel-default" style="margin-bottom:10px;">'+'<div class="row" style="background-color: rgba(136, 50, 245, 0.1);">'+'<div class="col-sm-2">'+'<p class="text-center detailSebu">'+result['user']+'</p>'+'</div>'+'<div class="col-sm-8">'+'<p class="text-left">' +result['comments']+'</p>'+'</div>'+'</div>'+'</div>');
     //actorName을 뿌릴 땐 (myData.actorName) 이용
+    alert('한줄평 쓰기 완료!');
 }
 
 var errorHandler = function(){

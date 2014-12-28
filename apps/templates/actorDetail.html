@@ -36,16 +36,16 @@
             <div class="col-md-offset-1 col-md-5 detailInfo1">
                 <p class="detailBoxTitle">기본 정보</p>
                 <p class="detailText">평균평점 : <span class="detailSebu">{{actorRow.average}}</span> 점</p>
-                <p class="detailText">평가인원 : <span style="detailSebu">{{actorRow.count}}</span> 점</p>
+                <p class="detailText">평가인원 : <span class="detailSebu">{{actorRow.count}}</span> 점</p>
                 <p class="detailText">체형 :
                     {% if actorRow.category == '1'%}
                     <a href="../a_category/1"><span class="detailSebu detailCategory">귀여운 단신</span></a>
                     {% endif %}
                     {% if actorRow.category  == '2' %}
-                    <a href="../a_category/2"><span class="detailSebu">적당한 스타일</span></a>
+                    <a href="../a_category/2"><span class="detailSebu detailCategory">적당한 스타일</span></a>
                     {% endif %}
                     {% if actorRow.category == '3' %}
-                    <a href="../a_category/3"><span class="detailSebu">쭉쭉빵빵</span></a>
+                    <a href="../a_category/3"><span class="detailSebu detailCategory">쭉쭉빵빵</span></a>
                     {% endif %}
                 </p>
                 <p class="detailText">데뷔년도 : <span class="detailSebu">{{actorRow.release}}</span> 월</p>
@@ -55,14 +55,14 @@
             <div class="col-md-offset-1 col-md-5 detailInfo2">
                 <p class="detailBoxTitle text-center">출연 작품</p>
                 {% for each in appearVideo %}
-                <p><a href="../videoDetail/{{each}}"><span class="text-center" style="color: blue">{{each}}</span></a></p>
+                <p><a href="../videoDetail/{{each['name']}}"><span class="text-center detailCategory" style="color: blue">{{each['name']}}&nbsp;({{each['average']}} 점)</span></a></p>
                 {% endfor %}
             </div>
         </div>
     </div>
 
     <!--댓글 입력부분 시작-->
-    <div class="row" style="margin-top: 150px;">
+    <div class="row" style="margin-top: 150px; margin-bottom: 30px;">
         <div class="form-group">
             <div class="col-md-2 text-center review_input">한줄평</div>
             <div class="col-md-7">
@@ -81,19 +81,28 @@
 
 <!--댓글 출력부분 시작-->
 <div class="col-md-offset-2 col-md-8" style="position:relative;left: 30px;">
-    <p class="detailBoxTitle">댓글</p>
+    <!--<p class="detailBoxTitle">댓글</p>-->
 
-    <p id="current"></p>
+
     {% for each in comments %}
-    <p>{{each['author']}}:&nbsp;{{each['content']}}</p>
+    <div class="panel-default" style="margin-bottom:10px;">
+        <div class="row" style="background-color: rgba(136, 50, 245, 0.1);">
+            <div class="col-sm-2">
+                <p class="text-center detailSebu">{{each['author']}}</p>
+            </div>
+            <div class="col-sm-8">
+                <p class="text-left">{{each['content']}}</p>
+            </div>
+        </div>
+    </div>
     {% endfor %}
+    <p id="current"></p>
+
 </div>
 <!--댓글 출력부분 종료-->
 
 
 <div class="col-md-1"></div>
-
-
 
 
 

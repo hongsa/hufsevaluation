@@ -26,33 +26,34 @@
         <div class="col-md-9">
             <div class="col-md-offset-1 col-md-5 detailInfo1">
                 <p class="detailBoxTitle">기본 정보</p>
-                <p>평균평점 : <span style="color: blue">{{videoRow.average}}</span> 점</p>
-                <p>평가인원 : <span style="color:blue">{{videoRow.count}}</span> 점</p>
+                <p>평균평점 : <span class="detailSebu">{{videoRow.average}}</span> 점</p>
+                <p>평가인원 : <span class="detailSebu">{{videoRow.count}}</span> 점</p>
                 <p>취향 :
                     {% if videoRow.category == '1'%}
-                    <a href="../v_category/1"><span style="color: blue">마치 연인처럼</span></a>
+                    <a href="../v_category/1"><span class="detailSebu detailCategory">마치 연인처럼</span></a>
                     {% endif %}
                     {% if videoRow.category  == '2' %}
-                    <a href="../v_category/2"><span style="color: blue">지인과 함께</span></a>
+                    <a href="../v_category/2"><span class="detailSebu detailCategory">지인과 함께</span></a>
                     {% endif %}
                     {% if videoRow.category == '3' %}
-                    <a href="../v_category/3"><span style="color: blue">우리는 팀플</span></a>
+                    <a href="../v_category/4"><span class="detailSebu detailCategory">특별한 장소에서</span></a>
                     {% endif %}
                     {% if videoRow.category == '4' %}
-                    <a href="../v_category/4"><span style="color: blue">특별한 장소에서</span></a>
+                    <a href="../v_category/3"><span class="detailSebu detailCategory">우리는 팀플</span></a>
+
                     {% endif %}
                     {% if videoRow.category == '5' %}
-                    <a href="../v_category/5"><span style="color: blue">기발한 상황극</span></a>
+                    <a href="../v_category/5"><span class="detailSebu detailCategory">기발한 상황극</span></a>
                     {% endif %}
                 </p>
-                <p>출시년도 : <span style="color: blue">{{videoRow.release}}</span> 월</p>
-                <p>회사 : <span style="color: blue">{{videoRow.company}}</span> 년생</p>
+                <p>출시년도 : <span class="detailSebu">{{videoRow.release}}</span> 월</p>
+                <p>회사 : <span class="detailSebu">{{videoRow.company}}</span> 년생</p>
                 <p>모자이크 :
                     {% if videoRow.exposure == 0 %}
-                    <span style="color: blue">없음</span>
+                    <span class="detailSebu">없음</span>
                     {% endif %}
                     {% if videoRow.exposure == 1 %}
-                    <span style="color: blue">있음</span>
+                    <span class="detailSebu">있음</span>
                     {% endif %}
                 </p>
 
@@ -60,22 +61,22 @@
             <div class="col-md-offset-1 col-md-5 detailInfo2">
                 <p class="detailBoxTitle text-center">출연 배우</p>
                 {% for each in appearActor %}
-                <p><a href="../actorDetail/{{each}}"><span class="text-center" style="color: blue">{{each}}</span></a></p>
+                <p><a href="../actorDetail/{{each['name']}}"><span class="text-center detailCategory" style="color: blue">{{each['name']}}&nbsp;({{each['average']}} 점)</span></a></p>
                 {% endfor %}
             </div>
         </div>
     </div>
 
     <!--댓글 입력부분 시작-->
-    <div class="row" style="margin-top: 150px;">
+    <div class="row" style="margin-top: 150px; margin-bottom: 30px;">
         <div class="form-group">
             <div class="col-md-2 text-center review_input">한줄평</div>
             <div class="col-md-7">
-                <input class="form-control" type="text" name="comment" placeholder="나만의 진솔한 한줄평!" maxlength="68"/>
-                <input class="form-control" type="hidden" name="videoname" value="{{videoRow.name}}"maxlength="68"/>
+                <input class="form-control" type="text" name="comment" placeholder="나만의 진솔한 한줄평!" maxlength="68" style="position:relative;top:16px;left:60px;font-size:17px;"/>
+                <input class="form-control" type="hidden" name="videoname" value="{{videoRow.name}}"maxlength="68" style="position:relative;top: 15px;left:60px;"/>
             </div>
             <div class="col-md-2">
-                <button  class="btn btn-success btn-lg" onclick="void(sendData());">가자!</button>
+                <button  class="btn btn-blueblack" onclick="void(sendData());" style="position:relative;left:40px;top:16px;font-size:18px;">가자!</button>
             </div>
         </div>
     </div>
@@ -84,12 +85,22 @@
 
 <!--댓글 출력부분 시작-->
 <div class="col-md-offset-2 col-md-8">
-    <p class="detailBoxTitle">댓글</p>
+    <!--<p class="detailBoxTitle">댓글</p>-->
 
-    <p id="current"></p>
+
     {% for each in comments %}
-    <p>{{each['author']}}'+'{{each['content']}}</p>
+    <div class="panel-default" style="margin-bottom:10px; ">
+        <div class="row" style="background-color: rgba(136, 50, 245, 0.1);">
+            <div class="col-sm-2">
+                <p class="text-center detailSebu">{{each['author']}}</p>
+            </div>
+            <div class="col-sm-8">
+                <p class="text-left">{{each['content']}}</p>
+            </div>
+        </div>
+    </div>
     {% endfor %}
+    <p id="current"></p>
 </div>
 <!--댓글 출력부분 종료-->
 </div>

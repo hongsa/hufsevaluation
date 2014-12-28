@@ -33,7 +33,7 @@ class Actor(db.Model):
     def videos(self):
         list=[]
         for each in self.filmo_actor:
-            list.append(each.video.name)
+            list.append(dict(name = each.video.name, average = each.video.average))
         return list
 
 
@@ -59,7 +59,7 @@ class Video(db.Model):
     def actors(self):
         list=[]
         for each in self.filmo_video:
-            list.append(each.actor.name)
+            list.append(dict(name = each.actor.name, average = each.actor.average))
         return list
 
 class ActorReview(db.Model):
