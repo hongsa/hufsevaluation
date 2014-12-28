@@ -116,6 +116,16 @@ input:focus {
     background-size: cover;
     /*background-color: #EDA8A8;*/
 }
+.more_folder {
+    height:160px;
+    width:100%;
+}
+.plus_sign{
+    width: 40px;
+    position: relative;
+    top: 65px;
+    left: -5px;
+}
 .main_category_name {
     position: relative;
     top: 100px;
