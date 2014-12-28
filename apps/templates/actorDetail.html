@@ -80,12 +80,12 @@
 <!--댓글 입력부분 종료-->
 
 <!--댓글 출력부분 시작-->
-<div class="col-md-offset-2 col-md-8 ">
+<div class="col-md-offset-2 col-md-8" style="position:relative;left: 30px;">
     <p class="detailBoxTitle">댓글</p>
 
     <p id="current"></p>
     {% for each in comments %}
-    <p>{{each['author']}}'+'{{each['content']}}</p>
+    <p>{{each['author']}}:&nbsp;{{each['content']}}</p>
     {% endfor %}
 </div>
 <!--댓글 출력부분 종료-->

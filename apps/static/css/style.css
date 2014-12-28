@@ -524,7 +524,6 @@ input:focus {
     left: 10px;
 
 }
-
 .review_input{
     margin-left:80px;
     padding:5px;
@@ -553,4 +552,25 @@ input:focus {
   -webkit-font-smoothing: antialiased;
   font-family: 'jua';
 }
+.commentPrintBox{
+    position: relative;
+    left: 30px;
+}
+.commentAuthor{
+    
+}
+.commentContent{
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
