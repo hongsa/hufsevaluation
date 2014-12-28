@@ -83,7 +83,7 @@ input:focus {
 }
 .rank_chart_new_actor{
 
-    background-color: #BF9BCC;
+    background-color: #47038C;
     position: fixed;
     position: absolute;
     height: 430px;
@@ -91,6 +91,7 @@ input:focus {
     top: 103px;
     z-index: 1;
     border-radius: 10px;
+    color:white;
 }
 .thumbnail_folder {
     position: relative;
