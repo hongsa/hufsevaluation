@@ -6,6 +6,15 @@
 <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
 <script type='text/javascript' src="{{url_for('static', filename='js/actor_star.js')}}"></script>
 <script type='text/javascript' src="{{url_for('static', filename='js/actor_bookmark.js')}}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.detailCategory').hover(function(){
+            $(this).addClass('detailCategory_hover');
+        },function(){
+            $(this).removeClass('detailCategory_hover');
+        });
+    });
+</script>
 {% endblock js %}
 {% block content %}
 
@@ -26,21 +35,21 @@
         <div class="col-md-9">
             <div class="col-md-offset-1 col-md-5 detailInfo1">
                 <p class="detailBoxTitle">기본 정보</p>
-                <p>평균평점 : <span style="color: blue">{{actorRow.average}}</span> 점</p>
-                <p>평가인원 : <span style="color:blue">{{actorRow.count}}</span> 점</p>
-                <p>체형 :
+                <p class="detailText">평균평점 : <span class="detailSebu">{{actorRow.average}}</span> 점</p>
+                <p class="detailText">평가인원 : <span style="detailSebu">{{actorRow.count}}</span> 점</p>
+                <p class="detailText">체형 :
                     {% if actorRow.category == '1'%}
-                    <a href="../a_category/1"><span style="color: blue">귀여운 단신</span></a>
+                    <a href="../a_category/1"><span class="detailSebu detailCategory">귀여운 단신</span></a>
                     {% endif %}
                     {% if actorRow.category  == '2' %}
-                    <a href="../a_category/2"><span style="color: blue">적당한 스타일</span></a>
+                    <a href="../a_category/2"><span class="detailSebu">적당한 스타일</span></a>
                     {% endif %}
                     {% if actorRow.category == '3' %}
-                    <a href="../a_category/3"><span style="color: blue">쭉쭉빵빵</span></a>
+                    <a href="../a_category/3"><span class="detailSebu">쭉쭉빵빵</span></a>
                     {% endif %}
                 </p>
-                <p>데뷔년도 : <span style="color: blue">{{actorRow.release}}</span> 월</p>
-                <p>나이 : <span style="color: blue">{{actorRow.age}}</span> 년생</p>
+                <p class="detailText">데뷔년도 : <span class="detailSebu">{{actorRow.release}}</span> 월</p>
+                <p class="detailText">나이 : <span class="detailSebu">{{actorRow.age}}</span> 년생</p>
 
             </div>
             <div class="col-md-offset-1 col-md-5 detailInfo2">
@@ -57,11 +66,13 @@
         <div class="form-group">
             <div class="col-md-2 text-center review_input">한줄평</div>
             <div class="col-md-7">
-                <input class="form-control" type="text" name="comment" placeholder="나만의 진솔한 한줄평!" maxlength="68"/>
-                <input class="form-control" type="hidden" name="actorname" value="{{actorRow.name}}" maxlength="68" />
+                <input class="form-control" type="text" name="comment" placeholder="나만의 진솔한 한줄평!" maxlength="68" style="position:relative;top:16px;left:60px;font-size:17px;"/>
+                <input class="form-control" type="hidden" name="actorname" value="{{actorRow.name}}" maxlength="68" style="position:relative;top: 15px;left:60px;"/>
             </div>
             <div class="col-md-2">
-                <button  class="btn btn-success btn-lg" onclick="void(sendData());">가자!</button>
+                <button  class="btn btn-blueblack" onclick="void(sendData());"style="position:relative;left:40px;top:16px;font-size:18px;">
+                    가자!
+                </button>
             </div>
         </div>
     </div>

@@ -453,7 +453,7 @@ input:focus {
     position: relative;
     top: 160px;
     /* left: 20px; */
-    background-color: white;
+    background-color: rgba(136, 50, 245, 0.1);
     height: 250px;
     border-radius: 5px;
     border-color: black;
@@ -467,7 +467,7 @@ input:focus {
     position: relative;
     top: 160px;
     /* left: -20px; */
-    background-color: white;
+    background-color: rgba(136, 50, 245, 0.1);
     height: 250px;
     border-radius: 5px;
     border-color: black;
@@ -485,6 +485,18 @@ input:focus {
     font-family: 'jua';
     font-size: 25px;
 }
+.detailText{
+    font-size: 15px;
+    font-weight: bold;
+}
+.detailSebu{
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(72, 4, 190);
+}
+.detailCategory_hover{
+    color: white;
+}
 .detailCommentBox{
     height: 280px;
     background-color: rgba(191,155,204,0.3);
@@ -497,6 +509,11 @@ input:focus {
     border-color: rgba(191,155,204,0.3);
     border-style: solid;
     border-width: 3px;
+}
+.comment_writing{
+    position: relative;
+    top: 15px;
+    left: 50px;
 }
 .detailBoxTitle{
     color:black;font-size:25px;font-family:'jua';
@@ -514,7 +531,26 @@ input:focus {
     font-size:18px;
     font-weight: bold;
     position: relative;
-    top: 30px;
+    top: 10px;
+    left: 35px;
+    font-family: 'jua';
+    font-size: 25px;
 }
-
+.btn-blueblack {
+  background-color: hsl(263, 100%, 31%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3c009e", endColorstr="#3c009e");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#3c009e), to(#3c009e));
+  background-image: -moz-linear-gradient(top, #3c009e, #3c009e);
+  background-image: -ms-linear-gradient(top, #3c009e, #3c009e);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3c009e), color-stop(100%, #3c009e));
+  background-image: -webkit-linear-gradient(top, #3c009e, #3c009e);
+  background-image: -o-linear-gradient(top, #3c009e, #3c009e);
+  background-image: linear-gradient(#3c009e, #3c009e);
+  border-color: #3c009e #3c009e hsl(263, 100%, 31%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.00);
+  -webkit-font-smoothing: antialiased;
+  font-family: 'jua';
+}
 
