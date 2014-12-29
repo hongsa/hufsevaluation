@@ -577,7 +577,7 @@ def videoDetail(name):
     appearActor = videoRow.actors()
     #댓글 가져오기
     comments = videoRow.reviews()
-
+    
     return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments)
 
 
