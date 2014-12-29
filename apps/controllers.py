@@ -106,6 +106,11 @@ def show2(key):
 @app.route('/a_category/<path:name>', defaults={'page': 1})
 @app.route('/a_category/<path:name>/<int:page>', methods=['GET', 'POST'])
 def actor_category(name, page):
+    # 로그인 안한 상태로 오면 index로 빠꾸
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+
 
     actorCategory = Actor.query.filter_by(category=name).order_by(desc(Actor.average)).offset(
         (page - 1) * 12).limit(12)
@@ -139,6 +144,12 @@ def actor_category(name, page):
 @app.route('/v_category/<path:name>', defaults={'page': 1})
 @app.route('/v_category/<path:name>/<int:page>', methods=['GET', 'POST'])
 def video_category(name, page):
+
+    # 로그인 안한 상태로 오면 index로 빠꾸
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+
     videoCategory = Video.query.filter_by(category=name).order_by(desc(Video.average)).offset(
         (page - 1) * 12).limit(12)
     total = Video.query.filter_by(category=name).count()
@@ -165,6 +176,10 @@ def video_category(name, page):
 @app.route('/n_actor/<int:name>/<int:page>', methods=['GET', 'POST'])
 @app.route('/n_actor/<int:name>', defaults={'page': 1}, methods=['GET','POST'])
 def new_actor(name, page):
+    # 로그인 안한 상태로 오면 index로 빠꾸
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
 
     releaseList = set([int(each.release) for each in Actor.query.all()])
     logging.error(releaseList)
@@ -200,6 +215,11 @@ def new_actor(name, page):
 @app.route('/n_video/<path:name>', defaults={'page': 1})
 @app.route('/n_video/<path:name>/<int:page>', methods=['GET', 'POST'])
 def new_video(name, page):
+    # 로그인 안한 상태로 오면 index로 빠꾸
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+
     companyList = set([each.company for each in Video.query.all()])
     videoCompany = Video.query.filter_by(company=name).order_by(desc(Video.release)).offset(
         (page - 1) * 12).limit(12)
@@ -404,6 +424,11 @@ def admin_connect():
 @app.route('/a_collection_b/<int:page>', defaults={'page': 1})
 @app.route('/a_collection_b/<int:page>', methods=['GET', 'POST'])
 def actor_collection_bookmark(page):
+    # 로그인 안한 상태로 오면 index로 빠꾸
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+
     email = session['session_user_email']
     user = User.query.get(email)
     myBookmark = user.favorite_user.offset((page - 1) * 12).limit(12)
@@ -431,6 +456,11 @@ def actor_collection_bookmark(page):
 @app.route('/a_collection_r/<int:page>', defaults={'page': 1})
 @app.route('/a_collection_r/<int:page>', methods=['GET', 'POST'])
 def actor_collection_rating(page):
+    # 로그인 안한 상태로 오면 index로 빠꾸
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+
     email = session['session_user_email']
     user = User.query.get(email)
     myRating = user.ratingActor_user.order_by(RatingActor.rating.desc()).offset((page - 1) * 12).limit(12)
@@ -457,6 +487,11 @@ def actor_collection_rating(page):
 @app.route('/v_collection_b/<int:page>', defaults={'page': 1})
 @app.route('/v_collection_b/<int:page>', methods=['GET', 'POST'])
 def video_collection_bookmark(page):
+    # 로그인 안한 상태로 오면 index로 빠꾸
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+
     email = session['session_user_email']
     user = User.query.get(email)
     myBookmark = user.bookmark_user.offset((page - 1) * 12).limit(12)
@@ -484,6 +519,11 @@ def video_collection_bookmark(page):
 @app.route('/v_collection_r/<int:page>', defaults={'page': 1})
 @app.route('/v_collection_r/<int:page>', methods=['GET', 'POST'])
 def video_collection_rating(page):
+    # 로그인 안한 상태로 오면 index로 빠꾸
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+
     email = session['session_user_email']
     user = User.query.get(email)
     myRating = user.ratingVideo_user.order_by(RatingVideo.rating.desc()).offset((page - 1) * 12).limit(12)
@@ -635,6 +675,11 @@ def video_bookmark():
 # 배우 디테일
 @app.route('/actorDetail/<string:name>', methods=['GET', 'POST'])
 def actorDetail(name):
+    # 로그인 안한 상태로 오면 index로 빠꾸
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+
     # 해당하는 배우추출
     actorRow = Actor.query.get(name)
 
@@ -680,6 +725,11 @@ def actor_comment():
 
 @app.route('/videoDetail/<string:name>', methods=['GET', 'POST'])
 def videoDetail(name):
+    # 로그인 안한 상태로 오면 index로 빠꾸
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+
     # 해당하는 배우추출
     videoRow = Video.query.get(name)
 

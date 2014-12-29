@@ -12,7 +12,7 @@
     <img style="height:200px" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
     <h2 style="font-family:'jua';color:#3D104D">비밀번호 변경하기</h2>
     <form action="{{url_for('modify_password')}}" method="post">
-        <input type="password" name="password"/> <button class="btn btn-custom3" type="submit">변경하기!</button>
+        <input type="password" name="password" placeholder="  변경할 비밀번호를 입력"/> <button class="btn btn-custom3" type="submit">변경하기!</button>
         <br/>
         {% with errors = get_flashed_messages(category_filter=["password"]) %}
         {% if errors %}
@@ -26,7 +26,7 @@
 
     <h2 style="font-family:'jua';color:#3D104D">닉네임 변경하기</h2>
     <form action="{{url_for('modify_nickname')}}" method="post">
-        <input type="text" name="nickname"/><button class="btn btn-custom3" type="submit">변경하기!</button>
+        <input type="text" name="nickname" maxlength="9" placeholder="  변경할 닉네임을 입력 (최대 9자)"/><button class="btn btn-custom3" type="submit">변경하기!</button>
         <br/>
         {% with errors = get_flashed_messages(category_filter=["nickname"]) %}
         {% if errors %}
