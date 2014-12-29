@@ -106,6 +106,7 @@ def show2(key):
 @app.route('/a_category/<path:name>', defaults={'page': 1})
 @app.route('/a_category/<path:name>/<int:page>', methods=['GET', 'POST'])
 def actor_category(name, page):
+
     actorCategory = Actor.query.filter_by(category=name).order_by(desc(Actor.average)).offset(
         (page - 1) * 12).limit(12)
     category = Actor.query.filter_by(category=name).first().category
@@ -162,15 +163,15 @@ def video_category(name, page):
     return render_template("video_category.html", videoCategory=videoCategory, category=category,
                            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
 
-
-@app.route('/n_actor/<int:name>', defaults={'page': 1})
 @app.route('/n_actor/<int:name>/<int:page>', methods=['GET', 'POST'])
+@app.route('/n_actor/<int:name>', defaults={'page': 1}, methods=['GET','POST'])
 def new_actor(name, page):
+
     releaseList = set([int(each.release) for each in Actor.query.all()])
     logging.error(releaseList)
     actorRelease = Actor.query.filter(Actor.release * 100 > name * 100,
                                       Actor.release * 100 < (name + 1) * 100).order_by(desc(Actor.release)).offset(
-        (page - 1) * 12).limit(12)
+    (page - 1) * 12).limit(12)
     logging.error(actorRelease)
     total = Actor.query.filter(Actor.release * 100 > name * 100, Actor.release * 100 < (name + 1) * 100).count()
     logging.error(total)
@@ -195,8 +196,9 @@ def new_actor(name, page):
     else:
         up = int(total_page)
 
+
     return render_template("new_actor_main.html", releaseList=releaseList, actorRelease=actorRelease, release=release,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
+            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
 
 
 @app.route('/n_video/<path:name>', defaults={'page': 1})
