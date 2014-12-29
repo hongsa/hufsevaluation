@@ -63,11 +63,10 @@ def video_main():
     categoryThree = Video.query.filter_by(category="3").order_by(desc(Video.average)).limit(5)
     categoryFour = Video.query.filter_by(category="4").order_by(desc(Video.average)).limit(5)
     categoryFive = Video.query.filter_by(category="5").order_by(desc(Video.average)).limit(5)
-    categorySix = Video.query.filter_by(category="6").order_by(desc(Video.average)).limit(5)
+    # categorySix = Video.query.filter_by(category="6").order_by(desc(Video.average)).limit(5)
 
     return render_template("video_main.html", totalRank=totalRank, categoryOne=categoryOne, categoryTwo=categoryTwo,
-                           categoryThree=categoryThree, categoryFour=categoryFour, categoryFive=categoryFive,
-                           categorySix=categorySix)
+                           categoryThree=categoryThree, categoryFour=categoryFour, categoryFive=categoryFive)
 
 
 @app.route('/show1/<key>', methods=['GET', 'POST'])
@@ -108,13 +107,29 @@ def show2(key):
 def actor_category(name, page):
     actorCategory = Actor.query.filter_by(category=name).order_by(desc(Actor.average)).offset(
         (page - 1) * 12).limit(12)
+    category = Actor.query.filter_by(category=name).first().category
     total = Actor.query.filter_by(category=name).count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
-    category = Actor.query.filter_by(category=name).first().category
+
+    a = float(math.ceil(float(page)/10))
+    if a ==1:
+        down=1
+    else:
+        down = int((a-1) * 10)
+
+    if total_page % 10 == 0:
+        if float(math.ceil(float(total_page)/10)) == a:
+            total_page = a * 10
+            up = int(total_page)
+        else:
+            total_page = a * 10
+            up = int(total_page+1)
+    else:
+        up = int(total_page)
 
     return render_template("actor_category.html", actorCategory=actorCategory, category=category,
-                           total_page=range(1, int(total_page + 1)))
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
 
 
 @app.route('/v_category/<path:name>', defaults={'page': 1})
@@ -125,10 +140,26 @@ def video_category(name, page):
     total = Video.query.filter_by(category=name).count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
-    category = Video.query.filter_by(category=name).first().release
+    category = Video.query.filter_by(category=name).first().category
+
+    a = float(math.ceil(float(page)/10))
+    if a ==1:
+        down=1
+    else:
+        down = int((a-1) * 10)
+
+    if total_page % 10 == 0:
+        if float(math.ceil(float(total_page)/10)) == a:
+            total_page = a * 10
+            up = int(total_page)
+        else:
+            total_page = a * 10
+            up = int(total_page+1)
+    else:
+        up = int(total_page)
 
     return render_template("video_category.html", videoCategory=videoCategory, category=category,
-                           total_page=range(1, int(total_page + 1)))
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
 
 
 @app.route('/n_actor/<int:name>', defaults={'page': 1})
@@ -147,8 +178,24 @@ def new_actor(name, page):
     release = int(
         Actor.query.filter(Actor.release * 100 > name * 100, Actor.release * 100 < (name + 1) * 100).first().release)
 
+    a = float(math.ceil(float(page)/10))
+    if a ==1:
+        down=1
+    else:
+        down = int((a-1) * 10)
+
+    if total_page % 10 == 0:
+        if float(math.ceil(float(total_page)/10)) == a:
+            total_page = a * 10
+            up = int(total_page)
+        else:
+            total_page = a * 10
+            up = int(total_page+1)
+    else:
+        up = int(total_page)
+
     return render_template("new_actor_main.html", releaseList=releaseList, actorRelease=actorRelease, release=release,
-                           total_page=range(1, int(total_page + 1)))
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
 
 
 @app.route('/n_video/<path:name>', defaults={'page': 1})
@@ -162,8 +209,25 @@ def new_video(name, page):
     total_page = math.ceil(calclulate)
     company = Video.query.filter_by(company=name).first().company
 
+    a = float(math.ceil(float(page)/10))
+    if a ==1:
+        down=1
+    else:
+        down = int((a-1) * 10)
+
+    if total_page % 10 == 0:
+        if float(math.ceil(float(total_page)/10)) == a:
+            total_page = a * 10
+            up = int(total_page)
+        else:
+            total_page = a * 10
+            up = int(total_page+1)
+    else:
+        up = int(total_page)
+
+
     return render_template("new_video_main.html", companyList=companyList, videoCompany=videoCompany, company=company,
-                           total_page=range(1, int(total_page + 1)))
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
 
 
 import logging
@@ -351,8 +415,24 @@ def actor_collection_bookmark(page):
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
 
+    a = float(math.ceil(float(page)/10))
+    if a ==1:
+        down=1
+    else:
+        down = int((a-1) * 10)
+
+    if total_page % 10 == 0:
+        if float(math.ceil(float(total_page)/10)) == a:
+            total_page = a * 10
+            up = int(total_page)
+        else:
+            total_page = a * 10
+            up = int(total_page+1)
+    else:
+        up = int(total_page)
+
     return render_template("actor_collection_bookmark.html", myBookmark=myBookmark,
-                           total_page=range(1, int(total_page + 1)))
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
 
 
 @app.route('/a_collection_r/<int:page>', defaults={'page': 1})
@@ -365,7 +445,23 @@ def actor_collection_rating(page):
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
 
-    return render_template("actor_collection_rating.html", myRating=myRating, total_page=range(1, int(total_page + 1)))
+    a = float(math.ceil(float(page)/10))
+    if a ==1:
+        down=1
+    else:
+        down = int((a-1) * 10)
+
+    if total_page % 10 == 0:
+        if float(math.ceil(float(total_page)/10)) == a:
+            total_page = a * 10
+            up = int(total_page)
+        else:
+            total_page = a * 10
+            up = int(total_page+1)
+    else:
+        up = int(total_page)
+
+    return render_template("actor_collection_rating.html", myRating=myRating,total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
 
 
 @app.route('/v_collection_b/<int:page>', defaults={'page': 1})
@@ -378,8 +474,24 @@ def video_collection_bookmark(page):
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
 
+    a = float(math.ceil(float(page)/10))
+    if a ==1:
+        down=1
+    else:
+        down = int((a-1) * 10)
+
+    if total_page % 10 == 0:
+        if float(math.ceil(float(total_page)/10)) == a:
+            total_page = a * 10
+            up = int(total_page)
+        else:
+            total_page = a * 10
+            up = int(total_page+1)
+    else:
+        up = int(total_page)
+
     return render_template("video_collection_bookmark.html", myBookmark=myBookmark,
-                           total_page=range(1, int(total_page + 1)))
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
 
 
 @app.route('/v_collection_r/<int:page>', defaults={'page': 1})
@@ -392,25 +504,39 @@ def video_collection_rating(page):
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
 
-    return render_template("video_collection_rating.html", myRating=myRating, total_page=range(1, int(total_page + 1)))
+    a = float(math.ceil(float(page)/10))
+    if a ==1:
+        down=1
+    else:
+        down = int((a-1) * 10)
 
+    if total_page % 10 == 0:
+        if float(math.ceil(float(total_page)/10)) == a:
+            total_page = a * 10
+            up = int(total_page)
+        else:
+            total_page = a * 10
+            up = int(total_page+1)
+    else:
+        up = int(total_page)
 
-import logging
+    return render_template("video_collection_rating.html", myRating=myRating, total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
+
 
 
 @app.route('/v_save_star', methods=['GET', 'POST'])
 def video_save_star():
     star = int(request.form.get('star'))
-    logging.error(star)
+    # logging.error(star)
     name = request.form.get('name')
-    logging.error(name)
+    # logging.error(name)
     video = Video.query.get(name)
-    logging.error(video)
+    # logging.error(video)
     email = session['session_user_email']
-    logging.error(email)
+    # logging.error(email)
 
     rating = video.ratingVideo_video.filter_by(userEmail=email).first()
-    logging.error(rating)
+    # logging.error(rating)
 
     if rating:  # 이미 평점을 매겼었음
         video.score += star - rating.rating
@@ -441,13 +567,13 @@ import logging
 @app.route('/a_save_star', methods=['GET', 'POST'])
 def actor_save_star():
     star = int(request.form.get('star'))
-    logging.error(star)
+    # logging.error(star)
     name = request.form.get('name')
-    logging.error(name)
+    # logging.error(name)
     actor = Actor.query.get(name)
-    logging.error(actor)
+    # logging.error(actor)
     email = session['session_user_email']
-    logging.error(email)
+    # logging.error(email)
 
     rating = actor.ratingActor_actor.filter_by(userEmail=email).first()
 
@@ -477,13 +603,13 @@ def actor_save_star():
 @app.route('/a_bookmark', methods=['GET', 'POST'])
 def actor_bookmark():
     name = request.form.get('name')
-    logging.error(name)
+    # logging.error(name)
     actor = Actor.query.get(name)
-    logging.error(actor)
+    # logging.error(actor)
     email = session['session_user_email']
-    logging.error(email)
+    # logging.error(email)
     bookmark = actor.favorite_actor.filter_by(userEmail=email).first()
-    logging.error(email)
+    # logging.error(email)
 
     if bookmark:
         return jsonify(success=True)
@@ -501,13 +627,13 @@ def actor_bookmark():
 @app.route('/v_bookmark', methods=['GET', 'POST'])
 def video_bookmark():
     name = request.form.get('name')
-    logging.error(name)
+    # logging.error(name)
     video = Video.query.get(name)
-    logging.error(video)
+    # logging.error(video)
     email = session['session_user_email']
-    logging.error(email)
+    # logging.error(email)
     bookmark = video.bookmark_video.filter_by(userEmail=email).first()
-    logging.error(email)
+    # logging.error(email)
 
     if bookmark:
         return jsonify(success=True)
