@@ -208,6 +208,7 @@ input:focus {
     font-family: 'jua';
     font-size: 17px;
     color: #000000;
+    left: -12px;
 }
 
 .video_name_text{
