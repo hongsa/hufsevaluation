@@ -490,9 +490,12 @@ input:focus {
     font-weight: bold;
 }
 .detailSebu{
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
-    color: rgb(72, 4, 190);
+    color: rgb(3, 5, 178);
+}
+.detailCategory{
+    color: rgb(3, 5, 178);
 }
 .detailCategory_hover{
     color: white;
@@ -563,7 +566,22 @@ input:focus {
 
 }
 
-
+.btn-lightpurple {
+  background-color: hsl(263, 100%, 89%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#dcc6ff", endColorstr="#dcc6ff");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#dcc6ff), to(#dcc6ff));
+  background-image: -moz-linear-gradient(top, #dcc6ff, #dcc6ff);
+  background-image: -ms-linear-gradient(top, #dcc6ff, #dcc6ff);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dcc6ff), color-stop(100%, #dcc6ff));
+  background-image: -webkit-linear-gradient(top, #dcc6ff, #dcc6ff);
+  background-image: -o-linear-gradient(top, #dcc6ff, #dcc6ff);
+  background-image: linear-gradient(#dcc6ff, #dcc6ff);
+  border-color: #dcc6ff #dcc6ff hsl(263, 100%, 89%);
+  color: #333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+  -webkit-font-smoothing: antialiased;
+}
 
 
 
