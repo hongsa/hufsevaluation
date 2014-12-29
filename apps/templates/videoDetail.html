@@ -6,6 +6,15 @@
 <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
 <script type='text/javascript' src="{{url_for('static', filename='js/video_star.js')}}"></script>
 <script type='text/javascript' src="{{url_for('static', filename='js/video_bookmark.js')}}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.detailCategory').hover(function(){
+            $(this).addClass('detailCategory_hover');
+        },function(){
+            $(this).removeClass('detailCategory_hover');
+        });
+    });
+</script>
 {% endblock js %}
 {% block content %}
 
@@ -47,7 +56,11 @@
                     {% endif %}
                 </p>
                 <p>출시년도 : <span class="detailSebu">{{videoRow.release}}</span> 월</p>
-                <p>회사 : <span class="detailSebu">{{videoRow.company}}</span> </p>
+                <p>회사 : 
+                    <a href="/n_video/{{videoRow.company}}">
+                    <span class="detailCategory detailSebu">{{videoRow.company}}</span>
+                    </a>
+                 </p>
                 <p>모자이크 :
                     {% if videoRow.exposure == 0 %}
                     <span class="detailSebu">없음</span>
