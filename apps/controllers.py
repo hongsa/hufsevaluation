@@ -120,15 +120,17 @@ def actor_category(name, page):
     else:
         down = int((a-1) * 10)
 
-    if total_page % 10 == 0:
-        if float(math.ceil(float(total_page)/10)) == a:
-            total_page = a * 10
-            up = int(total_page)
-        else:
-            total_page = a * 10
-            up = int(total_page+1)
+    if total_page > a*10:
+        total_page = a * 10
+        up = int(total_page+1)
+
     else:
         up = int(total_page)
+
+    logging.error(total_page)
+    logging.error(a)
+    logging.error(up)
+    logging.error(down)
 
     return render_template("actor_category.html", actorCategory=actorCategory, category=category,
                            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
@@ -150,13 +152,10 @@ def video_category(name, page):
     else:
         down = int((a-1) * 10)
 
-    if total_page % 10 == 0:
-        if float(math.ceil(float(total_page)/10)) == a:
-            total_page = a * 10
-            up = int(total_page)
-        else:
-            total_page = a * 10
-            up = int(total_page+1)
+    if total_page > a*10:
+        total_page = a * 10
+        up = int(total_page+1)
+
     else:
         up = int(total_page)
 
@@ -186,13 +185,10 @@ def new_actor(name, page):
     else:
         down = int((a-1) * 10)
 
-    if total_page % 10 == 0:
-        if float(math.ceil(float(total_page)/10)) == a:
-            total_page = a * 10
-            up = int(total_page)
-        else:
-            total_page = a * 10
-            up = int(total_page+1)
+    if total_page > a*10:
+        total_page = a * 10
+        up = int(total_page+1)
+
     else:
         up = int(total_page)
 
@@ -218,13 +214,10 @@ def new_video(name, page):
     else:
         down = int((a-1) * 10)
 
-    if total_page % 10 == 0:
-        if float(math.ceil(float(total_page)/10)) == a:
-            total_page = a * 10
-            up = int(total_page)
-        else:
-            total_page = a * 10
-            up = int(total_page+1)
+    if total_page > a*10:
+        total_page = a * 10
+        up = int(total_page+1)
+
     else:
         up = int(total_page)
 
@@ -424,13 +417,10 @@ def actor_collection_bookmark(page):
     else:
         down = int((a-1) * 10)
 
-    if total_page % 10 == 0:
-        if float(math.ceil(float(total_page)/10)) == a:
-            total_page = a * 10
-            up = int(total_page)
-        else:
-            total_page = a * 10
-            up = int(total_page+1)
+    if total_page > a*10:
+        total_page = a * 10
+        up = int(total_page+1)
+
     else:
         up = int(total_page)
 
@@ -454,13 +444,10 @@ def actor_collection_rating(page):
     else:
         down = int((a-1) * 10)
 
-    if total_page % 10 == 0:
-        if float(math.ceil(float(total_page)/10)) == a:
-            total_page = a * 10
-            up = int(total_page)
-        else:
-            total_page = a * 10
-            up = int(total_page+1)
+    if total_page > a*10:
+        total_page = a * 10
+        up = int(total_page+1)
+
     else:
         up = int(total_page)
 
@@ -483,13 +470,10 @@ def video_collection_bookmark(page):
     else:
         down = int((a-1) * 10)
 
-    if total_page % 10 == 0:
-        if float(math.ceil(float(total_page)/10)) == a:
-            total_page = a * 10
-            up = int(total_page)
-        else:
-            total_page = a * 10
-            up = int(total_page+1)
+    if total_page > a*10:
+        total_page = a * 10
+        up = int(total_page+1)
+
     else:
         up = int(total_page)
 
@@ -513,13 +497,10 @@ def video_collection_rating(page):
     else:
         down = int((a-1) * 10)
 
-    if total_page % 10 == 0:
-        if float(math.ceil(float(total_page)/10)) == a:
-            total_page = a * 10
-            up = int(total_page)
-        else:
-            total_page = a * 10
-            up = int(total_page+1)
+    if total_page > a*10:
+        total_page = a * 10
+        up = int(total_page+1)
+
     else:
         up = int(total_page)
 
