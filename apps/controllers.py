@@ -8,6 +8,7 @@ from sqlalchemy import desc, or_
 from apps import forms
 import math
 from controller import userController
+import logging
 
 # userController에서 관리하는 부분 시작
 @app.route('/')
@@ -527,16 +528,16 @@ def video_collection_rating(page):
 @app.route('/v_save_star', methods=['GET', 'POST'])
 def video_save_star():
     star = int(request.form.get('star'))
-    # logging.error(star)
+    logging.error(star)
     name = request.form.get('name')
-    # logging.error(name)
+    logging.error(name)
     video = Video.query.get(name)
-    # logging.error(video)
+    logging.error(video)
     email = session['session_user_email']
-    # logging.error(email)
+    logging.error(email)
 
     rating = video.ratingVideo_video.filter_by(userEmail=email).first()
-    # logging.error(rating)
+    logging.error(rating)
 
     if rating:  # 이미 평점을 매겼었음
         video.score += star - rating.rating
@@ -561,19 +562,19 @@ def video_save_star():
     return jsonify(success=True)
 
 
-import logging
+
 
 
 @app.route('/a_save_star', methods=['GET', 'POST'])
 def actor_save_star():
     star = int(request.form.get('star'))
-    # logging.error(star)
+    logging.error(star)
     name = request.form.get('name')
-    # logging.error(name)
+    logging.error(name)
     actor = Actor.query.get(name)
-    # logging.error(actor)
+    logging.error(actor)
     email = session['session_user_email']
-    # logging.error(email)
+    logging.error(email)
 
     rating = actor.ratingActor_actor.filter_by(userEmail=email).first()
 
@@ -603,13 +604,13 @@ def actor_save_star():
 @app.route('/a_bookmark', methods=['GET', 'POST'])
 def actor_bookmark():
     name = request.form.get('name')
-    # logging.error(name)
+    logging.error(name)
     actor = Actor.query.get(name)
-    # logging.error(actor)
+    logging.error(actor)
     email = session['session_user_email']
-    # logging.error(email)
+    logging.error(email)
     bookmark = actor.favorite_actor.filter_by(userEmail=email).first()
-    # logging.error(email)
+    logging.error(email)
 
     if bookmark:
         return jsonify(success=True)
@@ -627,13 +628,13 @@ def actor_bookmark():
 @app.route('/v_bookmark', methods=['GET', 'POST'])
 def video_bookmark():
     name = request.form.get('name')
-    # logging.error(name)
+    logging.error(name)
     video = Video.query.get(name)
-    # logging.error(video)
+    logging.error(video)
     email = session['session_user_email']
-    # logging.error(email)
+    logging.error(email)
     bookmark = video.bookmark_video.filter_by(userEmail=email).first()
-    # logging.error(email)
+    logging.error(email)
 
     if bookmark:
         return jsonify(success=True)
@@ -738,3 +739,7 @@ def video_comment():
     except Exception, e:
         print " Occuring Exception. ", e
 
+
+@app.route('/contact', methods=['GET','POST'])
+def contact():
+    return render_template("contact.html")

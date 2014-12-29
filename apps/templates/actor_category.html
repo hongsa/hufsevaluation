@@ -40,8 +40,8 @@
                 <a href="/a_category/3"><button type="button" class="btn btn-default" style="font-size:14px; margin-top:10px; ">쭉쭉빵빵</button>
                 </a></div>
             <!--<div>-->
-                <!--<a href="/a_category/4"><button type="button" class="btn btn-default" style="font-size:14px;margin-top:10px; ">조금은 귀여운 뱃살</button>-->
-                <!--</a></div>-->
+            <!--<a href="/a_category/4"><button type="button" class="btn btn-default" style="font-size:14px;margin-top:10px; ">조금은 귀여운 뱃살</button>-->
+            <!--</a></div>-->
         </div>
     </div>
 
@@ -52,10 +52,12 @@
                 <div class="video_category_average">{{each.average}} 점</div>
                 <div class="video_category_people">({{each.count}} 명)</div>
                 <img class="category_image_video" src="/show2/{{each.name}}" alt=""/>
-                <div class="a_star_area">
-                    <input id="a_star" type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
-                    <button class="a_bookmark btn btn-custom3" type="button">보고싶어요!</button>
-                </div>
+            </a>
+            <div class="a_star_area">
+                <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
+                <button class="a_bookmark btn btn-custom3" type="button">보고싶어요!</button>
+            </div>
+            <a href="../../actorDetail/{{each.name}}">
                 <div class="text-center img_name_text_video">
                     <div>{{each.name}}</div>
                 </div>

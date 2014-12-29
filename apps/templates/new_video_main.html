@@ -34,10 +34,12 @@
                 <div class="video_category_average">{{each.average}} 점</div>
                 <div class="video_category_people">({{each.count}} 명)</div>
                 <img class="category_image_video" src="/show1/{{each.name}}" alt=""/>
-                <div class="v_star_area">
-                    <input id="v_star" type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"  />
-                    <button class="v_bookmark btn btn-custom3" type="button">보고싶어요!</button>
-                </div>
+            </a>
+            <div class="v_star_area">
+                <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"  />
+                <button class="v_bookmark btn btn-custom3" type="button">보고싶어요!</button>
+            </div>
+            <a href="../../videoDetail/{{each.name}}">
                 <div class="text-center img_name_text_video">
                     <div>{{each.name}}</div>
                 </div>
