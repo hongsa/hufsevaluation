@@ -14,8 +14,8 @@ def index():
     if not 'session_user_email' in session:
         form=forms.JoinForm()
         form2=forms.LoginForm()
-        session['if_confirm'] = "true"
-        return render_template("main_page.html", form=form,form2=form2)
+        main = "true"
+        return render_template("main_page.html", form=form,form2=form2, main = main)
     return redirect(url_for('actor_main'))
 
 
@@ -23,28 +23,24 @@ def index():
 def signup():
 
     form = forms.JoinForm()
-    form2 = forms.LoginForm()
 
     try:
         if session['session_user_email']:
             flash(u"이미 회원가입 하셨습니다!", "error")
-            return render_template("main_page.html", form=form, form2=form2)
+            return render_template("main_page.html", form=form)
     except Exception, e:
         pass
 
     if request.method == 'POST':
         if User.query.get(form.email.data):
-            session.clear()
             flash(u"이미 등록된 메일 주소 입니다!", "error")
-            return render_template("main_page.html", form=form, form2=form2)
+            return render_template("main_page.html", form=form)
         if User.query.get(form.nickname.data):
-            session.clear()
             flash(u"이미 사용중인 닉네임입니다!", "error")
-            return render_template("main_page.html", form=form, form2=form2)
+            return render_template("main_page.html", form=form)
         if not form.validate_on_submit():
-            session.clear()
             flash(u"올바른 형식으로 입력해주세요!", "error")
-            return render_template("main_page.html", form=form, form2=form2)
+            return render_template("main_page.html", form=form)
 
         user = User(email=form.email.data, password=generate_password_hash(form.password.data),
                     nickname=form.nickname.data, sex=form.sex.data)
@@ -52,7 +48,6 @@ def signup():
         db.session.add(user)
         db.session.commit()
 
-        session.clear()
 
         # flash(u"회원가입 되셨습니다!")
         session['session_user_email'] = form.email.data
@@ -60,16 +55,13 @@ def signup():
 
         return redirect(url_for('actor_main'))
 
-    session.clear()
-    flash(u"잘못 입력하셨습니다!","error")
-    return render_template("main_page.html", form=form, form2=form2)
+    return render_template("main_page.html", form=form)
 
 
 
 #로그인
 def login():
 
-    form = forms.JoinForm()
     form2 = forms.LoginForm()
 
     try:
@@ -83,17 +75,15 @@ def login():
 
     if request.method == "POST":
         if form2.validate_on_submit():
-            email = form.email.data
-            pwd = form.password.data
+            email = form2.email.data
+            pwd = form2.password.data
             user = User.query.get(email)
             if user is None:
-                session.clear()
                 flash(u"존재하지 않는 이메일 입니다.", "error")
-                return render_template("main_page.html", form=form, form2=form2)
+                return render_template("main_page.html", form2=form2)
             elif not check_password_hash(user.password, pwd):
-                session.clear()
                 flash(u"비밀번호가 일치하지 않습니다.", "error")
-                return render_template("main_page.html", form=form, form2=form2)
+                return render_template("main_page.html", form2=form2)
             else:
                 session.permanent = True
                 session['session_user_email'] = user.email
@@ -101,11 +91,7 @@ def login():
                 return redirect(url_for('actor_main'))
 
 
-    session.clear()
-
-    flash(u"잘못 입력하셨습니다!","error")
-
-    return render_template("main_page.html", form=form, form2=form2)
+    return render_template("main_page.html", form2=form2)
 
 #로그아웃 부분.
 def logout():
