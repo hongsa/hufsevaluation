@@ -1,89 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>직박구리</title>
+	<meta charset="UTF-8">
+	<title>직박구리</title>
     <!--style-->
     <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
     <!--jquery-->
-    <script src="{{url_for('static', filename='js/jquery-1.11.2.js')}}"></script>
+	<script src="{{url_for('static', filename='js/jquery-1.11.2.js')}}"></script>
     <!-- Latest compiled and minified JavaScript -->
-    <script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
+	<script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
 
-    <style type="text/css">
-        /*버튼 모양*/
-        .btn-custom-login {
-            background-color: hsl(47, 22%, 99%) !important;
-            background-repeat: repeat-x;
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fdfcfb", endColorstr="#fdfcfb");
-            background-image: -khtml-gradient(linear, left top, left bottom, from(#fdfcfb), to(#fdfcfb));
-            background-image: -moz-linear-gradient(top, #fdfcfb, #fdfcfb);
-            background-image: -ms-linear-gradient(top, #fdfcfb, #fdfcfb);
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fdfcfb), color-stop(100%, #fdfcfb));
-            background-image: -webkit-linear-gradient(top, #fdfcfb, #fdfcfb);
-            background-image: -o-linear-gradient(top, #fdfcfb, #fdfcfb);
-            background-image: linear-gradient(#fdfcfb, #fdfcfb);
-            border-color: #fdfcfb #fdfcfb hsl(47, 22%, 99%);
-            color: #333 !important;
-            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
-            -webkit-font-smoothing: antialiased;
-        }
-        .logo{
-            width: 200px;
-            height: 100px;
-            background: url("../static/img/logo_black_main3.png");
-            /*background-size: cover;
-    */		background-repeat: no-repeat;
-            position: relative;
-            top: -290px;
-            left: 15px;
-        }
+	<style type="text/css">
+	/*버튼 모양*/
+	.btn-custom-login {
+		background-color: hsl(47, 22%, 99%) !important;
+		background-repeat: repeat-x;
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fdfcfb", endColorstr="#fdfcfb");
+		background-image: -khtml-gradient(linear, left top, left bottom, from(#fdfcfb), to(#fdfcfb));
+		background-image: -moz-linear-gradient(top, #fdfcfb, #fdfcfb);
+		background-image: -ms-linear-gradient(top, #fdfcfb, #fdfcfb);
+		background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fdfcfb), color-stop(100%, #fdfcfb));
+		background-image: -webkit-linear-gradient(top, #fdfcfb, #fdfcfb);
+		background-image: -o-linear-gradient(top, #fdfcfb, #fdfcfb);
+		background-image: linear-gradient(#fdfcfb, #fdfcfb);
+		border-color: #fdfcfb #fdfcfb hsl(47, 22%, 99%);
+		color: #333 !important;
+		text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);
+		-webkit-font-smoothing: antialiased;
+	}	
+	.logo{
+		width: 200px;
+		height: 100px;
+		background: url("../static/img/logo_black_main3.png");
+		/*background-size: cover;
+*/		background-repeat: no-repeat;
+		position: relative;
+		top: -290px;
+		left: 15px;
+	}
 
-        #mainModalButton{
-            height: 300px;
-            width: 300px;
-            position:relative;
-            top:60px;
-            left: -20px;
-            background: url("../static/img/go_in.png");
-            background-repeat: no-repeat;
-        }
-        .jikbak {
-            background: url("../static/img/jikbakintreeCome.png");
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-
-        #mainExplain{
-            height: 400px;
-            position: relative;
-            left: 40px;
-            top:35px;
-            background: url("../static/img/yadong.png");
-            background-repeat: no-repeat;
-
-        }
-    </style>
+	#mainModalButton{
+		height: 300px;
+		width: 300px;
+		position:relative;
+		top:60px;
+		left: -20px;
+		background: url("../static/img/go_in.png");
+		background-repeat: no-repeat;
+	}
+	.jikbak {
+		background: url("../static/img/jikbakintreeCome.png");
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+	}
+	
+	#mainExplain{
+		height: 400px;
+		position: relative;
+		left: 40px;
+		top:35px;
+		background: url("../static/img/yadong.png");
+		background-repeat: no-repeat;
+		
+	}
+	</style>
 </head>
 
 <body class="jikbak">
 <a href="{{url_for('index')}}"><div class="logo"></div></a>
-<div id="main_page_body">
-    <!--들어가기 버튼-->
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-4" id="mainExplain"></div>
-        <div class="col-md-4" data-toggle="modal" data-target="#myModal">
-            <div id="mainModalButton" style="position:relative;left:20px;"></div>
-        </div>
-        <div class="col-md-2"></div>
-    </div>
+	<div id="main_page_body">
+	<!--들어가기 버튼-->
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-4" id="mainExplain"></div>
+		<div class="col-md-4" data-toggle="modal" data-target="#myModal">
+			<div id="mainModalButton" style="position:relative;left:20px;"></div>
+		</div>
+		<div class="col-md-2"></div>
+  	</div>
     <!--들어가기 버튼 끝-->
-</div>
+	</div>
 
 
 {% if main is not defined %}
@@ -97,107 +97,104 @@
 
 <!-- 회원가입/로그인 모달창 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #864EC0;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header" style="background-color: #864EC0;">
+    
+            <button type="button" class="close" data-dismiss="modal">
+        	<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel" style="color:white;">직박구리 들어가기</h4>
+      </div>
+      <div class="modal-body" style="background-color:#864EC0;">
+        <ul class="nav nav-tabs">
+				<li class="active"><a href="#login" data-toggle="tab">로그인</a></li>
+				<li><a href="#create" data-toggle="tab">회원가입</a></li>
+		</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane active in" id="login">
+					<form class="form-horizontal" action='{{url_for("login")}}' method="POST">
+						<fieldset>
+						</br>
+							<div>
+								<div class="col-md-12">
+									<img src="{{url_for('static', filename='img/come_in.png')}}"
+									style="width:200px;position:relative;left:30%;"/>
+										</br>
+										<div class="error_message" style="font-family:'jua';">
+										{% with errors = get_flashed_messages(category_filter=["error"]) %}
+											{% if errors %}
+												{% for msg in errors %}
+													{{ msg }}
+												{% endfor %}
+											{% endif %}
+										{% endwith %}
+										</div>
+								
+								</div>
+							</div>
+							<div class="control-group col-md-9" style="position:relative;left:80px;top:10px;">
 
-                <h4 class="modal-title" id="myModalLabel" style="color:white;">직박구리 들어가기</h4>
-            </div>
-            <div class="modal-body" style="background-color:#864EC0;">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#login" data-toggle="tab">로그인</a></li>
-                    <li><a href="#create" data-toggle="tab">회원가입</a></li>
-                </ul>
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane active in" id="login">
-                        <form class="form-horizontal" action='{{url_for('login')}}' method="POST">
-                            <fieldset>
-                                </br>
-                                <div>
-                                    <div class="col-md-12">
-                                        <img src="{{url_for('static', filename='img/come_in.png')}}"
-                                             style="width:200px;position:relative;left:30%;"/>
-                                        </br>
-                                        <div class="error_message" style="font-family:'jua';">
-                                            {% with errors = get_flashed_messages(category_filter=["error"]) %}
-                                            {% if errors %}
-                                            {% for msg in errors %}
-                                            {{ msg }}
-                                            {% endfor %}
-                                            {% endif %}
-                                            {% endwith %}
-                                        </div>
+								{{ form2.hidden_tag() }}
+								{% from "_form_field.html" import render_field %}
+								{% for field in form2 %}
+								{% if field.widget.input_type != 'hidden' %}
+								{{ render_field(field, class="form-control") }}
+								{% endif %}
+								{% endfor %}
 
-                                    </div>
-                                </div>
-                                <div class="control-group col-md-9" style="position:relative;left:80px;top:10px;">
+							</div>
 
-                                    {% if form2 is defined %}
-                                    {{ form2.hidden_tag() }}
-                                    {% from "_form_field.html" import render_field %}
-                                    {% for field in form2 %}
-                                    {% if field.widget.input_type != 'hidden' %}
-                                    {{ render_field(field, class="form-control") }}
-                                    {% endif %}
-                                    {% endfor %}
-                                    {% endif %}
+							<div class="control-group col-md-12">
+							</br>
+								
+								<div class="controls"style="display:block;position:relative;left:45%;">
+									<button class="btn btn-custom-login" style="width:50px;font-family:'jua';">가자!</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
 
-                                </div>
+				<div class="tab-pane" id="create">
+					<form class="form-horizontal" action='{{url_for("signup")}}' method="POST">
+						<fieldset>
+						</br>
+							<div>
+								<div class="col-md-12">
+									<img src="{{url_for('static', filename='img/come_in.png')}}"
+									style="width:200px;position:relative;left:30%;"/>
+								</div>
+							</div>
+							<div class="control-group col-md-9" style="position:relative;left:80px;top:10px;">
 
-                                <div class="control-group col-md-12">
-                                    </br>
+								{{ form.hidden_tag() }}
+								{% from "_form_field.html" import render_field %}
+								{% for field in form %}
+								{% if field.widget.input_type != 'hidden' %}
+								{{ render_field(field, class="form-control") }}
+								{% endif %}
+								{% endfor %}
 
-                                    <div class="controls"style="display:block;position:relative;left:45%;">
-                                        <button class="btn btn-custom-login" style="width:50px;font-family:'jua';">가자!</button>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
+							</div>
 
-                    <div class="tab-pane" id="create">
-                        <form class="form-horizontal" action='{{url_for('signup')}}' method="POST">
-                            <fieldset>
-                                </br>
-                                <div>
-                                    <div class="col-md-12">
-                                        <img src="{{url_for('static', filename='img/come_in.png')}}"
-                                             style="width:200px;position:relative;left:30%;"/>
-                                    </div>
-                                </div>
-                                <div class="control-group col-md-9" style="position:relative;left:80px;top:10px;">
-                                    {% if form is defined %}
-                                    {{ form.hidden_tag() }}
-                                    {% from "_form_field.html" import render_field %}
-                                    {% for field in form %}
-                                    {% if field.widget.input_type != 'hidden' %}
-                                    {{ render_field(field, class="form-control") }}
-                                    {% endif %}
-                                    {% endfor %}
-                                    {% endif %}
+							<div class="control-group col-md-12">
+							</br>
+							
+								<div class="controls"style="display:block;position:relative;left:45%;">
+									<button class="btn btn-custom-login" style="width:50px;font-family:'jua';">가자!</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
 
-                                </div>
-
-                                <div class="control-group col-md-12">
-                                    </br>
-
-                                    <div class="controls"style="display:block;position:relative;left:45%;">
-                                        <button class="btn btn-custom-login" style="width:50px;font-family:'jua';">가자!</button>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
-
-                    </div>
+				</div>
 
 
-                </div>
-            </div>
-        </div>
-    </div>
+      		</div>
+    	</div>
+  	</div>
+  </div>
 </div>
 <!--모달창 끝-->
 

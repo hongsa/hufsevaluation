@@ -1,6 +1,11 @@
 <!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지-->
 {% extends "nav_layout.html" %}
 {% block css %}
+<style type="text/css">
+	.contactText{
+		font-family: 'jua';
+	}
+</style>
 {% endblock css %}
 {% block js %}
 
@@ -13,11 +18,11 @@
 <div class="col-md-10 text-center" style="margin-top:150px;">
     <img style="height:200px" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
 
-    <h2>직박구리는 서로의 취향을 부끄러워 하지 않고 재미있게 이야기할 수 있도록</h2>
-    <h2>젊은 청년들이 모여서 만든 기괴한 서비스입니다. 즐겨주세요!</h2>
+    <h2 class="contactText">직박구리는 서로의 취향을 부끄러워 하지 않고 재미있게 이야기할 수 있도록</h2>
+    <h2 class="contactText">젊은 청년들이 모여서 만든 기괴한 서비스입니다. 즐겨주세요!</h2>
     <br/>
-    <h2>제휴문의 및 건의사항을 보내주세요!</h2>
-    <h2 style="color: #47038C;">jikbakguri@naver.com</h2>
+    <h2 class="contactText">제휴문의 및 건의사항을 보내주세요!</h2>
+    <h2 class="contactText" style="color: #47038C;">jikbakguri@naver.com</h2>
 
 </div>
 
