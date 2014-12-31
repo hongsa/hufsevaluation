@@ -132,10 +132,10 @@ def actor_category(name, page):
     else:
         up = int(total_page)
 
-    logging.error(total_page)
-    logging.error(a)
-    logging.error(up)
-    logging.error(down)
+    # logging.error(total_page)
+    # logging.error(a)
+    # logging.error(up)
+    # logging.error(down)
 
     return render_template("actor_category.html", actorCategory=actorCategory, category=category,
                            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
@@ -182,17 +182,23 @@ def new_actor(name, page):
         return redirect(url_for('index'))
 
     releaseList = set([int(each.release) for each in Actor.query.all()])
-    logging.error(releaseList)
+    # logging.error(releaseList)
     actorRelease = Actor.query.filter(Actor.release * 100 > name * 100,
                                       Actor.release * 100 < (name + 1) * 100).order_by(desc(Actor.release)).offset(
     (page - 1) * 12).limit(12)
-    logging.error(actorRelease)
+    # logging.error(actorRelease)
     total = Actor.query.filter(Actor.release * 100 > name * 100, Actor.release * 100 < (name + 1) * 100).count()
-    logging.error(total)
+    # logging.error(total)
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
-    release = int(
-        Actor.query.filter(Actor.release * 100 > name * 100, Actor.release * 100 < (name + 1) * 100).first().release)
+
+    if name == 0:
+        release = 0
+        actorRelease = Actor.query.filter_by(release=0).offset((page - 1) * 12).limit(12)
+    else:
+        release = int(Actor.query.filter(Actor.release * 100 > name * 100, Actor.release * 100 < (name + 1) * 100).first().release)
+
+
 
     a = float(math.ceil(float(page)/10))
     if a ==1:

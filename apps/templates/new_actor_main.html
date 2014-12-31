@@ -36,7 +36,12 @@
             <div class="row">
                 {% for each in releaseList %}
                 <div class="col-md-5" style="margin-top: 10px;">
+                    {%if each == 0 %}
+                    <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px;">정보가 없는</button></a>
+                    {% else %}
                     <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px;">{{each}}년도</button></a>
+                    {% endif %}
+
                 </div>
                 {% endfor %}
             </div>
@@ -45,7 +50,11 @@
 
     <div class="col-md-offset-2 col-md-10" style="position:relative;top:50px;">
         <div class="text-center" style="margin-top: 3em;">
-            <span class="category_name">{{release}}</span>
+            {%if release == 0%}
+            <span class="category_name">데뷔년도 정보를 아직 모르는 작품들</span>
+            {% else %}
+            <span class="category_name">{{release}}년도 작품</span>
+            {% endif %}
         </div>
 
         {% for each in actorRelease %}
@@ -69,7 +78,7 @@
     </div>
 
     <div class="row text-center">
-       <ul class="pagination" style="margin-top: 100px; margin-left: 100px;">
+        <ul class="pagination" style="margin-top: 100px; margin-left: 100px;">
             <li>
                 <a href="/n_actor/{{release}}/{{down}}">&laquo;</a>
             </li>
