@@ -1,5 +1,18 @@
 {% extends "nav_layout.html" %}
 {% block css %}
+<style type=text/css>
+    @media only screen and (min-width : 1500px) {
+        .collection_text {
+            position: relative;
+            top: 80px;
+            /*left: 3.5em;*/
+            font-family: 'jua';
+            font-size: 17px;
+            color: #000000;
+            right: 3em;
+        }
+    }
+</style>
 {% endblock css %}
 {% block js %}
 <!--<script type="text/javascript" src="{{url_for('static', filename='js/actor_collection.js')}}"></script>-->
@@ -24,7 +37,7 @@
             <a href="../../videoDetail/{{each.videoName}}">
                 <div class="collection_rating">내 평점: <span style="color: blue">{{each.rating}}</span> 점</div>
                 <img class="collection_image" src="/show1/{{each.videoName}}" alt="" style="top: 30px;"/>
-                <div class="text-center collection_text" style="top: 50px;">
+                <div class="collection_text" style="top: 50px;">
 
                     <div>{{each.videoName}}</div>
                 </div>

@@ -109,8 +109,8 @@ input:focus {
     position: relative;
     top:10px;
     border-radius: 10px;
-    /*width: 135px;*/
-    height: 180px;
+    width: 16.6%;
+    height: 13em;
     margin-bottom: 20px;
     background: url("../img/folder_layout8_1.png");
     background-size: cover;
@@ -121,10 +121,10 @@ input:focus {
     width:100%;
 }
 .plus_sign{
-    width: 40px;
+    width: 50%;
     position: relative;
-    top: 65px;
-    left: -5px;
+    top: 3em;
+    /*left: -5px;*/
 }
 .main_category_name {
     position: relative;
@@ -208,8 +208,11 @@ input:focus {
     font-family: 'jua';
     font-size: 17px;
     color: #000000;
-    left: -12px;
+    /*left: 3.5em;*/
+    text-align: center;
+    right: 0.5em;
 }
+
 
 .video_name_text{
     position: relative;
@@ -220,12 +223,14 @@ input:focus {
 }
 
 .actor_name_text {
-    position: relative;
-    top: 17px;
-    left: -3px;
+    /*position: relative;*/
+    /*top: 17px;*/
+    /*left: -3px;*/
     text-align: center;
     font-family: 'jua';
     font-size: 15px;
+    margin-top: 1.3em;
+    /*margin-left: 2em;*/
 
 }
 
@@ -422,10 +427,11 @@ input:focus {
 .collection_text{
     position: relative;
     top: 80px;
-    right: 11px;
+    /*left: 3.5em;*/
     font-family: 'jua';
     font-size: 17px;
     color: #000000;
+    text-align: center;
 }
 .collection_rating{
     font-family:'jua';

@@ -1,5 +1,19 @@
 {% extends "nav_layout.html" %}
 {% block css %}
+<style type=text/css>
+    @media only screen and (min-width : 1500px) {
+        .collection_text {
+            position: relative;
+            top: 80px;
+            /*left: 3.5em;*/
+            font-family: 'jua';
+            font-size: 17px;
+            color: #000000;
+            right: 3em;
+        }
+    }
+</style>
+
 {% endblock css %}
 {% block js %}
 <!--<script type="text/javascript" src="{{url_for('static', filename='js/actor_collection.js')}}"></script>-->
@@ -24,7 +38,7 @@
         <div class="col-md-3 thumbnail_folder_actor" style="top:40px;">
             <a href="../../actorDetail/{{each.actorName}}">
                 <img class="collection_image" src="/show2/{{each.actorName}}" alt=""/>
-                <div class="text-center collection_text">
+                <div class="collection_text">
                     <div>{{each.actorName}}</div>
                 </div>
             </a>

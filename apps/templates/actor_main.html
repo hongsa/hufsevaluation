@@ -6,6 +6,27 @@
     #newA{
         color: blue;
     }
+    @media only screen and (min-width : 1500px) {
+        .actor_name_text {
+            /*position: relative;*/
+            /*top: 17px;*/
+            /*left: -3px;*/
+            text-align: center;
+            font-family: 'jua';
+            font-size: 15px;
+            margin-top: 1.5em;
+            margin-right: 3em;
+
+        }
+        .plus_sign{
+            width: 40%;
+            position: relative;
+            top: 3em;
+            right: 1.4em;
+        }
+
+    }
+
 </style>
 {% endblock css %}
 {% block js %}
@@ -88,7 +109,7 @@
                 </a>
             </div>
             {% endfor %}
-            <div class="col-md-2 main_thumnail" style="color:black;"> 
+            <div class="col-md-2 main_thumnail" style="color:black;">
                 <a href="/a_category/3" style="color:black; font-family:'jua';font-size:20px;text-align:center;">
                     <div class="more_folder">
                         <img class="plus_sign" src="{{url_for('static', filename='img/plus_simple.png')}}"/>
