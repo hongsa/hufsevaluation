@@ -44,6 +44,10 @@
     </div>
 
     <div class="col-md-offset-2 col-md-10" style="position:relative;top:50px;">
+        <div class="text-center" style="margin-top: 3em;">
+            <span class="category_name">{{release}}</span>
+        </div>
+
         {% for each in actorRelease %}
         <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
             <a href="../../actorDetail/{{each.name}}">

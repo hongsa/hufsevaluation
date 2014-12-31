@@ -65,6 +65,24 @@
     </div>
 
     <div class="col-md-offset-2 col-md-10" style="position:relative;top:50px;">
+        <div class="text-center" style="margin-top: 3em;">
+            {% if category == '1'%}
+            <span class=category_name>마치 연인처럼</span>
+            {% endif %}
+            {% if category  == '2' %}
+            <span class=category_name>지인과 함께</span>
+            {% endif %}
+            {% if category == '3' %}
+            <span class=category_name>특별한 장소에서</span>
+            {% endif %}
+            {% if category == '4' %}
+            <span class=category_name>우리는 팀플</span>
+
+            {% endif %}
+            {% if category == '5' %}
+            <span class=category_name>기발한 상황극</span>
+            {% endif %}
+        </div>
         {% for each in videoCategory %}
         <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
             <a href="../../videoDetail/{{each.name}}">
