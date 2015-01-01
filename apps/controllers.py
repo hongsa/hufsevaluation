@@ -557,6 +557,11 @@ def video_collection_rating(page):
 @app.route('/v_save_star', methods=['GET', 'POST'])
 def video_save_star():
     star = int(request.form.get('star'))
+    if star <= 0:
+        return jsonify(success=True)
+    else:
+        star = star % 6
+
     logging.error(star)
     name = request.form.get('name')
     logging.error(name)
@@ -597,6 +602,10 @@ def video_save_star():
 @app.route('/a_save_star', methods=['GET', 'POST'])
 def actor_save_star():
     star = int(request.form.get('star'))
+    if star <= 0:
+        return jsonify(success=True)
+    else:
+        star = star % 6
     logging.error(star)
     name = request.form.get('name')
     logging.error(name)
