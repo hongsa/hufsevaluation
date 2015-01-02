@@ -25,6 +25,7 @@ var sendData = function() {
 }
 /* 서버에서 계산한 결과가 왔을때 처리할 부분 */
 var receiverHandler = function(result, textStatus, xhr) {
+    $
     /**
      * !! Notice !!
      * result 부분으로 서버에서 계산후 뿌려주는 json 형태의 (스트링) 이 들어오게된다.

@@ -7,113 +7,106 @@
 {% endblock js %}
 {% block content %}
 
-<div class="col-md-1"></div>
-<div class="col-md-10">
+<div id="STATICMENU" class="rank_chart">
+    <div class="text-center" style="font-size: 25px; color: #000000;margin-top: 10px; border-bottom: 2px;">전체 랭킹</div>
+    <hr style="border-bottom:2px;"/>
+    <ol style="font-size: 16px;">
+        {% for each in totalRank %}
+        <div><li style="margin-bottom: 10px;"><a href="#">{{each.name}}</a></li></div>
+        {% endfor %}
+    </ol>
 
-    <div id="STATICMENU" class="rank_chart">
-        <div class="text-center" style="font-size: 25px; color: #000000;margin-top: 10px; border-bottom: 2px;">전체 랭킹</div>
-        <hr style="border-bottom:2px;"/>
-        <ol style="font-size: 16px;">
-            {% for each in totalRank %}
-            <div><li style="margin-bottom: 10px;"><a href="#">{{each.name}}</a></li></div>
-            {% endfor %}
-        </ol>
-
-    </div>
-    <div class="col-md-2"></div>
-    <div class="col-md-10">
-        </br>
-        <div>
-            <span class="main_category_name">군살없이 마른</span>
-        </div>
-
-        <div class="row main_category">
-            {% for each in categoryOne %}
-
-
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
-                <a href="/">
-                    <div class="actor_score_text"><a href="#">{{each.average}} 점</a></div>
-                    <img class="main_image" src="/show2/{{each.name}}"/>
-                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
-                </a>
-            </div>
-            {% endfor %}
-            <div class="col-md-2 main_thumnail" style="color:black;">
-                <a href="/a_category/1" style="color:black; font-family:'jua';font-size:20px;text-align:center;">
-                    더보기
-                </a>
-            </div>
-        </div>
-        </br>
-        <div>
-            <span class="main_category_name">우리는 그냥체형</span>
-        </div>
-        <div class="row main_category">
-            {% for each in categoryTwo %}
-            <!--<div id="test" style="background-color: red;">-->
-                <!--{{ each.name }}-->
-                <!--{{ each.reviews() }}-->
-
-                <!--&lt;!&ndash;{% for review in each.actorReview_actor %}&ndash;&gt;-->
-                <!--&lt;!&ndash;{{ review }}&ndash;&gt;-->
-                <!--&lt;!&ndash;{% endfor %}&ndash;&gt;-->
-            <!--</div>-->
-
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.reviews()}}">
-                <a href="#">
-                    <div class="actor_score_text"><a href="#">{{each.average}} 점</a></div>
-                    <img class="main_image" src="/show2/{{each.name}}"/>
-                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
-                </a>
-            </div>
-            {% endfor %}
-            <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/2" style="color:black; font-family:'jua';font-size:20px;text-align:center;">더보기</a></div>
-        </div>
-        </br>
-        <div>
-            <span class="main_category_name">육감적이고 육덕스러운</span>
-        </div>
-        <div class="row main_category">
-            {% for each in categoryThree %}
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
-                <a href="#">
-                    <div class="actor_score_text"><a href="#">{{each.average}} 점</a></div>
-                    <img class="main_image" src="/show2/{{each.name}}"/>
-                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
-                </a>
-            </div>
-            {% endfor %}
-            <div class="col-md-2 main_thumnail" style="color:black;"> <a href="/a_category/3" style="color:black; font-family:'jua';font-size:20px;text-align:center;">더보기</a></div>
-        </div>
-        </br>
-        <div>
-            <span class="main_category_name">조금은 귀여운 뱃살</span>
-        </div>
-        <div class="row main_category">
-            {% for each in categoryFour %}
-            <div class="col-md-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
-                <a href="#">
-                    <div class="actor_score_text"><a href="#">{{each.average}} 점</a></div>
-                    <img class="main_image" src="/show2/{{each.name}}"/>
-                    <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
-                </a>
-            </div>
-            {% endfor %}
-            <div class="col-md-2 main_thumnail" style="color:black;">
-                <a href="/a_category/4" style="color:black; font-family:'jua';font-size:20px;text-align:center;">
-                    더보기
-                </a>
-            </div>
-        </div>
-
-        </br>
-
-    </div>
 </div>
+<div class="col-xs-2"></div>
+<div class="col-xs-10">
+    </br>
+    <div>
+        <span class="main_category_name">군살없이 마른</span>
+    </div>
+
+    <div class="row main_category">
+        {% for each in categoryOne %}
 
 
-<div class="col-md-1"></div>
+        <div class="col-xs-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
+            <a href="/">
+                <div class="actor_score_text"><a href="#">{{each.average}} 점</a></div>
+                <img class="main_image" src="/show2/{{each.name}}"/>
+                <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
+            </a>
+        </div>
+        {% endfor %}
+        <div class="col-xs-2 main_thumnail" style="color:black;">
+            <a href="/a_category/1" style="color:black; font-family:'jua';font-size:20px;text-align:center;">
+                더보기
+            </a>
+        </div>
+    </div>
+    </br>
+    <div>
+        <span class="main_category_name">우리는 그냥체형</span>
+    </div>
+    <div class="row main_category">
+        {% for each in categoryTwo %}
+        <!--<div id="test" style="background-color: red;">-->
+        <!--{{ each.name }}-->
+        <!--{{ each.reviews() }}-->
+
+        <!--&lt;!&ndash;{% for review in each.actorReview_actor %}&ndash;&gt;-->
+        <!--&lt;!&ndash;{{ review }}&ndash;&gt;-->
+        <!--&lt;!&ndash;{% endfor %}&ndash;&gt;-->
+        <!--</div>-->
+
+        <div class="col-xs-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.reviews()}}">
+            <a href="#">
+                <div class="actor_score_text"><a href="#">{{each.average}} 점</a></div>
+                <img class="main_image" src="/show2/{{each.name}}"/>
+                <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
+            </a>
+        </div>
+        {% endfor %}
+        <div class="col-xs-2 main_thumnail" style="color:black;"> <a href="/a_category/2" style="color:black; font-family:'jua';font-size:20px;text-align:center;">더보기</a></div>
+    </div>
+    </br>
+    <div>
+        <span class="main_category_name">육감적이고 육덕스러운</span>
+    </div>
+    <div class="row main_category">
+        {% for each in categoryThree %}
+        <div class="col-xs-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
+            <a href="#">
+                <div class="actor_score_text"><a href="#">{{each.average}} 점</a></div>
+                <img class="main_image" src="/show2/{{each.name}}"/>
+                <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
+            </a>
+        </div>
+        {% endfor %}
+        <div class="col-xs-2 main_thumnail" style="color:black;"> <a href="/a_category/3" style="color:black; font-family:'jua';font-size:20px;text-align:center;">더보기</a></div>
+    </div>
+    </br>
+    <div>
+        <span class="main_category_name">조금은 귀여운 뱃살</span>
+    </div>
+    <div class="row main_category">
+        {% for each in categoryFour %}
+        <div class="col-xs-2 main_thumnail" data-toggle="modal" data-target=".bs-example-modal-lg" data-name="{{each.name}}" data-comment="{{each.actorReview_actor.content}}">
+            <a href="#">
+                <div class="actor_score_text"><a href="#">{{each.average}} 점</a></div>
+                <img class="main_image" src="/show2/{{each.name}}"/>
+                <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
+            </a>
+        </div>
+        {% endfor %}
+        <div class="col-xs-2 main_thumnail" style="color:black;">
+            <a href="/a_category/4" style="color:black; font-family:'jua';font-size:20px;text-align:center;">
+                더보기
+            </a>
+        </div>
+    </div>
+
+    </br>
+
+</div>
 
 
 
@@ -145,9 +138,9 @@
                     </form>
                 </div>
                 <!--<div class="modal-commentList row">-->
-                    <!--<div class="modal-commentList-name col-md-1"></div>-->
-                    <!--<div class="modal-commentList-content col-md-10"></div>-->
-                    <!--<div class="col-md-1"></div>-->
+                <!--<div class="modal-commentList-name col-md-1"></div>-->
+                <!--<div class="modal-commentList-content col-md-10"></div>-->
+                <!--<div class="col-md-1"></div>-->
                 <!--</div>-->
             </div>
             <div class="modal-commentList" style="background-color:#BF9BCC;height:100px;width:100%; color:white;">

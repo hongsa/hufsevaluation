@@ -18,96 +18,93 @@
 {% endblock js %}
 {% block content %}
 
-<div class="col-md-1">
+
+<div class="row">
+    <div class="col-xs-3 detailFolder" id="{{videoRow.name}}">
+        <img class="detailImg" src="/show1/{{videoRow.name}}" alt=""/>
+        <div class="v_star_area detail_rating">
+            <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
+            <button class="v_bookmark btn btn-custom3" type="button">보고싶어요!</button>
+        </div>
+        <p class="detailName text-center">{{videoRow.name}}</p>
+    </div>
+
+    <div class="col-xs-9">
+        <div class="col-xs-offset-1 col-xs-5 detailInfo1">
+            <p class="detailBoxTitle">기본 정보</p>
+            <p>평균평점 : <span class="detailSebu">{{videoRow.average}}</span> 점</p>
+            <p>평가인원 : <span class="detailSebu">{{videoRow.count}}</span> 명</p>
+            <p>취향 :
+                {% if videoRow.category == '1'%}
+                <a href="../v_category/1"><span class="detailSebu detailCategory">마치 연인처럼</span></a>
+                {% endif %}
+                {% if videoRow.category  == '2' %}
+                <a href="../v_category/2"><span class="detailSebu detailCategory">지인과 함께</span></a>
+                {% endif %}
+                {% if videoRow.category == '3' %}
+                <a href="../v_category/4"><span class="detailSebu detailCategory">특별한 장소에서</span></a>
+                {% endif %}
+                {% if videoRow.category == '4' %}
+                <a href="../v_category/3"><span class="detailSebu detailCategory">우리는 팀플</span></a>
+
+                {% endif %}
+                {% if videoRow.category == '5' %}
+                <a href="../v_category/5"><span class="detailSebu detailCategory">기발한 상황극</span></a>
+                {% endif %}
+            </p>
+            <p>출시년도 : <span class="detailSebu">{{videoRow.release}}</span> 월</p>
+            <p>회사 :
+                <a href="/n_video/{{videoRow.company}}">
+                    <span class="detailCategory detailSebu">{{videoRow.company}}</span>
+                </a>
+            </p>
+            <!--<p>모자이크 :-->
+            <!--{% if videoRow.exposure == 0 %}-->
+            <!--<span class="detailSebu">없음</span>-->
+            <!--{% endif %}-->
+            <!--{% if videoRow.exposure == 1 %}-->
+            <!--<span class="detailSebu">있음</span>-->
+            <!--{% endif %}-->
+            <!--</p>-->
+
+        </div>
+        <div class="col-xs-offset-1 col-xs-5 detailInfo2">
+            <p class="detailBoxTitle text-center">출연 배우</p>
+            {% for each in appearActor %}
+            <p><a href="../actorDetail/{{each['name']}}"><span class="text-center detailCategory" style="color:rgb(3, 5, 178);">{{each['name']}}&nbsp;({{each['average']}} 점)</span></a></p>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
-<div class="row col-md-10">
-    <div class="row">
-        <div class="col-md-3 detailFolder" id="{{videoRow.name}}">
-            <img class="detailImg" src="/show1/{{videoRow.name}}" alt=""/>
-            <div class="v_star_area detail_rating">
-                <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
-                <button class="v_bookmark btn btn-custom3" type="button">보고싶어요!</button>
-            </div>
-            <p class="detailName text-center">{{videoRow.name}}</p>
+<!--댓글 입력부분 시작-->
+<div class="row" style="margin-top: 150px; margin-bottom: 30px;">
+    <div class="form-group">
+        <div class="col-xs-2 text-center review_input">한줄평</div>
+        <div class="col-xs-7">
+            <input class="form-control" type="text" name="comment" placeholder="나만의 진솔한 한줄평!" maxlength="68" style="position:relative;top:16px;left:60px;font-size:17px;"/>
+            <input class="form-control" type="hidden" name="videoname" value="{{videoRow.name}}"maxlength="68" style="position:relative;top: 15px;left:60px;"/>
         </div>
-
-        <div class="col-md-9">
-            <div class="col-md-offset-1 col-md-5 detailInfo1">
-                <p class="detailBoxTitle">기본 정보</p>
-                <p>평균평점 : <span class="detailSebu">{{videoRow.average}}</span> 점</p>
-                <p>평가인원 : <span class="detailSebu">{{videoRow.count}}</span> 명</p>
-                <p>취향 :
-                    {% if videoRow.category == '1'%}
-                    <a href="../v_category/1"><span class="detailSebu detailCategory">마치 연인처럼</span></a>
-                    {% endif %}
-                    {% if videoRow.category  == '2' %}
-                    <a href="../v_category/2"><span class="detailSebu detailCategory">지인과 함께</span></a>
-                    {% endif %}
-                    {% if videoRow.category == '3' %}
-                    <a href="../v_category/4"><span class="detailSebu detailCategory">특별한 장소에서</span></a>
-                    {% endif %}
-                    {% if videoRow.category == '4' %}
-                    <a href="../v_category/3"><span class="detailSebu detailCategory">우리는 팀플</span></a>
-
-                    {% endif %}
-                    {% if videoRow.category == '5' %}
-                    <a href="../v_category/5"><span class="detailSebu detailCategory">기발한 상황극</span></a>
-                    {% endif %}
-                </p>
-                <p>출시년도 : <span class="detailSebu">{{videoRow.release}}</span> 월</p>
-                <p>회사 : 
-                    <a href="/n_video/{{videoRow.company}}">
-                    <span class="detailCategory detailSebu">{{videoRow.company}}</span>
-                    </a>
-                 </p>
-                <!--<p>모자이크 :-->
-                    <!--{% if videoRow.exposure == 0 %}-->
-                    <!--<span class="detailSebu">없음</span>-->
-                    <!--{% endif %}-->
-                    <!--{% if videoRow.exposure == 1 %}-->
-                    <!--<span class="detailSebu">있음</span>-->
-                    <!--{% endif %}-->
-                <!--</p>-->
-
-            </div>
-            <div class="col-md-offset-1 col-md-5 detailInfo2">
-                <p class="detailBoxTitle text-center">출연 배우</p>
-                {% for each in appearActor %}
-                <p><a href="../actorDetail/{{each['name']}}"><span class="text-center detailCategory" style="color:rgb(3, 5, 178);">{{each['name']}}&nbsp;({{each['average']}} 점)</span></a></p>
-                {% endfor %}
-            </div>
+        <div class="col-xs-2">
+            <button  class="btn btn-blueblack" onclick="void(sendData());" style="position:relative;left:40px;top:16px;font-size:18px;">가자!</button>
         </div>
     </div>
-
-    <!--댓글 입력부분 시작-->
-    <div class="row" style="margin-top: 150px; margin-bottom: 30px;">
-        <div class="form-group">
-            <div class="col-md-2 text-center review_input">한줄평</div>
-            <div class="col-md-7">
-                <input class="form-control" type="text" name="comment" placeholder="나만의 진솔한 한줄평!" maxlength="68" style="position:relative;top:16px;left:60px;font-size:17px;"/>
-                <input class="form-control" type="hidden" name="videoname" value="{{videoRow.name}}"maxlength="68" style="position:relative;top: 15px;left:60px;"/>
-            </div>
-            <div class="col-md-2">
-                <button  class="btn btn-blueblack" onclick="void(sendData());" style="position:relative;left:40px;top:16px;font-size:18px;">가자!</button>
-            </div>
-        </div>
-    </div>
+</div>
 </div>
 <!--댓글 입력부분 종료-->
 
 <!--댓글 출력부분 시작-->
-<div class="col-md-offset-2 col-md-8">
+<div class="col-xs-offset-2 col-md-8">
     <!--<p class="detailBoxTitle">댓글</p>-->
 
 
     {% for each in comments %}
     <div class="panel-default" style="margin-bottom:10px; ">
         <div class="row" style="background-color: rgba(136, 50, 245, 0.1);">
-            <div class="col-sm-2">
+            <div class="col-xs-2">
                 <p class="text-center detailSebu">{{each['author']}}</p>
             </div>
-            <div class="col-sm-8">
+            <div class="col-xs-8">
                 <p class="text-left">{{each['content']}}</p>
             </div>
         </div>
@@ -116,10 +113,8 @@
     <p id="current"></p>
 </div>
 <!--댓글 출력부분 종료-->
-</div>
 
 
-<div class="col-md-1"></div>
 
 
 

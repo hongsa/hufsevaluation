@@ -24,10 +24,6 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="col-md-1"></div>
-<div class="col-md-10">
-
     <div id="STATICMENU" class="rank_chart" style="overflow:scroll;">
         <div class="text-center" style="font-size: 25px;color:white;margin-top:10px;border-bottom:2px;">기획사별</div>
         <hr style="border-bottom:2px;"/>
@@ -41,12 +37,12 @@
             </div>
         </div>
     </div>
-    <div class="col-md-offset-2 col-md-10" style="position:relative;top:50px;">
+    <div class="col-xs-offset-2 col-xs-10" style="position:relative;top:50px;">
         <div class="text-center" style="margin-top: 3em;">
             <span class="category_name">{{company}}</span>
         </div>
         {% for each in videoCompany %}
-        <div class="col-md-3 thumbnail_folder_actor" id="{{each.name}}">
+        <div class="col-xs-3 thumbnail_folder_actor" id="{{each.name}}">
             <a href="../../videoDetail/{{each.name}}">
                 <div class="video_category_average">{{each.average}} 점</div>
                 <div class="video_category_people">({{each.count}} 명)</div>
@@ -82,7 +78,4 @@
         </ul>
 
     </div>
-</div>
-<div class="col-md-1"></div>
-
 {% endblock %}
