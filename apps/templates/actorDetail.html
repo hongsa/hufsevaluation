@@ -62,13 +62,12 @@
     <div class="form-group">
         <div class="col-xs-2 text-center review_input">한줄평</div>
         <div class="col-xs-7">
-            <input class="form-control" type="text" name="comment" placeholder="나만의 진솔한 한줄평!" maxlength="68" style="position:relative;top:16px;left:60px;font-size:17px;"/>
+            <input class="form-control" id = "actor_input" type="text" name="comment" placeholder="나만의 진솔한 한줄평!" maxlength="68" style="position:relative;top:16px;left:60px;font-size:17px;"/>
             <input class="form-control" type="hidden" name="actorname" value="{{actorRow.name}}" maxlength="68" style="position:relative;top: 15px;left:60px;"/>
         </div>
         <div class="col-xs-2">
-            <button  class="btn btn-blueblack" onclick="void(sendData());"style="position:relative;left:40px;top:16px;font-size:18px;">
-                가자!
-            </button>
+            <!--<button  class="btn btn-blueblack" onclick="void(sendData());"style="position:relative;left:40px;top:16px;font-size:18px;">-->
+            <button  class="btn btn-blueblack" id="actor_comment" style="position:relative;left:40px;top:16px;font-size:18px;">가자!</button>
         </div>
     </div>
 </div>
