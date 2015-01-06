@@ -705,7 +705,6 @@ def actorDetail(name):
 
     return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments)
 
-
 #댓글입력
 
 @app.route('/actor/comment', methods=['POST'])

@@ -88,8 +88,6 @@ class Filmo(db.Model):
     ActorName = db.Column(db.String(255), db.ForeignKey(Actor.name))
 
 
-
-
 class RatingActor(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     actor = db.relationship('Actor', backref=db.backref('ratingActor_actor', cascade='all, delete-orphan', lazy='dynamic'))
