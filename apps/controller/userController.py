@@ -121,6 +121,10 @@ def modify_nickname():
         user= User.query.get(email)
 
         nickname=request.form['nickname']
+        if len(nickname) >10:
+            flash(u"9자 이내로 입력해주세요.", "nickname")
+            return redirect(url_for('modify_nickname'))
+
         nickname_list=[]
         for i in User.query.all():
 		    nickname_list.append(i.nickname)

@@ -68,7 +68,7 @@ class ActorReview(db.Model):
     actorName = db.Column(db.String(255), db.ForeignKey(Actor.name))
     user = db.relationship('User', backref=db.backref('actorReview_user', cascade='all, delete-orphan', lazy='dynamic'))
     userEmail = db.Column(db.String(255), db.ForeignKey(User.email))
-    content = db.Column(db.Text())
+    content = db.Column(db.String(68))
     created=db.Column(db.Date(), default=db.func.now())
 
 class VideoReview(db.Model):
@@ -77,7 +77,7 @@ class VideoReview(db.Model):
     videoName = db.Column(db.String(255), db.ForeignKey(Video.name))
     user = db.relationship('User', backref=db.backref('videoReview_user', cascade='all, delete-orphan', lazy='dynamic'))
     userEmail = db.Column(db.String(255), db.ForeignKey(User.email))
-    content = db.Column(db.Text())
+    content = db.Column(db.String(68))
     created=db.Column(db.Date(), default=db.func.now())
 
 class Filmo(db.Model):
