@@ -15,7 +15,7 @@ def index():
         form=forms.JoinForm()
         form2=forms.LoginForm()
         main = "true"
-        return render_template("main_page.html", form=form,form2=form2, main = main)
+        return render_template("mainPageNew.html", form=form,form2=form2, main = main)
     return redirect(url_for('actor_main'))
 
 
