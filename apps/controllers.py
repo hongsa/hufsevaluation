@@ -111,13 +111,17 @@ def actor_category(name, page):
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-
     actorCategory = Actor.query.filter_by(category=name).order_by(desc(Actor.average)).offset(
         (page - 1) * 12).limit(12)
     category = Actor.query.filter_by(category=name).first().category
     total = Actor.query.filter_by(category=name).count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
+    email = session['session_user_email']
+
+    # rating = RatingActor.query.filter_by(userEmail=email).all()
+    # logging.error(rating)
+
 
     a = float(math.ceil(float(page)/10))
     if a ==1:
@@ -695,6 +699,7 @@ def actorDetail(name):
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
+    email = session['session_user_email']
     # 해당하는 배우추출
     actorRow = Actor.query.get(name)
 
@@ -703,7 +708,12 @@ def actorDetail(name):
     #댓글 가져오기
     comments = actorRow.reviews()
 
+    rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
+    if rating:
+        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,rating=rating.rating)
+
     return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments)
+
 
 #댓글입력
 
@@ -744,6 +754,7 @@ def videoDetail(name):
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
+    email = session['session_user_email']
     # 해당하는 배우추출
     videoRow = Video.query.get(name)
 
@@ -751,9 +762,12 @@ def videoDetail(name):
     appearActor = videoRow.actors()
     #댓글 가져오기
     comments = videoRow.reviews()
-    
-    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments)
 
+    rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
+    if rating:
+        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating)
+
+    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments)
 
 #댓글입력
 @app.route('/video/comment', methods=['POST'])

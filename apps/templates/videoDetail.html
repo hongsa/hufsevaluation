@@ -23,7 +23,11 @@
     <div class="col-xs-3 detailFolder" id="{{videoRow.name}}">
         <img class="detailImg" src="/show1/{{videoRow.name}}" alt=""/>
         <div class="v_star_area detail_rating">
+            {% if rating is defined %}
+            <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" value="{{rating}}"/>
+            {% else %}
             <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
+            {% endif %}
             <button class="v_bookmark btn btn-custom3" type="button">보고싶어요!</button>
         </div>
         <p class="detailName text-center">{{videoRow.name}}</p>

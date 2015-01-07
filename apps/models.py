@@ -36,7 +36,6 @@ class Actor(db.Model):
             list.append(dict(name = each.video.name, average = each.video.average))
         return list
 
-
 class Video(db.Model):
     name = db.Column(db.String(255),primary_key=True)
     image = db.Column(db.LargeBinary)
