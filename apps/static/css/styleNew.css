@@ -21,13 +21,15 @@ html,body{
 
 /*mainPageNew.html에 해당하는 CSS*/
 .mainContents{
-    margin-top: 10%;
+    margin-top: 40%;
     margin-bottom: 10%;
-    margin-left: 25%;
+    margin-left: 50%;
     margin-right: 25%;
     width: 50%;
     height:50%;
-    text-align: center;
+    text-align: left;
+    color: white;
+
 }
 
 .loginDiv{
