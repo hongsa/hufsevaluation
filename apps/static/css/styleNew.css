@@ -11,28 +11,31 @@
     font-family: Bareun3;
     src: url("../fonts/BareunDotumOTFPro3.woff");
 }
+
 html,body{
     margin: 0;
     height: 100%;
     width: 100%;
+    font-family: Jua;
 }
 
 /*mainPageNew.html에 해당하는 CSS*/
 .mainContents{
+    margin-top: 10%;
+    margin-bottom: 10%;
     margin-left: 25%;
     margin-right: 25%;
     width: 50%;
+    height:50%;
     text-align: center;
-    font-family: Bareun2;
-
 }
 
-
 .loginDiv{
+    /*margin:10%;*/
+    padding-top: 10%;
     width: 100%;
-    height: 50%;
-    background-image: url('../img/basicFolder.png');
-    background-size: cover;
+    height: 100%;
+    background-color:red;
 }
 
 
