@@ -82,7 +82,7 @@ def login():
                 flash(u"존재하지 않는 이메일 입니다.", "error")
                 return render_template("mainPageNew.html", form=form)
             elif not check_password_hash(user.password, pwd):
-                flash(u"비밀번호가 일치하지 않습니다.", "error")
+                flash(u"비밀번호가 틀렸습니다!", "error")
                 return render_template("mainPageNew.html", form=form)
             else:
                 session.permanent = True
