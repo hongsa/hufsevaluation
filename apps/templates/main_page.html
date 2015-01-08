@@ -190,9 +190,9 @@
                                 </div>
                                 <div class="control-group col-xs-9" style="position:relative;left:80px;top:10px;">
 
-                                    {{ form2.hidden_tag() }}
+                                    {{ form.hidden_tag() }}
                                     {% from "_form_field.html" import render_field %}
-                                    {% for field in form2 %}
+                                    {% for field in form %}
                                     {% if field.widget.input_type != 'hidden' %}
                                     {{ render_field(field, class="form-control") }}
                                     {% endif %}

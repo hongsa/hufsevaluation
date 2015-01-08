@@ -1,10 +1,89 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head lang="kr">
     <meta charset="UTF-8">
-    <title></title>
+    <title>직박구리</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link href="{{url_for('static', filename='css/styleNew.css')}}" rel="stylesheet">
+    <script src="{{url_for('static', filename='js/jquery-1.11.2.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-55236595-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 </head>
-<body>
+<!-- <body style="background-size:cover; background-image: url(../static/img/saint.jpg)"> -->
+<body style="background-color:rgba(0, 11, 84, 0.8);">
+<div class="col-xs-2"></div>
+<!--contents 시작-->
+<div class="col-xs-8">
+    <div class="mainContents">
+        <form action='{{url_for("signup")}}' method="POST">
+            <fieldset>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="error_message" style="">
+                            {% with errors = get_flashed_messages(category_filter=["error"]) %}
+                            {% if errors %}
+                            {% for msg in errors %}
+                            {{ msg }}
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-8">
+                        {{ form.hidden_tag() }}
+                        {% from "_form_field.html" import render_field %}
+                        {% for field in form %}
+                        {% if field.widget.input_type != 'hidden' %}
+                        {{ render_field(field, class="form-control") }}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="col-xs-2"></div>
+                </div>
+                <div class="row">
+                	<div class="control-group col-xs-offset-2 col-xs-8">
+                		<div style="display:block;">
+                			
+                				<button class="btn btn-danger" style="margin-top:5%;width:100%;">
+                					가입하기!
+                				</button>
+                			
+                		</div>
+                	</div>
+                </div>
+            </fieldset>
+        </form>
+        
+    
+    </div>
+</div>
+<div class="col-xs-2"></div>
+<!--contents 끝-->
+
+
+
+<!-- 
+{% if main is not defined %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#mainModalButton').trigger("click");
+    });
+</script>
+{% endif %}
+ -->
 
 </body>
+
+
 </html>

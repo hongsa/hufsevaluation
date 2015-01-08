@@ -21,13 +21,10 @@ html,body{
 
 /*mainPageNew.html에 해당하는 CSS*/
 .mainContents{
-    margin-top: 40%;
+    margin-top: 30%;
     margin-bottom: 10%;
-    margin-left: 50%;
-    margin-right: 25%;
-    width: 50%;
-    height:50%;
-    text-align: left;
+    width: 100%;
+    height:100%;
     color: white;
 
 }

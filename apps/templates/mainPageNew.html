@@ -29,7 +29,7 @@
             <fieldset>
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="error_message" style="font-family:'jua';">
+                        <div class="error_message" style="">
                             {% with errors = get_flashed_messages(category_filter=["error"]) %}
                             {% if errors %}
                             {% for msg in errors %}
@@ -41,9 +41,9 @@
                     </div>
                     <div class="col-xs-2"></div>
                     <div class="col-xs-8">
-                        {{ form2.hidden_tag() }}
+                        {{ form.hidden_tag() }}
                         {% from "_form_field.html" import render_field %}
-                        {% for field in form2 %}
+                        {% for field in form %}
                         {% if field.widget.input_type != 'hidden' %}
                         {{ render_field(field, class="form-control") }}
                         {% endif %}
@@ -51,21 +51,30 @@
                     </div>
                     <div class="col-xs-2"></div>
                 </div>
-                <div class="control-group col-xs-12">
+                <div class="row">
+                <div class="control-group col-xs-offset-2 col-xs-8">
                     <div style="display:block;">
-                        <button class="btn btn-primary" style="width:69%;margin-left:16%;margin-top:5%;">
+                        <button class="btn btn-primary" style="margin-top:5%;width:100%;">
                             들어가자!
                         </button>
-                        <a href="#">
-                        <button class="btn btn-danger" style="width:69%;margin-left:16%;margin-top:5%;">
-                            가입하기!
-                        </button>
-                        </a>
                     </div>
                 </div>
-
+                </div>
             </fieldset>
         </form>
+        
+        <div class="row">
+            <div class="control-group col-xs-offset-2 col-xs-8">
+                <div style="display:block;">
+                   <a href="{{url_for('signup')}}">
+                    <button class="btn btn-danger" style="margin-top:5%;width:100%;">
+                        가입하기!
+                    </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 <div class="col-xs-2"></div>
@@ -73,7 +82,7 @@
 
 
 
-
+<!-- 
 {% if main is not defined %}
 <script type="text/javascript">
     $(document).ready(function(){
@@ -81,7 +90,7 @@
     });
 </script>
 {% endif %}
-
+ -->
 
 </body>
 
