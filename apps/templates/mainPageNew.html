@@ -19,17 +19,17 @@
 
     </script>
 </head>
-<body style="background-size:cover; background-image: url(../static/img/saint.jpg)">
+<!-- <body style="background-size:cover; background-image: url(../static/img/saint.jpg)"> -->
+<body style="background-color:rgba(0, 11, 84, 0.8);">
 <div class="col-xs-2"></div>
 <!--contents 시작-->
-<div class="col-xs-8" style="font-family: Jua">
-    현자타임엔 직박구리!
+<div class="col-xs-8">
     <div class="mainContents">
         <form action='{{url_for("login")}}' method="POST">
             <fieldset>
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="error_message" style="font-family:'jua';">
+                        <div class="error_message" style="text-align:center;">
                             {% with errors = get_flashed_messages(category_filter=["error"]) %}
                             {% if errors %}
                             {% for msg in errors %}
@@ -41,9 +41,9 @@
                     </div>
                     <div class="col-xs-2"></div>
                     <div class="col-xs-8">
-                        {{ form2.hidden_tag() }}
+                        {{ form.hidden_tag() }}
                         {% from "_form_field.html" import render_field %}
-                        {% for field in form2 %}
+                        {% for field in form %}
                         {% if field.widget.input_type != 'hidden' %}
                         {{ render_field(field, class="form-control") }}
                         {% endif %}
@@ -51,14 +51,30 @@
                     </div>
                     <div class="col-xs-2"></div>
                 </div>
-                <div class="control-group col-xs-12">
+                <div class="row">
+                <div class="control-group col-xs-offset-2 col-xs-8">
                     <div style="display:block;">
-                        <button class="btn btn-custom-login" style="width:50px;font-family:'jua';">가자!</button>
+                        <button class="btn btn-primary" style="margin-top:5%;width:100%;">
+                            들어가자!
+                        </button>
                     </div>
                 </div>
-
+                </div>
             </fieldset>
         </form>
+        
+        <div class="row">
+            <div class="control-group col-xs-offset-2 col-xs-8">
+                <div style="display:block;">
+                   <a href="{{url_for('signup')}}">
+                    <button class="btn btn-danger" style="margin-top:5%;width:100%;">
+                        가입하기!
+                    </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 <div class="col-xs-2"></div>
@@ -66,7 +82,7 @@
 
 
 
-
+<!-- 
 {% if main is not defined %}
 <script type="text/javascript">
     $(document).ready(function(){
@@ -74,7 +90,7 @@
     });
 </script>
 {% endif %}
-
+ -->
 
 </body>
 
