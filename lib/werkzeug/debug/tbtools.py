@@ -36,7 +36,7 @@ HEADER = u'''\
 <html>
   <head>
     <title>%(title)s // Werkzeug Debugger</title>
-    <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css" type="text/css">
+    <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style-old.css" type="text/css">
     <script type="text/javascript" src="?__debugger__=yes&amp;cmd=resource&amp;f=jquery.js"></script>
     <script type="text/javascript" src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
     <script type="text/javascript">

@@ -1,119 +1,107 @@
-<!--영상 s메인 페이지-->
+<!--영상 메인 페이지-->
 
 {% extends "nav_layout.html" %}
 {% block css %}
 <style type=text/css>
-    #newA{
-        color: blue;
+
+    div{
+        font-family:"Jua"
     }
-    @media only screen and (min-width : 1500px) {
-        .actor_name_text {
-            /*position: relative;*/
-            /*top: 17px;*/
-            /*left: -3px;*/
-            text-align: center;
-            font-family: 'jua';
-            font-size: 15px;
-            margin-top: 1.5em;
-            margin-right: 3em;
-
-        }
-        .plus_sign{
-            width: 40%;
-            position: relative;
-            top: 3em;
-            right: 1.4em;
-        }
-
-
-    }
-
 </style>
+
 {% endblock css %}
 {% block js %}
-<script type='text/javascript' src="{{url_for('static', filename='js/comment.js')}}"></script>
 {% endblock %}
+
+
 {% block content %}
-<div id="STATICMENU" class="rank_chart">
-    <div class="text-center" style="font-size: 25px;margin-top: 10px; border-bottom: 2px;">전체 랭킹</div>
-    <hr style="border-bottom:2px;"/>
-    <ol style="font-size: 16px;">
-        {% for each in totalRank %}
-        <div><li style="margin-bottom: 10px;"><a href="../actorDetail/{{each.name}}">{{each.name}}</a></li></div>
-        {% endfor %}
-    </ol>
-</div>
-<div class="col-md-2"></div>
-<div class="col-md-10">
-    </br>
-    <div>
-        <span class="main_category_name">귀여운 단신</span>
+<div class="col-md-1"></div>
+<div class="col-md-10" style="margin-top:6.67em;">
+
+    <div class="col-md-2 rank_chart">
+        <div class="text-center" style="color: #ffffff; font-size: 20px;">전체 랭킹</div>
+        <hr style="margin-top: 10px; margin-bottom: 10px;"/>
+        <ol style="font-size: 14px;" class="text-center">
+            {% for each in totalRank %}
+            <div><li style="margin-bottom: 10px; color: #ffffff"><a href="../actorDetail/{{each.name}}">{{each.name}}</a></li></div>
+            {% endfor %}
+        </ol>
     </div>
 
-    <div class="row main_category">
-        {% for each in categoryOne %}
-        <div class="col-md-2 main_thumnail">
-            <a href="/actorDetail/{{each.name}}">
-                <div class="actor_score_text">{{each.average}} 점</div>
-                <img class="main_image" src="/show2/{{each.name}}"/>
-                <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
-            </a>
-        </div>
-        {% endfor %}
-        <div class="col-xs-2 main_thumnail" style="color:black;">
-            <a href="/a_category/1" style="color:black; font-family:'jua';font-size:20px;text-align:center;">
-                <div class="more_folder">
-                    <img class="plus_sign" src="{{url_for('static', filename='img/plus_simple.png')}}"/>
-                </div>
-            </a>
-        </div>
-    </div>
-    </br>
-    <div>
-        <span class="main_category_name">적당한 스타일</span>
-    </div>
-    <div class="row main_category">
-        {% for each in categoryTwo %}
+    <div class="col-md-10">
 
-        <div class="col-xs-2 main_thumnail">
-            <a href="/actorDetail/{{each.name}}">
-                <div class="actor_score_text">{{each.average}} 점</div>
-                <img class="main_image" src="/show2/{{each.name}}"/>
-                <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
-            </a>
-        </div>
-        {% endfor %}
-        <div class="col-xs-2 main_thumnail" style="color:black;">
-            <a href="/a_category/2" style="color:black; font-family:'jua';font-size:20px;text-align:center;">
-                <div class="more_folder">
-                    <img class="plus_sign" src="{{url_for('static', filename='img/plus_simple.png')}}"/>
+        <div class="row">
+            <div class="col-sm-4 col-md-2">
+                <div class="thumbnail text-center">
+                    <a href="/a_category/1">
+                        <div ><img src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="plus_sign"/></div>
+                        <div style="color: #000000">귀여운 단신</div>
+                    </a>
                 </div>
-            </a>
-        </div>
-    </div>
-    </br>
-    <div>
-        <span class="main_category_name">쭉쭉빵빵</span>
-    </div>
-    <div class="row main_category">
-        {% for each in categoryThree %}
-        <div class="col-xs-2 main_thumnail">
-            <a href="/actorDetail/{{each.name}}">
-                <div class="actor_score_text">{{each.average}} 점</div>
-                <img class="main_image" src="/show2/{{each.name}}"/>
-                <div class="actor_name_text" style="color: #000000">{{each.name}}</div>
-            </a>
-        </div>
-        {% endfor %}
-        <div class="col-xs-2 main_thumnail" style="color:black;">
-            <a href="/a_category/3" style="color:black; font-family:'jua';font-size:20px;text-align:center;">
-                <div class="more_folder">
-                    <img class="plus_sign" src="{{url_for('static', filename='img/plus_simple.png')}}"/>
+            </div>
+            {% for each in categoryOne %}
+            <div class="col-sm-4 col-md-2">
+                <div class="thumbnail text-center">
+                    <a href="/actorDetail/{{each.name}}">
+                        <div >{{each.average}} 점</div>
+                        <img src="/show2/{{each.name}}" class="main_img"/>
+                        <div style="color: #000000">{{each.name}}</div>
+                    </a>
                 </div>
-            </a>
+            </div>
+            {% endfor %}
         </div>
+
+
+        <div class="row">
+            <div class="col-sm-4 col-md-2">
+                <div class="thumbnail text-center">
+                    <a href="/a_category/2">
+                        <div ><img src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="plus_sign"/></div>
+                        <div style="color: #000000">적당한 체형</div>
+                    </a>
+                </div>
+            </div>
+            {% for each in categoryTwo %}
+            <div class="col-sm-4 col-md-2">
+                <div class="thumbnail text-center">
+                    <a href="/actorDetail/{{each.name}}">
+                        <div >{{each.average}} 점</div>
+                        <img src="/show2/{{each.name}}" class="main_img"/>
+                        <div style="color: #000000">{{each.name}}</div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4 col-md-2">
+                <div class="thumbnail text-center">
+                    <a href="/a_category/3">
+                        <div ><img src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="plus_sign"/></div>
+                        <div style="color: #000000">쭉쭉빵빵</div>
+                    </a>
+                </div>
+            </div>
+            {% for each in categoryThree %}
+            <div class="col-sm-4 col-md-2">
+                <div class="thumbnail text-center">
+                    <a href="/actorDetail/{{each.name}}">
+                        <div >{{each.average}} 점</div>
+                        <img src="/show2/{{each.name}}" class="main_img"/>
+                        <div style="color: #000000">{{each.name}}</div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+
     </div>
-    </br>
 </div>
-<div style="position:relative;top:1000px;height:50px;width:100%;"></div>
+
+<div class="col-md-1"></div>
 {% endblock %}
