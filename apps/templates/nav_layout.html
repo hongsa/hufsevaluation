@@ -18,104 +18,16 @@
 
 
     {% block css %}
+    <style type=text/css>
+        @media only screen and (min-width : 970px) and (max-width:1024px ){
+            #mid{
+                font-size: 12px;
+            }
+        }
+    </style>
     {% endblock css%}
     {% block js %}
     {% endblock js %}
-
-    <!--<style type='text/css'>-->
-
-    <!--@font-face{-->
-    <!--font-family:"jua";-->
-    <!--src: url("../static/fonts/BM-JUA.ttf");-->
-    <!--src: url("../../static/fonts/BM-JUA.ttf");-->
-    <!--}-->
-
-    <!--.navbar-default {-->
-    <!--background-color:rgba(1, 12, 84, 1);-->
-    <!--border-color:rgba(1, 12, 84, 1); }-->
-    <!--.navbar-default .navbar-brand {-->
-    <!--color: white; }-->
-    <!--.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {-->
-    <!--color:rgb(206, 221, 255); }-->
-    <!--.navbar-default .navbar-nav > li > a {-->
-    <!--color: white; }-->
-    <!--.navbar-default .navbar-nav > li > a:hover,-->
-    <!--.navbar-default .navbar-nav > li > a:focus {-->
-    <!--color:rgb(206, 221, 255); }-->
-    <!--.navbar-default .navbar-nav .active > a,-->
-    <!--.navbar-default .navbar-nav .active > a:hover,-->
-    <!--.navbar-default .navbar-nav .active > a:focus {-->
-    <!--color:rgb(206, 221, 255);-->
-    <!--background-color: #1012A0; }-->
-    <!--.navbar-default .navbar-nav .open > a, .navbar-default .navbar-nav .open > a:hover,-->
-    <!--.navbar-default .navbar-nav .open > a:focus {-->
-    <!--color:rgb(206, 221, 255);-->
-    <!--background-color: #1012A0; }-->
-    <!--.navbar-default .navbar-nav .open > a .caret,-->
-    <!--.navbar-default .navbar-nav .open > a:hover .caret,-->
-    <!--.navbar-default .navbar-nav .open > a:focus .caret {-->
-    <!--border-top-color:rgb(206, 221, 255);-->
-    <!--border-bottom-color:rgb(206, 221, 255); }-->
-    <!--.navbar-default .navbar-nav > .dropdown > a .caret {-->
-    <!--border-top-color: white;-->
-    <!--border-bottom-color: white; }-->
-    <!--.navbar-default .navbar-nav > .dropdown > a:hover .caret,-->
-    <!--.navbar-default .navbar-nav > .dropdown > a:focus .caret {-->
-    <!--border-top-color:rgb(206, 221, 255);-->
-    <!--border-bottom-color:rgb(206, 221, 255); }-->
-    <!--.navbar-default .navbar-toggle {-->
-    <!--border-color: #1012A0; }-->
-    <!--.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {-->
-    <!--background-color: #1012A0; }-->
-    <!--.navbar-default .navbar-toggle .icon-bar {-->
-    <!--background-color: white; }-->
-
-    <!--@media (max-width: 767px) {-->
-    <!--.navbar-default .navbar-nav .open .dropdown-menu > li > a {-->
-    <!--color: white;   }-->
-    <!--.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,-->
-    <!--.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {-->
-    <!--color:rgb(206, 221, 255);-->
-    <!--background-color:#0C0EA6;   }-->
-    <!--}-->
-
-    <!--.btn-custom {-->
-    <!--background-color: hsl(45, 84%, 80%) !important;-->
-    <!--background-repeat: repeat-x;-->
-    <!--filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f6e1a1", endColorstr="#f6e1a1");-->
-    <!--background-image: -khtml-gradient(linear, left top, left bottom, from(#f6e1a1), to(#f6e1a1));-->
-    <!--background-image: -moz-linear-gradient(top, #f6e1a1, #f6e1a1);-->
-    <!--background-image: -ms-linear-gradient(top, #f6e1a1, #f6e1a1);-->
-    <!--background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6e1a1), color-stop(100%, #f6e1a1));-->
-    <!--background-image: -webkit-linear-gradient(top, #f6e1a1, #f6e1a1);-->
-    <!--background-image: -o-linear-gradient(top, #f6e1a1, #f6e1a1);-->
-    <!--background-image: linear-gradient(#f6e1a1, #f6e1a1);-->
-    <!--border-color: #f6e1a1 #f6e1a1 hsl(45, 84%, 80%);-->
-    <!--color: #746F6F !important;-->
-    <!--font-weight: bold;-->
-    <!--text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);-->
-    <!---webkit-font-smoothing: antialiased;-->
-    <!--}-->
-
-    <!--.btn-custom2 {-->
-    <!--background-color: hsl(285, 100%, 100%) !important;-->
-    <!--background-repeat: repeat-x;-->
-    <!--filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#ffffff");-->
-    <!--background-image: -khtml-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));-->
-    <!--background-image: -moz-linear-gradient(top, #ffffff, #ffffff);-->
-    <!--background-image: -ms-linear-gradient(top, #ffffff, #ffffff);-->
-    <!--background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #ffffff));-->
-    <!--background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);-->
-    <!--background-image: -o-linear-gradient(top, #ffffff, #ffffff);-->
-    <!--background-image: linear-gradient(#ffffff, #ffffff);-->
-    <!--border-color: #ffffff #ffffff hsl(285, 100%, 100%);-->
-    <!--color: #333 !important;-->
-    <!--text-shadow: 0 1px 1px rgba(255, 255, 255, 0.00);-->
-    <!---webkit-font-smoothing: antialiased;-->
-    <!--}-->
-    <!--</style>-->
-
-
 
 
     <script type='text/javascript'>//<![CDATA[
@@ -140,7 +52,7 @@
 
 
 <body>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color: rgba(1, 12, 84, 1)">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color: rgba(1, 12, 84, 1)" id="mid">
     <!-- 모바일 전환시 생기는 네비게이션 바 -->
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="background-color: rgba(1, 12, 84, 1)">
@@ -192,7 +104,6 @@
             <button name="submitbutton" value="second" type="submit" class="btn btn-warning btn-sm">
                 토렌트검색
             </button>
-
 
         </form>
 

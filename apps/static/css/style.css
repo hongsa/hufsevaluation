@@ -62,3 +62,8 @@ html,body{
     width: 10em;
     height: 12em;
 }
+.detail_box{
+    background-color: rgba(136, 50, 245, 0.1);
+    height: 18.400em;
+    border-style: ridge;
+}

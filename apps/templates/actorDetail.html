@@ -21,7 +21,7 @@
 <div class="col-md-10" style="margin-top:6.67em;">
 
     <div class="row">
-        <div class="col-sm-6 col-md-3" style="margin-right: 3em;">
+        <div class="col-sm-6 col-md-3" >
             <div class="thumbnail text-center" id="{{actorRow.name}}">
                 <img src="/show2/{{actorRow.name}}" alt="" class="detail_img"/>
                 <div class="a_star_area">
@@ -36,9 +36,9 @@
             </div>
         </div>
 
-        <div class="col-sm-8 col-md-4" style="background-color: rgba(136, 50, 245, 0.1); margin-right: 3em; height: 18.400em;">
+        <div class="col-sm-8 col-md-4 detail_box" >
             <div>
-                <p>기본 정보</p>
+                <h3>기본 정보</h3>
                 <p>평균평점 : <span>{{actorRow.average}}</span> 점</p>
                 <p>평가인원 : <span>{{actorRow.count}}</span> 명</p>
                 <p>체형 :
@@ -57,8 +57,9 @@
 
             </div>
         </div>
-        <div class="col-sm-6 col-md-3" style="background-color: rgba(136, 50, 245, 0.1); height: 18.400em; margin-right: 3em;">
-            <p >출연 작품</p>
+        <div class="col-sm-2 col-md-1" ></div>
+        <div class="col-sm-6 col-md-3 detail_box">
+            <h3>출연 작품</h3>
             {% for each in appearVideo %}
             <p><a href="../videoDetail/{{each['name']}}"><span>{{each['name']}}&nbsp;({{each['average']}} 점)</span></a></p>
             {% endfor %}
@@ -91,13 +92,13 @@
         <div class="col-sm-12">
 
             {% for each in comments %}
-            <div class="panel-default" style="margin-bottom:1em;">
-                <div class="row" >
-                    <div class="col-sm-2 text-center" style="background-color: rgba(136, 50, 245, 0.1);">
+            <div class="panel panel-default">
+                <div class="row">
+                    <div class="col-sm-2 text-center" >
                         <p>{{each['author']}}</p>
                     </div>
-                    <div class="col-sm-9" style="background-color: rgba(136, 50, 245, 0.1);">
-                        <p class="text-left">{{each['content']}}</p>
+                    <div class="col-sm-9">
+                        <p class="text-center">{{each['content']}}</p>
                     </div>
                 </div>
             </div>
