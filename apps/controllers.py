@@ -9,7 +9,7 @@ from apps import forms
 import math
 from controller import userController
 import logging
-
+import recommendation
 # userController에서 관리하는 부분 시작
 @app.route('/')
 @app.route('/index')
@@ -804,3 +804,8 @@ def video_comment():
 @app.route('/contact', methods=['GET','POST'])
 def contact():
     return render_template("contact.html")
+
+#추천 페이지 name은 유저닉네임
+@app.route('/recommendation/<name>')
+def recommend(name):
+    return recommendation.controlRecommend(name)

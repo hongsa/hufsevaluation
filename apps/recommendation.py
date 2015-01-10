@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from math import sqrt
 from models import User
-#표본데이터 생성중
+import logging
+#표본데이터 예제
 critics={'JaeHyeon': {'Aladdin': 2.5, 'Up': 3.5, 'StarWars':3.0, 'Her':3.5, 'HarryPotter':2.5, 'XMen':3.0},
 
          'SangDo': {'Aladdin':3.0, 'Up':3.5, 'StarWars':1.5, 'Her':5.0, 'XMen':3.0, 'WallE':3.5},
@@ -17,7 +18,16 @@ critics={'JaeHyeon': {'Aladdin': 2.5, 'Up': 3.5, 'StarWars':3.0, 'Her':3.5, 'Har
          'YeWon':{'Up':4.5, 'HarryPotter':1.0, 'Her':4.0}
 }
 
-#표본데이터 DB에서 추출
+#표본데이터 dict 형태로 DB에서 추출
+def makePref():
+    dict = {}
+    allUser = User.query.all()
+    for each in allUser: #각 유저 한 row
+        dict[each.nickname] = {}
+        for row in each.ratingVideo_user:
+            dict[each.nickname][row.videoName]= row.rating
+    logging.error(dict)
+    return dict
 
 
 #유클리디안 거리점수
@@ -25,6 +35,7 @@ def simDistance(prefs,person1,person2):
     si={}
 
     for each in prefs[person1]:
+        # ex) 'Jaehyeon'의 경우 {영화1:평점1 ...} 에서 each란 dict의 각 key값 (Aladdin, Up 등등...)
         if each in prefs[person2]:
             si[each] = 1
 
@@ -35,8 +46,6 @@ def simDistance(prefs,person1,person2):
     return 1/(1+sqrt(sumOfSquares))
 
 print simDistance(critics,'JaeHyeon','SangDo')
-
-
 
 #피어슨 상관점수
 
@@ -135,8 +144,5 @@ print getRecommendations(critics,"JaeHyeon", similarity=simDistance)
 
 
 
-def getUserTable():
-    user = User.query.get(all)
-    return user
-
-
+def controlRecommend(name):
+    return getRecommendations(makePref,name,similarity=simPearson)
