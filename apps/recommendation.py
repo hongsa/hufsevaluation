@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from math import sqrt
-
-
-
-#표본데이터 생성
+from models import User
+#표본데이터 생성중
 critics={'JaeHyeon': {'Aladdin': 2.5, 'Up': 3.5, 'StarWars':3.0, 'Her':3.5, 'HarryPotter':2.5, 'XMen':3.0},
 
          'SangDo': {'Aladdin':3.0, 'Up':3.5, 'StarWars':1.5, 'Her':5.0, 'XMen':3.0, 'WallE':3.5},
@@ -140,3 +138,5 @@ print getRecommendations(critics,"JaeHyeon", similarity=simDistance)
 def getUserTable():
     user = User.query.get(all)
     return user
+
+
