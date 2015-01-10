@@ -805,7 +805,8 @@ def video_comment():
 def contact():
     return render_template("contact.html")
 
-#추천 페이지 name은 유저닉네임
+
+# 추천기능
 @app.route('/recommendation',methods=['GET','POST'])
 def recommend():
     #로그인 안돼있으면 튕기는 부분
