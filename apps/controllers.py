@@ -815,6 +815,7 @@ def recommend():
         return redirect(url_for('index'))
     email = session['session_user_email']
     cUser = User.query.get(email)
+
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if len(cUser.ratings())<=25:
         return '평가를 더 하셔야 합니다.'
