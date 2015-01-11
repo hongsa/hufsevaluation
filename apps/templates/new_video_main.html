@@ -1,20 +1,6 @@
 <!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지-->
 {% extends "nav_layout.html" %}
 {% block css %}
-<style type=text/css>
-    @media only screen and (min-width : 1500px) {
-        .img_name_text_video{
-            position: relative;
-            top: 30px;
-            font-family: 'jua';
-            font-size: 17px;
-            color: #000000;
-            /*left: 3.5em;*/
-            text-align: center;
-            right: 3em;
-        }
-    }
-</style>
 {% endblock css %}
 {% block js %}
 <script type="text/javascript" src="{{url_for('static', filename='js/video_star.js')}}"></script>
@@ -24,58 +10,65 @@
 {% endblock %}
 
 {% block content %}
-    <div id="STATICMENU" class="rank_chart" style="overflow:scroll;">
-        <div class="text-center" style="font-size: 25px;color:white;margin-top:10px;border-bottom:2px;">기획사별</div>
-        <hr style="border-bottom:2px;"/>
-        <div>
-            <div class="row text-center">
-                {% for each in companyList %}
-                <div style="margin-bottom: 5px;">
-                    <a href="/n_video/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px;">{{each}}</button></a>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-offset-2 col-xs-10" style="position:relative;top:50px;">
-        <div class="text-center" style="margin-top: 3em;">
-            <span class="category_name">{{company}}</span>
-        </div>
-        {% for each in videoCompany %}
-        <div class="col-xs-3 thumbnail_folder_actor" id="{{each.name}}">
-            <a href="../../videoDetail/{{each.name}}">
-                <div class="video_category_average">{{each.average}} 점</div>
-                <div class="video_category_people">({{each.count}} 명)</div>
-                <img class="category_image_video" src="/show1/{{each.name}}" alt=""/>
-            </a>
-            <div class="v_star_area">
-                <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"  />
-                <button class="v_bookmark btn btn-custom3" type="button">보고싶어요!</button>
-            </div>
-            <a href="../../videoDetail/{{each.name}}">
-                <div class="img_name_text_video">
-                    <div>{{each.name}}</div>
-                </div>
-            </a>
-        </div>
+<div class="col-md-1"></div>
+<div class="col-md-10" style="margin-top:6.67em;">
 
-        {% endfor %}
-    </div>
-
-    <div class="row text-center">
-       <ul class="pagination" style="margin-top: 100px; margin-left: 100px;">
-            <li>
-                <a href="/n_video/{{company}}/{{down}}">&laquo;</a>
-            </li>
-            {% for page in total_page %}
-            <li>
-                <a href="/n_video/{{company}}/{{page}}">{{page}}</a>
-            </li>
+    <div class="col-md-2 rank_chart">
+        <div class="text-center" style="color: #ffffff; font-size: 20px;">기획사별</div>
+        <hr style="margin-top: 10px; margin-bottom: 10px;"/>
+        <div class="text-center">
+            {% for each in companyList %}
+            <div style="margin-bottom: 5px;">
+                <a href="/n_video/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px;">{{each}}</button></a>
+            </div>
             {% endfor %}
-            <li>
-                <a href="/n_video/{{company}}/{{up}}">&raquo;</a>
-            </li>
-        </ul>
-
+        </div>
     </div>
+
+    <div class="col-md-10">
+        <div class="text-center">
+            <span class="category_name">{{company}}의 작품</span>
+        </div>
+
+        {% for each in videoCompany %}
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail text-center" id="{{each.name}}">
+                <a href="../../videoDetail/{{each.name}}">
+                    <div >{{each.average}} 점</div>
+                    <div >({{each.count}} 명)</div>
+                    <img src="/show1/{{each.name}}"  class="category_img" alt=""/>
+                </a>
+                <div class="v_star_area">
+                    <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
+                    <button class="v_bookmark btn btn-success btn-sm" type="button">보고싶어요!</button>
+                </div>
+                <a href="../../videoDetail/{{each.name}}">
+                    <div>
+                        <div>{{each.name}}</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="row text-center">
+            <ul class="pagination">
+                <li>
+                    <a href="/n_video/{{company}}/{{down}}">&laquo;</a>
+                </li>
+                {% for page in total_page %}
+                <li>
+                    <a href="/n_video/{{company}}/{{page}}">{{page}}</a>
+                </li>
+                {% endfor %}
+                <li>
+                    <a href="/n_video/{{company}}/{{up}}">&raquo;</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-md-1"></div>
 {% endblock %}

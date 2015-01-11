@@ -7,6 +7,11 @@
     div{
         font-family:"Jua"
     }
+    /*.thumbnail{*/
+    /*background: url("../static/img/folder_layout8_1.png");*/
+    /*max-width: 100%;*/
+    /*height: auto;*/
+    /*}*/
 </style>
 
 {% endblock css %}
@@ -33,6 +38,7 @@
         <div class="row">
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
+                    <!--<img src="{{url_for('static', filename='img/folder_layout8_1.png')}}" class="img-responsive" alt="Responsive image"/>-->
                     <a href="/a_category/1">
                         <div ><img src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="plus_sign"/></div>
                         <div style="color: #000000">귀여운 단신</div>
@@ -42,11 +48,13 @@
             {% for each in categoryOne %}
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
-                    <a href="/actorDetail/{{each.name}}">
-                        <div >{{each.average}} 점</div>
-                        <img src="/show2/{{each.name}}" class="main_img"/>
-                        <div style="color: #000000">{{each.name}}</div>
-                    </a>
+                    <!--<div class="folder img-responsive" alt="Responsive image" >-->
+                        <a href="/actorDetail/{{each.name}}">
+                            <div >{{each.average}} 점</div>
+                            <img src="/show2/{{each.name}}" class="main_img"/>
+                            <div style="color: #000000">{{each.name}}</div>
+                        </a>
+                    <!--</div>-->
                 </div>
             </div>
             {% endfor %}

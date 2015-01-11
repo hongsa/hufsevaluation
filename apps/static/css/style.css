@@ -67,3 +67,8 @@ html,body{
     height: 18.400em;
     border-style: ridge;
 }
+.folder{
+    background-image: url('../img/folder_layout8_1.png');
+    max-width: 100%;
+    height: auto;
+}
