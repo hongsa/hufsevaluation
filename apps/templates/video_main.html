@@ -11,7 +11,7 @@
 <div class="col-md-10" style="margin-top:6.67em;">
 
     <div class="col-md-2 rank_chart">
-        <div class="text-center" style="color: #ffffff; font-size: 20px;">전체 랭킹</div>
+        <div class="text-center" style="color: #ffffff; font-size: 20px;">전체 영상 랭킹</div>
         <hr style="margin-top: 10px; margin-bottom: 10px;"/>
         <ol style="font-size: 14px;" class="text-center">
             {% for each in totalRank %}
@@ -26,7 +26,8 @@
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
                     <a href="/v_category/1">
-                        <div ><img src="{{url_for('static', filename='img/plus_simple.png')}}" class="plus_sign"/></div>
+                        <div ><img src="{{url_for('static', filename='img/plus_simple.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
+                        <div class="all_name_small"><span style="color: blue">"마치 연인처럼"</span><br/> 카테고리 더보기</div>
                     </a>
                 </div>
             </div>
@@ -36,7 +37,7 @@
                     <a href="/videoDetail/{{each.name}}">
                         <div >{{each.average}} 점</div>
                         <img src="/show1/{{each.name}}" class="main_img"/>
-                        <div style="color: #000000">{{each.name}}</div>
+                        <div class="all_name_small">{{each.name}}</div>
                     </a>
                 </div>
             </div>
@@ -48,7 +49,8 @@
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
                     <a href="/v_category/2">
-                        <div ><img src="{{url_for('static', filename='img/plus_simple.png')}}" class="plus_sign"/></div>
+                        <div ><img src="{{url_for('static', filename='img/plus_simple.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
+                        <div class="all_name_small"><span style="color: blue">"지인과 함께"</span><br/> 카테고리 더보기</div>
                     </a>
                 </div>
             </div>
@@ -58,7 +60,7 @@
                     <a href="/videoDetail/{{each.name}}">
                         <div >{{each.average}} 점</div>
                         <img src="/show1/{{each.name}}" class="main_img"/>
-                        <div style="color: #000000">{{each.name}}</div>
+                        <div class="all_name_small">{{each.name}}</div>
                     </a>
                 </div>
             </div>
@@ -70,7 +72,8 @@
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
                     <a href="/v_category/3">
-                        <div ><img src="{{url_for('static', filename='img/plus_simple.png')}}" class="plus_sign"/></div>
+                        <div ><img src="{{url_for('static', filename='img/plus_simple.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
+                        <div class="all_name_small"><span style="color: blue">"특별한 장소"</span><br/> 카테고리 더보기</div>
                     </a>
                 </div>
             </div>
@@ -80,7 +83,7 @@
                     <a href="/videoDetail/{{each.name}}">
                         <div >{{each.average}} 점</div>
                         <img src="/show1/{{each.name}}" class="main_img"/>
-                        <div style="color: #000000">{{each.name}}</div>
+                        <div class="all_name_small">{{each.name}}</div>
                     </a>
                 </div>
             </div>
@@ -90,8 +93,9 @@
         <div class="row">
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
-                    <a href="/v_category/3">
-                        <div ><img src="{{url_for('static', filename='img/plus_simple.png')}}" class="plus_sign"/></div>
+                    <a href="/v_category/4">
+                        <div ><img src="{{url_for('static', filename='img/plus_simple.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
+                        <div class="all_name_small"><span style="color: blue">"우리는 팀플"</span><br/> 카테고리 더보기</div>
                     </a>
                 </div>
             </div>
@@ -101,7 +105,7 @@
                     <a href="/videoDetail/{{each.name}}">
                         <div >{{each.average}} 점</div>
                         <img src="/show1/{{each.name}}" class="main_img"/>
-                        <div style="color: #000000">{{each.name}}</div>
+                        <div class="all_name_small">{{each.name}}</div>
                     </a>
                 </div>
             </div>
@@ -111,8 +115,9 @@
         <div class="row">
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
-                    <a href="/v_category/3">
-                        <div ><img src="{{url_for('static', filename='img/plus_simple.png')}}" class="plus_sign"/></div>
+                    <a href="/v_category/5">
+                        <div><img src="{{url_for('static', filename='img/plus_simple.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
+                        <div class="all_name_small"><span style="color: blue">"기발한 상황극"</span><br/> 카테고리 더보기</div>
                     </a>
                 </div>
             </div>
@@ -122,7 +127,7 @@
                     <a href="/videoDetail/{{each.name}}">
                         <div >{{each.average}} 점</div>
                         <img src="/show1/{{each.name}}" class="main_img"/>
-                        <div style="color: #000000">{{each.name}}</div>
+                        <div class="all_name_small">{{each.name}}</div>
                     </a>
                 </div>
             </div>

@@ -1,11 +1,6 @@
 <!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지-->
 {% extends "nav_layout.html" %}
 {% block css %}
-<style type="text/css">
-    .{
-        font-family: 'jua';
-    }
-</style>
 {% endblock css %}
 {% block js %}
 
@@ -16,16 +11,14 @@
 <div class="col-md-1"></div>
 <div class="col-md-10 text-center" style="margin-top:6.67em;">
 
-    <img style="height:13.33em" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
+  <img style="height:13.33em; display: inline-block" src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="img-responsive" alt="Responsive image">
 
-    <h2 class="">직박구리는 서로의 취향을 부끄러워 하지 않고 재미있게 이야기할 수 있도록</h2>
-    <h2 class="">젊은 청년들이 모여서 만든 기괴한 서비스입니다. 즐겨주세요!</h2>
+    <p class="contact">직박구리는 서로의 취향을 부끄러워 하지 않고 재미있게 이야기할 수 있도록</p>
+    <p class="contact">젊은 청년들이 모여서 만든 기괴한 서비스입니다. 즐겨주세요!</p>
     <br/>
-    <h2 class="">제휴문의 및 건의사항을 보내주세요!</h2>
-    <h2 class="" style="color: #47038C;">help@jikbakguri.com</h2>
-
+    <p class="contact">제휴문의 및 건의사항을 보내주세요!</p>
+    <p class="contact" style="color: #47038C;">help@jikbakguri.com</p>
 </div>
-
 
 <div class="col-md-1"></div>
 

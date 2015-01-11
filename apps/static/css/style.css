@@ -1,4 +1,5 @@
 /*폰트 import 부분입니다*/
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 @font-face{
     font-family:'Jua';
     src: url("../fonts/BM-JUA.woff");
@@ -10,26 +11,29 @@
     src: url("../fonts/BareunDotumOTFPro2.woff");
     font-family: 'Bareun3';
     src: url("../fonts/BareunDotumOTFPro3.woff");
+    font-family:"Hanna";
+    src: url("../fonts/BM-HANNA.woff");
+
 }
 
 html,body{
-    /*margin: 0;*/
-    /*height: 100%;*/
-    /*width: 100%;*/
-    font-family: 'Jua';
+margin: 0;
+height: 100%;
+width: 100%;
+font-family: 'Hanna';
 }
 .symbol {
     display: inline-block;
-    width: 16px;
-    height: 16px;
+    width: 25px;
+    height: 25px;
 }
 
 .symbol-empty {
-    background-image: url(../img/star-off.png);
+    background-image: url(../img/star-off_big.png);
 }
 
 .symbol-filled {
-    background-image: url(../img/star-on.png);
+    background-image: url(../img/star-on_big.png);
 }
 .main_img{
     width: 8em;
@@ -45,12 +49,12 @@ html,body{
     border-radius: 10px;
     background-color: rgba(1, 12, 84, 1);
     margin-bottom: 10px;
+    font-family: "Nanum Gothic";
+    font-weight: bold;
 }
 
 .category_name{
-    font-family: 'Jua';
-    font-weight: bold;
-    font-size: 25px;
+    font-size: 30px;
     margin-bottom: 3em;
 }
 
@@ -67,8 +71,33 @@ html,body{
     height: 18.400em;
     border-style: ridge;
 }
+.detail_box2{
+    background-color: rgba(136, 50, 245, 0.1);
+    height: 18.400em;
+    border-style: ridge;
+    overflow: scroll;
+}
+
+
 .folder{
     background-image: url('../img/folder_layout8_1.png');
     max-width: 100%;
     height: auto;
+}
+.detail_name{
+    font-size: 30px;
+    color: blue;
+}
+.comment_author{
+    color: #18bc9c;
+}
+.all_name{
+    color: black;
+    font-size: 20px;
+ }
+.contact{
+    font-size: 25px;
+}
+.all_name_small{
+    color: #000000;
 }

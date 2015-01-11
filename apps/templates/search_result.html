@@ -2,29 +2,16 @@
 
 {% block css %}
 
-<style type="text/css">
-    .search_result {
-
-        position: relative;
-        top: 200px;
-        height: 600px;
-        color: black;
-        text-align: center;
-        font-family: 'jua';
-
-    }
-
-</style>
-
 {%endblock%}
 {% block js %}
 {% endblock js %}
 {% block content %}
 
-<div class="search_result col-md-offset-4 col-md-4" style="position:relative;top:120px;">
+<div class="col-md-1"></div>
+<div class="col-md-10 text-center" style="margin-top:6.67em;">
 
-    <img style="height:200px" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
-    <p style="font-size:40px;">{{searching_word}} 검색결과 입니다.</p>
+<img style="height:13.33em; display: inline-block" src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="img-responsive" alt="Responsive image">
+    <p style="font-size:30px;">{{searching_word}} 검색결과 입니다.</p>
     <div style="background-color:#141A56;">
         {% for i in selected_actor %}
         <div>
@@ -56,7 +43,7 @@
         {% endfor %}
     </div>
 </div>
-
+<div class="col-md-1"></div>
 
 
 {% endblock %}

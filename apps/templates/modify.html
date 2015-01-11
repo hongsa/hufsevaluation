@@ -9,10 +9,10 @@
 
 <div class="col-md-1"></div>
 <div class="col-md-10 text-center" style="margin-top:6.67em;">
-    <img style="height:13.33em" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
-    <h2 style="font-family:'jua';color:#141A56">비밀번호 변경하기</h2>
+   <img style="height:13.33em; display: inline-block" src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="img-responsive" alt="Responsive image">
+    <p style="font-size: 30px;">비밀번호 변경하기</p>
     <form action="{{url_for('modify_password')}}" method="post">
-        <input type="password" name="password" placeholder="  변경할 비밀번호를 입력" style="width: 20%"/> &nbsp;&nbsp;&nbsp;<button class="btn btn-navy" type="submit">변경하기!</button>
+        <input type="password" name="password" placeholder="  변경할 비밀번호를 입력" style="width: 30%"/> &nbsp;&nbsp;&nbsp;<button class="btn btn-warning" type="submit">변경하기!</button>
         <br/>
         {% with errors = get_flashed_messages(category_filter=["password"]) %}
         {% if errors %}
@@ -24,9 +24,9 @@
 
     </form>
 
-    <h2 style="font-family:'jua';color:#141A56">닉네임 변경하기</h2>
+    <p style="font-size: 30px;">닉네임 변경하기</p>
     <form action="{{url_for('modify_nickname')}}" method="post">
-        <input type="text" name="nickname" maxlength="9" placeholder="  변경할 닉네임을 입력 (최대 9자)" style="width: 20%"/>&nbsp;&nbsp;&nbsp;<button class="btn btn-navy" type="submit">변경하기!</button>
+        <input type="text" name="nickname" maxlength="9" placeholder="  변경할 닉네임을 입력 (최대 9자)" style="width: 30%"/>&nbsp;&nbsp;&nbsp;<button class="btn btn-warning" type="submit">변경하기!</button>
         <br/>
         {% with errors = get_flashed_messages(category_filter=["nickname"]) %}
         {% if errors %}

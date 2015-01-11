@@ -13,8 +13,8 @@
 <div class="col-md-8" style="margin-top:6.67em;">
 
     <div id = "buttons" class="text-center">
-        <a href="/a_collection_r/1"><button type="button" id="rating_button" class="btn btn-warning btn-sm"><span style="font-family: 'jua">평가한 배우</span></button></a>
-        <a href="/a_collection_b/1"><button type="button" id="bookmark_button" class="btn btn-primary btn-sm"><span style="font-family: 'jua">보고싶은 배우</span></button></a>
+        <a href="/a_collection_r/1"><button type="button" id="rating_button" class="btn btn-warning"><span>평가한 배우</span></button></a>
+        <a href="/a_collection_b/1"><button type="button" id="bookmark_button" class="btn btn-success"><span>보고싶은 배우</span></button></a>
     </div>
 
     <div class="row" style="margin-top:3em;">
@@ -25,7 +25,7 @@
                     <div>내 평점: <span>{{each.rating}}</span> 점</div>
                     <img src="/show2/{{each.actorName}}"  class="category_img" alt=""/>
                     <div>
-                        <div>{{each.actorName}}</div>
+                        <div class="all_name">{{each.actorName}}</div>
                     </div>
                 </a>
             </div>

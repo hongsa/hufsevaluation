@@ -26,17 +26,18 @@
 <div class="col-md-8" style="margin-top:6.67em;">
 
     <div id = "buttons" class="text-center">
-        <a href="/v_collection_r/1"><button type="button" id="rating_button" class="btn btn-warning btn-sm"><span style="font-family: 'jua">평가한 영상</span></button></a>
-        <a href="/v_collection_b/1"><button type="button" id="bookmark_button" class="btn btn-primary btn-sm"><span style="font-family: 'jua">보고싶은 영상</span></button></a>
+        <a href="/v_collection_r/1"><button type="button" id="rating_button" class="btn btn-warning"><span>평가한 영상</span></button></a>
+        <a href="/v_collection_b/1"><button type="button" id="bookmark_button" class="btn btn-success"><span >보고싶은 영상</span></button></a>
     </div>
     <div class="row" style="margin-top:3em;">
         {% for each in myRating %}
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail text-center">
                 <a href="../../videoDetail/{{each.videoName}}">
+                    <div>내 평점: <span>{{each.rating}}</span> 점</div>
                     <img src="/show1/{{each.videoName}}"  class="category_img" alt=""/>
                     <div>
-                        <div>{{each.videoName}}</div>
+                        <div class="all_name">{{each.videoName}}</div>
                     </div>
                 </a>
             </div>
