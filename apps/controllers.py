@@ -805,7 +805,31 @@ def video_comment():
 def contact():
     return render_template("contact.html")
 
-#추천 페이지 name은 유저닉네임
-@app.route('/recommendation/<name>')
-def recommend(name):
-    return recommendation.controlRecommend(name)
+
+# 추천기능
+@app.route('/recommendation',methods=['GET','POST'])
+def recommend():
+    #로그인 안돼있으면 튕기는 부분
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+    email = session['session_user_email']
+    cUser = User.query.get(email)
+
+    # 추천 수가 부족할 경우 추천 알고리즘 안돌림
+    if len(cUser.ratings())<=25:
+        return '평가를 더 하셔야 합니다.'
+
+    #추천 알고리즘을 위한 표본을 만드는 부분
+    dict={}
+    oUser = User.query.all()
+
+    for each in oUser:
+        # 평가를 안한 user의 경우 표본에서 제외
+        if len(each.ratings()):
+            dict[each.nickname]=each.ratings()
+    logging.error(dict)
+    # 표본 완성
+    # return recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson)
+    return 'well done'
+

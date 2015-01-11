@@ -10,6 +10,12 @@ class User(db.Model):
     sex = db.Column(db.Integer, default = 0)
     joinDATE = db.Column(db.DateTime(),default = db.func.now())
     level = db.Column(db.Integer, default = 0)
+    # 각 유저마다 {'영상':평점 ... } 형태로 dict 리턴
+    def ratings(self):
+        dict = {}
+        for oRating in self.ratingVideo_user:
+            dict[oRating.videoName] = oRating.rating
+        return dict
 
 class Actor(db.Model):
     name = db.Column(db.String(255),primary_key=True)
