@@ -2,9 +2,9 @@
 {% extends "nav_layout.html" %}
 {% block css %}
 <style type="text/css">
-	.contactText{
-		font-family: 'jua';
-	}
+    .{
+        font-family: 'jua';
+    }
 </style>
 {% endblock css %}
 {% block js %}
@@ -13,20 +13,21 @@
 
 {% block content %}
 
+<div class="col-md-1"></div>
+<div class="col-md-10 text-center" style="margin-top:6.67em;">
 
-<div class="col-xs-10 text-center" style="margin-top:150px;">
-    <img style="height:200px" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
+    <img style="height:13.33em" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
 
-    <h2 class="contactText">직박구리는 서로의 취향을 부끄러워 하지 않고 재미있게 이야기할 수 있도록</h2>
-    <h2 class="contactText">젊은 청년들이 모여서 만든 기괴한 서비스입니다. 즐겨주세요!</h2>
+    <h2 class="">직박구리는 서로의 취향을 부끄러워 하지 않고 재미있게 이야기할 수 있도록</h2>
+    <h2 class="">젊은 청년들이 모여서 만든 기괴한 서비스입니다. 즐겨주세요!</h2>
     <br/>
-    <h2 class="contactText">제휴문의 및 건의사항을 보내주세요!</h2>
-    <h2 class="contactText" style="color: #47038C;">help@jikbakguri.com</h2>
+    <h2 class="">제휴문의 및 건의사항을 보내주세요!</h2>
+    <h2 class="" style="color: #47038C;">help@jikbakguri.com</h2>
 
 </div>
 
 
-
+<div class="col-md-1"></div>
 
 
 {% endblock %}

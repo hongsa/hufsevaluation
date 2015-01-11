@@ -1,18 +1,5 @@
 {% extends "nav_layout.html" %}
 {% block css %}
-<style type=text/css>
-    @media only screen and (min-width : 1500px) {
-        .collection_text {
-            position: relative;
-            top: 80px;
-            /*left: 3.5em;*/
-            font-family: 'jua';
-            font-size: 17px;
-            color: #000000;
-            right: 3em;
-        }
-    }
-</style>
 
 {% endblock css %}
 {% block js %}
@@ -24,28 +11,29 @@
 {% block content %}
 
 
-<div class="col-xs-2"></div>
-<div class="col-xs-8">
-    <div id = "buttons" class="text-center" style="margin-top: 70px;">
-        <a href="/a_collection_r/1"><button type="button" id="rating_button" class="btn btn-warning btn-lg"><span style="font-family: 'jua">평가한 배우</span></button></a>
-        <a href="/a_collection_b/1"><button type="button" id="bookmark_button" class="btn btn-primary btn-lg"><span style="font-family: 'jua">보고싶은 배우</span></button></a>
-    </div>
+<div class="col-md-2"></div>
+<div class="col-md-8" style="margin-top:6.67em;">
 
-    <div class="row">
+    <div id = "buttons" class="text-center">
+        <a href="/a_collection_r/1"><button type="button" id="rating_button" class="btn btn-warning btn-sm"><span style="font-family: 'jua">평가한 배우</span></button></a>
+        <a href="/a_collection_b/1"><button type="button" id="bookmark_button" class="btn btn-primary btn-sm"><span style="font-family: 'jua">보고싶은 배우</span></button></a>
+    </div>
+    <div class="row" style="margin-top:3em;">
         {% for each in myBookmark %}
-        <div class="col-xs-3 thumbnail_folder_actor" style="top:40px;">
-            <a href="../../actorDetail/{{each.actorName}}">
-                <img class="collection_image" src="/show2/{{each.actorName}}" alt=""/>
-                <div class="collection_text">
-                    <div>{{each.actorName}}</div>
-                </div>
-            </a>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail text-center">
+                <a href="../../actorDetail/{{each.actorName}}">
+                    <img src="/show2/{{each.actorName}}"  class="category_img" alt=""/>
+                    <div>
+                        <div>{{each.actorName}}</div>
+                    </div>
+                </a>
+            </div>
         </div>
         {% endfor %}
     </div>
-
     <div class="row text-center">
-        <ul class="pagination" style="margin-top: 80px;">
+        <ul class="pagination">
             <li>
                 <a href="/a_collection_b/{{down}}">&laquo;</a>
             </li>
@@ -58,11 +46,10 @@
                 <a href="/a_collection_b/{{down}}">&raquo;</a>
             </li>
         </ul>
-
     </div>
 
 </div>
 
-<div class="col-xs-2"></div>
+<div class="col-md-2"></div>
 
 {% endblock %}

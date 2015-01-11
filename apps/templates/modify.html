@@ -7,8 +7,9 @@
 
 {% block content %}
 
-<div class="col-xs-10 text-center" style="margin-top:150px;">
-    <img style="height:200px" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
+<div class="col-md-1"></div>
+<div class="col-md-10 text-center" style="margin-top:6.67em;">
+    <img style="height:13.33em" src="{{url_for('static', filename='img/jikbak_yellow.png')}}">
     <h2 style="font-family:'jua';color:#141A56">비밀번호 변경하기</h2>
     <form action="{{url_for('modify_password')}}" method="post">
         <input type="password" name="password" placeholder="  변경할 비밀번호를 입력" style="width: 20%"/> &nbsp;&nbsp;&nbsp;<button class="btn btn-navy" type="submit">변경하기!</button>
@@ -36,16 +37,9 @@
         {% endwith %}
 
     </form>
-
-
-
-
-
-
 </div>
 
-
-
+<div class="col-md-1"></div>
 
 
 

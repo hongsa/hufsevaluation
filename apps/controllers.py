@@ -58,7 +58,7 @@ def video_main():
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-    totalRank = Video.query.order_by(desc(Video.average)).limit(10)
+    totalRank = Video.query.order_by(desc(Video.average)).limit(15)
     categoryOne = Video.query.filter_by(category="1").order_by(desc(Video.average)).limit(5)
     categoryTwo = Video.query.filter_by(category="2").order_by(desc(Video.average)).limit(5)
     categoryThree = Video.query.filter_by(category="3").order_by(desc(Video.average)).limit(5)
@@ -84,7 +84,7 @@ def actor_main():
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-    totalRank = Actor.query.order_by(desc(Actor.average)).limit(10)
+    totalRank = Actor.query.order_by(desc(Actor.average)).limit(15)
     categoryOne = Actor.query.filter_by(category="1").order_by(desc(Actor.average)).limit(5)
     categoryTwo = Actor.query.filter_by(category="2").order_by(desc(Actor.average)).limit(5)
     categoryThree = Actor.query.filter_by(category="3").order_by(desc(Actor.average)).limit(5)
