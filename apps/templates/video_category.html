@@ -1,6 +1,19 @@
 <!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지-->
 {% extends "nav_layout.html" %}
 {% block css %}
+<style type=text/css>
+    @media only screen and (max-width : 1000px) {
+        .category_chart{
+            border-radius: 10px;
+            background-color: rgba(1, 12, 84, 1);
+            margin-bottom: 10px;
+            font-family: "Nanum Gothic";
+            font-weight: bold;
+            margin-top: 0em;
+        }
+    }
+
+</style>
 {% endblock css %}
 {% block js %}
 <script type="text/javascript" src="{{url_for('static', filename='js/video_star.js')}}"></script>
@@ -14,7 +27,7 @@
 <div class="col-md-1"></div>
 <div class="col-md-10">
 
-    <div class="col-md-2 rank_chart" style="margin-top:3em;">
+    <div class="col-md-2 category_chart">
         <div class="text-center" style="color: #ffffff; font-size: 20px;">영상 분류</div>
         <hr style="margin-top: 10px; margin-bottom: 10px;"/>
         <div class="text-center">
