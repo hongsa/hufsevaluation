@@ -37,9 +37,9 @@
             {% for each in releaseList %}
             <div class="col-md-5" style="margin-bottom: 10px;">
                 {%if each == 0 %}
-                <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px;">정보없는</button></a>
+                <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px; font-weight: bold">정보없는</button></a>
                 {% else %}
-                <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px;">{{each}}년도</button></a>
+                <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px; font-weight: bold">{{each}}년도</button></a>
                 {% endif %}
             </div>
             {% endfor %}
