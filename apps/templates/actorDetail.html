@@ -6,15 +6,6 @@
 <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
 <script type='text/javascript' src="{{url_for('static', filename='js/actor_star.js')}}"></script>
 <script type='text/javascript' src="{{url_for('static', filename='js/actor_bookmark.js')}}"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('.detailCategory').hover(function(){
-            $(this).addClass('detailCategory_hover');
-        },function(){
-            $(this).removeClass('detailCategory_hover');
-        });
-    });
-</script>
 {% endblock js %}
 {% block content %}
 <div class="col-md-1"></div>
