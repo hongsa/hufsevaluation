@@ -52,6 +52,17 @@ font-family: 'Hanna';
     font-family: "Nanum Gothic";
     font-weight: bold;
 }
+.rank_chart2{
+    border-radius: 10px;
+    background-color: rgba(1, 12, 84, 1);
+    margin-bottom: 10px;
+    font-family: "Nanum Gothic";
+    font-weight: bold;
+    height:31.250em ;
+    overflow: scroll;
+}
+
+
 
 .category_name{
     font-size: 30px;

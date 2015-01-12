@@ -2,6 +2,22 @@
 
 {% extends "nav_layout.html" %}
 {% block css %}
+<style type=text/css>
+    @media only screen and (max-width : 1000px) {
+        .rank_chart{
+            border-radius: 10px;
+            background-color: rgba(1, 12, 84, 1);
+            margin-bottom: 10px;
+            font-family: "Nanum Gothic";
+            font-weight: bold;
+            height:15em ;
+            overflow: scroll;
+        }
+    }
+
+</style>
+
+
 {% endblock css %}
 
 {% block js %}
@@ -10,7 +26,7 @@
 
 {% block content %}
 <div class="col-md-1"></div>
-<div class="col-md-10" style="margin-top:6.67em;">
+<div class="col-md-10">
 
     <div class="col-md-2 rank_chart">
         <div class="text-center" style="color: #ffffff; font-size: 20px;">전체 배우 랭킹</div>
@@ -41,7 +57,7 @@
                     <!--<div class="folder img-responsive" alt="Responsive image" >-->
                     <a href="/actorDetail/{{each.name}}">
                         <div>
-                           {{each.average}} 점
+                            {{each.average}} 점
                         </div>
                         <img src="/show2/{{each.name}}" class="main_img"/>
                         <div class="all_name_small">{{each.name}}</div>
