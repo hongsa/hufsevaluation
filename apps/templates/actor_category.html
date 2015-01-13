@@ -1,6 +1,20 @@
 <!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지-->
 {% extends "nav_layout.html" %}
 {% block css %}
+<style type=text/css>
+    @media only screen and (max-width : 1000px) {
+        .category_chart{
+            border-radius: 10px;
+            background-color: rgba(1, 12, 84, 1);
+            margin-bottom: 10px;
+            font-family: "Nanum Gothic";
+            font-weight: bold;
+            margin-top: 0em;
+        }
+    }
+
+</style>
+
 {% endblock css %}
 {% block js %}
 <script type="text/javascript" src="{{url_for('static', filename='js/actor_star.js')}}"></script>
@@ -19,20 +33,20 @@
 
 {% block content %}
 <div class="col-md-1"></div>
-<div class="col-md-10" style="margin-top:6.67em;">
+<div class="col-md-10">
 
-    <div class="col-md-2 rank_chart" style="margin-top:3em;">
+    <div class="col-md-2 category_chart">
         <div class="text-center" style="color: #ffffff; font-size: 20px;">배우 분류</div>
         <hr style="margin-top: 10px; margin-bottom: 10px;"/>
         <div class="text-center">
             <div>
-                <a href="/a_category/1"><button type="button" class="btn btn-default" style="font-size:14px;margin-top:10px;  ">
+                <a href="/a_category/1"><button type="button" class="btn btn-default" style="font-size:15px;margin-top:10px; font-weight: bold; ">
                     귀여운 단신</button></a></div>
             <div>
-                <a href="/a_category/2"><button type="button" class="btn btn-default" style="font-size:14px; margin-top:10px; ">적당한 체형</button>
+                <a href="/a_category/2"><button type="button" class="btn btn-default" style="font-size:15px;margin-top:10px; font-weight: bold; ">적당한 체형</button>
                 </a></div>
             <div>
-                <a href="/a_category/3"><button type="button" class="btn btn-default" style="font-size:14px; margin-top:10px; ">쭉쭉빵빵</button>
+                <a href="/a_category/3"><button type="button" class="btn btn-default" style="font-size:15px;margin-top:10px; font-weight: bold; ">쭉쭉빵빵</button>
                 </a></div>
         </div>
     </div>

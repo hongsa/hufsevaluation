@@ -41,7 +41,7 @@ font-family: 'Hanna';
     background-size: cover;
 }
 .plus_sign{
-    width: 8em;
+    width: 7em;
     height: 8em;
     background-size: cover;
 }
@@ -52,6 +52,27 @@ font-family: 'Hanna';
     font-family: "Nanum Gothic";
     font-weight: bold;
 }
+
+.category_chart{
+    border-radius: 10px;
+    background-color: rgba(1, 12, 84, 1);
+    margin-bottom: 10px;
+    font-family: "Nanum Gothic";
+    font-weight: bold;
+    margin-top: 5em;
+}
+.category_chart2{
+    border-radius: 10px;
+    background-color: rgba(1, 12, 84, 1);
+    margin-bottom: 10px;
+    font-family: "Nanum Gothic";
+    font-weight: bold;
+    height:31.250em ;
+    overflow: scroll;
+    margin-top: 5em;
+}
+
+
 
 .category_name{
     font-size: 30px;

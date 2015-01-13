@@ -1,0 +1,56 @@
+# -*- coding: utf-8 -*-
+from flask import redirect, url_for, render_template,flash, session, current_app
+from apps.models import Actor
+from sqlalchemy import desc
+import math
+
+def actor_main():
+    # 로그인 안한 상태로 오면 index로 빠꾸
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+
+    totalRank = Actor.query.order_by(desc(Actor.average)).limit(15)
+    categoryOne = Actor.query.filter_by(category="1").order_by(desc(Actor.average)).limit(5)
+    categoryTwo = Actor.query.filter_by(category="2").order_by(desc(Actor.average)).limit(5)
+    categoryThree = Actor.query.filter_by(category="3").order_by(desc(Actor.average)).limit(5)
+
+    return render_template("actor_main.html", totalRank=totalRank, categoryOne=categoryOne, categoryTwo=categoryTwo,
+                           categoryThree=categoryThree)
+
+
+def show2(key):
+    actor = Actor.query.get(key)
+    mimetype = "image/png"
+    return current_app.response_class(actor.image, mimetype=mimetype)
+
+
+def actor_category(name, page):
+    # 로그인 안한 상태로 오면 index로 빠꾸
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+
+    actorCategory = Actor.query.filter_by(category=name).order_by(desc(Actor.average)).offset(
+        (page - 1) * 12).limit(12)
+    category = Actor.query.filter_by(category=name).first().category
+    total = Actor.query.filter_by(category=name).count()
+    calclulate = float(float(total) / 12)
+    total_page = math.ceil(calclulate)
+
+
+    a = float(math.ceil(float(page)/10))
+    if a ==1:
+        down=1
+    else:
+        down = int((a-1) * 10)
+
+    if total_page > a*10:
+        total_page = a * 10
+        up = int(total_page+1)
+
+    else:
+        up = int(total_page)
+
+    return render_template("actor_category.html", actorCategory=actorCategory, category=category,
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)

@@ -1,20 +1,14 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, redirect, url_for, render_template, request, flash, session, jsonify, make_response, \
-    current_app
-from apps import app, db, models
+from flask import redirect, url_for, render_template, request, flash, session
+from apps import db
 from werkzeug.security import generate_password_hash, check_password_hash
-from apps.models import User, Actor, Video, ActorReview, VideoReview, Filmo, RatingActor, RatingVideo, Favorite, Bookmark
-from sqlalchemy import desc
+from apps.models import User
 from apps import forms
-import math
-import json
 
 
 def index():
     if not 'session_user_email' in session:
         form=forms.LoginForm()
-        # form2=forms.LoginForm()
-        # main = "true"
         return render_template("mainPageNew.html", form=form)
     return redirect(url_for('actor_main'))
 
@@ -138,3 +132,7 @@ def modify_nickname():
         return redirect(url_for('modify_nickname'))
 
     return render_template("modify.html")
+
+
+def contact():
+    return render_template("contact.html")

@@ -2,13 +2,27 @@
 
 {% extends "nav_layout.html" %}
 {% block css %}
+<style type=text/css>
+    @media only screen and (max-width : 1000px) {
+        .rank_chart{
+            border-radius: 10px;
+            background-color: rgba(1, 12, 84, 1);
+            margin-bottom: 10px;
+            font-family: "Nanum Gothic";
+            font-weight: bold;
+            height:15em ;
+            overflow: scroll;
+        }
+    }
+
+</style>
 {% endblock css %}
 {% block js %}
 {% endblock %}
 {% block content %}
 
 <div class="col-md-1"></div>
-<div class="col-md-10" style="margin-top:6.67em;">
+<div class="col-md-10">
 
     <div class="col-md-2 rank_chart">
         <div class="text-center" style="color: #ffffff; font-size: 20px;">전체 영상 랭킹</div>

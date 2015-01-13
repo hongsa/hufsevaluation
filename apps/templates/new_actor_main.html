@@ -1,6 +1,23 @@
 <!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지 -->
 {% extends "nav_layout.html" %}
 {% block css %}
+<style type=text/css>
+    @media only screen and (max-width : 1000px) {
+        .category_chart{
+            border-radius: 10px;
+            background-color: rgba(1, 12, 84, 1);
+            margin-bottom: 10px;
+            font-family: "Nanum Gothic";
+            font-weight: bold;
+            height:15em ;
+            overflow: scroll;
+            margin-top: 0em;
+        }
+    }
+
+</style>
+
+
 {% endblock css %}
 {% block js %}
 <script type="text/javascript" src="{{url_for('static', filename='js/actor_star.js')}}"></script>
@@ -11,18 +28,18 @@
 
 {% block content %}
 <div class="col-md-1"></div>
-<div class="col-md-10" style="margin-top:6.67em;">
+<div class="col-md-10">
 
-    <div class="col-md-2 rank_chart">
+    <div class="col-md-2 category_chart">
         <div class="text-center" style="color: #ffffff; font-size: 20px;">데뷔연도</div>
         <hr style="margin-top: 10px; margin-bottom: 10px;"/>
         <div class="row text-center">
             {% for each in releaseList %}
-            <div class="col-md-5" style="margin-top: 5px;">
+            <div class="col-md-5" style="margin-bottom: 10px;">
                 {%if each == 0 %}
-                <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px;">정보없는</button></a>
+                <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px; font-weight: bold">정보없는</button></a>
                 {% else %}
-                <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px;">{{each}}년도</button></a>
+                <a href="/n_actor/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px; font-weight: bold">{{each}}년도</button></a>
                 {% endif %}
             </div>
             {% endfor %}
