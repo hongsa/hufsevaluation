@@ -13,7 +13,7 @@ import recommendation
 # userController에서 관리하는 부분 시작
 @app.route('/')
 @app.route('/index')
-def index():
+def index(): 
     return userController.index()
 
 
@@ -815,21 +815,23 @@ def recommend():
         return redirect(url_for('index'))
     email = session['session_user_email']
     cUser = User.query.get(email)
-
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if len(cUser.ratings())<=25:
         return '평가를 더 하셔야 합니다.'
-
     #추천 알고리즘을 위한 표본을 만드는 부분
     dict={}
     oUser = User.query.all()
-
     for each in oUser:
         # 평가를 안한 user의 경우 표본에서 제외
         if len(each.ratings()):
             dict[each.nickname]=each.ratings()
-    logging.error(dict)
-    # 표본 완성
-    # return recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson)
-    return 'well done'
+    # logging.error(dict)
+    # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson))
+    # 완성된 표본과 유저정보(닉네임)를 알고리즘 함수에 제출
+    # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson)
+    rList = recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson)
+
+    # list = [1,2,3]
+    return render_template('recommendation.html', rDict=rList)
+    # return 'well done'
 

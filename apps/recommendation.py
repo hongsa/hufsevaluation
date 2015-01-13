@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from math import sqrt
-from models import User
+# from models import User
 import logging
 #표본데이터 예제
 critics={'JaeHyeon': {'Aladdin': 2.5, 'Up': 3.5, 'StarWars':3.0, 'Her':3.5, 'HarryPotter':2.5, 'XMen':3.0},
@@ -18,19 +18,19 @@ critics={'JaeHyeon': {'Aladdin': 2.5, 'Up': 3.5, 'StarWars':3.0, 'Her':3.5, 'Har
          'YeWon':{'Up':4.5, 'HarryPotter':1.0, 'Her':4.0}
 }
 
-#표본데이터 dict 형태로 DB에서 추출
-def makePref():
-    dict = {}
-    allUser = User.query.all()
-    for each in allUser: #각 유저 한 row
-        dict[each.nickname] = {}
-        for row in each.ratingVideo_user:
-            dict[each.nickname][row.videoName]= row.rating
-    logging.error(dict)
-    return dict
+#제품매칭을 위한 표본 뒤집기 사람 :{영상:평점}  -> 영상:{사람: 평점}
+def transformPrefs(prefs):
+    result = {}
+    for person in prefs:
+        for item in prefs[person]:
+            result.setdefault(item,{})
+            #영상과 사람을 바꿈
+            result[item][person]=prefs[person][item]
+    return result
 
 
-#유클리디안 거리점수
+
+            #유클리디안 거리점수
 def simDistance(prefs,person1,person2):
     si={}
 
@@ -144,5 +144,3 @@ print getRecommendations(critics,"JaeHyeon", similarity=simDistance)
 
 
 
-def controlRecommend(name):
-    return getRecommendations(makePref,name,similarity=simPearson)
