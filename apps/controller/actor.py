@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-from flask import redirect, url_for, render_template,flash, session, current_app
-from apps.models import Actor
-from sqlalchemy import desc
 import math
+
+from flask import redirect, url_for, render_template,flash, session, current_app
+from sqlalchemy import desc
+
+from apps.models import Actor,User
+
+('jinja2.ext.loopcontrols')
 
 def actor_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
@@ -24,7 +28,7 @@ def show2(key):
     mimetype = "image/png"
     return current_app.response_class(actor.image, mimetype=mimetype)
 
-
+import logging
 def actor_category(name, page):
     # 로그인 안한 상태로 오면 index로 빠꾸
     if not 'session_user_email' in session:
@@ -37,6 +41,11 @@ def actor_category(name, page):
     total = Actor.query.filter_by(category=name).count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
+
+    email = session['session_user_email']
+    user = User.query.get(email)
+    rating = user.ratingsActor()
+    logging.error(rating)
 
 
     a = float(math.ceil(float(page)/10))
@@ -53,4 +62,4 @@ def actor_category(name, page):
         up = int(total_page)
 
     return render_template("actor_category.html", actorCategory=actorCategory, category=category,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,rating=rating)

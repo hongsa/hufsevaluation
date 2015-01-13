@@ -17,6 +17,18 @@ class User(db.Model):
             dict[oRating.videoName] = oRating.rating
         return dict
 
+    def ratingsActor(self):
+        list = []
+        for oRating in self.ratingActor_user:
+            list.append(dict(name=oRating.actorName,rating=oRating.rating))
+        return list
+
+    def ratingsVideo(self):
+        list = []
+        for oRating in self.ratingVideo_user:
+            list.append(dict(name=oRating.videoName,rating=oRating.rating))
+        return list
+
 class Actor(db.Model):
     name = db.Column(db.String(255),primary_key=True)
     image = db.Column(db.LargeBinary)

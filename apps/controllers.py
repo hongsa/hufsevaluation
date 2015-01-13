@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import redirect, url_for, flash, session
+from flask import redirect, url_for, flash, session,render_template
 from apps import app
 from apps.controller import video
 from models import User
@@ -191,6 +191,7 @@ def actorDetail(name):
 def actor_comment():
     return detail.actor_comment()
 
+
 #영상 디테일
 @app.route('/videoDetail/<string:name>', methods=['GET', 'POST'])
 def videoDetail(name):
@@ -202,7 +203,9 @@ def video_comment():
     return detail.video_comment()
 
 
+
 # 추천기능
+
 @app.route('/recommendation',methods=['GET','POST'])
 def recommend():
     #로그인 안돼있으면 튕기는 부분
@@ -211,20 +214,15 @@ def recommend():
         return redirect(url_for('index'))
     email = session['session_user_email']
     cUser = User.query.get(email)
-
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if len(cUser.ratings())<=25:
         return '평가를 더 하셔야 합니다.'
+    # logging.error(dict)
+    # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson))
+    # 완성된 표본과 유저정보(닉네임)를 알고리즘 함수에 제출
+    # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson)
+    rList = recommendation.getRecommendations(recommendation.makePrefs(),cUser.nickname,similarity=recommendation.simPearson)
 
-    #추천 알고리즘을 위한 표본을 만드는 부분
-    dict={}
-    oUser = User.query.all()
-
-    for each in oUser:
-        # 평가를 안한 user의 경우 표본에서 제외
-        if len(each.ratings()):
-            dict[each.nickname]=each.ratings()
-    # 표본 완성
-    # return recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson)
-    return 'well done'
-
+    # list = [1,2,3]
+    return render_template('recommendation.html', rList=rList)
+    # return 'well done'

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from flask import redirect, url_for, render_template, flash, session,current_app
-from apps.models import Video
+from apps.models import Video,User
 from sqlalchemy import desc
 import math
+
 
 def video_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
@@ -20,7 +21,7 @@ def video_main():
     return render_template("video_main.html", totalRank=totalRank, categoryOne=categoryOne, categoryTwo=categoryTwo,
                            categoryThree=categoryThree, categoryFour=categoryFour, categoryFive=categoryFive)
 
-
+import logging
 def video_category(name, page):
 
     # 로그인 안한 상태로 오면 index로 빠꾸
@@ -34,6 +35,11 @@ def video_category(name, page):
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
     category = Video.query.filter_by(category=name).first().category
+
+    email = session['session_user_email']
+    user = User.query.get(email)
+    rating = user.ratingsVideo()
+    logging.error(rating)
 
     a = float(math.ceil(float(page)/10))
     if a ==1:
@@ -49,7 +55,7 @@ def video_category(name, page):
         up = int(total_page)
 
     return render_template("video_category.html", videoCategory=videoCategory, category=category,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,rating=rating)
 
 
 def show1(key):

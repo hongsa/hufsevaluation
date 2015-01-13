@@ -17,20 +17,30 @@ critics={'JaeHyeon': {'Aladdin': 2.5, 'Up': 3.5, 'StarWars':3.0, 'Her':3.5, 'Har
 
          'YeWon':{'Up':4.5, 'HarryPotter':1.0, 'Her':4.0}
 }
-
-#표본데이터 dict 형태로 DB에서 추출
-def makePref():
-    dict = {}
-    allUser = User.query.all()
-    for each in allUser: #각 유저 한 row
-        dict[each.nickname] = {}
-        for row in each.ratingVideo_user:
-            dict[each.nickname][row.videoName]= row.rating
-    logging.error(dict)
+#영상평가를 위한 표본 딕셔너리 생성
+def makePrefs():
+    dict={}
+    oUser = User.query.all()
+    for each in oUser:
+        # 평가를 안한 user의 경우 표본에서 제외
+        if len(each.ratings()):
+            dict[each.nickname]=each.ratings()
     return dict
 
 
-#유클리디안 거리점수
+#제품매칭을 위한 표본 뒤집기 사람 :{영상:평점}  -> 영상:{사람: 평점}
+def transformPrefs(prefs):
+    result = {}
+    for person in prefs:
+        for item in prefs[person]:
+            result.setdefault(item,{})
+            #영상과 사람을 바꿈
+            result[item][person]=prefs[person][item]
+    return result
+
+
+
+            #유클리디안 거리점수
 def simDistance(prefs,person1,person2):
     si={}
 
@@ -45,7 +55,7 @@ def simDistance(prefs,person1,person2):
 
     return 1/(1+sqrt(sumOfSquares))
 
-print simDistance(critics,'JaeHyeon','SangDo')
+# print simDistance(critics,'JaeHyeon','SangDo')
 
 #피어슨 상관점수
 
@@ -82,28 +92,20 @@ def simPearson(prefs,p1,p2):
 
     return r
 
-print simPearson(critics,'JaeHyeon','SangDo')
+# print simPearson(critics,'JaeHyeon','SangDo')
 
 #모든 사람들 중 나와 유사한 사람을 찾아보자
 
-#거리점수를 통한 동호인 찾기
-def topMatches1(prefs,person,n=5,similarity=simDistance):
-    scores = [(similarity(prefs,person,other),other) for other in prefs if other!=person]
-
-    scores.sort()
-    scores.reverse()
-    return scores[0:n]
-
 #피어슨점수를 통한 동호인 찾기
-def topMatches2(prefs,person,n=5,similarity=simPearson):
+def topMatches(prefs,person,n=5,similarity=simPearson):
     scores = [(similarity(prefs,person,other),other) for other in prefs if other!=person]
 
     scores.sort()
     scores.reverse()
     return scores[0:n]
 
-print topMatches1(critics,"JaeHyeon",n=3)
-print topMatches2(critics,"JaeHyeon",n=3)
+# print topMatches1(critics,"JaeHyeon",n=3)
+# print topMatches2(critics,"JaeHyeon",n=3)
 
 
 #다른 사람과의 가중평균값을 이용해서 특정 사람에게 추천
@@ -139,10 +141,7 @@ def getRecommendations(prefs, person, similarity=simPearson):
     rankings.reverse()
     return rankings
 
-print getRecommendations(critics,"JaeHyeon")
-print getRecommendations(critics,"JaeHyeon", similarity=simDistance)
+# print getRecommendations(critics,"JaeHyeon")
+# print getRecommendations(critics,"JaeHyeon", similarity=simDistance)
 
 
-
-def controlRecommend(name):
-    return getRecommendations(makePref,name,similarity=simPearson)

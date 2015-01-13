@@ -67,27 +67,36 @@
         </div>
 
 
+        <div class="row">
+            {% for each in actorCategory %}
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail text-center" id="{{each.name}}">
+                    <a href="../../actorDetail/{{each.name}}">
+                        <div >{{each.average}} 점</div>
+                        <div >({{each.count}} 명)</div>
+                        <img src="/show2/{{each.name}}"  class="category_img" alt=""/>
+                    </a>
+                    <div class="a_star_area">
+                        {% for r in rating %}
+                        {%if r['name'] == each.name %}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" value="{{r['rating']}}"/>
+                        {% endif %}
+                        {% endfor %}
 
-        {% for each in actorCategory %}
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail text-center" id="{{each.name}}">
-                <a href="../../actorDetail/{{each.name}}">
-                    <div >{{each.average}} 점</div>
-                    <div >({{each.count}} 명)</div>
-                    <img src="/show2/{{each.name}}"  class="category_img" alt=""/>
-                </a>
-                <div class="a_star_area">
-                    <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
-                    <button class="a_bookmark btn btn-success btn-sm" type="button">보고싶어요!</button>
-                </div>
-                <a href="../../actorDetail/{{each.name}}">
-                    <div>
-                        <div class="all_name">{{each.name}}</div>
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+
+
+                        <button class="a_bookmark btn btn-success btn-sm" type="button">보고싶어요!</button>
                     </div>
-                </a>
+                    <a href="../../actorDetail/{{each.name}}">
+                        <div>
+                            <div class="all_name">{{each.name}}</div>
+                        </div>
+                    </a>
+                </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
 
         <div class="row text-center">
             <ul class="pagination">
