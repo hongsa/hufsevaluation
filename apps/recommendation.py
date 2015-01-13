@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from math import sqrt
-# from models import User
+from models import User
 import logging
 #표본데이터 예제
 critics={'JaeHyeon': {'Aladdin': 2.5, 'Up': 3.5, 'StarWars':3.0, 'Her':3.5, 'HarryPotter':2.5, 'XMen':3.0},
@@ -17,6 +17,16 @@ critics={'JaeHyeon': {'Aladdin': 2.5, 'Up': 3.5, 'StarWars':3.0, 'Her':3.5, 'Har
 
          'YeWon':{'Up':4.5, 'HarryPotter':1.0, 'Her':4.0}
 }
+#영상평가를 위한 표본 딕셔너리 생성
+def makePrefs():
+    dict={}
+    oUser = User.query.all()
+    for each in oUser:
+        # 평가를 안한 user의 경우 표본에서 제외
+        if len(each.ratings()):
+            dict[each.nickname]=each.ratings()
+    return dict
+
 
 #제품매칭을 위한 표본 뒤집기 사람 :{영상:평점}  -> 영상:{사람: 평점}
 def transformPrefs(prefs):
@@ -45,7 +55,7 @@ def simDistance(prefs,person1,person2):
 
     return 1/(1+sqrt(sumOfSquares))
 
-print simDistance(critics,'JaeHyeon','SangDo')
+# print simDistance(critics,'JaeHyeon','SangDo')
 
 #피어슨 상관점수
 
@@ -82,28 +92,20 @@ def simPearson(prefs,p1,p2):
 
     return r
 
-print simPearson(critics,'JaeHyeon','SangDo')
+# print simPearson(critics,'JaeHyeon','SangDo')
 
 #모든 사람들 중 나와 유사한 사람을 찾아보자
 
-#거리점수를 통한 동호인 찾기
-def topMatches1(prefs,person,n=5,similarity=simDistance):
-    scores = [(similarity(prefs,person,other),other) for other in prefs if other!=person]
-
-    scores.sort()
-    scores.reverse()
-    return scores[0:n]
-
 #피어슨점수를 통한 동호인 찾기
-def topMatches2(prefs,person,n=5,similarity=simPearson):
+def topMatches(prefs,person,n=5,similarity=simPearson):
     scores = [(similarity(prefs,person,other),other) for other in prefs if other!=person]
 
     scores.sort()
     scores.reverse()
     return scores[0:n]
 
-print topMatches1(critics,"JaeHyeon",n=3)
-print topMatches2(critics,"JaeHyeon",n=3)
+# print topMatches1(critics,"JaeHyeon",n=3)
+# print topMatches2(critics,"JaeHyeon",n=3)
 
 
 #다른 사람과의 가중평균값을 이용해서 특정 사람에게 추천
@@ -139,8 +141,8 @@ def getRecommendations(prefs, person, similarity=simPearson):
     rankings.reverse()
     return rankings
 
-print getRecommendations(critics,"JaeHyeon")
-print getRecommendations(critics,"JaeHyeon", similarity=simDistance)
+# print getRecommendations(critics,"JaeHyeon")
+# print getRecommendations(critics,"JaeHyeon", similarity=simDistance)
 
 
 

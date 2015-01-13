@@ -10,6 +10,7 @@ import math
 from controller import userController
 import logging
 import recommendation
+
 # userController에서 관리하는 부분 시작
 @app.route('/')
 @app.route('/index')
@@ -762,12 +763,15 @@ def videoDetail(name):
     appearActor = videoRow.actors()
     #댓글 가져오기
     comments = videoRow.reviews()
+    #비슷한 작품 추천하기
+    movies = recommendation.transformPrefs(recommendation.makePrefs())
+    similarList = recommendation.topMatches(movies,name)
 
     rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
     if rating:
-        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating)
+        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating, similarList=similarList)
 
-    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments)
+    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments, similarList=similarList)
 
 #댓글입력
 @app.route('/video/comment', methods=['POST'])
@@ -807,6 +811,7 @@ def contact():
 
 
 # 추천기능
+
 @app.route('/recommendation',methods=['GET','POST'])
 def recommend():
     #로그인 안돼있으면 튕기는 부분
@@ -818,20 +823,13 @@ def recommend():
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if len(cUser.ratings())<=25:
         return '평가를 더 하셔야 합니다.'
-    #추천 알고리즘을 위한 표본을 만드는 부분
-    dict={}
-    oUser = User.query.all()
-    for each in oUser:
-        # 평가를 안한 user의 경우 표본에서 제외
-        if len(each.ratings()):
-            dict[each.nickname]=each.ratings()
     # logging.error(dict)
     # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson))
     # 완성된 표본과 유저정보(닉네임)를 알고리즘 함수에 제출
     # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson)
-    rList = recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson)
+    rList = recommendation.getRecommendations(recommendation.makePrefs(),cUser.nickname,similarity=recommendation.simPearson)
 
     # list = [1,2,3]
-    return render_template('recommendation.html', rDict=rList)
+    return render_template('recommendation.html', rList=rList)
     # return 'well done'
 
