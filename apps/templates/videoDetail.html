@@ -23,14 +23,16 @@
                     {% else %}
                     <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
                     {% endif %}
-                    <button class="v_bookmark btn btn-success btn-sm" type="button">보고싶어요!</button>
+                    <span class="all_name">{{videoRow.name}}</span>&nbsp;&nbsp;
+                    <button type="button" class="v_bookmark btn btn-success btn-xs">
+                        <span class="v_bookmark glyphicon glyphicon-bookmark"></span>
+                    </button>
                 </div>
-                <p class="detail_name">{{videoRow.name}}</p>
             </div>
         </div>
 
-        <div class="col-sm-8 col-md-4 detail_box" >
-            <div>
+        <div class="col-sm-6 col-md-3" >
+            <div class="detail_box text-center">
                 <p style="font-size: 25px;">기본 정보</p>
                 <p>평균평점 : <span>{{videoRow.average}}</span> 점</p>
                 <p>평가인원 : <span>{{videoRow.count}}</span> 명</p>
@@ -58,16 +60,24 @@
                         <span>{{videoRow.company}}</span>
                     </a>
                 </p>
-
             </div>
         </div>
-        <div class="col-sm-2 col-md-1" ></div>
-        <div class="col-sm-6 col-md-3 detail_box2">
-            <p style="font-size: 25px;">출연 배우</p>
-            {% for each in appearActor %}
-            <p><a href="../actorDetail/{{each['name']}}"><span>{{each['name']}}&nbsp;({{each['average']}} 점)</span></a></p>
-            {% endfor %}
+
+        <div class="col-sm-6 col-md-3">
+            <div class="detail_box2 text-center">
+                <p style="font-size: 25px;">출연 배우</p>
+                {% for each in appearActor %}
+                <p><a href="../actorDetail/{{each['name']}}"><span>{{each['name']}}&nbsp;({{each['average']}} 점)</span></a></p>
+                {% endfor %}
+            </div>
         </div>
+
+        <div class="col-sm-6 col-md-3" >
+            <div class="detail_box2 text-center">
+                <p style="font-size: 25px;">유사한 작품</p>
+            </div>
+        </div>
+
     </div>
 
     <!--댓글 입력부분 시작-->
@@ -112,8 +122,8 @@
 
         <div class="col-sm-1"></div>
     </div>
+
 </div>
 
-<!---->
-<div class="col-md-1">{{similarList}}</div>
-{% endblock content%}
+<div class="col-md-1"></div>
+{% endblock %}

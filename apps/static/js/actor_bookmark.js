@@ -14,7 +14,7 @@ $(document).ready(function(){
             success: function(data) {
                 if(data.success){
 
-                    alert('북마크에 저장되었습니다!');
+                    alert('배우 컬렉션에 저장 완료!!');
                 }
                 else{
                     alert("error");

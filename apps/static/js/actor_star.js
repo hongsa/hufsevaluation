@@ -15,7 +15,7 @@ $(document).ready(function(){
 
 
     $('.a_star_area').find('input').on('change', function () {
-        alert($(this).val()+'점이 평가되었습니다!');
+        alert($(this).val()+'점 평가 완료!!');
     });
 
     $('.a_star_area').find('input').on('change', function () {
@@ -30,7 +30,7 @@ $(document).ready(function(){
             success: function(data) {
                 if(data.success){
 
-                    alert($(this).val()+'점이 평가되었습니다!');
+                    alert($(this).val()+'점 평가 완료!!');
                 }
                 else{
                     alert("error");

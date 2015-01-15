@@ -3,7 +3,7 @@ from flask import redirect, url_for, render_template, request, flash, session
 from apps import db
 from apps.models import User, Actor, Video, Filmo
 
-def admin():
+def admin_main():
     email = session['session_user_email']
     user = User.query.get(email)
 
