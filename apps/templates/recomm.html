@@ -1,0 +1,25 @@
+{% extends "nav_layout.html" %}
+{% block content %}
+<div class="col-sm-1 col-md-1"></div>
+<div class="row col-sm-10 col-md-10">
+    {% for each in rList %}
+    {% if each[0]>3 %}
+
+    <div class="col-sm-4 col-md-2">
+        <div class="thumbnail text-center">
+            <a href="/actorDetail/{{each[1]}}">
+                <div >예상평점: {{'%0.2f' % each[0]|float}}</div>
+                <img src="/show2/{{each[1]}}" class="main_img"/>
+                <div class="all_name_small">{{each[1]}}</div>
+            </a>
+        </div>
+    </div>
+
+    {% endif %}
+    {% endfor %}
+
+</div>
+
+<div class="col-sm-1 col-md-1"></div>
+
+{% endblock %}

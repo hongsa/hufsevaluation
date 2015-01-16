@@ -27,6 +27,15 @@ def makePrefs():
             dict[each.nickname]=each.ratings()
     return dict
 
+#배우평가를 위한 표본 딕셔너리 생성
+def makePrefsActor():
+    dict= {}
+    oUser = User.query.all()
+    for each in oUser:
+        #평가를 안한 새끼 ㄲㅈ
+        if len(each.aRatings())>1:
+            dict[each.nickname] = each.aRatings()
+    return dict
 
 #제품매칭을 위한 표본 뒤집기 사람 :{영상:평점}  -> 영상:{사람: 평점}
 def transformPrefs(prefs):
