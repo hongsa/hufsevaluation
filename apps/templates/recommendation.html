@@ -5,6 +5,10 @@
     <title></title>
 </head>
 <body>
-    {{rList}}
+{% for each in rList %}
+<p>제목:{{each[1]}}</p>
+<p>예상별점: {{each[0]}}</p>
+<hr/>
+{% endfor %}
 </body>
 </html>
