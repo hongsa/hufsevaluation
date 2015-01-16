@@ -226,3 +226,4 @@ def recommend():
     # list = [1,2,3]
     return render_template('recommendation.html', rList=rList)
     # return 'well done'
+

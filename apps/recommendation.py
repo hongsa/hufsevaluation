@@ -23,7 +23,7 @@ def makePrefs():
     oUser = User.query.all()
     for each in oUser:
         # 평가를 안한 user의 경우 표본에서 제외
-        if len(each.ratings()):
+        if len(each.ratings())>1:
             dict[each.nickname]=each.ratings()
     return dict
 
@@ -62,38 +62,36 @@ def simDistance(prefs,person1,person2):
 def simPearson(prefs,p1,p2):
     #같이 평가한 항목들의 목록을 구함
     si={}
-
     for item in prefs[p1]:
         if item in prefs[p2]: si[item]=1
-
     n = len(si)
+    print si
+
     #공통 요소가 없으면 0리턴
     if n == 0: return 0
-
     #모든 선호도를 합산함
     sum1 = sum([prefs[p1][each] for each in si])
     sum2 = sum([prefs[p2][each] for each in si])
 
     #제곱의 합을 계산
-
     sum1Sq = sum( [pow(prefs[p1][each],2) for each in si] )
     sum2Sq = sum( [pow(prefs[p2][each],2) for each in si] )
 
-    #곱의 합을 계산
 
+    #곱의 합을 계산
     pSum = sum([prefs[p1][each]*prefs[p2][each] for each in si])
 
+
     #피어슨 점수 계산
-
     num = pSum - (sum1*sum2/n)
+
+
     den = sqrt((sum1Sq-pow(sum1,2/n))*(sum2Sq-pow(sum2,2)/n))
-
-    r = num/den
-
-    return r
-
-# print simPearson(critics,'JaeHyeon','SangDo')
-
+    if den != 0:
+        r = float(num/den)
+        return r
+    else:
+        return 0
 #모든 사람들 중 나와 유사한 사람을 찾아보자
 
 #피어슨점수를 통한 동호인 찾기
@@ -120,9 +118,8 @@ def getRecommendations(prefs, person, similarity=simPearson):
         sim = similarity(prefs,person,other)
 
         #0 이하 점수는 무시함
-        if sim<=0: continue
+        if sim<=0 or sim==False: continue
         for each in prefs[other]:
-
             # 내가 보지 못한 영화만 추천
             if each not in prefs[person] or prefs[person][each]==0:
                 #유사도에 점수를 곱한다 (가중평균)
@@ -141,7 +138,5 @@ def getRecommendations(prefs, person, similarity=simPearson):
     rankings.reverse()
     return rankings
 
-# print getRecommendations(critics,"JaeHyeon")
-# print getRecommendations(critics,"JaeHyeon", similarity=simDistance)
 
 
