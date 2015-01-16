@@ -38,17 +38,14 @@
     <div class="col-md-2 category_chart">
         <div class="text-center" style="color: #ffffff; font-size: 20px;">배우 분류</div>
         <hr style="margin-top: 10px; margin-bottom: 10px;"/>
-        <div class="text-center">
-            <div>
-                <a href="/a_category/1"><button type="button" class="btn btn-default" style="font-size:15px;margin-top:10px; font-weight: bold; ">
-                    귀여운 단신</button></a></div>
-            <div>
-                <a href="/a_category/2"><button type="button" class="btn btn-default" style="font-size:15px;margin-top:10px; font-weight: bold; ">적당한 체형</button>
-                </a></div>
-            <div>
-                <a href="/a_category/3"><button type="button" class="btn btn-default" style="font-size:15px;margin-top:10px; font-weight: bold; ">쭉쭉빵빵</button>
-                </a></div>
-        </div>
+        <ul class="text-center">
+            <li style="margin-bottom: 10px; color: #ffffff">
+                <a href="/a_category/1">귀여운 단신</a></li>
+            <li style="margin-bottom: 10px; color: #ffffff">
+                <a href="/a_category/2">적당한 체형</a></li>
+            <li style="margin-bottom: 10px; color: #ffffff">
+                <a href="/a_category/3">쭉쭉빵빵</a></li>
+        </ul>
     </div>
 
 
@@ -72,27 +69,32 @@
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail text-center" id="{{each.name}}">
                     <a href="../../actorDetail/{{each.name}}">
-                        <div >{{each.average}} 점</div>
-                        <div >({{each.count}} 명)</div>
+                        <div>
+                            <span>{{each.average}} 점</span> <span>({{each.count}} 명)</span>
+                        </div>
                         <img src="/show2/{{each.name}}"  class="category_img" alt=""/>
                     </a>
                     <div class="a_star_area">
-                        {% for r in rating %}
+
+                        {% set counter = [] %}
+                        {% for r in ratingList %}
                         {%if r['name'] == each.name %}
+                        {% if counter.append('1') %}
+                        {% endif %}
                         <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" value="{{r['rating']}}"/>
                         {% endif %}
                         {% endfor %}
-
+                        {%if counter == []%}
                         <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                        {% endif %}
 
-
-                        <button class="a_bookmark btn btn-success btn-sm" type="button">보고싶어요!</button>
+                         <a href="../../actorDetail/{{each.name}}"><span class="all_name">{{each.name}}</span></a>&nbsp;&nbsp;
+                        <button type="button" class="a_bookmark btn btn-success btn-xs">
+                            <span class="a_bookmark glyphicon glyphicon-bookmark"></span>
+                        </button>
                     </div>
-                    <a href="../../actorDetail/{{each.name}}">
-                        <div>
-                            <div class="all_name">{{each.name}}</div>
-                        </div>
-                    </a>
+
+
                 </div>
             </div>
             {% endfor %}

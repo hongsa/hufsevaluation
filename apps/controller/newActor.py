@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import redirect, url_for, render_template, flash, session
-from apps.models import Actor
+from apps.models import Actor,User
 from sqlalchemy import desc
 import math
 
@@ -28,6 +28,19 @@ def new_actor(name, page):
     else:
         release = int(Actor.query.filter(Actor.release * 100 > name * 100, Actor.release * 100 < (name + 1) * 100).first().release)
 
+    email = session['session_user_email']
+    user = User.query.get(email)
+    rating = user.ratingsActor()
+
+    list = []
+    for v in actorRelease:
+        list.append(v.name)
+
+    ratingList=[]
+    for r in rating:
+        if r['name'] in list:
+            ratingList.append(dict(name = r['name'], rating=r['rating']))
+
 
 
     a = float(math.ceil(float(page)/10))
@@ -45,4 +58,4 @@ def new_actor(name, page):
 
 
     return render_template("new_actor_main.html", releaseList=releaseList, actorRelease=actorRelease, release=release,
-            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
+            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList)

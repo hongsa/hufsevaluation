@@ -21,14 +21,16 @@
                     {% else %}
                     <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
                     {% endif %}
-                    <button class="a_bookmark btn btn-success btn-sm" type="button">보고싶어요!</button>
+                    <span class="all_name">{{actorRow.name}}</span>&nbsp;&nbsp;
+                    <button type="button" class="a_bookmark btn btn-success btn-xs">
+                        <span class="a_bookmark glyphicon glyphicon-bookmark"></span>
+                    </button>
                 </div>
-                <p class="detail_name">{{actorRow.name}}</p>
             </div>
         </div>
 
-        <div class="col-sm-8 col-md-4 detail_box" >
-            <div>
+        <div class="col-sm-6 col-md-3">
+            <div class="detail_box text-center">
                 <p style="font-size: 25px;">기본 정보</p>
                 <p>평균평점 : <span>{{actorRow.average}}</span> 점</p>
                 <p>평가인원 : <span>{{actorRow.count}}</span> 명</p>
@@ -45,62 +47,67 @@
                 </p>
                 <p >데뷔년도 : <span >{{actorRow.release}}</span> 월</p>
                 <p >나이 : <span >{{actorRow.age}}</span> 년생</p>
-
             </div>
         </div>
-        <div class="col-sm-2 col-md-1" ></div>
-        <div class="col-sm-6 col-md-3 detail_box2">
-            <p style="font-size: 25px;">출연 작품</p>
-            {% for each in appearVideo %}
-            <p><a href="../videoDetail/{{each['name']}}"><span>{{each['name']}}&nbsp;({{each['average']}} 점)</span></a></p>
-            {% endfor %}
-        </div>
-    </div>
 
-    <!--댓글 입력부분 시작-->
-    <div class="row">
-        <div class="col-sm-12">
-
-            <div class="form-group">
-                <div class="col-sm-2 text-center"><span style="font-size: 25px;">한줄평</span></div>
-                <div class="col-sm-8">
-                    <input class="form-control" id = "actor_input" type="text" name="comment" placeholder="나만의 진솔한 한줄평!" maxlength="68" />
-                    <input class="form-control" type="hidden" name="actorname" value="{{actorRow.name}}" maxlength="68" />
-                </div>
-                <div class="col-sm-2 text-center">
-                    <!--<button  class="btn btn-blueblack" onclick="void(sendData());"style="position:relative;left:40px;top:16px;font-size:18px;">-->
-                    <button  class="btn btn-warning" id="actor_comment">가자!</button>
-                </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="detail_box2 text-center">
+                <p style="font-size: 25px;">출연 작품</p>
+                {% for each in appearVideo %}
+                <p><a href="../videoDetail/{{each['name']}}"><span>{{each['name']}}&nbsp;({{each['average']}} 점)</span></a></p>
+                {% endfor %}
             </div>
-
         </div>
-    </div>
-    <!--댓글 입력부분 종료-->
 
-    <!--댓글 출력부분 시작-->
-    <div class="row" style="margin-top: 1.5em;">
-        <!--<p class="detailBoxTitle">댓글</p>-->
-        <div class="col-sm-12">
+        <div class="col-sm-6 col-md-3" >
+            <div class="detail_box2 text-center">
+                <p style="font-size: 25px;">유사한 작품</p>
+            </div>
+        </div>
 
-            {% for each in comments %}
-            <div class="panel panel-default">
-                <div class="row">
-                    <div class="col-sm-2 text-center" >
-                        <p class="comment_author">{{each['author']}}</p>
+        <!--댓글 입력부분 시작-->
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="form-group">
+                    <div class="col-sm-2 text-center"><span style="font-size: 25px;">한줄평</span></div>
+                    <div class="col-sm-8">
+                        <input class="form-control" id = "actor_input" type="text" name="comment" placeholder="나만의 진솔한 한줄평!" maxlength="68" />
+                        <input class="form-control" type="hidden" name="actorname" value="{{actorRow.name}}" maxlength="68" />
                     </div>
-                    <div class="col-sm-9">
-                        <p class="text-center">{{each['content']}}</p>
+                    <div class="col-sm-2 text-center">
+                        <!--<button  class="btn btn-blueblack" onclick="void(sendData());"style="position:relative;left:40px;top:16px;font-size:18px;">-->
+                        <button  class="btn btn-warning" id="actor_comment">가자!</button>
                     </div>
                 </div>
+
             </div>
-            {% endfor %}
-            <p id="current"></p>
         </div>
+        <!--댓글 입력부분 종료-->
 
-        <div class="col-sm-1"></div>
+        <!--댓글 출력부분 시작-->
+        <div class="row" style="margin-top: 1.5em;">
+            <!--<p class="detailBoxTitle">댓글</p>-->
+            <div class="col-sm-12">
+
+                {% for each in comments %}
+                <div class="panel panel-default">
+                    <div class="row">
+                        <div class="col-sm-2 text-center" >
+                            <p class="comment_author">{{each['author']}}</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-center">{{each['content']}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <p id="current"></p>
+            </div>
+
+            <div class="col-sm-1"></div>
+        </div>
     </div>
-</div>
-
 
 <div class="col-md-1"></div>
-{% endblock content%}
+{%endblock%}

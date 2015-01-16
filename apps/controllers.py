@@ -108,8 +108,8 @@ def g_search():
 
 #관리자(adminController)
 @app.route('/admin', methods=['GET', 'POST'])
-def admin():
-    return admin.admin()
+def admin_main():
+    return admin.admin_main()
 
 @app.route('/admin_actor', methods=['GET', 'POST'])
 def admin_actor():
@@ -205,7 +205,6 @@ def video_comment():
 
 
 # 추천기능
-
 @app.route('/recommendation',methods=['GET','POST'])
 def recommend():
     #로그인 안돼있으면 튕기는 부분

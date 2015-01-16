@@ -32,13 +32,13 @@
     <div class="col-md-2 category_chart2">
         <div class="text-center" style="color: #ffffff; font-size: 20px;">기획사별</div>
         <hr style="margin-top: 10px; margin-bottom: 10px;"/>
-        <div class="text-center">
+        <ul class="text-center">
             {% for each in companyList %}
-            <div style="margin-bottom: 5px;">
-                <a href="/n_video/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px; font-weight: bold">{{each}}</button></a>
-            </div>
+            <li style="margin-bottom: 5px; color: #ffffff">
+                <a href="/n_video/{{each}}">{{each}}</button></a>
+            </li>
             {% endfor %}
-        </div>
+        </ul>
     </div>
 
     <div class="col-md-10">
@@ -52,19 +52,31 @@
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail text-center" id="{{each.name}}">
                     <a href="../../videoDetail/{{each.name}}">
-                        <div >{{each.average}} 점</div>
-                        <div >({{each.count}} 명)</div>
+                        <div >
+                            <span>{{each.average}} 점</span>&nbsp;<span>({{each.count}} 명)</span>
+                        </div>
                         <img src="/show1/{{each.name}}"  class="category_img" alt=""/>
                     </a>
                     <div class="v_star_area">
-                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
-                        <button class="v_bookmark btn btn-success btn-sm" type="button">보고싶어요!</button>
+
+                        {% set counter = [] %}
+                        {% for r in ratingList %}
+                        {%if r['name'] == each.name %}
+                        {% if counter.append('1') %}
+                        {% endif %}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" value="{{r['rating']}}"/>
+                        {% endif %}
+                        {% endfor %}
+                        {%if counter == []%}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                        {% endif %}
+
+                        <a href="../../videoDetail/{{each.name}}"><span class="all_name">{{each.name}}</span></a>&nbsp;&nbsp;
+                        <button type="button" class="v_bookmark btn btn-success btn-xs">
+                            <span class="v_bookmark glyphicon glyphicon-bookmark"></span>
+                        </button>
+
                     </div>
-                    <a href="../../videoDetail/{{each.name}}">
-                        <div>
-                            <div class="all_name">{{each.name}}</div>
-                        </div>
-                    </a>
                 </div>
             </div>
             {% endfor %}

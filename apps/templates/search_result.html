@@ -10,39 +10,39 @@
 <div class="col-md-1"></div>
 <div class="col-md-10 text-center">
 
-<img style="height:13.33em; display: inline-block" src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="img-responsive" alt="Responsive image">
+    <img style="height:7.33em; display: inline-block" src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="img-responsive" alt="Responsive image">
     <p style="font-size:30px;">{{searching_word}} 검색결과 입니다.</p>
-    <div style="background-color:#141A56;">
+
+    <div class="row">
         {% for i in selected_actor %}
-        <div>
-            <div>
-                <div class="row">
-                    <a href="../actorDetail/{{i}}">
-                        <div id="search_result_{{i}}" style="font-size:25px;">
-                            {{i}}
-                        </div>
-                    </a>
-                </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail text-center">
+                <a href="../actorDetail/{{i}}">
+                    <img src="/show2/{{i}}"  class="category_img" alt=""/>
+                    <div>
+                        {{i}}
+                    </div>
+                </a>
             </div>
         </div>
         {% endfor %}
         {% for j in selected_video %}
-        <div>
-            <div>
-                <div class="row">
-                    <a href="../videoDetail/{{j}}">
-                        <div id="search_result_{{j}}" style="font-size:25px;">
-                            {{j}}
-                        </div>
-                    </a>
 
-                </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail text-center">
+                <a href="../videoDetail/{{j}}">
+                    <img src="/show1/{{j}}"  class="category_img" alt=""/>
+                    <div>
+                        {{j}}
+                    </div>
+                </a>
             </div>
         </div>
 
         {% endfor %}
     </div>
 </div>
+
 <div class="col-md-1"></div>
 
 

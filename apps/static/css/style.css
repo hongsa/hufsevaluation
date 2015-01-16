@@ -17,10 +17,10 @@
 }
 
 html,body{
-margin: 0;
-height: 100%;
-width: 100%;
-font-family: 'Hanna';
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Hanna';
 }
 .symbol {
     display: inline-block;
@@ -39,6 +39,7 @@ font-family: 'Hanna';
     width: 8em;
     height: 8em;
     background-size: cover;
+    border-radius: 12.5em;
 }
 .plus_sign{
     width: 7em;
@@ -80,21 +81,25 @@ font-family: 'Hanna';
 }
 
 .category_img{
-    width: 10em;
+    width: 11em;
     height:11em;
+    background-size: cover;
+    border-radius: 12.5em;
 }
 .detail_img{
-    width: 10em;
+    width: 12em;
     height: 12em;
+    background-size: cover;
+    border-radius: 12.5em;
 }
 .detail_box{
     background-color: rgba(136, 50, 245, 0.1);
-    height: 18.400em;
+    height: 16.400em;
     border-style: ridge;
 }
 .detail_box2{
     background-color: rgba(136, 50, 245, 0.1);
-    height: 18.400em;
+    height: 16.400em;
     border-style: ridge;
     overflow: scroll;
 }
@@ -115,7 +120,7 @@ font-family: 'Hanna';
 .all_name{
     color: black;
     font-size: 20px;
- }
+}
 .contact{
     font-size: 25px;
 }

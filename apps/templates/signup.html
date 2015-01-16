@@ -26,6 +26,16 @@
         ga('send', 'pageview');
 
     </script>
+
+        <style type=text/css>
+        @media only screen and (min-width : 1000px) {
+            .main{
+                margin-top: 8em;
+            }
+        }
+
+    </style>
+
 </head>
 <!-- <body style="background-size:cover; background-image: url(../static/img/saint.jpg)"> -->
 <body style="background-color: rgba(1, 12, 84, 1)">
@@ -35,11 +45,11 @@
 
     <div class="row">
         <a  href="{{url_for('index')}}">
-            <img src="{{url_for('static', filename='img/logo_stroke_black.png')}}"  class="img-responsive" alt="Responsive image" style="padding: 0em; width:10em;height: 4em;">
+             <img src="{{url_for('static', filename='img/logo_stroke_black.png')}}"  class="img-responsive" alt="Responsive image" style="padding: 0em; width: 8.333em;height: 2.778em;">
         </a>
     </div>
 
-    <div class="col-md-12" style="margin-top: 2em;">
+    <div class="col-md-12 main">
         <div class="col-md-7">
             <img src="{{url_for('static', filename='img/yadong.png')}}" class="img-responsive" alt="Responsive image"/>
         </div>

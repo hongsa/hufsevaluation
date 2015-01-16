@@ -30,24 +30,24 @@
     <div class="col-md-2 category_chart">
         <div class="text-center" style="color: #ffffff; font-size: 20px;">영상 분류</div>
         <hr style="margin-top: 10px; margin-bottom: 10px;"/>
-        <div class="text-center">
+        <ul class="text-center">
 
-            <div>
-                <a href="/v_category/1"><button type="button" class="btn btn-default" style="font-size:15px;margin-top:10px; font-weight: bold; ">마치 연인처럼</button>
-                </a></div>
-            <div>
-                <a href="/v_category/2"><button type="button" class="btn btn-default" style="font-size:15px;margin-top:10px; font-weight: bold; ">지인과 함께</button>
-                </a></div>
-            <div>
-                <a href="/v_category/3"><button type="button" class="btn btn-default" style="font-size:15px;margin-top:10px; font-weight: bold; ">특별한 장소에서</button>
-                </a></div>
-            <div>
-                <a href="/v_category/4"><button type="button" class="btn btn-default" style="font-size:15px;margin-top:10px; font-weight: bold; ">우리는 팀플</button>
-                </a></div>
-            <div>
-                <a href="/v_category/5"><button type="button" class="btn btn-default" style="font-size:15px;margin-top:10px; font-weight: bold; ">기발한 상황극</button>
-                </a></div>
-        </div>
+            <li style="margin-bottom: 10px; color: #ffffff">
+                <a href="/v_category/1">마치 연인처럼
+                </a></li>
+            <li style="margin-bottom: 10px; color: #ffffff">
+                <a href="/v_category/2">지인과 함께
+                </a></li>
+            <li style="margin-bottom: 10px; color: #ffffff">
+                <a href="/v_category/3">특별한 장소
+                </a></li>
+            <li style="margin-bottom: 10px; color: #ffffff">
+                <a href="/v_category/4">우리는 팀플
+                </a></li>
+            <li style="margin-bottom: 10px; color: #ffffff">
+                <a href="/v_category/5">기발한 상황극
+                </a></li>
+        </ul>
     </div>
 
     <div class="col-md-10">
@@ -75,29 +75,32 @@
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail text-center" id="{{each.name}}">
                     <a href="../../videoDetail/{{each.name}}">
-                        <div >{{each.average}} 점</div>
-                        <div >({{each.count}} 명)</div>
-                        <img src="/show1/{{each.name}}" alt="" style="width: 10em; height:12em;"/>
+                        <div>
+                            <span>{{each.average}} 점</span>&nbsp;<span>({{each.count}} 명)</span>
+                        </div>
+                        <img src="/show1/{{each.name}}" alt="" class="category_img"/>
                     </a>
+
                     <div class="v_star_area">
-                        {% for r in rating %}
-                        {% if r['name'] == each.name is defined %}
+
+                        {% set counter = [] %}
+                        {% for r in ratingList %}
+                        {%if r['name'] == each.name %}
+                        {% if counter.append('1') %}
+                        {% endif %}
                         <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" value="{{r['rating']}}"/>
                         {% endif %}
-
-                        {% if r['name'] ==each.name is not defined %}
-                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
+                        {% endfor %}
+                        {%if counter == []%}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
                         {% endif %}
 
-                        {% endfor %}
-                        <!--<input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />-->
-                        <button class="v_bookmark btn btn-success btn-sm" type="button">보고싶어요!</button>
+
+                        <a href="../../videoDetail/{{each.name}}"><span class="all_name">{{each.name}}</span></a>&nbsp;&nbsp;
+                        <button type="button" class="v_bookmark btn btn-success btn-xs">
+                            <span class="v_bookmark glyphicon glyphicon-bookmark"></span>
+                        </button>
                     </div>
-                    <a href="../../videoDetail/{{each.name}}">
-                        <div>
-                            <div class="all_name">{{each.name}}</div>
-                        </div>
-                    </a>
                 </div>
             </div>
             {% endfor %}
@@ -118,9 +121,8 @@
                 </li>
             </ul>
         </div>
-
-
     </div>
 </div>
+
 <div class="col-md-1"></div>
 {% endblock %}

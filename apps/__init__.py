@@ -5,6 +5,7 @@ from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.script import Manager
 import sys
 reload(sys)
+
 sys.setdefaultencoding('utf-8')
 
 app = Flask('apps')

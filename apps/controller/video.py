@@ -4,7 +4,6 @@ from apps.models import Video,User
 from sqlalchemy import desc
 import math
 
-
 def video_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
     if not 'session_user_email' in session:
@@ -23,7 +22,6 @@ def video_main():
 
 import logging
 def video_category(name, page):
-
     # 로그인 안한 상태로 오면 index로 빠꾸
     if not 'session_user_email' in session:
         flash(u"로그인 되어있지 않습니다.", "error")
@@ -39,7 +37,16 @@ def video_category(name, page):
     email = session['session_user_email']
     user = User.query.get(email)
     rating = user.ratingsVideo()
-    logging.error(rating)
+
+    list = []
+    for v in videoCategory:
+        list.append(v.name)
+
+    ratingList=[]
+    for r in rating:
+        if r['name'] in list:
+            ratingList.append(dict(name = r['name'], rating=r['rating']))
+
 
     a = float(math.ceil(float(page)/10))
     if a ==1:
@@ -55,7 +62,7 @@ def video_category(name, page):
         up = int(total_page)
 
     return render_template("video_category.html", videoCategory=videoCategory, category=category,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,rating=rating)
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,flag=True)
 
 
 def show1(key):
