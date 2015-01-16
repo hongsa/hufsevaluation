@@ -72,16 +72,16 @@ def videoDetail(name):
     #댓글 가져오기
     comments = videoRow.reviews()
 
-    # movies = recommendation.transformPrefs(recommendation.makePrefs())
-    # sList = recommendation.topMatches(movies,name)
+    movies = recommendation.transformPrefs(recommendation.makePrefs())
+    sList = recommendation.topMatches(movies,name)
 
 
 
     rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
     if rating:
-        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating)
+        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating, sList=sList)
 
-    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments)
+    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,sList=sList)
 
 #댓글입력
 def video_comment():
