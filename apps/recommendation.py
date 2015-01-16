@@ -130,13 +130,11 @@ def getRecommendations(prefs, person, similarity=simPearson):
                 simSums[each]+=sim
 
     #정규화된 목록 생성
+    # rankings = [(round(total/simSums[item],1),item) for item, total in totals.items()]
     rankings = [(total/simSums[item],item) for item, total in totals.items()]
-
     #정렬된 목록 리턴
-
     rankings.sort()
     rankings.reverse()
+
     return rankings
-
-
 

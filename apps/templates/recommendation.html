@@ -8,7 +8,7 @@
     <div class="col-sm-4 col-md-2">
         <div class="thumbnail text-center">
             <a href="/videoDetail/{{each[1]}}">
-                <div >예상평점: {{each[0]}}</div>
+                <div >예상평점: {{'%0.2f' % each[0]|float}}</div>
                 <img src="/show1/{{each[1]}}" class="main_img"/>
                 <div class="all_name_small">{{each[1]}}</div>
             </a>
