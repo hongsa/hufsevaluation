@@ -116,7 +116,7 @@ def getRecommendations(prefs, person, similarity=simPearson):
         #나와 나를 비교하지 말것
         if other == person: continue
         sim = similarity(prefs,person,other)
-
+        # 
         #0 이하 점수는 무시함
         if sim<=0 or sim==False: continue
         for each in prefs[other]:
