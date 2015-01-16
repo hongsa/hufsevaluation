@@ -1,14 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-{% for each in rList %}
-<p>제목:{{each[1]}}</p>
-<p>예상별점: {{each[0]}}</p>
-<hr/>
-{% endfor %}
-</body>
-</html>
+{% extends "nav_layout.html" %}
+{% block content %}
+<div class="row">
+    {% for each in rList %}
+    {% if each[0]>3 %}
+
+    <div class="col-sm-4 col-md-2">
+        <div class="thumbnail text-center">
+            <a href="/videoDetail/{{each[1]}}">
+                <div >예상평점: {{each[0]}}</div>
+                <img src="/show1/{{each[1]}}" class="main_img"/>
+                <div class="all_name_small">{{each[1]}}</div>
+            </a>
+        </div>
+    </div>
+
+    {% endif %}
+    {% endfor %}
+
+</div>
+
+
+
+{% endblock %}
