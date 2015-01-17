@@ -1,16 +1,19 @@
 {% extends "nav_layout.html" %}
 {% block content %}
-<div class="col-sm-1 col-md-1"></div>
-<div class="row col-sm-10 col-md-10">
+<div class="col-md-1"></div>
+<div class="col-md-10 text-center">
+
+    <img style="height:7.33em; display: inline-block" src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="img-responsive" alt="Responsive image">
+    <p style="font-size:30px;">당신만을 위한 추천!</p>
     {% for each in rList %}
     {% if each[0]>3 %}
 
-    <div class="col-sm-4 col-md-2">
+    <div class="col-sm-6 col-md-3">
         <div class="thumbnail text-center">
-            <a href="/videoDetail/{{each[1]}}">
+            <a href="../videoDetail/{{each[1]}}">
                 <div >예상평점: {{'%0.2f' % each[0]|float}}</div>
-                <img src="/show1/{{each[1]}}" class="main_img"/>
-                <div class="all_name_small">{{each[1]}}</div>
+                <img src="/show1/{{each[1]}}" class="category_img"/>
+                <div class="all_name">{{each[1]}}</div>
             </a>
         </div>
     </div>
@@ -20,6 +23,6 @@
 
 </div>
 
-<div class="col-sm-1 col-md-1"></div>
+<div class="col-md-1"></div>
 
 {% endblock %}

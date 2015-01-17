@@ -17,18 +17,14 @@ def actorDetail(name):
 
     #출연작품 가져오기
     appearVideo = actorRow.videos()
-
-
     #댓글 가져오기
     comments = actorRow.reviews()
-    # 유사배우 가져오기
-    actors = recommendation.transformPrefs(recommendation.makePrefsActor())
-    sList = recommendation.topMatches(actors,name)
+
     rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
     if rating:
-        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,rating=rating.rating, sList=sList)
+        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,rating=rating.rating)
 
-    return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments, sList=sList)
+    return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments)
 
 
 #댓글입력
@@ -78,6 +74,8 @@ def videoDetail(name):
 
     movies = recommendation.transformPrefs(recommendation.makePrefs())
     sList = recommendation.topMatches(movies,name)
+
+
 
     rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
     if rating:
