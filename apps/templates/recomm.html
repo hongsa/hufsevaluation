@@ -4,15 +4,15 @@
 <div class="col-md-10 text-center">
 
     <img style="height:7.33em; display: inline-block" src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="img-responsive" alt="Responsive image">
-    <p style="font-size:30px;">당신만을 위한 추천영상!!</p>
+    <p style="font-size:30px;">당신만을 위한 추천배우!!</p>
     {% for each in rList %}
     {% if each[0]>3 %}
 
     <div class="col-sm-6 col-md-3">
         <div class="thumbnail text-center">
-            <a href="../videoDetail/{{each[1]}}">
+            <a href="../actorDetail/{{each[1]}}">
                 <div >예상평점: {{'%0.2f' % each[0]|float}}</div>
-                <img src="/show1/{{each[1]}}" class="category_img"/>
+                <img src="/show2/{{each[1]}}" class="category_img"/>
                 <div class="all_name">{{each[1]}}</div>
             </a>
         </div>
