@@ -20,7 +20,7 @@ def actorDetail(name):
     #댓글 가져오기
     comments = actorRow.reviews()
 
-    actors = recommendation.transformPrefs(recommendation.makePrefs())
+    actors = recommendation.transformPrefs(recommendation.makePrefsActor())
     sList = recommendation.topMatches(actors,name)
 
     rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
