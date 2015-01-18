@@ -23,11 +23,10 @@ def actorDetail(name):
     actors = recommendation.transformPrefs(recommendation.makePrefs())
     sList = recommendation.topMatches(actors,name)
 
-
-
     rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
     if rating:
         return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,rating=rating.rating,sList=sList)
+
 
     return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,sList=sList)
 
@@ -80,11 +79,10 @@ def videoDetail(name):
     movies = recommendation.transformPrefs(recommendation.makePrefs())
     sList = recommendation.topMatches(movies,name)
 
-
-
     rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
     if rating:
         return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating, sList=sList)
+
 
     return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,sList=sList)
 

@@ -221,7 +221,7 @@ def recommend():
     # 완성된 표본과 유저정보(닉네임)를 알고리즘 함수에 제출
     # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson)
     rList = recommendation.getRecommendations(recommendation.makePrefs(),cUser.nickname,similarity=recommendation.simPearson)
-
+    
     # list = [1,2,3]
     return render_template('recommendation.html', rList=rList)
     # return 'well done'
