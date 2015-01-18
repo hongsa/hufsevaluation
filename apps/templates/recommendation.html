@@ -4,7 +4,8 @@
 <div class="col-md-10 text-center">
 
     <img style="height:7.33em; display: inline-block" src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="img-responsive" alt="Responsive image">
-    <p style="font-size:30px;">당신만을 위한 추천영상!!</p>
+    {% if rList is defined %}
+    <p class="contact">당신만을 위한 추천영상!! (현재 평가 수 : <span style="color: blue">{{count}}</span> 개)</p>
     {% for each in rList %}
     {% if each[0]>3 %}
 
@@ -20,6 +21,12 @@
 
     {% endif %}
     {% endfor %}
+
+    {% else %}
+    <p class="contact">아직 영상평가가 부족해요!! (현재 평가 수 : <span style="color: blue">{{count}}</span> 개)</p>
+    <p class="contact">적어도 25개 이상을 평가하면 딱 맞게 추천해드릴게요!!</p>
+    {% endif %}
+
 
 </div>
 
