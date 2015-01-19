@@ -38,10 +38,16 @@
             <li>
                 <a href="/v_collection_r/{{down}}">&laquo;</a>
             </li>
-            {% for page in total_page %}
-            <li>
+            {% for each in total_page %}
+            {% if each == page %}
+            <li class="active">
                 <a href="/v_collection_r/{{page}}">{{page}}</a>
             </li>
+            {% else %}
+            <li>
+                <a href="/v_collection_r/{{each}}">{{each}}</a>
+            </li>
+            {% endif %}
             {% endfor %}
             <li>
                 <a href="/v_collection_r/{{down}}">&raquo;</a>

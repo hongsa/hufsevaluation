@@ -30,7 +30,7 @@ def actor_collection_bookmark(page):
         up = int(total_page)
 
     return render_template("actor_collection_bookmark.html", myBookmark=myBookmark,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down, page=page)
 
 
 def actor_collection_rating(page):
@@ -59,7 +59,8 @@ def actor_collection_rating(page):
     else:
         up = int(total_page)
 
-    return render_template("actor_collection_rating.html", myRating=myRating,total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
+    return render_template("actor_collection_rating.html", myRating=myRating,
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down, page=page)
 
 
 def video_collection_bookmark(page):
@@ -89,7 +90,7 @@ def video_collection_bookmark(page):
         up = int(total_page)
 
     return render_template("video_collection_bookmark.html", myBookmark=myBookmark,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down, page=page)
 
 
 def video_collection_rating(page):
@@ -118,5 +119,6 @@ def video_collection_rating(page):
     else:
         up = int(total_page)
 
-    return render_template("video_collection_rating.html", myRating=myRating, total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down)
+    return render_template("video_collection_rating.html", myRating=myRating,
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,page=page)
 

@@ -33,7 +33,7 @@ def admin_actor():
             db.session.add(actor_write)
             db.session.commit()
             flash(u"배우 DB에 저장되었습니다.")
-            return redirect(url_for("admin"))
+            return redirect(url_for("admin_main"))
 
         return render_template("admin.html")
 
@@ -50,10 +50,10 @@ def admin_actor_check():
             actor = Actor.query.get(name)
             if actor:
                 flash(u"이미 있는 배우입니다.")
-                return redirect(url_for("admin"))
+                return redirect(url_for("admin_main"))
             else:
                 flash(u"없는 배우입니다.")
-                return redirect(url_for("admin"))
+                return redirect(url_for("admin_main"))
 
     return redirect(url_for("index"))
 
@@ -79,7 +79,7 @@ def admin_video():
             db.session.commit()
 
             flash(u"영상 DB에 저장되었습니다.")
-            return redirect(url_for("admin"))
+            return redirect(url_for("admin_main"))
 
         return render_template("admin.html")
 
@@ -95,10 +95,10 @@ def admin_video_check():
             video = Video.query.get(name)
             if video:
                 flash(u"이미 있는 품번입니다.")
-                return redirect(url_for("admin"))
+                return redirect(url_for("admin_main"))
             else:
                 flash(u"없는 품번입니다.")
-                return redirect(url_for("admin"))
+                return redirect(url_for("admin_main"))
 
 def admin_connect():
     email = session['session_user_email']
@@ -114,7 +114,7 @@ def admin_connect():
             db.session.commit()
             flash(u"잘 연결되었습니다.")
 
-            return redirect(url_for("admin"))
+            return redirect(url_for("admin_main"))
 
         return render_template("admin.html")
 

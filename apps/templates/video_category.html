@@ -110,11 +110,16 @@
             <ul class="pagination">
                 <li>
                     <a href="/v_category/{{category}}/{{down}}">&laquo;</a>
-                </li>
-                {% for page in total_page %}
-                <li>
+                {% for each in total_page %}
+                {% if each == page %}
+                <li class="active">
                     <a href="/v_category/{{category}}/{{page}}">{{page}}</a>
                 </li>
+                {% else %}
+                <li>
+                    <a href="/v_category/{{category}}/{{each}}">{{each}}</a>
+                </li>
+                {% endif %}
                 {% endfor %}
                 <li>
                     <a href="/v_category/{{category}}/{{up}}">&raquo;</a>
