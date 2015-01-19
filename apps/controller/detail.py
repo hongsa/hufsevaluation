@@ -22,7 +22,7 @@ def actorDetail(name):
     actors = recommendation.transformPrefs(recommendation.makePrefsActor())
     #유사배우 가져오기
     if actorRow.ratingActor_actor.count() == 0:
-        sList = ['해당 영상에 대한 평가가 필요합니다']
+        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments)
 
     else:
         sList = recommendation.topMatches(actors,name)
@@ -83,7 +83,8 @@ def videoDetail(name):
     # 유사작품 가져오기
     movies = recommendation.transformPrefs(recommendation.makePrefs())
     if videoRow.ratingVideo_video.count()==0:
-        sList = ['해당 영상에 대한 평가가 필요합니다']
+        # sList = ['해당 영상에 대한 평가가 필요합니다']
+        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments)
     else:
         sList = recommendation.topMatches(movies,name)
 
