@@ -1,5 +1,9 @@
 {% extends "nav_layout.html" %}
+{% block js %}
+<script type="text/javascript" src="{{url_for('static', filename='js/loading.js')}}"></script>
+{% endblock %}
 {% block content %}
+<div class="loadingWrapper"> 로딩중입니다 ! </div>
 <div class="col-md-1"></div>
 <div class="col-md-10 text-center">
 

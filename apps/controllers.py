@@ -238,12 +238,6 @@ def recommend2():
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if len(cUser.aRatings())<=15:
         return '평가를 더 하셔야 합니다.'
-    # logging.error(dict)
-    # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson))
-    # 완성된 표본과 유저정보(닉네임)를 알고리즘 함수에 제출
-    # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson)
     rList = recommendation.getRecommendations(recommendation.makePrefsActor(),cUser.nickname,similarity=recommendation.simPearson)
 
-    # list = [1,2,3]
     return render_template('recomm.html', rList=rList)
-    # return 'well done'
