@@ -11,12 +11,13 @@ def new_video(name, page):
         return redirect(url_for('index'))
 
     companyList = set([each.company for each in Video.query.all()])
-    videoCompany = Video.query.filter_by(company=name).order_by(desc(Video.release)).offset(
+    video = Video.query.filter_by(company=name)
+    videoCompany = video.order_by(desc(Video.release)).offset(
         (page - 1) * 12).limit(12)
-    total = Video.query.filter_by(company=name).count()
+    total = video.count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
-    company = Video.query.filter_by(company=name).first().company
+    company = video.first().company
 
     email = session['session_user_email']
     user = User.query.get(email)
@@ -45,4 +46,4 @@ def new_video(name, page):
         up = int(total_page)
 
     return render_template("new_video_main.html", companyList=companyList, videoCompany=videoCompany, company=company,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList)
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page)

@@ -213,9 +213,12 @@ def recommend():
         return redirect(url_for('index'))
     email = session['session_user_email']
     cUser = User.query.get(email)
+    count = cUser.ratingVideo_user.count()
+
+
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if len(cUser.ratings())<=25:
-        return '평가를 더 하셔야 합니다.'
+        return render_template("recommendation.html",count=count)
     # logging.error(dict)
     # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson))
     # 완성된 표본과 유저정보(닉네임)를 알고리즘 함수에 제출
@@ -223,7 +226,7 @@ def recommend():
     rList = recommendation.getRecommendations(recommendation.makePrefs(),cUser.nickname,similarity=recommendation.simPearson)
 
     # list = [1,2,3]
-    return render_template('recommendation.html', rList=rList)
+    return render_template('recommendation.html', rList=rList,count=count)
     # return 'well done'
 
 # 영상 추천기능
@@ -235,9 +238,16 @@ def recommend2():
         return redirect(url_for('index'))
     email = session['session_user_email']
     cUser = User.query.get(email)
+    count = cUser.ratingActor_user.count()
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
-    if len(cUser.aRatings())<=15:
-        return '평가를 더 하셔야 합니다.'
+    if len(cUser.aRatings())<=25:
+        return render_template("recomm.html",count=count)
+    # logging.error(dict)
+    # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson))
+    # 완성된 표본과 유저정보(닉네임)를 알고리즘 함수에 제출
+    # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson)
     rList = recommendation.getRecommendations(recommendation.makePrefsActor(),cUser.nickname,similarity=recommendation.simPearson)
 
-    return render_template('recomm.html', rList=rList)
+    # list = [1,2,3]
+    return render_template('recomm.html', rList=rList,count=count)
+    # return 'well done'

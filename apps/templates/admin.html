@@ -22,9 +22,10 @@
 
 {% endif %}
 <body>
-<div style="margin-left: 20px;">
-    <div>
-        <div>
+<div class="col-md-1"></div>
+<div class="col-md-10">
+    <div class="col-md-12">
+        <div class="col-md-5">
             <h3>배우</h3>
             <form action="{{url_for("admin_actor_check")}}" method="post">
             <p> 이름: <input type="text" name="name">
@@ -34,7 +35,7 @@
             <form action="{{url_for("admin_actor")}}", enctype="multipart/form-data", method="post">
             <p> 이름: <input type="text" name="name">
             </p>
-            <p> category: <input type="text" name="category" placeholder="1:~159cm,2:160~165, 3:166~"></p>
+            <p> category: <input type="text" name="category" placeholder="키 넣기 (155)"></p>
             <p> 나이: <input type="text" name="age" placeholder="1991, 1989, 이런식으로"></p>
             <p> 데뷔년도: <input type="text" name="release" size="35" placeholder="예시:1월-2014.01, 12월 - 2014.12"></p>
             <p>배우사진: <input type="file" name ="actor_image"></p>
@@ -43,7 +44,7 @@
 
         </div>
 
-        <div>
+        <div class="col-md-5">
             <h3>영상</h3>
 
             <form action="{{url_for("admin_video_check")}}" method="post">
@@ -54,7 +55,7 @@
             <form action="{{url_for("admin_video")}}", enctype="multipart/form-data", method="post">
 
             <p> 품번: <input type="text" name="name"></p>
-            <p> category: <input type="text" name="category" placeholder="1:연인,2:지인,3:특별장소,4:팀플,5:상황극" ></p>
+            <p> category: <input type="text" name="category" size="50" placeholder="1:연인,2:지인,3:코스튬,4:팀플,5:SF,6:온천/비누" ></p>
             <p> 출시년도: <input type="text" name="release" size="35" placeholder="예시:1월-2014.01, 12월 - 2014.12"></p>
             <p> 회사: <input type="text" name="company" placeholder="회사명"></p>
             <p> 유모노모: <input type="text" name="exposure" placeholder="노모:0, 유모:1"></p>
@@ -63,24 +64,27 @@
             </form>
 
         </div>
-        <div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-md-5">
             <form action="{{url_for("admin_connect")}}" method="post">
             <h3>연결하기</h3>
             <p> 배우이름: <input type="text" name="actor_name"></p>
             <p> 출연품번: <input type="text" name="video_name"></p>
             <p><input type="submit" value="배우 - 영상 연결하기"></p>
-
             </form>
-
-
         </div>
 
-
-
-
-
-
     </div>
+
+
+
 </div>
+
+
+</div>
+</div>
+<div class="col-md-1"></div>
 </body>
 </html>
