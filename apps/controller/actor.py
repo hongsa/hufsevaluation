@@ -9,9 +9,9 @@ from apps.models import Actor,User
 
 def actor_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
-    if not 'session_user_email' in session:
-        flash(u"로그인 되어있지 않습니다.", "error")
-        return redirect(url_for('index'))
+    # if not 'session_user_email' in session:
+    #     flash(u"로그인 되어있지 않습니다.", "error")
+    #     return redirect(url_for('index'))
 
     totalRank = Actor.query.order_by(desc(Actor.average)).limit(15)
     categoryOne = Actor.query.filter_by(category="1").order_by(desc(Actor.average)).limit(5)
@@ -30,9 +30,9 @@ def show2(key):
 import logging
 def actor_category(name, page):
     # 로그인 안한 상태로 오면 index로 빠꾸
-    if not 'session_user_email' in session:
-        flash(u"로그인 되어있지 않습니다.", "error")
-        return redirect(url_for('index'))
+    # if not 'session_user_email' in session:
+    #     flash(u"로그인 되어있지 않습니다.", "error")
+    #     return redirect(url_for('index'))
 
     actor = Actor.query.filter_by(category=name)
     actorCategory = actor.order_by(desc(Actor.average)).offset(
