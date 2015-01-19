@@ -12,10 +12,13 @@ def new_actor(name, page):
         return redirect(url_for('index'))
 
     releaseList = set([int(each.release) for each in Actor.query.all()])
-    actor = Actor.query.filter(Actor.release * 100 > name * 100,
-                                      Actor.release * 100 < (name + 1) * 100)
-    actorRelease = actor.order_by(desc(Actor.release)).offset((page - 1) * 12).limit(12)
-    total = actor.count()
+    # logging.error(releaseList)
+    actorRelease = Actor.query.filter(Actor.release * 100 > name * 100,
+                                      Actor.release * 100 < (name + 1) * 100).order_by(desc(Actor.release)).offset(
+    (page - 1) * 12).limit(12)
+    # logging.error(actorRelease)
+    total = Actor.query.filter(Actor.release * 100 > name * 100, Actor.release * 100 < (name + 1) * 100).count()
+    # logging.error(total)
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
 
@@ -23,7 +26,7 @@ def new_actor(name, page):
         release = 0
         actorRelease = Actor.query.filter_by(release=0).offset((page - 1) * 12).limit(12)
     else:
-        release = int(actor.first().release)
+        release = int(Actor.query.filter(Actor.release * 100 > name * 100, Actor.release * 100 < (name + 1) * 100).first().release)
 
     email = session['session_user_email']
     user = User.query.get(email)
@@ -55,4 +58,4 @@ def new_actor(name, page):
 
 
     return render_template("new_actor_main.html", releaseList=releaseList, actorRelease=actorRelease, release=release,
-            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page)
+            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList)

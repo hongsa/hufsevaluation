@@ -28,7 +28,7 @@ class User(db.Model):
         return list
     def aRatings(self):
         dict = {}
-        for oRating in self.ratingActor_user:
+        for oRating in self.ratingsActor_user:
             dict[oRating.actorName] = oRating.rating
         return dict
 

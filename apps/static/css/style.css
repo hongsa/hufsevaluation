@@ -104,6 +104,12 @@ html,body{
     overflow: scroll;
 }
 
+
+.folder{
+    background-image: url('../img/folder_layout8_1.png');
+    max-width: 100%;
+    height: auto;
+}
 .detail_name{
     font-size: 30px;
     color: blue;

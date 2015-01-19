@@ -27,14 +27,12 @@ def video_category(name, page):
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-    video = Video.query.filter_by(category=name)
-    videoCategory = video.order_by(desc(Video.average)).offset(
+    videoCategory = Video.query.filter_by(category=name).order_by(desc(Video.average)).offset(
         (page - 1) * 12).limit(12)
-    total = video.count()
-
+    total = Video.query.filter_by(category=name).count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
-    category = video.first().category
+    category = Video.query.filter_by(category=name).first().category
 
     email = session['session_user_email']
     user = User.query.get(email)
@@ -64,7 +62,7 @@ def video_category(name, page):
         up = int(total_page)
 
     return render_template("video_category.html", videoCategory=videoCategory, category=category,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page)
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,flag=True)
 
 
 def show1(key):

@@ -98,16 +98,10 @@
                 <li>
                     <a href="/n_actor/{{release}}/{{down}}">&laquo;</a>
                 </li>
-                {% for each in total_page %}
-                {% if each == page %}
-                <li class="active">
+                {% for page in total_page %}
+                <li>
                     <a href="/n_actor/{{release}}/{{page}}">{{page}}</a>
                 </li>
-                {% else %}
-                <li>
-                    <a href="/n_actor/{{release}}/{{each}}">{{each}}</a>
-                </li>
-                {% endif %}
                 {% endfor %}
                 <li>
                     <a href="/n_actor/{{release}}/{{up}}">&raquo;</a>

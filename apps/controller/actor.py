@@ -6,6 +6,7 @@ from sqlalchemy import desc
 
 from apps.models import Actor,User
 
+('jinja2.ext.loopcontrols')
 
 def actor_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
@@ -34,12 +35,10 @@ def actor_category(name, page):
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-    actor = Actor.query.filter_by(category=name)
-    actorCategory = actor.order_by(desc(Actor.average)).offset(
+    actorCategory = Actor.query.filter_by(category=name).order_by(desc(Actor.average)).offset(
         (page - 1) * 12).limit(12)
-    category = actor.first().category
-
-    total = actor.count()
+    category = Actor.query.filter_by(category=name).first().category
+    total = Actor.query.filter_by(category=name).count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
 
@@ -48,8 +47,8 @@ def actor_category(name, page):
     rating = user.ratingsActor()
 
     list = []
-    for i in actorCategory:
-        list.append(i.name)
+    for v in actorCategory:
+        list.append(v.name)
 
     ratingList=[]
     for r in rating:
@@ -71,4 +70,4 @@ def actor_category(name, page):
         up = int(total_page)
 
     return render_template("actor_category.html", actorCategory=actorCategory, category=category,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page)
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList)
