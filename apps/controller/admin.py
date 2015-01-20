@@ -119,3 +119,20 @@ def admin_connect():
         return render_template("admin.html")
 
     return redirect(url_for("index"))
+
+def admin_edit():
+    email = session['session_user_email']
+    user = User.query.get(email)
+
+    if user.level == 1:
+        if request.method == 'POST':
+            name = request.form['name']
+            actor = Actor.query.get(name)
+            actor.category = request.form['height']
+            db.session.commit()
+            flash(u"수정 완료")
+
+            return redirect(url_for("admin_main"))
+        return render_template("admin.html")
+    return render_template(url_for("index"))
+

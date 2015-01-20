@@ -132,6 +132,11 @@ def admin_video_check():
 @app.route('/admin_connect', methods=['GET', 'POST'])
 def admin_connect():
     return admin.admin_connect()
+
+@app.route('/admin_edit', methods=['GET', 'POST'])
+def admin_edit():
+    return admin.admin_edit()
+
 #관리자(adminController) 끝
 
 
