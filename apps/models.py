@@ -35,7 +35,7 @@ class User(db.Model):
 class Actor(db.Model):
     name = db.Column(db.String(255),primary_key=True)
     image = db.Column(db.LargeBinary)
-    category =db.Column(db.String(255))
+    height =db.Column(db.Integer, default=0)
     score = db.Column(db.Float, default =0)
     count = db.Column(db.Integer, default = 0)
     average = db.Column(db.Float, default=0)
