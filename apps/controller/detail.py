@@ -19,9 +19,13 @@ def actorDetail(name):
     appearVideo = actorRow.videos()
     #댓글 가져오기
     comments = actorRow.reviews()
-
     actors = recommendation.transformPrefs(recommendation.makePrefsActor())
-    sList = recommendation.topMatches(actors,name)
+    #유사배우 가져오기
+    if actorRow.ratingActor_actor.count() == 0:
+        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments)
+
+    else:
+        sList = recommendation.topMatches(actors,name)
 
     rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
     if rating:
@@ -76,13 +80,18 @@ def videoDetail(name):
     #댓글 가져오기
     comments = videoRow.reviews()
 
+    # 유사작품 가져오기
     movies = recommendation.transformPrefs(recommendation.makePrefs())
-    sList = recommendation.topMatches(movies,name)
+    if videoRow.ratingVideo_video.count()==0:
+        # sList = ['해당 영상에 대한 평가가 필요합니다']
+        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments)
+    else:
+        sList = recommendation.topMatches(movies,name)
 
     rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
+
     if rating:
         return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating, sList=sList)
-
 
     return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,sList=sList)
 

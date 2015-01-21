@@ -76,9 +76,13 @@
         <div class="col-sm-6 col-md-3">
             <div class="detail_box2 text-center">
                 <p style="font-size: 25px;">유사한 작품</p>
+                {% if sList is defined%}
                 {% for each in sList %}
                 <p><a href="../videoDetail/{{each[1]}}"><span>{{each[1]}}</span></a></p>
                 {% endfor %}
+                {% else %}
+                <p>해당 영상에 대해 평가가 필요해요!!</p>
+                {% endif %}
             </div>
         </div>
 
