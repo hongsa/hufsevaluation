@@ -2,6 +2,7 @@
 from apps import db
 import json
 
+
 class User(db.Model):
     email = db.Column(db.String(255),primary_key=True)
     password = db.Column(db.String(255))
