@@ -44,9 +44,15 @@
                     {% if actorRow.category == '3' %}
                     <a href="../a_category/3"><span >쭉쭉빵빵</span></a>
                     {% endif %}
+                    {% if actorRow.category == '4' %}
+                    <a href="../a_category/4"><span >장신</span></a>
+                    {% endif %}
                 </p>
-                <p >데뷔년도 : <span >{{actorRow.release}}</span> 월</p>
-                <p >나이 : <span >{{actorRow.age}}</span> 년생</p>
+                <p>키 : <span >{{actorRow.height}}</span> cm</p>
+                <a href="/n_actor/{{actorRow.release|int}}">
+                <p>데뷔년도 : <span >{{actorRow.release}}</span> 월</p>
+                </a>
+                    <p>나이 : <span >{{actorRow.age}}</span> 년생</p>
             </div>
         </div>
 
