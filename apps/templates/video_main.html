@@ -40,7 +40,7 @@
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
                     <a href="/v_category/1">
-                        <div><span style="color: blue">"마치 연인처럼"</span></div>
+                        <div><span style="color: blue">"러브 액츄얼리"</span></div>
                         <div ><img src="{{url_for('static', filename='img/category_folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
                         <div class="all_name_small">카테고리 더보기</div>
                     </a>
@@ -64,7 +64,7 @@
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
                     <a href="/v_category/2">
-                        <div><span style="color: blue">"지인과 함께"</span></div>
+                        <div><span style="color: blue">"금기된 사랑"</span></div>
                         <div ><img src="{{url_for('static', filename='img/category_folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
                         <div class="all_name_small">카테고리 더보기</div>
                     </a>
@@ -88,7 +88,7 @@
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
                     <a href="/v_category/3">
-                        <div><span style="color: blue">"특별한 장소"</span></div>
+                        <div><span style="color: blue">"코스튬"</span></div>
                         <div ><img src="{{url_for('static', filename='img/category_folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
                         <div class="all_name_small">카테고리 더보기</div>
                     </a>
@@ -111,7 +111,7 @@
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
                     <a href="/v_category/4">
-                        <div><span style="color: blue">"우리는 팀플"</span></div>
+                        <div><span style="color: blue">"협동조합"</span></div>
                         <div ><img src="{{url_for('static', filename='img/category_folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
                         <div class="all_name_small">카테고리 더보기</div>
                     </a>
@@ -134,7 +134,7 @@
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
                     <a href="/v_category/5">
-                        <div><span style="color: blue">"기발한 상황극"</span></div>
+                        <div><span style="color: blue">"이게 말이 돼?"</span></div>
                         <div ><img src="{{url_for('static', filename='img/category_folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
                         <div class="all_name_small">카테고리 더보기</div>
                     </a>
@@ -152,6 +152,31 @@
             </div>
             {% endfor %}
         </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-2">
+                <div class="thumbnail text-center">
+                    <a href="/v_category/6">
+                        <div><span style="color: blue">"나 등 밀어줘"</span></div>
+                        <div ><img src="{{url_for('static', filename='img/category_folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
+                        <div class="all_name_small">카테고리 더보기</div>
+                    </a>
+                </div>
+            </div>
+            {% for each in categorySix %}
+            <div class="col-sm-4 col-md-2">
+                <div class="thumbnail text-center">
+                    <a href="/videoDetail/{{each.name}}">
+                        <div >{{each.average}} 점</div>
+                        <img src="/show1/{{each.name}}" class="main_img"/>
+                        <div class="all_name_small">{{each.name}}</div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
 
 
     </div>

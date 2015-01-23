@@ -16,9 +16,10 @@ def video_main():
     categoryThree = Video.query.filter_by(category="3").order_by(desc(Video.average)).limit(5)
     categoryFour = Video.query.filter_by(category="4").order_by(desc(Video.average)).limit(5)
     categoryFive = Video.query.filter_by(category="5").order_by(desc(Video.average)).limit(5)
+    categorySix = Video.query.filter_by(category="6").order_by(desc(Video.average)).limit(5)
 
     return render_template("video_main.html", totalRank=totalRank, categoryOne=categoryOne, categoryTwo=categoryTwo,
-                           categoryThree=categoryThree, categoryFour=categoryFour, categoryFive=categoryFive)
+                           categoryThree=categoryThree, categoryFour=categoryFour, categoryFive=categoryFive,categorySix=categorySix)
 
 import logging
 def video_category(name, page):

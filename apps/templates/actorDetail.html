@@ -36,23 +36,25 @@
                 <p>평가인원 : <span>{{actorRow.count}}</span> 명</p>
                 <p>체형 :
                     {% if actorRow.category == '1'%}
-                    <a href="../a_category/1"><span >귀여운 단신</span></a>
+                    <a href="../a_category/1"><span >진짜 작은애당</span></a>
                     {% endif %}
                     {% if actorRow.category  == '2' %}
-                    <a href="../a_category/2"><span >적당한 체형</span></a>
+                    <a href="../a_category/2"><span >품에 쏘오오옥</span></a>
                     {% endif %}
                     {% if actorRow.category == '3' %}
-                    <a href="../a_category/3"><span >쭉쭉빵빵</span></a>
+                    <a href="../a_category/3"><span >걸그룹 키당</span></a>
                     {% endif %}
                     {% if actorRow.category == '4' %}
-                    <a href="../a_category/4"><span >장신</span></a>
+                    <a href="../a_category/4"><span >힐 신지 말아조</span></a>
                     {% endif %}
                 </p>
                 <p>키 : <span >{{actorRow.height}}</span> cm</p>
-                <a href="/n_actor/{{actorRow.release|int}}">
-                <p>데뷔년도 : <span >{{actorRow.release}}</span> 월</p>
+                <p>데뷔년도 :
+                    <a href="/n_actor/{{actorRow.release|int}}">
+                        <span >{{actorRow.release}}</span> 월
                 </a>
-                    <p>나이 : <span >{{actorRow.age}}</span> 년생</p>
+                </p>
+                <p>나이 : <span >{{actorRow.age}}</span> 년생</p>
             </div>
         </div>
 
