@@ -64,7 +64,7 @@
 
             <!-- 웹사이트 네비게이션 바 안의 로고 부분부터 -->
             <a class="navbar-brand"  href="{{url_for('index')}}">
-               <img src="{{url_for('static', filename='img/logo_stroke_black.png')}}"  class="img-responsive" alt="Responsive image" style="padding: 0em; width: 8.333em;height: 2.778em;">
+                <img src="{{url_for('static', filename='img/logo_stroke_black.png')}}"  class="img-responsive" alt="Responsive image" style="padding: 0em; width: 8.333em;height: 2.778em;">
             </a>
         </div>
 
@@ -87,12 +87,13 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="/n_actor/2014">신인배우</a></li>
-                        <li><a href="/n_video/MOODYZ">신작영상</a></li>
+                        <li><a href="/n_video2/2014">신작영상</a></li>
+                        <li><a href="/n_video/MOODYZ">기획사별</a></li>
                         <li><a href="#"></a></li>
                     </ul>
                 </li>
 
-                 <li class="drodown">
+                <li class="drodown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         추천
                         <b class="caret"></b>
@@ -140,7 +141,7 @@
                     </ul>
                 </li>
                 <li>
-                <a href="{{url_for('contact')}}">문의</a>
+                    <a href="{{url_for('contact')}}">문의</a>
                 </li>
 
             </ul>

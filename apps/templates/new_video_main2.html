@@ -1,0 +1,114 @@
+<!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지-->
+{% extends "nav_layout.html" %}
+{% block css %}
+<style type=text/css>
+    @media only screen and (max-width : 1000px) {
+        .category_chart2{
+            border-radius: 10px;
+            background-color: rgba(1, 12, 84, 1);
+            margin-bottom: 10px;
+            font-family: "Nanum Gothic";
+            font-weight: bold;
+            height:15em ;
+            overflow: scroll;
+            margin-top: 0em;
+        }
+    }
+
+</style>
+
+{% endblock css %}
+{% block js %}
+<script type="text/javascript" src="{{url_for('static', filename='js/video_star.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/video_bookmark.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
+
+{% endblock %}
+
+{% block content %}
+<div class="col-md-1"></div>
+<div class="col-md-10">
+    <div class="col-md-2 category_chart">
+        <div class="text-center" style="color: #ffffff; font-size: 20px;">출시연도</div>
+        <hr style="margin-top: 10px; margin-bottom: 10px;"/>
+        <div class="row text-center">
+            {% for each in releaseList %}
+            <div class="col-md-5" style="margin-bottom: 10px;">
+                {%if each == 0 %}
+                <a href="/n_video2/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px; font-weight: bold">정보없는</button></a>
+                {% else %}
+                <a href="/n_video2/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px; font-weight: bold">{{each}}년도</button></a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-10">
+        <div class="text-center">
+            <span class="category_name">{{release}}년도 작품</span>
+        </div>
+
+
+        <div class="row">
+            {% for each in videoRelease %}
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail text-center" id="{{each.name}}">
+                    <a href="../../videoDetail/{{each.name}}">
+                        <div >
+                            <span>{{each.average}} 점</span>&nbsp;<span>({{each.count}} 명)</span>
+                        </div>
+                        <img src="/show1/{{each.name}}"  class="category_img" alt=""/>
+                    </a>
+                    <div class="v_star_area">
+
+                        {% set counter = [] %}
+                        {% for r in ratingList %}
+                        {%if r['name'] == each.name %}
+                        {% if counter.append('1') %}
+                        {% endif %}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" value="{{r['rating']}}"/>
+                        {% endif %}
+                        {% endfor %}
+                        {%if counter == []%}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                        {% endif %}
+
+                        <a href="../../videoDetail/{{each.name}}"><span class="all_name">{{each.name}}</span></a>&nbsp;&nbsp;
+                        <button type="button" class="v_bookmark btn btn-success btn-xs">
+                            <span class="v_bookmark glyphicon glyphicon-bookmark"></span>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row text-center">
+            <ul class="pagination">
+                <li>
+                    <a href="/n_video2/{{release}}/{{down}}">&laquo;</a>
+                </li>
+                {% for each in total_page %}
+                {% if each == page %}
+                <li class="active">
+                    <a href="/n_video2/{{release}}/{{page}}">{{page}}</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="/n_video2/{{release}}/{{each}}">{{each}}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                <li>
+                    <a href="/n_video2/{{release}}/{{up}}">&raquo;</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-md-1"></div>
+{% endblock %}
