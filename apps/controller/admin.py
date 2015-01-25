@@ -136,3 +136,41 @@ def admin_edit():
         return render_template("admin.html")
     return render_template(url_for("index"))
 
+
+def admin_a_img():
+
+    email = session['session_user_email']
+    user = User.query.get(email)
+    files = request.files['img']
+    filestream = files.read()
+
+    if user.level == 1:
+        if request.method == 'POST':
+            name = request.form['name']
+            actor = Actor.query.get(name)
+            actor.image = filestream
+            db.session.commit()
+            flash(u"이미지 수정 완료")
+
+            return redirect(url_for("admin_main"))
+        return render_template("admin.html")
+    return render_template(url_for("index"))
+
+def admin_v_img():
+
+    email = session['session_user_email']
+    user = User.query.get(email)
+    files = request.files['img']
+    filestream = files.read()
+
+    if user.level == 1:
+        if request.method == 'POST':
+            name = request.form['name']
+            video = Video.query.get(name)
+            video.image = filestream
+            db.session.commit()
+            flash(u"이미지 수정 완료")
+
+            return redirect(url_for("admin_main"))
+        return render_template("admin.html")
+    return render_template(url_for("index"))

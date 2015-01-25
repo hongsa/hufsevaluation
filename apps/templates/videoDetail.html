@@ -55,11 +55,12 @@
                     {% if videoRow.category == '6' %}
                     <a href="../v_category/6"><span class="detailSebu detailCategory">나 등 밀어줘</span></a>
                     {% endif %}
-
-
-
                 </p>
-                <p >출시년도 : <span >{{videoRow.release}}</span> 월</p>
+                <p >출시년도 :
+                    <a href="/n_video2/{{videoRow.release}}">
+                        <span >{{'%0.2f' % videoRow.release|float}}</span> 월
+                    </a>
+                </p>
                 <p >회사 :
                     <a href="/n_video/{{videoRow.company}}">
                         <span>{{videoRow.company}}</span>

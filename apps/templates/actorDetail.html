@@ -51,7 +51,7 @@
                 <p>키 : <span >{{actorRow.height}}</span> cm</p>
                 <p>데뷔년도 :
                     <a href="/n_actor/{{actorRow.release|int}}">
-                        <span >{{actorRow.release}}</span> 월
+                        <span >{{'%0.2f' % actorRow.release|float}}</span> 월
                 </a>
                 </p>
                 <p>나이 : <span >{{actorRow.age}}</span> 년생</p>
