@@ -34,6 +34,7 @@
                 <p style="font-size: 25px;">기본 정보</p>
                 <p>평균평점 : <span>{{actorRow.average}}</span> 점</p>
                 <p>평가인원 : <span>{{actorRow.count}}</span> 명</p>
+                <p>키 : <span >{{actorRow.height}}</span> cm</p>
                 <p>체형 :
                     {% if actorRow.category == '1'%}
                     <a href="../a_category/1"><span >진짜 작은애당</span></a>
@@ -48,13 +49,12 @@
                     <a href="../a_category/4"><span >힐 신지 말아조</span></a>
                     {% endif %}
                 </p>
-                <p>키 : <span >{{actorRow.height}}</span> cm</p>
+                <p>나이 : <span >{{actorRow.age}}</span> 년생</p>
                 <p>데뷔년도 :
                     <a href="/n_actor/{{actorRow.release|int}}">
                         <span >{{'%0.2f' % actorRow.release|float}}</span> 월
                 </a>
                 </p>
-                <p>나이 : <span >{{actorRow.age}}</span> 년생</p>
             </div>
         </div>
 
