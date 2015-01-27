@@ -75,7 +75,7 @@ def show1(key):
 
     if rv is None:
         rv = Video.query.get(key).image
-        cache.set(key, rv, timeout=120 * 60)
+        cache.set(key, rv, timeout=10 * 60)
         # actor = Actor.query.get(key)
 
     # else:
