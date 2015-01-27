@@ -3,6 +3,7 @@ from flask import redirect, url_for, render_template, flash, session,current_app
 from apps.models import Video,User
 from sqlalchemy import desc
 import math
+from werkzeug.contrib.cache import GAEMemcachedCache
 
 def video_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
@@ -69,6 +70,16 @@ def video_category(name, page):
 
 
 def show1(key):
-    video = Video.query.get(key)
+    cache = GAEMemcachedCache()
+    rv = cache.get(key)
+
+    if rv is None:
+        rv = Video.query.get(key).image
+        cache.set(key, rv, timeout=120 * 60)
+        # actor = Actor.query.get(key)
+
+    # else:
+    #     actor = Actor.query.get(rv)
+
     mimetype = "image/png"
-    return current_app.response_class(video.image, mimetype=mimetype)
+    return current_app.response_class(rv, mimetype=mimetype)

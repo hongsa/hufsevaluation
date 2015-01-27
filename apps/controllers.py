@@ -7,6 +7,8 @@ from controller import user,actor,newActor,newVideo,newVideo2,search,admin,colle
 import recommendation
 
 
+
+
 import logging
 # userController에서 관리하는 부분 시작
 @app.route('/')
@@ -271,8 +273,9 @@ def recommend2():
     return render_template('recomm.html', rList=rList,count=count)
     # return 'well done'
 
-# # -*- coding: utf-8 -*-
-#
+
+
+# 키 수정하기 크롤링
 # from flask import Flask, render_template
 # from apps import app
 # from bs4 import BeautifulSoup
