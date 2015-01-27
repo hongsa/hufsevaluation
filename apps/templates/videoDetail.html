@@ -57,7 +57,7 @@
                     {% endif %}
                 </p>
                 <p >출시년도 :
-                    <a href="/n_video2/{{videoRow.release}}">
+                    <a href="/n_video2/{{videoRow.release|int}}">
                         <span >{{'%0.2f' % videoRow.release|float}}</span> 월
                     </a>
                 </p>
