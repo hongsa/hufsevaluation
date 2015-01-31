@@ -50,7 +50,7 @@ class Actor(db.Model):
         list = [] # return할 list
 
         for review in self.actorReview_actor:
-            list.append( dict(author=review.user.nickname, content=review.content))
+            list.append( dict(author=review.user.nickname, content=review.content,level=review.user.level))
         return list
 
     def videos(self):
@@ -75,7 +75,7 @@ class Video(db.Model):
         list = [] # return할 list
 
         for review in self.videoReview_video:
-            list.append( dict(author=review.user.nickname, content=review.content))
+            list.append( dict(author=review.user.nickname, content=review.content,level=review.user.level))
         return list
 
     def actors(self):
