@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from flask import request, session, jsonify
 from apps import db
-from apps.models import  Actor, Video, RatingActor, RatingVideo
+from apps.models import  Actor, Video, RatingActor, RatingVideo, User
 import math
+import logging
 
 def video_save_star():
     star = int(request.form.get('star'))
@@ -36,6 +37,27 @@ def video_save_star():
 
     db.session.add(rating)
     db.session.commit()
+
+    user =  User.query.get(email)
+    level = user.ratingVideo_user.count()
+
+    logging.error(level)
+
+
+    if level <50:
+        user.level = 0
+    elif 50<= level < 100:
+        user.level = 1
+    elif 200 <= level <500:
+        user.level = 2
+    elif 500 <= level <1000:
+        user.level = 3
+    else:
+        user.level = 4
+
+    db.session.commit()
+
+
 
     return jsonify(success=True)
 

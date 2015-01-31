@@ -21,10 +21,14 @@
                     {% else %}
                     <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
                     {% endif %}
-                    <span class="all_name">{{actorRow.name}}</span>&nbsp;&nbsp;
-                    <button type="button" class="a_bookmark btn btn-success btn-xs">
-                        <span class="a_bookmark glyphicon glyphicon-bookmark"></span>
-                    </button>
+                    <span class="all_name">{{actorRow.name}}</span>
+                    <img class="a_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
+                         onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
+                         onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
+                         style="margin-bottom: 0.4em"/>
+                    <!--<button type="button" class="a_bookmark btn btn-success btn-xs">-->
+                    <!--<span class="a_bookmark glyphicon glyphicon-bookmark"></span>-->
+                    <!--</button>-->
                 </div>
             </div>
         </div>
@@ -53,7 +57,7 @@
                 <p>데뷔년도 :
                     <a href="/n_actor/{{actorRow.release|int}}">
                         <span >{{'%0.2f' % actorRow.release|float}}</span> 월
-                </a>
+                    </a>
                 </p>
             </div>
         </div>
@@ -109,8 +113,10 @@
                 {% for each in comments %}
                 <div class="panel panel-default">
                     <div class="row">
-                        <div class="col-sm-2 text-center" >
-                            <p class="comment_author">{{each['author']}}</p>
+                        <div class="col-sm-2 text-left">
+                            <p class="comment_author">
+                                <img src="/static/img/{{level}}.png" alt=""/>{{each['author']}}
+                            </p>
                         </div>
                         <div class="col-sm-9">
                             <p class="text-center">{{each['content']}}</p>

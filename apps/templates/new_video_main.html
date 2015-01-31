@@ -71,10 +71,15 @@
                         <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
                         {% endif %}
 
-                        <a href="../../videoDetail/{{each.name}}"><span class="all_name">{{each.name}}</span></a>&nbsp;&nbsp;
-                        <button type="button" class="v_bookmark btn btn-success btn-xs">
-                            <span class="v_bookmark glyphicon glyphicon-bookmark"></span>
-                        </button>
+                        <a href="../../videoDetail/{{each.name}}"><span class="all_name">{{each.name}}</span></a>
+                        <img class="v_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
+                             onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
+                             onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
+                             style="margin-bottom: 0.4em"/>
+
+                        <!--<button type="button" class="v_bookmark btn btn-success btn-xs">-->
+                        <!--<span class="v_bookmark glyphicon glyphicon-bookmark"></span>-->
+                        <!--</button>-->
 
                     </div>
                 </div>

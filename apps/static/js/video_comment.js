@@ -48,7 +48,7 @@ var receiverHandler = function(result, textStatus, xhr) {
         //var myData = JSON.parse(result);
         //alert(myData);
         //뷰에 뿌리자.
-      $('#current').before('<div class="panel panel-default">'+'<div class="row">'+'<div class="col-sm-2 text-center">'+'<p class="comment_author">'+result['user']+'</p>'+'</div>'+'<div class="col-sm-9">'+'<p class="text-center">' +result['comments']+'</p>'+'</div>'+'</div>'+'</div>');
+      $('#current').before('<div class="panel panel-default">'+'<div class="row">'+'<div class="col-sm-2 text-left">'+'<p class="comment_author">'+'<img src="/static/img/'+result['level']+'.png"/>'+result['user']+'</p>'+'</div>'+'<div class="col-sm-9">'+'<p class="text-center">' +result['comments']+'</p>'+'</div>'+'</div>'+'</div>');
     //actorName을 뿌릴 땐 (myData.actorName) 이용
     alert('한줄평 쓰기 완료!');
 }

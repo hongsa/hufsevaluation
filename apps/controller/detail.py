@@ -12,6 +12,8 @@ def actorDetail(name):
         return redirect(url_for('index'))
 
     email = session['session_user_email']
+    user = User.query.get(email)
+    level = user.level
     # 해당하는 배우추출
     actorRow = Actor.query.get(name)
 
@@ -22,17 +24,17 @@ def actorDetail(name):
     actors = recommendation.transformPrefs(recommendation.makePrefsActor())
     #유사배우 가져오기
     if actorRow.ratingActor_actor.count() == 0:
-        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments)
+        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,level=level)
 
     else:
         sList = recommendation.topMatches(actors,name)
 
     rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
     if rating:
-        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,rating=rating.rating,sList=sList)
+        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,rating=rating.rating,sList=sList,level=level)
 
 
-    return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,sList=sList)
+    return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,sList=sList,level=level)
 
 
 #댓글입력
@@ -43,6 +45,7 @@ def actor_comment():
             email = session['session_user_email']
             user= User.query.get(email)
             sUser=user.nickname
+            sLevel=user.level
             sComment = request.form['comment']
             sName = request.form['actorName']
             thisComment={}
@@ -54,6 +57,7 @@ def actor_comment():
         #댓글 DB에 저장
             jsonDict = {}
             jsonDict['user']=sUser
+            jsonDict['level']=sLevel
             jsonDict['comments'] = sComment
             jsonDict['actorName'] = sName
             db.session.add(thisComment)
@@ -72,6 +76,8 @@ def videoDetail(name):
         return redirect(url_for('index'))
 
     email = session['session_user_email']
+    user = User.query.get(email)
+    level = user.level
     # 해당하는 배우추출
     videoRow = Video.query.get(name)
 
@@ -84,16 +90,16 @@ def videoDetail(name):
     movies = recommendation.transformPrefs(recommendation.makePrefs())
     if videoRow.ratingVideo_video.count()==0:
         # sList = ['해당 영상에 대한 평가가 필요합니다']
-        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments)
+        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments, level=level)
     else:
         sList = recommendation.topMatches(movies,name)
 
     rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
 
     if rating:
-        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating, sList=sList)
+        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating, sList=sList, level=level)
 
-    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,sList=sList)
+    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,sList=sList, level=level)
 
 #댓글입력
 def video_comment():
@@ -103,6 +109,7 @@ def video_comment():
             user= User.query.get(email)
 
             sUser=user.nickname
+            sLevel=user.level
             sComment = request.form['comment']
             sName = request.form['videoName']
             thisComment={}
@@ -114,6 +121,7 @@ def video_comment():
         #댓글 DB에 저장
             jsonDict = {}
             jsonDict['user'] = sUser
+            jsonDict['level'] = sLevel
             jsonDict['comments'] = sComment
             jsonDict['videoName'] = sName
             db.session.add(thisComment)
