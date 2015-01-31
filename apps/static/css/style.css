@@ -110,6 +110,7 @@ html,body{
 }
 .comment_author{
     color: #18bc9c;
+    margin-left: 1em;
 }
 .all_name{
     color: black;
