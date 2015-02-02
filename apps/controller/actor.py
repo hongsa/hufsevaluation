@@ -5,34 +5,47 @@ from flask import redirect, url_for, render_template,flash, session, current_app
 from sqlalchemy import desc
 
 from apps.models import Actor,User
+from werkzeug.contrib.cache import GAEMemcachedCache
 
 
 def actor_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
-    # if not 'session_user_email' in session:
-    #     flash(u"로그인 되어있지 않습니다.", "error")
-    #     return redirect(url_for('index'))
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
 
     totalRank = Actor.query.order_by(desc(Actor.average)).limit(15)
     categoryOne = Actor.query.filter_by(category="1").order_by(desc(Actor.average)).limit(5)
     categoryTwo = Actor.query.filter_by(category="2").order_by(desc(Actor.average)).limit(5)
     categoryThree = Actor.query.filter_by(category="3").order_by(desc(Actor.average)).limit(5)
+    categoryFour = Actor.query.filter_by(category="4").order_by(desc(Actor.average)).limit(5)
 
     return render_template("actor_main.html", totalRank=totalRank, categoryOne=categoryOne, categoryTwo=categoryTwo,
-                           categoryThree=categoryThree)
+                           categoryThree=categoryThree,categoryFour=categoryFour)
+
 
 
 def show2(key):
-    actor = Actor.query.get(key)
+    cache = GAEMemcachedCache()
+    rv = cache.get(key)
+
+    if rv is None:
+        rv = Actor.query.get(key).image
+        cache.set(key, rv, timeout=60 * 60 * 24)
+        # actor = Actor.query.get(key)
+
+    # else:
+    #     actor = Actor.query.get(rv)
+
     mimetype = "image/png"
-    return current_app.response_class(actor.image, mimetype=mimetype)
+    return current_app.response_class(rv, mimetype=mimetype)
 
 import logging
 def actor_category(name, page):
     # 로그인 안한 상태로 오면 index로 빠꾸
-    # if not 'session_user_email' in session:
-    #     flash(u"로그인 되어있지 않습니다.", "error")
-    #     return redirect(url_for('index'))
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
 
     actor = Actor.query.filter_by(category=name)
     actorCategory = actor.order_by(desc(Actor.average)).offset(

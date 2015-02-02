@@ -12,6 +12,8 @@ def actorDetail(name):
         return redirect(url_for('index'))
 
     email = session['session_user_email']
+    user = User.query.get(email)
+    level = user.level
     # 해당하는 배우추출
     actorRow = Actor.query.get(name)
 
@@ -43,6 +45,7 @@ def actor_comment():
             email = session['session_user_email']
             user= User.query.get(email)
             sUser=user.nickname
+            sLevel=user.level
             sComment = request.form['comment']
             sName = request.form['actorName']
             thisComment={}
@@ -54,6 +57,7 @@ def actor_comment():
         #댓글 DB에 저장
             jsonDict = {}
             jsonDict['user']=sUser
+            jsonDict['level']=sLevel
             jsonDict['comments'] = sComment
             jsonDict['actorName'] = sName
             db.session.add(thisComment)
@@ -72,6 +76,8 @@ def videoDetail(name):
         return redirect(url_for('index'))
 
     email = session['session_user_email']
+    user = User.query.get(email)
+    level = user.level
     # 해당하는 배우추출
     videoRow = Video.query.get(name)
 
@@ -103,6 +109,7 @@ def video_comment():
             user= User.query.get(email)
 
             sUser=user.nickname
+            sLevel=user.level
             sComment = request.form['comment']
             sName = request.form['videoName']
             thisComment={}
@@ -114,6 +121,7 @@ def video_comment():
         #댓글 DB에 저장
             jsonDict = {}
             jsonDict['user'] = sUser
+            jsonDict['level'] = sLevel
             jsonDict['comments'] = sComment
             jsonDict['videoName'] = sName
             db.session.add(thisComment)

@@ -52,7 +52,7 @@
             {%if release == 0%}
             <span class="category_name">데뷔년도 정보를 아직 모르는 작품들</span>
             {% else %}
-            <span class="category_name">{{release}}년도 작품</span>
+            <span class="category_name">{{release}}년도 데뷔배우</span>
             {% endif %}
 
         </div>
@@ -81,10 +81,14 @@
                         <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
                         {% endif %}
 
-                        <a href="../../actorDetail/{{each.name}}"><span class="all_name">{{each.name}}</span></a>&nbsp;&nbsp;
-                        <button type="button" class="a_bookmark btn btn-success btn-xs">
-                            <span class="a_bookmark glyphicon glyphicon-bookmark"></span>
-                        </button>
+                        <a href="../../actorDetail/{{each.name}}"><span class="all_name">{{each.name}}</span></a>
+                        <img class="a_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
+                             onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
+                             onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
+                             style="margin-bottom: 0.4em"/>
+                        <!--<button type="button" class="a_bookmark btn btn-success btn-xs">-->
+                        <!--<span class="a_bookmark glyphicon glyphicon-bookmark"></span>-->
+                        <!--</button>-->
 
                     </div>
                 </div>

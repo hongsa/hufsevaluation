@@ -98,21 +98,22 @@ def logout():
     return redirect(url_for('index'))
 
 def modify_password():
+    email = session['session_user_email']
+    user= User.query.get(email)
+    level = user.level
     if request.method == 'POST':
-        email = session['session_user_email']
-        user= User.query.get(email)
         user.password = generate_password_hash(request.form['password'])
         db.session.commit()
         flash(u"변경 완료되었습니다.", "password")
         return redirect(url_for('modify_password'))
 
-    return render_template("modify.html")
+    return render_template("modify.html",level=level)
 
 def modify_nickname():
+    email = session['session_user_email']
+    user= User.query.get(email)
+    level=user.level
     if request.method == 'POST':
-        email = session['session_user_email']
-        user= User.query.get(email)
-
         nickname=request.form['nickname']
         if len(nickname) >10:
             flash(u"9자 이내로 입력해주세요.", "nickname")
@@ -131,7 +132,7 @@ def modify_nickname():
         flash(u"변경 완료되었습니다.", "nickname")
         return redirect(url_for('modify_nickname'))
 
-    return render_template("modify.html")
+    return render_template("modify.html", level=level)
 
 
 def contact():

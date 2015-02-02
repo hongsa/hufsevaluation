@@ -29,11 +29,11 @@ html,body{
 }
 
 .symbol-empty {
-    background-image: url(../img/star-off_big.png);
+    background-image: url(../img/star_off2.png);
 }
 
 .symbol-filled {
-    background-image: url(../img/star-on_big.png);
+    background-image: url(../img/star_on2.png);
 }
 .main_img{
     width: 8em;
@@ -110,6 +110,7 @@ html,body{
 }
 .comment_author{
     color: #18bc9c;
+    margin-left: 1em;
 }
 .all_name{
     color: black;
@@ -120,4 +121,7 @@ html,body{
 }
 .all_name_small{
     color: #000000;
+}
+.love{
+    background-image:url(../img/love.png); ;
 }

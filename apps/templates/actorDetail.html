@@ -21,10 +21,14 @@
                     {% else %}
                     <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
                     {% endif %}
-                    <span class="all_name">{{actorRow.name}}</span>&nbsp;&nbsp;
-                    <button type="button" class="a_bookmark btn btn-success btn-xs">
-                        <span class="a_bookmark glyphicon glyphicon-bookmark"></span>
-                    </button>
+                    <span class="all_name">{{actorRow.name}}</span>
+                    <img class="a_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
+                         onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
+                         onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
+                         style="margin-bottom: 0.4em"/>
+                    <!--<button type="button" class="a_bookmark btn btn-success btn-xs">-->
+                    <!--<span class="a_bookmark glyphicon glyphicon-bookmark"></span>-->
+                    <!--</button>-->
                 </div>
             </div>
         </div>
@@ -34,19 +38,27 @@
                 <p style="font-size: 25px;">기본 정보</p>
                 <p>평균평점 : <span>{{actorRow.average}}</span> 점</p>
                 <p>평가인원 : <span>{{actorRow.count}}</span> 명</p>
+                <p>키 : <span >{{actorRow.height}}</span> cm</p>
                 <p>체형 :
                     {% if actorRow.category == '1'%}
-                    <a href="../a_category/1"><span >귀여운 단신</span></a>
+                    <a href="../a_category/1"><span >진짜 작은애당</span></a>
                     {% endif %}
                     {% if actorRow.category  == '2' %}
-                    <a href="../a_category/2"><span >적당한 체형</span></a>
+                    <a href="../a_category/2"><span >품에 쏘오오옥</span></a>
                     {% endif %}
                     {% if actorRow.category == '3' %}
-                    <a href="../a_category/3"><span >쭉쭉빵빵</span></a>
+                    <a href="../a_category/3"><span >걸그룹 키당</span></a>
+                    {% endif %}
+                    {% if actorRow.category == '4' %}
+                    <a href="../a_category/4"><span >힐 신지 말아조</span></a>
                     {% endif %}
                 </p>
-                <p >데뷔년도 : <span >{{actorRow.release}}</span> 월</p>
-                <p >나이 : <span >{{actorRow.age}}</span> 년생</p>
+                <p>나이 : <span >{{actorRow.age}}</span> 년생</p>
+                <p>데뷔년도 :
+                    <a href="/n_actor/{{actorRow.release|int}}">
+                        <span >{{'%0.2f' % actorRow.release|float}}</span> 월
+                    </a>
+                </p>
             </div>
         </div>
 
@@ -101,8 +113,10 @@
                 {% for each in comments %}
                 <div class="panel panel-default">
                     <div class="row">
-                        <div class="col-sm-2 text-center" >
-                            <p class="comment_author">{{each['author']}}</p>
+                        <div class="col-sm-2 text-left">
+                            <p class="comment_author">
+                                <img src="/static/img/{{each['level']}}.png" alt=""/>&nbsp;&nbsp;{{each['author']}}
+                            </p>
                         </div>
                         <div class="col-sm-9">
                             <p class="text-center">{{each['content']}}</p>

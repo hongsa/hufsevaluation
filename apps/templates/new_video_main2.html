@@ -9,11 +9,14 @@
             margin-bottom: 10px;
             font-family: "Nanum Gothic";
             font-weight: bold;
+            height:15em ;
+            overflow: scroll;
             margin-top: 0em;
         }
     }
 
 </style>
+
 {% endblock css %}
 {% block js %}
 <script type="text/javascript" src="{{url_for('static', filename='js/video_star.js')}}"></script>
@@ -22,71 +25,41 @@
 
 {% endblock %}
 
-
 {% block content %}
 <div class="col-md-1"></div>
 <div class="col-md-10">
-
     <div class="col-md-2 category_chart">
-        <div class="text-center" style="color: #ffffff; font-size: 20px;">영상 분류</div>
+        <div class="text-center" style="color: #ffffff; font-size: 20px;">출시연도</div>
         <hr style="margin-top: 10px; margin-bottom: 10px;"/>
-        <ul class="text-center">
-
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/1">러브 액츄얼리
-                </a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/2">금기된 사랑
-                </a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/3">코스튬
-                </a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/4">협동조합
-                </a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/5">이게 말이 돼?
-                </a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/6">나 등 밀어줘
-                </a></li>
-        </ul>
+        <div class="row text-center">
+            {% for each in releaseList %}
+            <div class="col-md-5" style="margin-bottom: 10px;">
+                {%if each == 0 %}
+                <a href="/n_video2/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px; font-weight: bold">정보없는</button></a>
+                {% else %}
+                <a href="/n_video2/{{each}}"><button type="button" class="btn btn-default btn-xs" style="font-size:14px; font-weight: bold">{{each}}년도</button></a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
     <div class="col-md-10">
         <div class="text-center">
-
-            {% if category == '1'%}
-            <span class=category_name>러브 액츄얼리</span>
-            {% endif %}
-            {% if category  == '2' %}
-            <span class=category_name>금기된 사랑</span>
-            {% endif %}
-            {% if category == '3' %}
-            <span class=category_name>코스튬</span>
-            {% endif %}
-            {% if category == '4' %}
-            <span class=category_name>협동조합</span>
-            {% endif %}
-            {% if category == '5' %}
-            <span class=category_name>이게 말이 돼?</span>
-            {% endif %}
-            {% if category == '6' %}
-            <span class=category_name>나 등 밀어줘</span>
-            {% endif %}
+            <span class="category_name">{{release}}년도 작품</span>
         </div>
 
+
         <div class="row">
-            {% for each in videoCategory %}
+            {% for each in videoRelease %}
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail text-center" id="{{each.name}}">
                     <a href="../../videoDetail/{{each.name}}">
-                        <div>
+                        <div >
                             <span>{{each.average}} 점</span>&nbsp;<span>({{each.count}} 명)</span>
                         </div>
-                        <img src="/show1/{{each.name}}" alt="" class="category_img"/>
+                        <img src="/show1/{{each.name}}"  class="category_img" alt=""/>
                     </a>
-
                     <div class="v_star_area">
 
                         {% set counter = [] %}
@@ -101,7 +74,6 @@
                         <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
                         {% endif %}
 
-
                         <a href="../../videoDetail/{{each.name}}"><span class="all_name">{{each.name}}</span></a>
                         <img class="v_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
                              onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
@@ -110,6 +82,7 @@
                         <!--<button type="button" class="v_bookmark btn btn-success btn-xs">-->
                         <!--<span class="v_bookmark glyphicon glyphicon-bookmark"></span>-->
                         <!--</button>-->
+
                     </div>
                 </div>
             </div>
@@ -119,22 +92,24 @@
         <div class="row text-center">
             <ul class="pagination">
                 <li>
-                    <a href="/v_category/{{category}}/{{down}}">&laquo;</a>
-                    {% for each in total_page %}
-                    {% if each == page %}
+                    <a href="/n_video2/{{release}}/{{down}}">&laquo;</a>
+                </li>
+                {% for each in total_page %}
+                {% if each == page %}
                 <li class="active">
-                    <a href="/v_category/{{category}}/{{page}}">{{page}}</a>
+                    <a href="/n_video2/{{release}}/{{page}}">{{page}}</a>
                 </li>
                 {% else %}
                 <li>
-                    <a href="/v_category/{{category}}/{{each}}">{{each}}</a>
+                    <a href="/n_video2/{{release}}/{{each}}">{{each}}</a>
                 </li>
                 {% endif %}
                 {% endfor %}
                 <li>
-                    <a href="/v_category/{{category}}/{{up}}">&raquo;</a>
+                    <a href="/n_video2/{{release}}/{{up}}">&raquo;</a>
                 </li>
             </ul>
+
         </div>
     </div>
 </div>

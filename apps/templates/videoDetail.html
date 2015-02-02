@@ -23,10 +23,14 @@
                     {% else %}
                     <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" />
                     {% endif %}
-                    <span class="all_name">{{videoRow.name}}</span>&nbsp;&nbsp;
-                    <button type="button" class="v_bookmark btn btn-success btn-xs">
-                        <span class="v_bookmark glyphicon glyphicon-bookmark"></span>
-                    </button>
+                    <span class="all_name">{{videoRow.name}}</span>
+                    <img class="v_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
+                         onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
+                         onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
+                         style="margin-bottom: 0.4em"/>
+                    <!--<button type="button" class="v_bookmark btn btn-success btn-xs">-->
+                    <!--<span class="v_bookmark glyphicon glyphicon-bookmark"></span>-->
+                    <!--</button>-->
                 </div>
             </div>
         </div>
@@ -38,24 +42,29 @@
                 <p>평가인원 : <span>{{videoRow.count}}</span> 명</p>
                 <p>취향 :
                     {% if videoRow.category == '1'%}
-                    <a href="../v_category/1"><span class="detailSebu detailCategory">마치 연인처럼</span></a>
+                    <a href="../v_category/1"><span class="detailSebu detailCategory">러브 액츄얼리</span></a>
                     {% endif %}
                     {% if videoRow.category  == '2' %}
-                    <a href="../v_category/2"><span class="detailSebu detailCategory">지인과 함께</span></a>
+                    <a href="../v_category/2"><span class="detailSebu detailCategory">금기된 사랑</span></a>
                     {% endif %}
                     {% if videoRow.category == '3' %}
-                    <a href="../v_category/3"><span class="detailSebu detailCategory">특별한 장소에서</span></a>
+                    <a href="../v_category/3"><span class="detailSebu detailCategory">코스튬</span></a>
                     {% endif %}
                     {% if videoRow.category == '4' %}
-                    <a href="../v_category/4"><span class="detailSebu detailCategory">우리는 팀플</span></a>
-
+                    <a href="../v_category/4"><span class="detailSebu detailCategory">협동조합</span></a>
                     {% endif %}
                     {% if videoRow.category == '5' %}
-
-                    <a href="../v_category/5"><span class="detailSebu detailCategory">기발한 상황극</span></a>
+                    <a href="../v_category/5"><span class="detailSebu detailCategory">이게 말이 돼?</span></a>
+                    {% endif %}
+                    {% if videoRow.category == '6' %}
+                    <a href="../v_category/6"><span class="detailSebu detailCategory">나 등 밀어줘</span></a>
                     {% endif %}
                 </p>
-                <p >출시년도 : <span >{{videoRow.release}}</span> 월</p>
+                <p >출시년도 :
+                    <a href="/n_video2/{{videoRow.release|int}}">
+                        <span >{{'%0.2f' % videoRow.release|float}}</span> 월
+                    </a>
+                </p>
                 <p >회사 :
                     <a href="/n_video/{{videoRow.company}}">
                         <span>{{videoRow.company}}</span>
@@ -114,8 +123,10 @@
                 {% for each in comments %}
                 <div class="panel panel-default">
                     <div class="row">
-                        <div class="col-sm-2 text-center" >
-                            <p class="comment_author">{{each['author']}}</p>
+                        <div class="col-sm-2 text-left" >
+                            <p class="comment_author">
+                                <img src="/static/img/{{each['level']}}.png" alt=""/>&nbsp;&nbsp;{{each['author']}}
+                            </p>
                         </div>
                         <div class="col-sm-9">
                             <p class="text-center">{{each['content']}}</p>

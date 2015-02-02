@@ -2,6 +2,7 @@
 from apps import db
 import json
 
+
 class User(db.Model):
     email = db.Column(db.String(255),primary_key=True)
     password = db.Column(db.String(255))
@@ -35,12 +36,13 @@ class User(db.Model):
 class Actor(db.Model):
     name = db.Column(db.String(255),primary_key=True)
     image = db.Column(db.LargeBinary)
-    category =db.Column(db.String(255))
+    height =db.Column(db.Integer, default=0)
     score = db.Column(db.Float, default =0)
     count = db.Column(db.Integer, default = 0)
     average = db.Column(db.Float, default=0)
     age = db.Column(db.Integer, default = 0)
     release = db.Column(db.Float, default=0)
+    category = db.Column(db.String(255))
     # 모델 차원에서 리스트를 생성하는 함수를 생성
     # each.reviews() 실행하면 댓글 각 한 줄을 dict로 갖는 리스트를 리턴함
     # 댓글 각 한줄 및 전체 리스트는 javascript가 인식 가능하게 json형태로 리턴!
@@ -48,7 +50,7 @@ class Actor(db.Model):
         list = [] # return할 list
 
         for review in self.actorReview_actor:
-            list.append( dict(author=review.user.nickname, content=review.content))
+            list.append( dict(author=review.user.nickname, content=review.content,level=review.user.level))
         return list
 
     def videos(self):
@@ -73,7 +75,7 @@ class Video(db.Model):
         list = [] # return할 list
 
         for review in self.videoReview_video:
-            list.append( dict(author=review.user.nickname, content=review.content))
+            list.append( dict(author=review.user.nickname, content=review.content,level=review.user.level))
         return list
 
     def actors(self):

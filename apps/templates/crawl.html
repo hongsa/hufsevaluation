@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+{% if get_flashed_messages() %}
+
+<div class="flahsed_box">
+    {% for each in get_flashed_messages() %}
+    <div class="flashed_text text-center">
+        {{each}}
+    </div>
+    {% endfor %}
+</div>
+
+{% endif %}
+
+<br/>
+<br/>
+{% for each in final %}
+{{each['name']}}&nbsp;&nbsp;{{each['value']}}
+{% endfor %}
+
+<!--{% for each in list %}-->
+<!--{{each}}-->
+<!--{% endfor %}-->
+
+<br/>
+<br/>
+
+</body>
+</html>

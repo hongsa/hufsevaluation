@@ -3,7 +3,7 @@ from datetime import timedelta
 
 class Config(object):	
     # Set secret keys for CSRF protection
-    SECRET_KEY = "ghdtktjd"
+    SECRET_KEY = "hsskjhkjh"
     # CSRF_SESSION_KEY = SESSION_KEY
     debug = True
 
