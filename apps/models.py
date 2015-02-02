@@ -70,7 +70,8 @@ class Video(db.Model):
     count = db.Column(db.Integer, default = 0)
     average = db.Column(db.Float, default=0)
     company =db.Column(db.String(255))
-
+    def url(self):
+        return 'http://storage.googleapis.com/jikbakguri/video/'+self.name+'.jpg'
     def reviews(self):
         list = [] # return할 list
 
