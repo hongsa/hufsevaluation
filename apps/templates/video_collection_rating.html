@@ -23,7 +23,7 @@
             <div class="thumbnail text-center">
                 <a href="../../videoDetail/{{each.videoName}}">
                     <div>내 평점: <span>{{each.rating}}</span> 점</div>
-                    <img src="/show1/{{each.videoName}}"  class="category_img" alt=""/>
+                    <img src="{{each.video.url()}}"  class="category_img" alt=""/>
                     <div>
                         <div class="all_name">{{each.videoName}}</div>
                     </div>

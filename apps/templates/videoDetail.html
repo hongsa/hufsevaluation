@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-sm-6 col-md-3" >
             <div class="thumbnail text-center" id="{{videoRow.name}}">
-                <img src="{{videoRow.url}}" alt="" class="detail_img"/>
+                <img src="{{videoRow.url()}}" alt="" class="detail_img"/>
                 <div class="v_star_area">
                     {% if rating is defined %}
                     <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" value="{{rating}}"/>
