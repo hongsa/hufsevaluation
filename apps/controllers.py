@@ -5,7 +5,7 @@ from apps.controller import video
 from models import User
 from controller import user,actor,newActor,newVideo,search,admin,collection,star,bookmark,detail
 import recommendation
-
+import readImage
 
 import logging
 # userController에서 관리하는 부분 시작
@@ -254,3 +254,16 @@ def recommend2():
     # list = [1,2,3]
     return render_template('recomm.html', rList=rList,count=count)
     # return 'well done'
+
+
+@app.route('/getList2')
+def downVideoImage():
+    a = readImage.getActorName()
+
+    return render_template('test.html', a=a)
+
+@app.route('/getList1')
+def getVideoList():
+    a = readImage.getVideoName()
+
+    return render_template('test.html', a=a)
