@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 from apps import db
 import json
+import urllib
 
 
 class User(db.Model):
@@ -35,7 +36,6 @@ class User(db.Model):
 
 class Actor(db.Model):
     name = db.Column(db.String(255),primary_key=True)
-    image = db.Column(db.LargeBinary)
     height =db.Column(db.Integer, default=0)
     score = db.Column(db.Float, default =0)
     count = db.Column(db.Integer, default = 0)
@@ -43,9 +43,19 @@ class Actor(db.Model):
     age = db.Column(db.Integer, default = 0)
     release = db.Column(db.Float, default=0)
     category = db.Column(db.String(255))
+
     # 모델 차원에서 리스트를 생성하는 함수를 생성
     # each.reviews() 실행하면 댓글 각 한 줄을 dict로 갖는 리스트를 리턴함
     # 댓글 각 한줄 및 전체 리스트는 javascript가 인식 가능하게 json형태로 리턴!
+
+    def url(self):
+
+        # url = u'http://storage.googleapis.com/jikbakguri/actor2/'+str(self.name)+'.jpg'
+        # a = urllib.quote(url.encode('utf8'), '/:')
+        # return a
+        return 'http://storage.googleapis.com/jikbakguri/actor2/'+self.name+'.jpg'
+
+
     def reviews(self):
         list = [] # return할 list
 
@@ -61,7 +71,6 @@ class Actor(db.Model):
 
 class Video(db.Model):
     name = db.Column(db.String(255),primary_key=True)
-    image = db.Column(db.LargeBinary)
     category = db.Column(db.String(255))
     #노모가 0, 유모가 1
     exposure = db.Column(db.Integer, default=1)
@@ -70,6 +79,7 @@ class Video(db.Model):
     count = db.Column(db.Integer, default = 0)
     average = db.Column(db.Float, default=0)
     company =db.Column(db.String(255))
+
     def url(self):
         return 'http://storage.googleapis.com/jikbakguri/video/'+self.name+'.jpg'
     def reviews(self):

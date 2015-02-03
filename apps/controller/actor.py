@@ -25,20 +25,20 @@ def actor_main():
 
 
 
-def show2(key):
-    cache = GAEMemcachedCache()
-    rv = cache.get(key)
-
-    if rv is None:
-        rv = Actor.query.get(key).image
-        cache.set(key, rv, timeout=60 * 60 * 24)
+# def show2(key):
+#     cache = GAEMemcachedCache()
+#     rv = cache.get(key)
+#
+#     if rv is None:
+#         rv = Actor.query.get(key).image
+#         cache.set(key, rv, timeout=60 * 60 * 24)
         # actor = Actor.query.get(key)
 
     # else:
     #     actor = Actor.query.get(rv)
 
-    mimetype = "image/png"
-    return current_app.response_class(rv, mimetype=mimetype)
+    # mimetype = "image/png"
+    # return current_app.response_class(rv, mimetype=mimetype)
 
 import logging
 def actor_category(name, page):

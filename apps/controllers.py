@@ -143,13 +143,13 @@ def admin_connect():
 def admin_edit():
     return admin.admin_edit()
 
-@app.route('/admin_a_img', methods=['GET', 'POST'])
-def admin_a_img():
-    return admin.admin_a_img()
-
-@app.route('/admin_v_img', methods=['GET', 'POST'])
-def admin_v_img():
-    return admin.admin_v_img()
+# @app.route('/admin_a_img', methods=['GET', 'POST'])
+# def admin_a_img():
+#     return admin.admin_a_img()
+#
+# @app.route('/admin_v_img', methods=['GET', 'POST'])
+# def admin_v_img():
+#     return admin.admin_v_img()
 
 
 
@@ -350,11 +350,11 @@ def recommend2():
 #     return render_template("crawl.html", final=final)
 
 
-@app.route('/getList2')
-def downVideoImage():
-    a = readImage.getActorName()
-
-    return render_template('test.html', a=a)
+# @app.route('/getList2')
+# def downVideoImage():
+#     a = readImage.getActorName()
+#
+#     return render_template('test.html', a=a)
 
 #
 # @app.route('/getList1')

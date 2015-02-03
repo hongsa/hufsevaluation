@@ -20,12 +20,12 @@ def admin_actor():
     if user.level == 1:
 
         if request.method == 'POST':
-            files = request.files['actor_image']
-            filestream = files.read()
+            # files = request.files['actor_image']
+            # filestream = files.read()
 
             actor_write = Actor(
                 name=request.form['name'],
-                image=filestream,
+                # image=filestream,
                 category=request.form['category'],
                 age=request.form['age'],
                 release=request.form['release']
@@ -64,12 +64,12 @@ def admin_video():
 
     if user.level == 10:
         if request.method == 'POST':
-            files = request.files['video_image']
-            filestream = files.read()
+            # files = request.files['video_image']
+            # filestream = files.read()
 
             video_write = Video(
                 name=request.form['name'],
-                image=filestream,
+                # image=filestream,
                 category=request.form['category'],
                 company=request.form['company'],
                 release=request.form['release'],
@@ -137,40 +137,40 @@ def admin_edit():
     return render_template(url_for("index"))
 
 
-def admin_a_img():
-
-    email = session['session_user_email']
-    user = User.query.get(email)
-    files = request.files['img']
-    filestream = files.read()
-
-    if user.level == 10:
-        if request.method == 'POST':
-            name = request.form['name']
-            actor = Actor.query.get(name)
-            actor.image = filestream
-            db.session.commit()
-            flash(u"이미지 수정 완료")
-
-            return redirect(url_for("admin_main"))
-        return render_template("admin.html")
-    return render_template(url_for("index"))
-
-def admin_v_img():
-
-    email = session['session_user_email']
-    user = User.query.get(email)
-    files = request.files['img']
-    filestream = files.read()
-
-    if user.level == 10:
-        if request.method == 'POST':
-            name = request.form['name']
-            video = Video.query.get(name)
-            video.image = filestream
-            db.session.commit()
-            flash(u"이미지 수정 완료")
-
-            return redirect(url_for("admin_main"))
-        return render_template("admin.html")
-    return render_template(url_for("index"))
+# def admin_a_img():
+#
+#     email = session['session_user_email']
+#     user = User.query.get(email)
+#     files = request.files['img']
+#     filestream = files.read()
+#
+#     if user.level == 10:
+#         if request.method == 'POST':
+#             name = request.form['name']
+#             actor = Actor.query.get(name)
+#             actor.image = filestream
+#             db.session.commit()
+#             flash(u"이미지 수정 완료")
+#
+#             return redirect(url_for("admin_main"))
+#         return render_template("admin.html")
+#     return render_template(url_for("index"))
+#
+# def admin_v_img():
+#
+#     email = session['session_user_email']
+#     user = User.query.get(email)
+#     files = request.files['img']
+#     filestream = files.read()
+#
+#     if user.level == 10:
+#         if request.method == 'POST':
+#             name = request.form['name']
+#             video = Video.query.get(name)
+#             video.image = filestream
+#             db.session.commit()
+#             flash(u"이미지 수정 완료")
+#
+#             return redirect(url_for("admin_main"))
+#         return render_template("admin.html")
+#     return render_template(url_for("index"))

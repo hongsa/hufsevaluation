@@ -69,17 +69,17 @@ def video_category(name, page):
                            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page)
 
 
-def show1(key):
-    cache = GAEMemcachedCache()
-    rv = cache.get(key)
-
-    if rv is None:
-        rv = Video.query.get(key).image
-        cache.set(key, rv, timeout=60 * 60 * 24)
+# def show1(key):
+#     cache = GAEMemcachedCache()
+#     rv = cache.get(key)
+#
+#     if rv is None:
+#         rv = Video.query.get(key).image
+#         cache.set(key, rv, timeout=60 * 60 * 24)
         # actor = Actor.query.get(key)
 
     # else:
     #     actor = Actor.query.get(rv)
 
-    mimetype = "image/png"
-    return current_app.response_class(rv, mimetype=mimetype)
+    # mimetype = "image/png"
+    # return current_app.response_class(rv, mimetype=mimetype)
