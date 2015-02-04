@@ -14,4 +14,4 @@ class Production(Config):
     ADMIN = "ydproject777@gmail.com"
     SQLALCHEMY_DATABASE_URI = 'mysql+gaerdbms:///jikbakguri?instance=yd-project777:group-project'
     migration_directory = 'migrations'
-    PERMANENT_SESSION_LIFETIME = timedelta(minutes=600)
+    PERMANENT_SESSION_LIFETIME = timedelta(days=30)
