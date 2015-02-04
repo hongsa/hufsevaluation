@@ -213,6 +213,11 @@ def actorDetail(name):
 @app.route('/actor/comment', methods=['POST'])
 def actor_comment():
     return detail.actor_comment()
+#댓글삭제
+@app.route('/a_comment/delete/<int:id>', methods=['GET','POST'])
+def a_comment_delete(id):
+    return detail.a_comment_delete(id)
+
 
 
 #영상 디테일
@@ -224,8 +229,10 @@ def videoDetail(name):
 @app.route('/video/comment', methods=['POST'])
 def video_comment():
     return detail.video_comment()
-
-
+#댓글삭제
+@app.route('/v_comment/delete/<int:id>', methods=['GET','POST'])
+def v_comment_delete(id):
+    return detail.v_comment_delete(id)
 
 # 영상 추천기능
 @app.route('/recommendation',methods=['GET','POST'])

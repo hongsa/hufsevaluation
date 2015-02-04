@@ -55,12 +55,11 @@ class Actor(db.Model):
         # return a
         return 'http://storage.googleapis.com/jikbakguri/actor2/'+self.name+'.jpg'
 
-
     def reviews(self):
         list = [] # return할 list
 
         for review in self.actorReview_actor:
-            list.append( dict(author=review.user.nickname, content=review.content,level=review.user.level))
+            list.append( dict(id = review.id, author=review.user.nickname, content=review.content,level=review.user.level))
         return list
 
     def videos(self):
@@ -68,6 +67,8 @@ class Actor(db.Model):
         for each in self.filmo_actor:
             list.append(dict(name = each.video.name, average = each.video.average))
         return list
+
+
 
 class Video(db.Model):
     name = db.Column(db.String(255),primary_key=True)
@@ -86,7 +87,7 @@ class Video(db.Model):
         list = [] # return할 list
 
         for review in self.videoReview_video:
-            list.append( dict(author=review.user.nickname, content=review.content,level=review.user.level))
+            list.append( dict(id = review.id, author=review.user.nickname, content=review.content,level=review.user.level))
         return list
 
     def actors(self):

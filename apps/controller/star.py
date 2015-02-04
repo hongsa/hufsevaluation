@@ -46,7 +46,7 @@ def video_save_star():
 
     if level <50:
         user.level = 0
-    elif 50<= level < 100:
+    elif 50<= level < 200:
         user.level = 1
     elif 200 <= level <500:
         user.level = 2

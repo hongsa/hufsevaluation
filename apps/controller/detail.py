@@ -4,6 +4,7 @@ from apps import db
 from apps.models import User, Actor, Video, ActorReview, VideoReview
 from apps import recommendation
 import json
+import logging
 
 def actorDetail(name):
     # 로그인 안한 상태로 오면 index로 빠꾸
@@ -13,7 +14,6 @@ def actorDetail(name):
 
     email = session['session_user_email']
     user = User.query.get(email)
-    level = user.level
     # 해당하는 배우추출
     actorRow = Actor.query.get(name)
 
@@ -21,6 +21,7 @@ def actorDetail(name):
     appearVideo = actorRow.videos()
     #댓글 가져오기
     comments = actorRow.reviews()
+
     actors = recommendation.transformPrefs(recommendation.makePrefsActor())
     #유사배우 가져오기
     if actorRow.ratingActor_actor.count() == 0:
@@ -29,12 +30,22 @@ def actorDetail(name):
     else:
         sList = recommendation.topMatches(actors,name)
 
+
+    mycomment = actorRow.actorReview_actor.filter_by(userEmail=email).all()
+
+    list=[]
+    for each in mycomment:
+        list.append(each.id)
+
+
+    #별점 있는 지 확인
     rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
+
     if rating:
-        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,rating=rating.rating,sList=sList)
+        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,rating=rating.rating,sList=sList,list=list)
 
 
-    return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,sList=sList)
+    return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,sList=sList,list=list)
 
 
 #댓글입력
@@ -69,6 +80,18 @@ def actor_comment():
         print " Occuring Exception. ", e
 
 
+def a_comment_delete(id):
+
+    if request.method =="GET":
+        comment = ActorReview.query.get(id)
+        name = comment.actorName
+        db.session.delete(comment)
+        db.session.commit()
+
+
+        return redirect(url_for("actorDetail",name=name))
+
+
 def videoDetail(name):
     # 로그인 안한 상태로 오면 index로 빠꾸
     if not 'session_user_email' in session:
@@ -77,7 +100,6 @@ def videoDetail(name):
 
     email = session['session_user_email']
     user = User.query.get(email)
-    level = user.level
     # 해당하는 배우추출
     videoRow = Video.query.get(name)
 
@@ -94,12 +116,18 @@ def videoDetail(name):
     else:
         sList = recommendation.topMatches(movies,name)
 
+    mycomment = videoRow.videoReview_video.filter_by(userEmail=email).all()
+
+    list=[]
+    for each in mycomment:
+        list.append(each.id)
+
     rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
 
     if rating:
-        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating, sList=sList)
+        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating, sList=sList,list=list)
 
-    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,sList=sList)
+    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,sList=sList,list=list)
 
 #댓글입력
 def video_comment():
@@ -131,3 +159,15 @@ def video_comment():
 
     except Exception, e:
         print " Occuring Exception. ", e
+
+
+def v_comment_delete(id):
+
+    if request.method =="GET":
+        comment = VideoReview.query.get(id)
+        name = comment.videoName
+        db.session.delete(comment)
+        db.session.commit()
+
+
+        return redirect(url_for("videoDetail",name=name))
