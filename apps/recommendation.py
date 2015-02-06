@@ -115,6 +115,13 @@ def topMatches(prefs,person,n=5,similarity=simPearson):
     scores.reverse()
     return scores[0:n]
 
+#(나중을 대비한 함수)
+def getSoulmate(prefs,person,n=100,similarity=simPearson):
+    scores = [(similarity(prefs,person,other),other) for other in prefs if other!=person]
+    scores.sort()
+    scores.reverse()
+    return json.dumps(scores[0:n])
+
 # print topMatches1(critics,"JaeHyeon",n=3)
 # print topMatches2(critics,"JaeHyeon",n=3)
 
