@@ -23,4 +23,16 @@ class crawler:
         return None
     #이미 색인한 주소라면 true를 리터
     def isIndexed(self,url):
-        return None
+        return False
+    #두 페이지 간의 링크를 추가
+    def addLinkRef(self,urlFrom,urlTo,linkText):
+        pass
+    #페이지 목록으로 시작해서 넓이 우선 검색을 주어진 깊이만큼 수행함
+    #그 페이지들을 색인함
+    def crawl(self,pages,depth=2):
+        pass
+    #데이터베이스 테이블을 생성함
+    def createIndexTables(self):
+        pass
+
+    
