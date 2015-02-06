@@ -2,21 +2,8 @@
 from math import sqrt
 from models import User
 import logging
-#표본데이터 예제
-critics={'JaeHyeon': {'Aladdin': 2.5, 'Up': 3.5, 'StarWars':3.0, 'Her':3.5, 'HarryPotter':2.5, 'XMen':3.0},
+import json
 
-         'SangDo': {'Aladdin':3.0, 'Up':3.5, 'StarWars':1.5, 'Her':5.0, 'XMen':3.0, 'WallE':3.5},
-
-         'SeokJun': {'Aladdin':2.5, 'Up':3.0, 'Her':3.5, 'XMen':4.0},
-
-         'JeongHyeon':{'Up':3.5, 'StarWars':3.0, 'XMen':4.5, 'Her':4.0, 'HarryPotter':2.0 },
-
-         'DongWook': {'Aladdin':3.0, 'Up':4.0, 'StarWars':2.0, 'Her':3.0, 'XMen':3.0, 'HarryPotter':2.0},
-
-         'SeungWoo': {'Aladdin':3.0, 'Up':4.0, 'XMen': 3.0, 'Her':5.0, 'HarryPotter':3.5},
-
-         'YeWon':{'Up':4.5, 'HarryPotter':1.0, 'Her':4.0}
-}
 #영상평가를 위한 표본 딕셔너리 생성
 def makePrefs():
     dict={}
@@ -26,6 +13,23 @@ def makePrefs():
         if len(each.ratings())>1:
             dict[each.nickname]=each.ratings()
     return dict
+
+#유사도 목록을 리턴하는 함수 prefs 는 makePrefs() 사용하는게 일반적
+def calculateSimilarItems(prefs,n=10):
+    #가장 유사한항목들을 가진 항목 딕셔너리 생성
+    result = {}
+    # 선호도 행렬을 뒤집어 항목 중심 행렬로 변환
+    itemPrefs = transformPrefs(prefs)
+    c = 0
+    for item in itemPrefs:
+        #큰 데이터 세트를 위해 진척 상태를 갱신
+        c+=1
+        if c%100 == 0: print "%d / %d"%(c,len(itemPrefs))
+        #각 항목과 가장 유사한 항목들을 구함
+        scores = topMatches(itemPrefs,item,n=n,similarity=simPearson)
+        result[item]=scores
+    return json.dumps(result)
+
 
 #배우평가를 위한 표본 딕셔너리 생성
 def makePrefsActor():

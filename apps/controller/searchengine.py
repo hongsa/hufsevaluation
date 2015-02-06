@@ -1,4 +1,15 @@
 # -*- coding: utf-8 -*-
+import urllib2
+from BeautifulSoup import *
+from urlparse import urljoin
+
+#크롤링 연습
+c= urllib2.urlopen('http://www.bbc.com/news/world-europe-31143983')
+contents = c.read()
+ignoreWords = set(['the','of','to','and','a','in','is','it'])
+
+
+print contents[0:50]
 #검색엔진 연습중...
 class crawler:
     #데이터베이스 이름으로 크롤러를 초기화함
@@ -30,9 +41,29 @@ class crawler:
     #페이지 목록으로 시작해서 넓이 우선 검색을 주어진 깊이만큼 수행함
     #그 페이지들을 색인함
     def crawl(self,pages,depth=2):
-        pass
+        for i in range(depth):
+            newpages = set()
+            for page in pages:
+                try:
+                    c = urllib2.urlopen(page)
+                except:
+                    print "Could not open %s"%page
+                    continue
+                soup = BeautifulSoup(c.read())
+                self.addToIndex(page,soup)
+                links = soup('a')
+                for link in links:
+                    if('href' in dict(link.attrs)):
+                        url = urljoin(page,link['href'])
+                        if url.find("'")!=-1: continue
+                        url = url.split('#')[0] #location 부분을 제거
+                        if url[0:4] == 'http' and not self.isIndexed(url):
+                            newpages.add(url)
+                        linkText = self.getTextOnly(link)
+                        self.addLinkRef(page,url,linkText)
+                self.dbCommit()
+            pages = newpages
     #데이터베이스 테이블을 생성함
     def createIndexTables(self):
         pass
 
-    
