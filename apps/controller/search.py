@@ -8,7 +8,7 @@ def db_search(searching_word):
     actor_list = Actor.query.all()
     selected_video = []
     selected_actor = []
-    #스트링을 쪼개서 리스트에 넣어보기(스페이스있을경우 처리위해)->유저인풋은 리스트가 된다.
+    #스트링을 쪼개서 리스트에 넣어보기(스페이스있을경우 처리위해) ->유저인풋은 리스트가 된다.
     userInput = searching_word.split()
 
     #검색할 단어가 리스트 내에 존재하는지 검사

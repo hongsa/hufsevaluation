@@ -255,7 +255,7 @@ def recommend():
     return render_template('recommendation.html', rList=rList,count=count)
     # return 'well done'
 
-# 영상 추천기능
+# 배우 추천기능
 @app.route('/recomm',methods=['GET','POST'])
 def recommend2():
     #로그인 안돼있으면 튕기는 부분

@@ -12,6 +12,7 @@ class User(db.Model):
     sex = db.Column(db.Integer, default = 0)
     joinDATE = db.Column(db.DateTime(),default = db.func.now())
     level = db.Column(db.Integer, default = 0)
+    # prefs = db.Column(db.String(255)) 유저마다 유사유저목록을 JSON String 형태로 가지고 있음
     # 각 유저마다 {'영상':평점 ... } 형태로 dict 리턴
     def ratings(self):
         dict = {}
