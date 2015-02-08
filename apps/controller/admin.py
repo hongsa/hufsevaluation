@@ -7,7 +7,7 @@ def admin_main():
     email = session['session_user_email']
     user = User.query.get(email)
 
-    if user.level == 1:
+    if user.level == 10:
         return render_template("admin.html")
 
     return redirect(url_for("index"))
@@ -17,16 +17,24 @@ def admin_actor():
     email = session['session_user_email']
     user = User.query.get(email)
 
-    if user.level == 1:
+    if user.level == 10:
 
         if request.method == 'POST':
-            # files = request.files['actor_image']
-            # filestream = files.read()
+            height = request.form['height']
+
+            if int(height) <=154:
+                category = 1
+            elif 155 <=int(height) <=159:
+                category=2
+            elif 160 <=int(height) <=164:
+                category=3
+            elif int(height) >=165:
+                category=4
 
             actor_write = Actor(
-                name=request.form['name'],
-                # image=filestream,
-                category=request.form['category'],
+                name=request.form['name'].strip(),
+                height=height,
+                category = category,
                 age=request.form['age'],
                 release=request.form['release']
             )
@@ -46,7 +54,7 @@ def admin_actor_check():
 
     if user.level == 10:
         if request.method == 'POST':
-            name = request.form['name']
+            name = request.form['name'].strip()
             actor = Actor.query.get(name)
             if actor:
                 flash(u"이미 있는 배우입니다.")
@@ -64,16 +72,12 @@ def admin_video():
 
     if user.level == 10:
         if request.method == 'POST':
-            # files = request.files['video_image']
-            # filestream = files.read()
 
             video_write = Video(
-                name=request.form['name'],
-                # image=filestream,
+                name=request.form['name'].strip(),
                 category=request.form['category'],
                 company=request.form['company'],
                 release=request.form['release'],
-                exposure=request.form['exposure']
             )
             db.session.add(video_write)
             db.session.commit()
@@ -91,7 +95,7 @@ def admin_video_check():
 
     if user.level == 10:
         if request.method == 'POST':
-            name = request.form['name']
+            name = request.form['name'].strip()
             video = Video.query.get(name)
             if video:
                 flash(u"이미 있는 품번입니다.")
