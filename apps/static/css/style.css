@@ -106,7 +106,7 @@ html,body{
 
 .detail_name{
     font-size: 30px;
-    color: blue;
+    color: black;
 }
 .comment_author{
     color: #18bc9c;
@@ -124,4 +124,16 @@ html,body{
 }
 .love{
     background-image:url(../img/love.png); ;
+}
+
+div>a{
+    color:black;
+}
+
+li>a{
+    color:white;
+}
+
+a>div>span{
+    color:black;
 }
