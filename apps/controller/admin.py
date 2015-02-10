@@ -76,7 +76,7 @@ def admin_video():
             video_write = Video(
                 name=request.form['name'].strip(),
                 category=request.form['category'],
-                company=request.form['company'],
+                company=request.form['company'].strip(),
                 release=request.form['release'],
             )
             db.session.add(video_write)

@@ -246,7 +246,7 @@ def recommend():
     count = len(cUser.ratings())
 
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
-    if count <=25:
+    if count <25:
         return render_template("recommendation.html",count=count)
 
     rList = recommendation.getRecommendations(recommendation.makePrefs(),cUser.nickname,similarity=recommendation.simPearson)
@@ -266,7 +266,7 @@ def recommend2():
     cUser = User.query.get(email)
     count = len(cUser.aRatings())
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
-    if count<=25:
+    if count<25:
         return render_template("recomm.html",count=count)
     # logging.error(dict)
     # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson))

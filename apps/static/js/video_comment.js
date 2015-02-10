@@ -6,7 +6,7 @@ $(document).ready(function(){
         var inputVideoName = $('input[name=videoname]').val();
         $('input[type="text"],textarea').val('');
         var $target = $('html,body');
-        $target.animate({scrollTop: $target.height()}, 1000);
+        $target.animate({scrollTop: $(document).height()-$(window).height()}, 500);
         /* 보낼 데이터 객체로 준비 ( 이게 제일 심플함. )
          서버에서는 input 이라는 이름으로 데이터를 받기로 약속되어져있다. AjaxSample.py 참고 */
         var sParam = {
@@ -48,7 +48,7 @@ var receiverHandler = function(result, textStatus, xhr) {
         //var myData = JSON.parse(result);
         //alert(myData);
         //뷰에 뿌리자.
-      $('#current').before('<div class="panel panel-default">'+'<div class="row">'+'<div class="col-sm-2 text-left">'+'<p class="comment_author">'+'<img src="/static/img/'+result['level']+'.png"/>'+'&nbsp;&nbsp;'+result['user']+'</p>'+'</div>'+'<div class="col-sm-9">'+'<p class="text-center">' +result['comments']+'</p>'+'</div>'+'</div>'+'</div>');
+    $('#current').before('<div class="panel panel-default">'+'<div class="row">'+'<div class="col-sm-2 text-left">'+'<p class="comment_author">'+'<img src="/static/img/'+result['level']+'.png"/>'+'&nbsp;&nbsp;'+result['user']+'</p>'+'</div>'+'<div class="col-sm-9">'+'<p class="text-center">' +result['comments']+'</p>'+'</div>'+'</div>'+'</div>');
     //actorName을 뿌릴 땐 (myData.actorName) 이용
     alert('한줄평 쓰기 완료!');
 }
