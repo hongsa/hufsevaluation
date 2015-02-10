@@ -21,6 +21,7 @@ html,body{
     height: 100%;
     width: 100%;
     font-family: 'Hanna';
+    /*background-color: #f6f3f3;*/
 }
 .symbol {
     display: inline-block;
@@ -142,6 +143,7 @@ li>a{
 
 .thumbnail{
     border: none;
+    /*background-color: #f6f3f3;*/
 }
 
 .navbar-default .navbar-nav>li>a{
@@ -149,3 +151,6 @@ li>a{
 }
 
 
+.commentBox{
+    padding-top:1em;
+}
