@@ -47,24 +47,27 @@ html,body{
     background-size: cover;
 }
 .rank_chart{
+    padding-top: 0.7em;
     border-radius: 10px;
-    background-color: rgba(1, 12, 84, 1);
+    background-color: #1473b3;
     margin-bottom: 10px;
     font-family: "Nanum Gothic";
     font-weight: bold;
 }
 
 .category_chart{
+    padding-top: 0.7em;
     border-radius: 10px;
-    background-color: rgba(1, 12, 84, 1);
+    background-color: #1473b3;
     margin-bottom: 10px;
     font-family: "Nanum Gothic";
     font-weight: bold;
     margin-top: 5em;
 }
 .category_chart2{
+    padding-top: 0.7em;
     border-radius: 10px;
-    background-color: rgba(1, 12, 84, 1);
+    background-color: #1473b3;
     margin-bottom: 10px;
     font-family: "Nanum Gothic";
     font-weight: bold;
@@ -93,12 +96,12 @@ html,body{
     border-radius: 12.5em;
 }
 .detail_box{
-    background-color: rgba(136, 50, 245, 0.1);
+    background-color:#e1ebec;
     height: 16.400em;
     border-style: ridge;
 }
 .detail_box2{
-    background-color: rgba(136, 50, 245, 0.1);
+    background-color:#e1ebec;
     height: 16.400em;
     border-style: ridge;
     overflow: scroll;
@@ -109,7 +112,7 @@ html,body{
     color: black;
 }
 .comment_author{
-    color: #18bc9c;
+    color: #1473b3;
     margin-left: 1em;
 }
 .all_name{
@@ -126,14 +129,23 @@ html,body{
     background-image:url(../img/love.png); ;
 }
 
-div>a{
-    color:black;
-}
+
 
 li>a{
     color:white;
 }
 
-a>div>span{
-    color:black;
+
+.navbar-brand{
+    padding: 0px;
 }
+
+.thumbnail{
+    border: none;
+}
+
+.navbar-default .navbar-nav>li>a{
+    color:white;
+}
+
+
