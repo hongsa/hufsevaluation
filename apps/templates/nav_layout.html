@@ -23,6 +23,17 @@
 
         }
     </style>
+
+    <style type=text/css>
+        @media only screen and (max-width : 768px) {
+            .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+                color: white;
+            }
+        }
+
+    </style>
+
+
     {% block css %}
     {% endblock css%}
     {% block js %}
@@ -112,14 +123,22 @@
                 <div class="form-group">
                     <input type="text" name="search" class="form-control" placeholder="검색하기!">
                 </div>
-                <button name="submitbutton" value="first" type="submit" class="btn btn-success btn-sm">
-                    직박검색
+                <!--디비 검색 버튼-->
+                <button name="submitbutton" value="first" type="submit" class="btn btn-default" style="background-color:transparent;border-color:transparent;">
+                    <span class="glyphicon glyphicon-search" style="color:white;"></span>
                 </button>
-                <button name="submitbutton" value="second" type="submit" class="btn btn-warning btn-sm">
-                    토렌트검색
+
+                <!--토렌트 검색 버튼-->
+                <button name="submitbutton" value="second" type="submit" class="btn btn-default" style="background-color:transparent;border-color:transparent;">
+                    <img src="{{url_for('static', filename='img/torrentBlue.png')}}"
+                         onmouseover="this.src='{{url_for('static', filename='img/torrentYellow.png')}}'"
+                         onmouseout="this.src='{{url_for('static', filename='img/torrentBlue.png')}}'" alt=""
+                         style="height:25px;"/>
                 </button>
 
             </form>
+            <!--검색 창 부분 끝-->
+
 
             <ul class="nav navbar-nav navbar-right">
                 <!--<li ><a href="#"></a></li>-->
@@ -127,7 +146,7 @@
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        {{session.session_user_nickname}}님
+                        {{session.session_user_nickname}}&nbsp;님
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">

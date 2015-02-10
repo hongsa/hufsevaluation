@@ -115,8 +115,8 @@ def modify_nickname():
     level=user.level
     if request.method == 'POST':
         nickname=request.form['nickname']
-        if len(nickname) >=7:
-            flash(u"6자 이내로 입력해주세요.", "nickname")
+        if len(nickname) >=8:
+            flash(u"7자 이내로 입력해주세요.", "nickname")
             return redirect(url_for('modify_nickname'))
 
         nickname_list=[]

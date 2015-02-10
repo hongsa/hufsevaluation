@@ -55,7 +55,7 @@ def db_search(searching_word):
             try:
                 selected_actor[0]
             except Exception, e:
-                selected_actor.append(u"검색결과가 없습니다.ㅠㅜ")
+                selected_actor.append(0)
 
         return render_template("search_result.html", selected_video=selected_video, selected_actor=selected_actor,
             searching_word=searching_word)

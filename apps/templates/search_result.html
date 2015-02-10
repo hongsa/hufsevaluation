@@ -13,6 +13,12 @@
     <img style="height:7.33em; display: inline-block" src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="img-responsive" alt="Responsive image">
     <p style="font-size:30px;">{{searching_word}} 검색결과 입니다.</p>
 
+
+    {% if 0 in selected_actor %}
+
+    <p>검색결과가 없습니다. 다른 단어로 검색해주세요</p>
+
+    {% else %}
     <div class="row">
         {% for i in selected_actor %}
         <div class="col-sm-6 col-md-3">
@@ -40,6 +46,7 @@
         </div>
 
         {% endfor %}
+        {% endif %}
     </div>
 </div>
 
