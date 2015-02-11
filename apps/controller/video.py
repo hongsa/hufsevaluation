@@ -12,21 +12,21 @@ def video_main():
         return redirect(url_for('index'))
 
     totalRank = Video.query.order_by(desc(Video.average)).with_entities(Video.name).limit(15)
-    categoryOne = Video.query.filter_by(category="1").order_by(desc(Video.average))\
+    content={}
+    content['one'] = Video.query.filter_by(category="1").order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5)
-    categoryTwo = Video.query.filter_by(category="2").order_by(desc(Video.average))\
+    content['two'] = Video.query.filter_by(category="2").order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5).limit(5)
-    categoryThree = Video.query.filter_by(category="3").order_by(desc(Video.average))\
+    content['three'] = Video.query.filter_by(category="3").order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5).limit(5)
-    categoryFour = Video.query.filter_by(category="4").order_by(desc(Video.average))\
+    content['four'] = Video.query.filter_by(category="4").order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5).limit(5)
-    categoryFive = Video.query.filter_by(category="5").order_by(desc(Video.average))\
+    content['five'] = Video.query.filter_by(category="5").order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5).limit(5)
-    categorySix = Video.query.filter_by(category="6").order_by(desc(Video.average))\
+    content['six'] = Video.query.filter_by(category="6").order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5).limit(5)
 
-    return render_template("video_main.html", totalRank=totalRank, categoryOne=categoryOne, categoryTwo=categoryTwo,
-                           categoryThree=categoryThree, categoryFour=categoryFour, categoryFive=categoryFive,categorySix=categorySix)
+    return render_template("video_main.html", totalRank=totalRank, content=content)
 
 import logging
 def video_category(name, page):

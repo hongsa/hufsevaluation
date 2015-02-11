@@ -6,7 +6,7 @@ $(document).ready(function(){
         var inputVideoName = $('input[name=videoname]').val();
         $('input[type="text"],textarea').val('');
         var $target = $('html,body');
-        $target.animate({scrollTop: $(document).height()-$(window).height()}, 500);
+        $target.animate({scrollTop: $(document).height()-$(window).height()}, 300);
         /* 보낼 데이터 객체로 준비 ( 이게 제일 심플함. )
          서버에서는 input 이라는 이름으로 데이터를 받기로 약속되어져있다. AjaxSample.py 참고 */
         var sParam = {

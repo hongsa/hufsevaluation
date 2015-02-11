@@ -15,18 +15,17 @@ def actor_main():
         return redirect(url_for('index'))
 
     totalRank = Actor.query.order_by(desc(Actor.average)).with_entities(Actor.name).limit(15)
-    logging.error(totalRank)
-    categoryOne = Actor.query.filter_by(category="1").order_by(desc(Actor.average))\
+    content = {}
+    content['one'] = Actor.query.filter_by(category="1").order_by(desc(Actor.average))\
         .with_entities(Actor.name,Actor.average).limit(5)
-    categoryTwo = Actor.query.filter_by(category="2").order_by(desc(Actor.average))\
+    content['two'] = Actor.query.filter_by(category="2").order_by(desc(Actor.average))\
         .with_entities(Actor.name,Actor.average).limit(5)
-    categoryThree = Actor.query.filter_by(category="3").order_by(desc(Actor.average))\
+    content['three'] = Actor.query.filter_by(category="3").order_by(desc(Actor.average))\
         .with_entities(Actor.name,Actor.average).limit(5)
-    categoryFour = Actor.query.filter_by(category="4").order_by(desc(Actor.average))\
+    content['four'] = Actor.query.filter_by(category="4").order_by(desc(Actor.average))\
         .with_entities(Actor.name,Actor.average).limit(5)
 
-    return render_template("actor_main.html", totalRank=totalRank, categoryOne=categoryOne, categoryTwo=categoryTwo,
-                           categoryThree=categoryThree,categoryFour=categoryFour)
+    return render_template("actor_main.html", totalRank=totalRank, content=content)
 
 
 

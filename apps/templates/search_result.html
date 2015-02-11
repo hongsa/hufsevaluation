@@ -20,7 +20,7 @@
 
     {% else %}
     <div class="row">
-        {% for i in resultActor %}
+        {% for i in result['actor'] %}
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail text-center">
                 <a href="../actorDetail/{{i.name}}">
@@ -32,7 +32,7 @@
             </div>
         </div>
         {% endfor %}
-        {% for j in resultVideo %}
+        {% for j in result['video'] %}
 
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail text-center">

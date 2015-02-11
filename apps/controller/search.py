@@ -11,14 +11,18 @@ def db_search(searching_word):
         return render_template("search_result.html", empty=empty,searching_word=searching_word)
 
     i = searching_word.upper()
-    resultActor = Actor.query.filter(Actor.name.like("%"+i+"%")).with_entities(Actor.name).all()
+    result={}
+    result['actor'] = Actor.query.filter(Actor.name.like("%"+i+"%")).with_entities(Actor.name).all()
+    result['video'] = Video.query.filter(Video.name.like("%"+i+"%")).with_entities(Video.name).all()
 
-    resultVideo = Video.query.filter(Video.name.like("%"+i+"%")).with_entities(Video.name).all()
+    logging.error(result)
 
+    if result['actor'] == [] and result['video']==[]:
+        empty = 0
+        logging.error(empty)
+        return render_template("search_result.html", empty=empty, searching_word=searching_word)
 
-    return render_template("search_result.html", resultActor=resultActor, resultVideo=resultVideo,searching_word=searching_word)
-
-
+    return render_template("search_result.html",searching_word=searching_word,result=result)
 
 
 #구글검색

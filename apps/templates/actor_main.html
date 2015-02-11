@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            {% for each in categoryOne %}
+            {% for each in content['one'] %}
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
                     <!--<div class="folder img-responsive" alt="Responsive image" >-->
@@ -80,7 +80,7 @@
                     </a>
                 </div>
             </div>
-            {% for each in categoryTwo %}
+            {% for each in content['two'] %}
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
                     <a href="/actorDetail/{{each.name}}">
@@ -104,7 +104,7 @@
                     </a>
                 </div>
             </div>
-            {% for each in categoryThree %}
+            {% for each in content['three'] %}
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
                     <a href="/actorDetail/{{each.name}}">
@@ -128,7 +128,7 @@
                 </div>
             </div>
 
-            {% for each in categoryFour %}
+            {% for each in content['four'] %}
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
                     <!--<div class="folder img-responsive" alt="Responsive image" >-->

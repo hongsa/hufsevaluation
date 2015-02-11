@@ -10,7 +10,7 @@ def new_video(name, page):
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-    companyList = set([each.company for each in Video.query.all()])
+    companyList = set([each.company for each in Video.query.with_entities(Video.company).all()])
     video = Video.query.filter_by(company=name)
     videoCompany = video.order_by(desc(Video.release)).offset(
         (page - 1) * 12).with_entities(Video.name,Video.average,Video.count).limit(12)
