@@ -29,8 +29,12 @@
 
     <style type=text/css>
         @media only screen and (min-width : 1000px) {
-            .main{
-                margin-top: 8em;
+            .left{
+                margin-top: 5em;
+            }
+
+            .right{
+                margin-top: 7.5em;
             }
         }
         @font-face {
@@ -56,12 +60,12 @@
         </a>
     </div>
 
-    <div class="col-md-12 main">
-        <div class="col-md-7">
+    <div class="col-md-12">
+        <div class="col-md-7 left">
             <img src="{{url_for('static', filename='img/main.png')}}" class="img-responsive" alt="Responsive image"/>
         </div>
 
-        <div class="col-md-5" style="color: #ffffff">
+        <div class="col-md-5 right" style="color: #ffffff">
             <form action='{{url_for("signup")}}' method="POST">
                 <fieldset>
                     <div class="row">

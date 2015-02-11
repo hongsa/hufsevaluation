@@ -13,7 +13,7 @@ def db_search(searching_word):
 
     #검색할 단어가 리스트 내에 존재하는지 검사
     if len(userInput) == 0:
-        selected_actor.append(u"검색어를 입력해주세요!")
+        selected_actor.append(0)
         return render_template("search_result.html", selected_video=selected_video, selected_actor=selected_actor,
             searching_word=searching_word)
 

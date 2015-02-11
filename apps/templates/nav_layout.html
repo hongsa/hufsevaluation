@@ -124,16 +124,16 @@
                     <input type="text" name="search" class="form-control" placeholder="검색하기!">
                 </div>
                 <!--디비 검색 버튼-->
-                <button name="submitbutton" value="first" type="submit" class="btn btn-default" style="background-color:transparent;border-color:transparent;">
-                    <span class="glyphicon glyphicon-search" style="color:white;"></span>
+                <button name="submitbutton" value="first" type="submit" class="btn btn-default btn-xs" style="background-color:transparent;border-color:transparent;">
+                    <span class="glyphicon glyphicon-search" style="color:white; font-size: 20px;"></span>
                 </button>
 
                 <!--토렌트 검색 버튼-->
-                <button name="submitbutton" value="second" type="submit" class="btn btn-default" style="background-color:transparent;border-color:transparent;">
+                <button name="submitbutton" value="second" type="submit" class="btn btn-default btn-xs" style="background-color:transparent;border-color:transparent;">
                     <img src="{{url_for('static', filename='img/torrentBlue.png')}}"
                          onmouseover="this.src='{{url_for('static', filename='img/torrentYellow.png')}}'"
                          onmouseout="this.src='{{url_for('static', filename='img/torrentBlue.png')}}'" alt=""
-                         style="height:25px;"/>
+                         style="padding-bottom: 3px;height:30px;"/>
                 </button>
 
             </form>

@@ -24,8 +24,8 @@ class JoinForm(Form):
     )
     nickname = StringField(
         u'닉네임',
-        [validators.data_required(u'닉네임을 입력해주세요.(최대 6자)'),validators.length(max=7, message=u"최대 6자이내로 정해주세요.")],
-        description={'placeholder': u'원하시는 닉네임!(최대 6자)'}
+        [validators.data_required(u'닉네임을 입력해주세요.(최대 7자)'),validators.length(max=7, message=u"최대 7자이내로 정해주세요.")],
+        description={'placeholder': u'원하시는 닉네임!(최대 7자)'}
     )
     sex = SelectField(
         u'성별', coerce=int, choices=[(0,u'남자'),(1,u'여자')]
