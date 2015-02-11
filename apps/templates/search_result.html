@@ -14,32 +14,32 @@
     <p style="font-size:30px;"><span style="color: #1473b3;">"{{searching_word}}"</span> 검색결과 입니다.</p>
 
 
-    {% if 0 in selected_actor %}
+    {% if empty is defined %}
 
     <p style="font-size: 20px;">검색결과가 없습니다. 다른 단어로 검색해주세요</p>
 
     {% else %}
     <div class="row">
-        {% for i in selected_actor %}
+        {% for i in resultActor %}
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail text-center">
-                <a href="../actorDetail/{{i}}">
-                    <img src="http://storage.googleapis.com/jikbakguri/actor2/{{i}}.jpg"  class="category_img" alt=""/>
+                <a href="../actorDetail/{{i.name}}">
+                    <img src="http://storage.googleapis.com/jikbakguri/actor2/{{i.name}}.jpg"  class="category_img" alt=""/>
                     <div>
-                        <span class="all_name">{{i}}</span>
+                        <span class="all_name">{{i.name}}</span>
                     </div>
                 </a>
             </div>
         </div>
         {% endfor %}
-        {% for j in selected_video %}
+        {% for j in resultVideo %}
 
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail text-center">
-                <a href="../videoDetail/{{j}}">
-                    <img src="http://storage.googleapis.com/jikbakguri/video/{{j}}.jpg"  class="category_img" alt=""/>
+                <a href="../videoDetail/{{j.name}}">
+                    <img src="http://storage.googleapis.com/jikbakguri/video/{{j.name}}.jpg"  class="category_img" alt=""/>
                     <div>
-                        <span class="all_name">{{j}}</span>
+                        <span class="all_name">{{j.name}}</span>
                     </div>
                 </a>
             </div>

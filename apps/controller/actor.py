@@ -5,8 +5,8 @@ from flask import redirect, url_for, render_template,flash, session, current_app
 from sqlalchemy import desc
 
 from apps.models import Actor,User
-from werkzeug.contrib.cache import GAEMemcachedCache
-
+# from werkzeug.contrib.cache import GAEMemcachedCache
+import logging
 
 def actor_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
@@ -14,11 +14,16 @@ def actor_main():
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-    totalRank = Actor.query.order_by(desc(Actor.average)).limit(15)
-    categoryOne = Actor.query.filter_by(category="1").order_by(desc(Actor.average)).limit(5)
-    categoryTwo = Actor.query.filter_by(category="2").order_by(desc(Actor.average)).limit(5)
-    categoryThree = Actor.query.filter_by(category="3").order_by(desc(Actor.average)).limit(5)
-    categoryFour = Actor.query.filter_by(category="4").order_by(desc(Actor.average)).limit(5)
+    totalRank = Actor.query.order_by(desc(Actor.average)).with_entities(Actor.name).limit(15)
+    logging.error(totalRank)
+    categoryOne = Actor.query.filter_by(category="1").order_by(desc(Actor.average))\
+        .with_entities(Actor.name,Actor.average).limit(5)
+    categoryTwo = Actor.query.filter_by(category="2").order_by(desc(Actor.average))\
+        .with_entities(Actor.name,Actor.average).limit(5)
+    categoryThree = Actor.query.filter_by(category="3").order_by(desc(Actor.average))\
+        .with_entities(Actor.name,Actor.average).limit(5)
+    categoryFour = Actor.query.filter_by(category="4").order_by(desc(Actor.average))\
+        .with_entities(Actor.name,Actor.average).limit(5)
 
     return render_template("actor_main.html", totalRank=totalRank, categoryOne=categoryOne, categoryTwo=categoryTwo,
                            categoryThree=categoryThree,categoryFour=categoryFour)
@@ -40,7 +45,6 @@ def actor_main():
     # mimetype = "image/png"
     # return current_app.response_class(rv, mimetype=mimetype)
 
-import logging
 def actor_category(name, page):
     # 로그인 안한 상태로 오면 index로 빠꾸
     if not 'session_user_email' in session:
@@ -49,7 +53,7 @@ def actor_category(name, page):
 
     actor = Actor.query.filter_by(category=name)
     actorCategory = actor.order_by(desc(Actor.average)).offset(
-        (page - 1) * 12).limit(12)
+        (page - 1) * 12).with_entities(Actor.name,Actor.average,Actor.count).limit(12)
     category = actor.first().category
 
     total = actor.count()

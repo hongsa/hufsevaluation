@@ -14,14 +14,16 @@ def new_video2(name, page):
     releaseList = set([int(each.release) for each in Video.query.all()])
     video = Video.query.filter(Video.release * 100 > name * 100,
                                       Video.release * 100 < (name + 1) * 100)
-    videoRelease = video.order_by(desc(Video.release)).offset((page - 1) * 12).limit(12)
+    videoRelease = video.order_by(desc(Video.release)).offset((page - 1) * 12)\
+        .with_entities(Video.name,Video.average,Video.count).limit(12)
     total = video.count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
 
     if name == 0:
         release = 0
-        videoRelease = Video.query.filter_by(release=0).offset((page - 1) * 12).limit(12)
+        videoRelease = Video.query.filter_by(release=0).offset((page - 1) * 12)\
+            .with_entities(Video.name,Video.average,Video.count).limit(12)
     else:
         release = int(video.first().release)
 

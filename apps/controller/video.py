@@ -11,13 +11,19 @@ def video_main():
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-    totalRank = Video.query.order_by(desc(Video.average)).limit(15)
-    categoryOne = Video.query.filter_by(category="1").order_by(desc(Video.average)).limit(5)
-    categoryTwo = Video.query.filter_by(category="2").order_by(desc(Video.average)).limit(5)
-    categoryThree = Video.query.filter_by(category="3").order_by(desc(Video.average)).limit(5)
-    categoryFour = Video.query.filter_by(category="4").order_by(desc(Video.average)).limit(5)
-    categoryFive = Video.query.filter_by(category="5").order_by(desc(Video.average)).limit(5)
-    categorySix = Video.query.filter_by(category="6").order_by(desc(Video.average)).limit(5)
+    totalRank = Video.query.order_by(desc(Video.average)).with_entities(Video.name).limit(15)
+    categoryOne = Video.query.filter_by(category="1").order_by(desc(Video.average))\
+        .with_entities(Video.name,Video.average).limit(5)
+    categoryTwo = Video.query.filter_by(category="2").order_by(desc(Video.average))\
+        .with_entities(Video.name,Video.average).limit(5).limit(5)
+    categoryThree = Video.query.filter_by(category="3").order_by(desc(Video.average))\
+        .with_entities(Video.name,Video.average).limit(5).limit(5)
+    categoryFour = Video.query.filter_by(category="4").order_by(desc(Video.average))\
+        .with_entities(Video.name,Video.average).limit(5).limit(5)
+    categoryFive = Video.query.filter_by(category="5").order_by(desc(Video.average))\
+        .with_entities(Video.name,Video.average).limit(5).limit(5)
+    categorySix = Video.query.filter_by(category="6").order_by(desc(Video.average))\
+        .with_entities(Video.name,Video.average).limit(5).limit(5)
 
     return render_template("video_main.html", totalRank=totalRank, categoryOne=categoryOne, categoryTwo=categoryTwo,
                            categoryThree=categoryThree, categoryFour=categoryFour, categoryFive=categoryFive,categorySix=categorySix)
@@ -31,7 +37,7 @@ def video_category(name, page):
 
     video = Video.query.filter_by(category=name)
     videoCategory = video.order_by(desc(Video.average)).offset(
-        (page - 1) * 12).limit(12)
+        (page - 1) * 12).with_entities(Video.name,Video.average,Video.count).limit(12)
     total = video.count()
 
     calclulate = float(float(total) / 12)

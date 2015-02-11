@@ -14,14 +14,16 @@ def new_actor(name, page):
     releaseList = set([int(each.release) for each in Actor.query.all()])
     actor = Actor.query.filter(Actor.release * 100 > name * 100,
                                       Actor.release * 100 < (name + 1) * 100)
-    actorRelease = actor.order_by(desc(Actor.release)).offset((page - 1) * 12).limit(12)
+    actorRelease = actor.order_by(desc(Actor.release)).offset((page - 1) * 12)\
+        .with_entities(Actor.name,Actor.average,Actor.count).limit(12)
     total = actor.count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
 
     if name == 0:
         release = 0
-        actorRelease = Actor.query.filter_by(release=0).offset((page - 1) * 12).limit(12)
+        actorRelease = Actor.query.filter_by(release=0).offset((page - 1) * 12)\
+            .with_entities(Actor.name,Actor.average,Actor.count).limit(12)
     else:
         release = int(actor.first().release)
 
