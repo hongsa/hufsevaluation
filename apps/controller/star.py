@@ -12,9 +12,9 @@ def video_save_star():
     else:
         star = star % 6
 
-    name = request.form.get('name')
-    video = Video.query.get(name)
-    email = session['session_user_email']
+    name = request.form.get('name').strip()
+    video = Video.query.get(name).strip()
+    email = session['session_user_email'].strip()
 
     rating = video.ratingVideo_video.filter_by(userEmail=email).first()
 
@@ -69,9 +69,9 @@ def actor_save_star():
         return jsonify(success=True)
     else:
         star = star % 6
-    name = request.form.get('name')
-    actor = Actor.query.get(name)
-    email = session['session_user_email']
+    name = request.form.get('name').strip()
+    actor = Actor.query.get(name).strip()
+    email = session['session_user_email'].strip()
 
     rating = actor.ratingActor_actor.filter_by(userEmail=email).first()
 
