@@ -14,6 +14,16 @@
             overflow: scroll;
         }
     }
+    /*ol {*/
+        /*list-style:decimal;*/
+        /*counter-reset:inherit;*/
+    /*}*/
+    ol li {
+        display: list-item;
+        list-style-type: decimal;
+        margin-bottom: 10px;
+        color: #ffffff;
+    }
 
 </style>
 
@@ -33,7 +43,7 @@
         <hr style="margin-top: 10px; margin-bottom: 10px;"/>
         <ol style="font-size: 14px;" class="text-center">
             {% for each in totalRank %}
-            <div><li style="margin-bottom: 10px; color: #ffffff"><a href="../actorDetail/{{each.name}}">{{each.name}}</a></li></div>
+            <div><li style=""><a href="../actorDetail/{{each.name}}">{{each.name}}</a></li></div>
             {% endfor %}
         </ol>
     </div>
@@ -46,7 +56,7 @@
                 <div class="thumbnail text-center">
                     <a href="/a_category/1">
                         <div><span>"진짜 작은애당"</span></div>
-                        <div ><img src="{{url_for('static', filename='img/category_folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
+                        <div ><img src="{{url_for('static', filename='img/folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
                         <div class="all_name_small">배우 더보기</div>
                     </a>
                 </div>
@@ -75,7 +85,7 @@
                 <div class="thumbnail text-center">
                     <a href="/a_category/2">
                         <div><span>"품에 쏘오오옥"</span></div>
-                        <div ><img src="{{url_for('static', filename='img/category_folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
+                        <div ><img src="{{url_for('static', filename='img/folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
                         <div class="all_name_small">배우 더보기</div>
                     </a>
                 </div>
@@ -99,7 +109,7 @@
                 <div class="thumbnail text-center">
                     <a href="/a_category/3">
                         <div><span>"걸그룹 키당"</span></div>
-                        <div ><img src="{{url_for('static', filename='img/category_folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
+                        <div ><img src="{{url_for('static', filename='img/folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
                         <div class="all_name_small">배우 더보기</div>
                     </a>
                 </div>
@@ -122,7 +132,7 @@
                 <div class="thumbnail text-center">
                     <a href="/a_category/4">
                         <div><span>"힐 신지 말아조"</span></div>
-                        <div ><img src="{{url_for('static', filename='img/category_folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
+                        <div ><img src="{{url_for('static', filename='img/folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
                         <div class="all_name_small">배우 더보기</div>
                     </a>
                 </div>

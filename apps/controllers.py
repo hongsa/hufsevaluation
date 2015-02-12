@@ -5,7 +5,6 @@ from apps.controller import video
 from models import User,Actor
 from controller import user,actor,newActor,newVideo,newVideo2,search,admin,collection,star,bookmark,detail
 import recommendation
-import readImage
 
 import logging
 # userController에서 관리하는 부분 시작
