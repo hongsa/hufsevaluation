@@ -5,10 +5,8 @@
     <title></title>
 </head>
 <body>
-[
-    {% for each in a %}
-    '{{each}}',
-    {% endfor %}
-]
+{% for each in dict %}
+    {{ each }} <br/>
+{% endfor %}
 </body>
 </html>

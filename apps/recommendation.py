@@ -78,19 +78,14 @@ def simPearson(prefs,p1,p2):
     for item in prefs[p1]:
         if item in prefs[p2]: si[item]=1
     n = len(si)
-    print si
-
     #공통 요소가 없으면 0리턴
     if n == 0: return 0
     #모든 선호도를 합산함
     sum1 = sum([prefs[p1][each] for each in si])
     sum2 = sum([prefs[p2][each] for each in si])
-
     #제곱의 합을 계산
     sum1Sq = sum( [pow(prefs[p1][each],2) for each in si] )
     sum2Sq = sum( [pow(prefs[p2][each],2) for each in si] )
-
-
     #곱의 합을 계산
     pSum = sum([prefs[p1][each]*prefs[p2][each] for each in si])
 

@@ -6,8 +6,8 @@ from models import User,Actor
 from controller import user,actor,newActor,newVideo,newVideo2,search,admin,collection,star,bookmark,detail
 import recommendation
 import readImage
-
 import logging
+
 # userController에서 관리하는 부분 시작
 @app.route('/')
 @app.route('/index')
@@ -369,3 +369,13 @@ def recommend2():
 #     a = readImage.getVideoName()
 #
 #     return render_template('test.html', a=a)
+
+@app.route('/findbug')
+def findbug():
+    dict={}
+    oUser = User.query.all()
+    for each in oUser:
+        # 평가를 안한 user의 경우 표본에서 제외
+        if len(each.ratings())>1:
+            dict[each.nickname]=each.email
+    return render_template('test.html', dict=dict)
