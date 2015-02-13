@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from apps.models import User
 from apps import forms
 import random
+import logging
 
 def index():
     number = random.randint(1,5)
@@ -22,7 +23,7 @@ def signup():
     try:
         if session['session_user_email']:
             flash(u"이미 회원가입 하셨습니다!", "error")
-            return render_template("signup.html", form=form, number=number)
+            return render_template("signup.html", form=form)
     except Exception, e:
         pass
 
@@ -50,7 +51,7 @@ def signup():
 
         return redirect(url_for('actor_main'))
 
-    return render_template("signup.html", form=form)
+    return render_template("signup.html", form=form,number=number)
 
 
 
