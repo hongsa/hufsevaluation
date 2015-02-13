@@ -4,24 +4,25 @@ from apps import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from apps.models import User
 from apps import forms
-
+import random
 
 def index():
+    number = random.randint(1,5)
     if not 'session_user_email' in session:
         form=forms.LoginForm()
-        return render_template("mainPageNew.html", form=form)
+        return render_template("mainPageNew.html", form=form, number=number)
     return redirect(url_for('actor_main'))
 
 
 # 회원가입
 def signup():
-
+    number = random.randint(1,5)
     form = forms.JoinForm()
     
     try:
         if session['session_user_email']:
             flash(u"이미 회원가입 하셨습니다!", "error")
-            return render_template("signup.html", form=form)
+            return render_template("signup.html", form=form, number=number)
     except Exception, e:
         pass
 

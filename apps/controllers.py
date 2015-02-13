@@ -8,6 +8,7 @@ import recommendation
 import readImage
 import logging
 
+
 # userController에서 관리하는 부분 시작
 @app.route('/')
 @app.route('/index')
