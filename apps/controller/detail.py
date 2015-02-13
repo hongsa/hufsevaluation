@@ -57,8 +57,8 @@ def actor_comment():
             user= User.query.get(email)
             sUser=user.nickname
             sLevel=user.level
-            sComment = request.form['comment']
-            sName = request.form['actorName']
+            sComment = request.form['comment'].strip()
+            sName = request.form['actorName'].strip()
             thisComment={}
             thisComment=ActorReview(
             actorName=sName,
@@ -138,8 +138,8 @@ def video_comment():
 
             sUser=user.nickname
             sLevel=user.level
-            sComment = request.form['comment']
-            sName = request.form['videoName']
+            sComment = request.form['comment'].strip()
+            sName = request.form['videoName'].strip()
             thisComment={}
             thisComment=VideoReview(
             videoName=sName,
