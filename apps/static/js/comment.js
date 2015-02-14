@@ -4,6 +4,13 @@ $(document).ready(function(){
         /* 일단 처리할 정보를 가져오자. ( jquery 이용 ) */
         var inputComment = $('input[name=comment]').val();
         var inputActorName = $('input[name=actorname]').val();
+
+        if ((inputComment=="")|| inputComment==null){
+            alert("내용을 입력해주세요!");
+            return;
+        }
+
+
         $('input[type="text"],textarea').val('');
         var $target = $('html,body');
         $target.animate({scrollTop: $(document).height()-$(window).height()}, 300);
