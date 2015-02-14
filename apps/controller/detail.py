@@ -13,14 +13,18 @@ def actorDetail(name):
         return redirect(url_for('index'))
 
     email = session['session_user_email']
-    user = User.query.get(email)
+    # user = User.query.get(email)
     # 해당하는 배우추출
     actorRow = Actor.query.get(name)
 
     #출연작품 가져오기
-    appearVideo = actorRow.videos()
+    # appearVideo = actorRow.videos()
+    appearVideo = actorRow.filmo_actor.all()
+
     #댓글 가져오기
-    comments = actorRow.reviews()
+    # comments = actorRow.reviews()
+    comments = actorRow.actorReview_actor.all()
+
 
     # actors = recommendation.transformPrefs(recommendation.makePrefsActor())
     # 유사배우 가져오기
@@ -31,11 +35,7 @@ def actorDetail(name):
     #     sList = recommendation.topMatches(actors,name)
 
 
-    mycomment = actorRow.actorReview_actor.filter_by(userEmail=email).all()
-
-    list=[]
-    for each in mycomment:
-        list.append(each.id)
+    list = actorRow.actorReview_actor.filter_by(userEmail=email).with_entities(ActorReview.id).all()
 
 
     #별점 있는 지 확인
@@ -99,14 +99,17 @@ def videoDetail(name):
         return redirect(url_for('index'))
 
     email = session['session_user_email']
-    user = User.query.get(email)
+    # user = User.query.get(email)
     # 해당하는 배우추출
     videoRow = Video.query.get(name)
 
     #출연작품 가져오기
-    appearActor = videoRow.actors()
+    # appearActor = videoRow.actors()
+    appearActor = videoRow.filmo_video.all()
+
     #댓글 가져오기
-    comments = videoRow.reviews()
+    # comments = videoRow.reviews()
+    comments = videoRow.videoReview_video.all()
 
     # 유사작품 가져오기
     # movies = recommendation.transformPrefs(recommendation.makePrefs())
@@ -116,11 +119,7 @@ def videoDetail(name):
     # else:
     #     sList = recommendation.topMatches(movies,name)
 
-    mycomment = videoRow.videoReview_video.filter_by(userEmail=email).all()
-
-    list=[]
-    for each in mycomment:
-        list.append(each.id)
+    list = videoRow.videoReview_video.filter_by(userEmail=email).with_entities(VideoReview.id).all()
 
     rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
 

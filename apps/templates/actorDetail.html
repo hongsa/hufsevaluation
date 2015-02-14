@@ -67,7 +67,7 @@
             <div class="detail_box2 text-center">
                 <p style="font-size: 25px;">출연 작품</p>
                 {% for each in appearVideo %}
-                <p><a href="../videoDetail/{{each['name']}}"><span>{{each['name']}}&nbsp;({{each['average']}} 점)</span></a></p>
+                <p><a href="../videoDetail/{{each.videoName}}"><span>{{each.videoName}}&nbsp;({{each.video.average}} 점)</span></a></p>
                 {% endfor %}
             </div>
         </div>
@@ -116,27 +116,12 @@
                     <div class="row">
                         <div class="col-sm-2 text-left">
                             <p class="comment_author">
-                                <img src="/static/img/{{each['level']}}.png" alt=""/>&nbsp;&nbsp;{{each['author']}}
+                                <img src="/static/img/{{each.user.level}}.png" alt=""/>&nbsp;&nbsp;{{each.user.nickname}}
                             </p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-center commentBox">{{each['content']}}</p>
+                            <p class="text-center commentBox">{{each.content}}</p>
                         </div>
-
-                        {% set counter = [] %}
-
-                        {% for i in list %}
-                        {% if i ==  each['id'] %}
-                        {% if counter.append(i) %}
-                        {% endif %}
-                        {% endif %}
-                        {% endfor %}
-
-                        {%if counter != []%}
-                        <div class="col-sm-1">
-                            <p class="text-center commentBox"><a href="/a_comment/delete/{{each['id']}}" style="color: gray;">삭제</a></p>
-                        </div>
-                        {% endif %}
 
                     </div>
                 </div>

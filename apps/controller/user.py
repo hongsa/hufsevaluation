@@ -19,7 +19,10 @@ def index():
 def signup():
     number = random.randint(1,5)
     form = forms.JoinForm()
-    
+
+    # nickname_list=[]
+    # for i in User.query.with_entities(User.nickname).all():
+    #     nickname_list.append(i.nickname)
     try:
         if session['session_user_email']:
             flash(u"이미 회원가입 하셨습니다!", "error")
@@ -27,11 +30,12 @@ def signup():
     except Exception, e:
         pass
 
+
     if request.method == 'POST':
         if User.query.get(form.email.data):
             flash(u"이미 등록된 메일 주소 입니다!", "error")
             return render_template("signup.html", form=form)
-        if User.query.get(form.nickname.data):
+        if User.query.filter_by(nickname=form.nickname.data).first():
             flash(u"이미 사용중인 닉네임입니다!", "error")
             return render_template("signup.html", form=form)
         if not form.validate_on_submit():
@@ -121,10 +125,13 @@ def modify_nickname():
             flash(u"7자 이내로 입력해주세요.", "nickname")
             return redirect(url_for('modify_nickname'))
 
-        nickname_list=[]
-        for i in User.query.all():
-		    nickname_list.append(i.nickname)
-        if nickname in nickname_list:
+        # nickname_list=[]
+        # for i in User.query.with_entities(User.nickname).all():
+        #     nickname_list.append(i.nickname)
+        # if nickname in nickname_list:
+
+
+        if User.query.filter_by(nickname=nickname).first():
             flash(u"이미 사용 중인 닉네임 입니다.", "nickname")
             return redirect(url_for('modify_nickname'))
 

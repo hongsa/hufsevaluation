@@ -250,11 +250,11 @@ def recommend():
     if count <25:
         return render_template("recommendation.html",count=count)
 
-    rList = recommendation.getRecommendations(recommendation.makePrefs(),cUser.nickname,similarity=recommendation.simPearson)
+    return render_template('recommendation.html', count=count)
 
-    # list = [1,2,3]
-    return render_template('recommendation.html', rList=rList,count=count)
-    # return 'well done'
+    # rList = recommendation.getRecommendations(recommendation.makePrefs(),cUser.nickname,similarity=recommendation.simPearson)
+
+    # return render_template('recommendation.html', rList=rList,count=count)
 
 # 배우 추천기능
 @app.route('/recomm',methods=['GET','POST'])
@@ -269,15 +269,18 @@ def recommend2():
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if count<25:
         return render_template("recomm.html",count=count)
+
+    return render_template('recomm.html', count=count)
+
     # logging.error(dict)
     # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson))
     # 완성된 표본과 유저정보(닉네임)를 알고리즘 함수에 제출
     # logging.error(recommendation.getRecommendations(dict,cUser.nickname,similarity=recommendation.simPearson)
-    rList = recommendation.getRecommendations(recommendation.makePrefsActor(),cUser.nickname,similarity=recommendation.simPearson)
+
+    # rList = recommendation.getRecommendations(recommendation.makePrefsActor(),cUser.nickname,similarity=recommendation.simPearson)
 # as
-    # list = [1,2,3]
-    return render_template('recomm.html', rList=rList,count=count)
-    # return 'well done'
+
+    # return render_template('recomm.html', rList=rList,count=count)
 
 
 # 키 수정하기 크롤링
