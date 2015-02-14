@@ -7,7 +7,7 @@ import json
 #영상평가를 위한 표본 딕셔너리 생성
 def makePrefs():
     dict={}
-    oUser = User.query.all()
+    oUser = User.query.all().with_entities(User.nickname,User.ratings())
     for each in oUser:
         # 평가를 안한 user의 경우 표본에서 제외
         if len(each.ratings())>1:
