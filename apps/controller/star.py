@@ -3,7 +3,6 @@ from flask import request, session, jsonify
 from apps import db
 from apps.models import  Actor, Video, RatingActor, RatingVideo, User
 import math
-import logging
 
 def video_save_star():
     star = int(request.form.get('star'))
@@ -12,9 +11,9 @@ def video_save_star():
     else:
         star = star % 6
 
-    name = request.form.get('name').strip()
-    video = Video.query.get(name).strip()
-    email = session['session_user_email'].strip()
+    name = request.form.get('name')
+    video = Video.query.get(name)
+    email = session['session_user_email']
 
     rating = video.ratingVideo_video.filter_by(userEmail=email).first()
 
@@ -40,8 +39,6 @@ def video_save_star():
 
     user =  User.query.get(email)
     level = user.ratingVideo_user.count()
-
-    logging.error(level)
 
 
     if level <50:
@@ -69,9 +66,9 @@ def actor_save_star():
         return jsonify(success=True)
     else:
         star = star % 6
-    name = request.form.get('name').strip()
-    actor = Actor.query.get(name).strip()
-    email = session['session_user_email'].strip()
+    name = request.form.get('name')
+    actor = Actor.query.get(name)
+    email = session['session_user_email']
 
     rating = actor.ratingActor_actor.filter_by(userEmail=email).first()
 

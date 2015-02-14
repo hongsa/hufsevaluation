@@ -22,13 +22,13 @@ def actorDetail(name):
     #댓글 가져오기
     comments = actorRow.reviews()
 
-    actors = recommendation.transformPrefs(recommendation.makePrefsActor())
-    #유사배우 가져오기
-    if actorRow.ratingActor_actor.count() == 0:
-        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments)
-
-    else:
-        sList = recommendation.topMatches(actors,name)
+    # actors = recommendation.transformPrefs(recommendation.makePrefsActor())
+    # 유사배우 가져오기
+    # if actorRow.ratingActor_actor.count() == 0:
+    #     return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments)
+    #
+    # else:
+    #     sList = recommendation.topMatches(actors,name)
 
 
     mycomment = actorRow.actorReview_actor.filter_by(userEmail=email).all()
@@ -42,10 +42,10 @@ def actorDetail(name):
     rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
 
     if rating:
-        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,rating=rating.rating,sList=sList,list=list)
+        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,rating=rating.rating,list=list)
 
 
-    return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,sList=sList,list=list)
+    return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,list=list)
 
 
 #댓글입력
@@ -57,8 +57,8 @@ def actor_comment():
             user= User.query.get(email)
             sUser=user.nickname
             sLevel=user.level
-            sComment = request.form['comment'].strip()
-            sName = request.form['actorName'].strip()
+            sComment = request.form['comment']
+            sName = request.form['actorName']
             thisComment={}
             thisComment=ActorReview(
             actorName=sName,
@@ -109,12 +109,12 @@ def videoDetail(name):
     comments = videoRow.reviews()
 
     # 유사작품 가져오기
-    movies = recommendation.transformPrefs(recommendation.makePrefs())
-    if videoRow.ratingVideo_video.count()==0:
+    # movies = recommendation.transformPrefs(recommendation.makePrefs())
+    # if videoRow.ratingVideo_video.count()==0:
         # sList = ['해당 영상에 대한 평가가 필요합니다']
-        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments)
-    else:
-        sList = recommendation.topMatches(movies,name)
+        # return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments)
+    # else:
+    #     sList = recommendation.topMatches(movies,name)
 
     mycomment = videoRow.videoReview_video.filter_by(userEmail=email).all()
 
@@ -125,9 +125,9 @@ def videoDetail(name):
     rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
 
     if rating:
-        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating, sList=sList,list=list)
+        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating,list=list)
 
-    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,sList=sList,list=list)
+    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,list=list)
 
 #댓글입력
 def video_comment():
@@ -138,8 +138,8 @@ def video_comment():
 
             sUser=user.nickname
             sLevel=user.level
-            sComment = request.form['comment'].strip()
-            sName = request.form['videoName'].strip()
+            sComment = request.form['comment']
+            sName = request.form['videoName']
             thisComment={}
             thisComment=VideoReview(
             videoName=sName,

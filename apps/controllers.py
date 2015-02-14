@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask import redirect, url_for, flash, session,render_template
-from apps import app
+from apps import app,db
 from apps.controller import video
-from models import User,Actor
+from models import User,Actor,Video
 from controller import user,actor,newActor,newVideo,newVideo2,search,admin,collection,star,bookmark,detail
 import recommendation
 import readImage
@@ -280,7 +280,6 @@ def recommend2():
     # return 'well done'
 
 
-
 # 키 수정하기 크롤링
 # from flask import Flask, render_template
 # from apps import app
@@ -371,12 +370,12 @@ def recommend2():
 #
 #     return render_template('test.html', a=a)
 
-@app.route('/findbug')
-def findbug():
-    dict={}
-    oUser = User.query.all()
-    for each in oUser:
-        # 평가를 안한 user의 경우 표본에서 제외
-        if len(each.ratings())>1:
-            dict[each.nickname]=each.email
-    return render_template('test.html', dict=dict)
+# @app.route('/findbug')
+# def findbug():
+#     dict={}
+#     oUser = User.query.all()
+#     for each in oUser:
+#         # 평가를 안한 user의 경우 표본에서 제외
+#         if len(each.ratings())>1:
+#             dict[each.nickname]=each.email
+#     return render_template('test.html', dict=dict)
