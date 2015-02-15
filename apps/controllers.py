@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from flask import redirect, url_for, flash, session,render_template,json
+from flask import redirect, url_for, flash, session,render_template
+from google.appengine.api import urlfetch
 from apps import app,db
 from apps.controller import video
 from models import User,Actor,Video
@@ -7,15 +8,14 @@ from controller import user,actor,newActor,newVideo,newVideo2,search,admin,colle
 import recommendation
 import readImage
 import logging
+import json
+from google.appengine.runtime import DeadlineExceededError
+from google.appengine.api import urlfetch
 from sqlalchemy import desc
-
-
 # userController에서 관리하는 부분 시작
 @app.route('/')
 @app.route('/index')
 def index():
-
-    # return render_template("serverout.html")
     return user.index()
 
 # 회원가입
@@ -285,6 +285,7 @@ def recommend2():
         prefs = json.loads(cUser.prefsActor)
         rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
         return render_template('recomm.html', rList=rList, count=count)
+    # return 'well done'
 
 
 # 키 수정하기 크롤링
@@ -294,7 +295,7 @@ def recommend2():
 # import urllib2
 # import re
 # import logging
-# from sqlalchemy import desc
+
 # from apps import db
 # #
 # @app.route('/crawling/<int:page>',defaults={'page':1})
@@ -364,140 +365,116 @@ def recommend2():
 #     return render_template("crawl.html", final=final)
 
 
-# @app.route('/getList2')
-# def downVideoImage():
-#     a = readImage.getActorName()
-#
-#     return render_template('test.html', a=a)
 
-#
-# @app.route('/getList1')
-# def getVideoList():
-#     a = readImage.getVideoName()
-#
-#     return render_template('test.html', a=a)
-
-# @app.route('/findbug')
-# def findbug():
-#     dict={}
-#     oUser = User.query.all()
-#     for each in oUser:
-#         # 평가를 안한 user의 경우 표본에서 제외
-#         if len(each.ratings())>1:
-#             dict[each.nickname]=each.email
-#     return render_template('test.html', dict=dict)
-
+#전설이 시작되는 부분
+#영상평가가 유사한 친구들을 추가하는 부분.
+@app.route('/backmirror1/<int:pag>',defaults={'page':1})
+@app.route('/backmirror1/<int:pag>',methods=['GET', 'POST'])
+def test1(pag):
+    oUser = User.query.filter(User.numVideo>24).order_by(desc(User.numVideo)).offset((pag-1)*10).limit(10)
+    for each in oUser:
+        list = recommendation.getSoulmate(recommendation.makeVideoRowData(),each.email,n=5)
+        a = json.dumps(list)
+        each.prefsVideo = a
+        db.session.commit()
+    return 'done'
 
 #배우평가가 유사한 친구들을 추가하는 부분.
-# @app.route('/backmirror2/<int:page>',defaults={'page':1})
-# @app.route('/backmirror2/<int:page>',methods=['GET', 'POST'])
-# def test2(page):
-#     oUser = User.query.filter(User.numActor>24).order_by(desc(User.numActor)).offset((page-1)*100).limit(100)
-#     for each in oUser:
-#         list = recommendation.getSoulmate(recommendation.makeActorRowData(),each.email,n=5)
-#         a = json.dumps(list)
-#         each.prefsActor = a
-#         db.session.commit()
-#     return 'done'
-#
-#
-# 영상평가가 유사한 친구들을 추가하는 부분.
-# @app.route('/backmirror/<int:page>',defaults={'page':1})
-# @app.route('/backmirror/<int:page>',methods=['GET', 'POST'])
-# def test(page):
-#     oUser = User.query.filter(User.numVideo>24).order_by(desc(User.numVideo)).offset((page-1)*100).limit(100)
-#     for each in oUser:
-#         list = recommendation.getSoulmate(recommendation.makeVideoRowData(),each.email,n=5)
-#         a = json.dumps(list)
-#         each.prefsVideo = a
-#         db.session.commit()
-#     return 'done'
-#
-#
-# 유사 영상 찾는 함수
-# @app.route('/simvideo',methods=['GET', 'POST'])
-# def simvideos():
-#     oDict = recommendation.simVideoPrefs()
-#     c = 0
-#     for item in oDict:
-#         큰 데이터 세트를 위해 진척 상태를 갱신
-        # c+=1
-        # if c%100 == 0: print "%d / %d"%(c,len(oDict))
-        # 각 항목과 가장 유사한 항목들을 구함
-        # list = recommendation.getSoulmate(oDict,item,n=5,similarity=recommendation.simPearson)
-        # a = json.dumps(list)
-        # oVideo = Video.query.get(item)
-        # oVideo.prefs = a
-        # db.session.commit()
-    # return 'done'
-#
-#
-# 유사 배우 찾는 함수
-# @app.route('/simactor',methods=['GET', 'POST'])
-# def simactors():
-#     oItem = recommendation.simActorPrefs()
-#     c = 0
-#     for item in oItem:
-#         큰 데이터 세트를 위해 진척 상태를 갱신
-        # c+=1
-        # if c%100 == 0: print "%d / %d"%(c,len(oItem))
-        # 각 항목과 가장 유사한 항목들을 구함
-        # list = recommendation.getSoulmate(oItem,item,n=5,similarity=recommendation.simPearson)
-        # a = json.dumps(list)
-        # oActor = Actor.query.get(item)
-        # oActor.prefs = a
-        # db.session.commit()
-    # return 'done'
-#
-#
-#
-#
-#
-# @app.route('/sex/<int:page>',defaults={'page':1})
-# @app.route('/sex/<int:page>',methods=['GET', 'POST'])
-# def numActor(page):
-#     a = User.query.order_by(desc(User.joinDATE)).offset((page - 1) * 100).limit(100)
-#     for each in a:
-#         if each.numVideo:
-#             pass
-#         else:
-#             each.numActor = each.ratingActor_user.count()
-#             db.session.commit()
-#     return 'done'
-#
-# @app.route('/bozi/<int:page>',defaults={'page':1})
-# @app.route('/bozi/<int:page>',methods=['GET', 'POST'])
-# def numVideo(page):
-#     배우랑 키 가져오기
-    # a = User.query.order_by(desc(User.joinDATE)).offset((page - 1) * 100).limit(100)
-    # for each in a:
-    #     if not each.numVideo:
-    #         each.numVideo = each.ratingVideo_user.count()
-    #         db.session.commit()
-    #     else:
-    #         pass
-    # return 'done'
-#
-# @app.route('/adrv/<int:page>',defaults={'page':1})
-# @app.route('/adrv/<int:page>',methods=['GET', 'POST'])
-# def addRatedVideo(page):
-#     a = Video.query.order_by(desc(Video.release)).offset((page-1)*50).limit(50)
-#     for each in a:
-#         if not each.rated:
-#             each.rated = each.ratingVideo_video.count()
-#             db.session.commit()
-#         else:
-#             pass
-#     return 'done'
-#
-# @app.route('/adra/<int:page>',defaults={'page':1})
-# @app.route('/adra/<int:page>',methods=['GET', 'POST'])
-# def addRatedActor(page):
-#     a = Actor.query.order_by(desc(Actor.height)).offset((page-1)*50).limit(50)
-#     for each in a:
-#         if not each.rated:
-#             each.rated = each.ratingActor_actor.count()
-#             db.session.commit()
-#         else:
-#             pass
-#     return 'done'
+@app.route('/backmirror2/<int:page>',defaults={'page':1})
+@app.route('/backmirror2/<int:page>',methods=['GET', 'POST'])
+def test2(page):
+    oUser = User.query.filter(User.numActor>24).order_by(desc(User.numActor)).offset((page-1)*10).limit(10)
+    for each in oUser:
+        list = recommendation.getSoulmate(recommendation.makeActorRowData(),each.email,n=5)
+        a = json.dumps(list)
+        each.prefsActor = a
+        db.session.commit()
+    return 'done'
+
+#유사 영상 찾는 함수
+@app.route('/simvideo',methods=['GET', 'POST'])
+def simvideos():
+    oDict = recommendation.simVideoPrefs()
+    c = 0
+    for item in oDict:
+        #큰 데이터 세트를 위해 진척 상태를 갱신
+        c+=1
+        if c%100 == 0: print "%d / %d"%(c,len(oDict))
+        #각 항목과 가장 유사한 항목들을 구함
+        list = recommendation.getSoulmate(oDict,item,n=5,similarity=recommendation.simPearson)
+        a = json.dumps(list)
+        oVideo = Video.query.get(item)
+        oVideo.prefs = a
+        db.session.commit()
+    return 'done'
+
+
+#유사 배우 찾는 함수
+@app.route('/simactor',methods=['GET', 'POST'])
+def simactors():
+    oItem = recommendation.simActorPrefs()
+    c = 0
+    for item in oItem:
+        #큰 데이터 세트를 위해 진척 상태를 갱신
+        c+=1
+        if c%100 == 0: print "%d / %d"%(c,len(oItem))
+        #각 항목과 가장 유사한 항목들을 구함
+        list = recommendation.getSoulmate(oItem,item,n=5,similarity=recommendation.simPearson)
+        a = json.dumps(list)
+        oActor = Actor.query.get(item)
+        oActor.prefs = a
+        db.session.commit()
+    return 'done'
+
+
+
+
+
+@app.route('/sex/<int:page>',defaults={'page':1})
+@app.route('/sex/<int:page>',methods=['GET', 'POST'])
+def numActor(page):
+    a = User.query.order_by(desc(User.joinDATE)).offset((page - 1) * 100).limit(100)
+    for each in a:
+        if each.numVideo:
+            pass
+        else:
+            each.numActor = each.ratingActor_user.count()
+            db.session.commit()
+    return 'done'
+
+@app.route('/bozi/<int:page>',defaults={'page':1})
+@app.route('/bozi/<int:page>',methods=['GET', 'POST'])
+def numVideo(page):
+    # 배우랑 키 가져오기
+    a = User.query.order_by(desc(User.joinDATE)).offset((page - 1) * 100).limit(100)
+    for each in a:
+        if not each.numVideo:
+            each.numVideo = each.ratingVideo_user.count()
+            db.session.commit()
+        else:
+            pass
+    return 'done'
+
+@app.route('/adrv/<int:page>',defaults={'page':1})
+@app.route('/adrv/<int:page>',methods=['GET', 'POST'])
+def addRatedVideo(page):
+    a = Video.query.order_by(desc(Video.release)).offset((page-1)*50).limit(50)
+    for each in a:
+        if not each.rated:
+            each.rated = each.ratingVideo_video.count()
+            db.session.commit()
+        else:
+            pass
+    return 'done'
+
+@app.route('/adra/<int:page>',defaults={'page':1})
+@app.route('/adra/<int:page>',methods=['GET', 'POST'])
+def addRatedActor(page):
+    a = Actor.query.order_by(desc(Actor.height)).offset((page-1)*50).limit(50)
+    for each in a:
+        if not each.rated:
+            each.rated = each.ratingActor_actor.count()
+            db.session.commit()
+        else:
+            pass
+    return 'done'

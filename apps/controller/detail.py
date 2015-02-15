@@ -23,6 +23,9 @@ def actorDetail(name):
     # 유사작품 가져오기
     if actorRow.ratingActor_actor.count()>4:
         if not actorRow.prefs:
+            actorRow.rated = actorRow.ratingActor_actor.count()
+            db.session.commit()
+            
             itemPrefs = recommendation.simActorPrefs()
             list = recommendation.getSoulmate(itemPrefs,name,n=5,similarity=recommendation.simPearson)
             a = json.dumps(list)
@@ -34,8 +37,10 @@ def actorDetail(name):
         sList = False
 
 
-    list = actorRow.actorReview_actor.filter_by(userEmail=email).with_entities(ActorReview.id).all()
-
+    mycomment = actorRow.actorReview_actor.filter_by(userEmail=email).all()
+    list=[]
+    for each in mycomment:
+        list.append(each.id)
     #별점 있는 지 확인
     rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
     if rating:
@@ -52,14 +57,14 @@ def actor_comment():
             email = session['session_user_email']
             user= User.query.get(email)
             sUser=user.nickname
-            num = user.numVideo
-            if num<50:
+            numActor = user.numActor
+            if numActor<25:
                 sLevel= 0
-            elif 50<=num<100:
+            elif 25<=numActor<40:
                 sLevel= 1
-            elif 100<=num<200:
+            elif 40<=numActor<60:
                 sLevel= 2
-            elif 200<=num<400:
+            elif 60<=numActor<80:
                 sLevel= 3
             else:
                 sLevel= 4
@@ -117,6 +122,9 @@ def videoDetail(name):
     # 유사작품 가져오기
     if videoRow.ratingVideo_video.count()>4:
         if not videoRow.prefs:
+            videoRow.rated = videoRow.ratingVideo_video.count()
+            db.session.commit()
+
             itemPrefs = recommendation.simVideoPrefs()
             list = recommendation.getSoulmate(itemPrefs,name,n=5,similarity=recommendation.simPearson)
             a = json.dumps(list)
@@ -126,9 +134,10 @@ def videoDetail(name):
     else:
         sList = False
 
-    list = videoRow.videoReview_video.filter_by(userEmail=email).with_entities(VideoReview.id).all()
-
-
+    mycomment = videoRow.videoReview_video.filter_by(userEmail=email).all()
+    list=[]
+    for each in mycomment:
+        list.append(each.id)
     rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
     if rating:
         return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating,list=list,sList=sList)
@@ -141,14 +150,14 @@ def video_comment():
             email = session['session_user_email']
             user= User.query.get(email)
             sUser=user.nickname
-            num = user.numVideo
-            if num<50:
+            numVideo = user.numVideo
+            if numVideo<25:
                 sLevel= 0
-            elif 50<=num<100:
+            elif 25<=numVideo<40:
                 sLevel= 1
-            elif 100<=num<200:
+            elif 40<=numVideo<60:
                 sLevel= 2
-            elif 200<=num<400:
+            elif 60<=numVideo<80:
                 sLevel= 3
             else:
                 sLevel= 4
