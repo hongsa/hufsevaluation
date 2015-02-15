@@ -36,11 +36,8 @@ def actorDetail(name):
     else:
         sList = False
 
+    list = actorRow.actorReview_actor.filter_by(userEmail=email).with_entities(ActorReview.id).all()
 
-    mycomment = actorRow.actorReview_actor.filter_by(userEmail=email).all()
-    list=[]
-    for each in mycomment:
-        list.append(each.id)
     #별점 있는 지 확인
     rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
     if rating:
@@ -58,13 +55,13 @@ def actor_comment():
             user= User.query.get(email)
             sUser=user.nickname
             numActor = user.numActor
-            if numActor<25:
+            if numActor<50:
                 sLevel= 0
-            elif 25<=numActor<40:
+            elif 50<=numActor<100:
                 sLevel= 1
-            elif 40<=numActor<60:
+            elif 100<=numActor<200:
                 sLevel= 2
-            elif 60<=numActor<80:
+            elif 200<=numActor<400:
                 sLevel= 3
             else:
                 sLevel= 4
@@ -134,10 +131,8 @@ def videoDetail(name):
     else:
         sList = False
 
-    mycomment = videoRow.videoReview_video.filter_by(userEmail=email).all()
-    list=[]
-    for each in mycomment:
-        list.append(each.id)
+    list = videoRow.videoReview_video.filter_by(userEmail=email).with_entities(VideoReview.id).all()
+
     rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
     if rating:
         return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating,list=list,sList=sList)
@@ -151,13 +146,13 @@ def video_comment():
             user= User.query.get(email)
             sUser=user.nickname
             numVideo = user.numVideo
-            if numVideo<25:
+            if numVideo<50:
                 sLevel= 0
-            elif 25<=numVideo<40:
+            elif 50<=numVideo<100:
                 sLevel= 1
-            elif 40<=numVideo<60:
+            elif 100<=numVideo<200:
                 sLevel= 2
-            elif 60<=numVideo<80:
+            elif 200<=numVideo<400:
                 sLevel= 3
             else:
                 sLevel= 4
