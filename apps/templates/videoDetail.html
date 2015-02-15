@@ -77,7 +77,7 @@
             <div class="detail_box2 text-center">
                 <p style="font-size: 25px;">출연 배우</p>
                 {% for each in appearActor %}
-                <p><a href="../actorDetail/{{each.ActorName}}"><span>{{each.ActorName}}&nbsp;({{each.actor.average}} 점)</span></a></p>
+                <p><a href="../actorDetail/{{each['name']}}"><span>{{each['name']}}&nbsp;({{each['average']}} 점)</span></a></p>
                 {% endfor %}
             </div>
         </div>
@@ -85,9 +85,9 @@
         <div class="col-sm-6 col-md-3">
             <div class="detail_box2 text-center">
                 <p style="font-size: 25px;">유사한 작품</p>
-                {% if sList is defined%}
+                {% if not sList == False %}
                 {% for each in sList %}
-                <p><a href="../videoDetail/{{each[1]}}"><span>{{each[1]}}</span></a></p>
+                <p><a href="../videoDetail/{{each}}"><span>{{each}}</span></a></p>
                 {% endfor %}
                 {% else %}
                 <p>해당 영상에 대해 평가가 필요해요!!</p>
@@ -125,12 +125,27 @@
                     <div class="row">
                         <div class="col-sm-2 text-left" >
                             <p class="comment_author">
-                                <img src="/static/img/{{each.user.level}}.png" alt=""/>&nbsp;&nbsp;{{each.user.nickname}}
+                                <img src="/static/img/{{each['level']}}.png" alt=""/>&nbsp;&nbsp;{{each['author']}}
                             </p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-center commentBox">{{each.content}}</p>
+                            <p class="text-center commentBox">{{each['content']}}</p>
                         </div>
+
+                        {% set counter = [] %}
+
+                        {% for i in list %}
+                        {% if i.id ==  each['id'] %}
+                        {% if counter.append(i) %}
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+
+                        {%if counter != []%}
+                        <div class="col-sm-1">
+                            <p class="text-center commentBox"><a href="/v_comment/delete/{{each['id']}}" style="color: gray;">삭제</a></p>
+                        </div>
+                        {% endif %}
 
                     </div>
                 </div>

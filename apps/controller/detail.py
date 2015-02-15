@@ -11,41 +11,37 @@ def actorDetail(name):
     if not 'session_user_email' in session:
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
-
     email = session['session_user_email']
-    # user = User.query.get(email)
+    user = User.query.get(email)
     # 해당하는 배우추출
     actorRow = Actor.query.get(name)
-
     #출연작품 가져오기
-    # appearVideo = actorRow.videos()
-    appearVideo = actorRow.filmo_actor.all()
-
+    appearVideo = actorRow.videos()
     #댓글 가져오기
-    # comments = actorRow.reviews()
-    comments = actorRow.actorReview_actor.all()
+    comments = actorRow.reviews()
 
+    # 유사작품 가져오기
+    if actorRow.ratingActor_actor.count()>4:
+        if not actorRow.prefs:
+            itemPrefs = recommendation.simActorPrefs()
+            list = recommendation.getSoulmate(itemPrefs,name,n=5,similarity=recommendation.simPearson)
+            a = json.dumps(list)
+            actorRow.prefs = a
+            db.session.commit()
+        sList = json.loads(actorRow.prefs)
 
-    # actors = recommendation.transformPrefs(recommendation.makePrefsActor())
-    # 유사배우 가져오기
-    # if actorRow.ratingActor_actor.count() == 0:
-    #     return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments)
-    #
-    # else:
-    #     sList = recommendation.topMatches(actors,name)
+    else:
+        sList = False
 
 
     list = actorRow.actorReview_actor.filter_by(userEmail=email).with_entities(ActorReview.id).all()
 
-
     #별점 있는 지 확인
     rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
-
     if rating:
-        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,rating=rating.rating,list=list)
-
-
-    return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,list=list)
+        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,rating=rating.rating,list=list,sList=sList)
+    else:
+        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,list=list,sList=sList)
 
 
 #댓글입력
@@ -56,7 +52,17 @@ def actor_comment():
             email = session['session_user_email']
             user= User.query.get(email)
             sUser=user.nickname
-            sLevel=user.level
+            num = user.numVideo
+            if num<50:
+                sLevel= 0
+            elif 50<=num<100:
+                sLevel= 1
+            elif 100<=num<200:
+                sLevel= 2
+            elif 200<=num<400:
+                sLevel= 3
+            else:
+                sLevel= 4
             sComment = request.form['comment']
             sName = request.form['actorName']
             thisComment={}
@@ -99,34 +105,34 @@ def videoDetail(name):
         return redirect(url_for('index'))
 
     email = session['session_user_email']
-    # user = User.query.get(email)
+    user = User.query.get(email)
     # 해당하는 배우추출
     videoRow = Video.query.get(name)
 
     #출연작품 가져오기
-    # appearActor = videoRow.actors()
-    appearActor = videoRow.filmo_video.all()
-
+    appearActor = videoRow.actors()
     #댓글 가져오기
-    # comments = videoRow.reviews()
-    comments = videoRow.videoReview_video.all()
+    comments = videoRow.reviews()
 
     # 유사작품 가져오기
-    # movies = recommendation.transformPrefs(recommendation.makePrefs())
-    # if videoRow.ratingVideo_video.count()==0:
-        # sList = ['해당 영상에 대한 평가가 필요합니다']
-        # return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments)
-    # else:
-    #     sList = recommendation.topMatches(movies,name)
+    if videoRow.ratingVideo_video.count()>4:
+        if not videoRow.prefs:
+            itemPrefs = recommendation.simVideoPrefs()
+            list = recommendation.getSoulmate(itemPrefs,name,n=5,similarity=recommendation.simPearson)
+            a = json.dumps(list)
+            videoRow.prefs = a
+            db.session.commit()
+        sList = json.loads(videoRow.prefs)
+    else:
+        sList = False
 
     list = videoRow.videoReview_video.filter_by(userEmail=email).with_entities(VideoReview.id).all()
 
+
     rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
-
     if rating:
-        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating,list=list)
-
-    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,list=list)
+        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating,list=list,sList=sList)
+    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,list=list,sList=sList)
 
 #댓글입력
 def video_comment():
@@ -134,9 +140,18 @@ def video_comment():
         if request.method == 'POST':
             email = session['session_user_email']
             user= User.query.get(email)
-
             sUser=user.nickname
-            sLevel=user.level
+            num = user.numVideo
+            if num<50:
+                sLevel= 0
+            elif 50<=num<100:
+                sLevel= 1
+            elif 100<=num<200:
+                sLevel= 2
+            elif 200<=num<400:
+                sLevel= 3
+            else:
+                sLevel= 4
             sComment = request.form['comment']
             sName = request.form['videoName']
             thisComment={}

@@ -3,7 +3,6 @@ from apps import db
 import json
 import urllib
 
-
 class User(db.Model):
     email = db.Column(db.String(255),primary_key=True)
     password = db.Column(db.String(255))
@@ -11,8 +10,10 @@ class User(db.Model):
     #0은 남자 1은 여자
     sex = db.Column(db.Integer, default = 0)
     joinDATE = db.Column(db.DateTime(),default = db.func.now())
-    level = db.Column(db.Integer, default = 0)
-    # prefs = db.Column(db.String(255)) 유저마다 유사유저목록을 JSON String 형태로 가지고 있음
+    prefsVideo = db.Column(db.String(255))
+    prefsActor = db.Column(db.String(255))
+    numVideo = db.Column(db.Integer, default=0)
+    numActor = db.Column(db.Integer, default=0)
     # 각 유저마다 {'영상':평점 ... } 형태로 dict 리턴
     def ratings(self):
         dict = {}
@@ -44,23 +45,37 @@ class Actor(db.Model):
     age = db.Column(db.Integer, default = 0)
     release = db.Column(db.Float, default=0)
     category = db.Column(db.String(255))
-
+    prefs = db.Column(db.String(255))
+    rated = db.Column(db.Integer,default=0)
     # 모델 차원에서 리스트를 생성하는 함수를 생성
     # each.reviews() 실행하면 댓글 각 한 줄을 dict로 갖는 리스트를 리턴함
     # 댓글 각 한줄 및 전체 리스트는 javascript가 인식 가능하게 json형태로 리턴!
-
+    def ratedPerson(self):
+        dict = {}
+        for oRating in self.ratingActor_actor:
+            dict[oRating.userEmail] = oRating.rating
+        return dict
     def url(self):
 
         # url = u'http://storage.googleapis.com/jikbakguri/actor2/'+str(self.name)+'.jpg'
         # a = urllib.quote(url.encode('utf8'), '/:')
         # return a
         return 'http://storage.googleapis.com/jikbakguri/actor2/'+self.name+'.jpg'
-
     def reviews(self):
         list = [] # return할 list
-
         for review in self.actorReview_actor:
-            list.append( dict(id = review.id, author=review.user.nickname, content=review.content,level=review.user.level))
+            numVideo = review.user.numVideo
+            if numVideo<50:
+                sLevel= 0
+            elif 50<=numVideo<100:
+                sLevel= 1
+            elif 100<=numVideo<200:
+                sLevel= 2
+            elif 200<=numVideo<400:
+                sLevel= 3
+            else:
+                sLevel= 4
+            list.append( dict(id = review.id, author=review.user.nickname, content=review.content,level=sLevel))
         return list
 
     def videos(self):
@@ -81,14 +96,30 @@ class Video(db.Model):
     count = db.Column(db.Integer, default = 0)
     average = db.Column(db.Float, default=0)
     company =db.Column(db.String(255))
-
+    prefs = db.Column(db.String(255))
+    rated = db.Column(db.Integer,default=0)
+    def ratedPerson(self):
+        dict = {}
+        for oRating in self.ratingVideo_video:
+            dict[oRating.userEmail] = oRating.rating
+        return dict
     def url(self):
         return 'http://storage.googleapis.com/jikbakguri/video/'+self.name+'.jpg'
     def reviews(self):
         list = [] # return할 list
-
         for review in self.videoReview_video:
-            list.append( dict(id = review.id, author=review.user.nickname, content=review.content,level=review.user.level))
+            numVideo = review.user.numVideo
+            if numVideo<50:
+                sLevel= 0
+            elif 50<=numVideo<100:
+                sLevel= 1
+            elif 100<=numVideo<200:
+                sLevel= 2
+            elif 200<=numVideo<400:
+                sLevel= 3
+            else:
+                sLevel= 4
+            list.append( dict(id = review.id, author=review.user.nickname, content=review.content,level=sLevel))
         return list
 
     def actors(self):

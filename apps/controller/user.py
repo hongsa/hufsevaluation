@@ -106,7 +106,18 @@ def logout():
 def modify_password():
     email = session['session_user_email']
     user= User.query.get(email)
-    level = user.level
+    num = user.numVideo
+    if num<50:
+        level= 0
+    elif 50<=num<100:
+        level= 1
+    elif 100<=num<200:
+        level= 2
+    elif 200<=num<400:
+        level= 3
+    else:
+        level= 4
+
     if request.method == 'POST':
         user.password = generate_password_hash(request.form['password'])
         db.session.commit()
@@ -118,17 +129,23 @@ def modify_password():
 def modify_nickname():
     email = session['session_user_email']
     user= User.query.get(email)
-    level=user.level
+    num = user.numVideo
+    if num<50:
+        level= 0
+    elif 50<=num<100:
+        level= 1
+    elif 100<=num<200:
+        level= 2
+    elif 200<=num<400:
+        level= 3
+    else:
+        level= 4
+
     if request.method == 'POST':
         nickname=request.form['nickname']
         if len(nickname) >=8:
             flash(u"7자 이내로 입력해주세요.", "nickname")
             return redirect(url_for('modify_nickname'))
-
-        # nickname_list=[]
-        # for i in User.query.with_entities(User.nickname).all():
-        #     nickname_list.append(i.nickname)
-        # if nickname in nickname_list:
 
 
         if User.query.filter_by(nickname=nickname).first():

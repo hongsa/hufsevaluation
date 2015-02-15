@@ -33,28 +33,28 @@ def video_save_star():
         video.score += star
         a = float(video.score / video.count)
         video.average = float(math.ceil(a * 100) / 100)
+        #영상평가갯수 db에 1추가
+        User.query.get(email).numVideo += 1
 
     db.session.add(rating)
     db.session.commit()
 
-    user =  User.query.get(email)
-    level = user.ratingVideo_user.count()
+    # user =  User.query.get(email)
+    # level = user.ratingVideo_user.count()
 
 
-    if level <50:
-        user.level = 0
-    elif 50<= level < 200:
-        user.level = 1
-    elif 200 <= level <500:
-        user.level = 2
-    elif 500 <= level <1000:
-        user.level = 3
-    else:
-        user.level = 4
-
-    db.session.commit()
-
-
+    # if level <50:
+    #     user.level = 0
+    # elif 50<= level < 200:
+    #     user.level = 1
+    # elif 200 <= level <500:
+    #     user.level = 2
+    # elif 500 <= level <1000:
+    #     user.level = 3
+    # else:
+    #     user.level = 4
+    #
+    # db.session.commit()
 
     return jsonify(success=True)
 
@@ -88,6 +88,8 @@ def actor_save_star():
         actor.score += star
         a = float(actor.score / actor.count)
         actor.average = float(math.ceil(a * 100) / 100)
+        #배우평가갯수 db에 1추가
+        User.query.get(email).numActor +=1
 
     db.session.add(rating)
     db.session.commit()

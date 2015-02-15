@@ -1,55 +1,63 @@
 # -*- coding: utf-8 -*-
 from math import sqrt
-from models import User
+from models import User,Video,Actor
 import logging
 import json
 
-#영상평가를 위한 표본 딕셔너리 생성
-def makePrefs():
+#영상평가를 위한 rowData 생성
+def makeVideoRowData():
     dict={}
-    oUser = User.query.all().with_entities(User.nickname,User.ratings())
+    oUser = User.query.filter(User.numVideo > 20)
     for each in oUser:
-        # 평가를 안한 user의 경우 표본에서 제외
-        if len(each.ratings())>1:
-            dict[each.nickname]=each.ratings()
+        dict[each.email]=each.ratings()
+    return dict
+#배우평가를 위한 rowData 생성
+def makeActorRowData():
+    dict={}
+    oUser = oUser = User.query.filter(User.numActor>20)
+    for each in oUser:
+        dict[each.email]=each.aRatings()
     return dict
 
-#유사도 목록을 리턴하는 함수 prefs 는 makePrefs() 사용하는게 일반적
-def calculateSimilarItems(prefs,n=10):
-    #가장 유사한항목들을 가진 항목 딕셔너리 생성
-    result = {}
-    # 선호도 행렬을 뒤집어 항목 중심 행렬로 변환
-    itemPrefs = transformPrefs(prefs)
-    c = 0
-    for item in itemPrefs:
-        #큰 데이터 세트를 위해 진척 상태를 갱신
-        c+=1
-        if c%100 == 0: print "%d / %d"%(c,len(itemPrefs))
-        #각 항목과 가장 유사한 항목들을 구함
-        scores = topMatches(itemPrefs,item,n=n,similarity=simPearson)
-        result[item]=scores
-    return json.dumps(result)
-
+#영상평가를 위한 표본 딕셔너리 생성
+def makePrefs(list):
+    dict={}
+    for each in list:
+        oUser = User.query.get(each)
+        # 평가를 안한 user의 경우 표본에서 제외
+        if len(oUser.ratings())>10:
+            dict[each]=oUser.ratings()
+    return dict
 
 #배우평가를 위한 표본 딕셔너리 생성
-def makePrefsActor():
+def makePrefsActor(list):
     dict= {}
-    oUser = User.query.all()
-    for each in oUser:
+    for each in list:
+        oUser=User.query.get(each)
         #평가를 안한 새끼 ㄲㅈ
-        if len(each.aRatings())>1:
-            dict[each.nickname] = each.aRatings()
+        if len(oUser.aRatings())>10:
+            dict[each] = oUser.aRatings()
     return dict
 
+
+
+
+
+
 #제품매칭을 위한 표본 뒤집기 사람 :{영상:평점}  -> 영상:{사람: 평점}
-def transformPrefs(prefs):
-    result = {}
-    for person in prefs:
-        for item in prefs[person]:
-            result.setdefault(item,{})
-            #영상과 사람을 바꿈
-            result[item][person]=prefs[person][item]
-    return result
+def simVideoPrefs(): #object는 Actor 아니면 Video다
+    itemPrefs={}
+    Object = Video.query.filter(Video.rated>4)
+    for each in Object:
+        itemPrefs[each.name]=each.ratedPerson()
+    return itemPrefs
+
+def simActorPrefs(): #object는 Actor 아니면 Video다
+    itemPrefs={}
+    Object = Actor.query.filter(Actor.rated>4)
+    for each in Object:
+        itemPrefs[each.name]=each.ratedPerson()
+    return itemPrefs
 
 
 
@@ -111,11 +119,14 @@ def topMatches(prefs,person,n=5,similarity=simPearson):
     return scores[0:n]
 
 #(나중을 대비한 함수)
-def getSoulmate(prefs,person,n=100,similarity=simPearson):
-    scores = [(similarity(prefs,person,other),other) for other in prefs if other!=person]
+def getSoulmate(prefs,person,n=5,similarity=simPearson):
+    outList = []
+    scores = [(similarity(prefs,person,other),other) for other in prefs]
     scores.sort()
     scores.reverse()
-    return json.dumps(scores[0:n])
+    for each in scores[0:n]:
+        outList.append(each[1])
+    return outList
 
 # print topMatches1(critics,"JaeHyeon",n=3)
 # print topMatches2(critics,"JaeHyeon",n=3)
@@ -126,7 +137,6 @@ def getSoulmate(prefs,person,n=100,similarity=simPearson):
 def getRecommendations(prefs, person, similarity=simPearson):
     totals ={}
     simSums = {}
-
     for other in prefs:
         #나와 나를 비교하지 말것
         if other == person: continue
