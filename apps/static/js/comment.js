@@ -10,6 +10,13 @@ $(document).ready(function(){
             return;
         }
 
+        if ((inputComment.indexOf("<")!=-1) ||(inputComment.indexOf(">")!=-1) || (inputComment.indexOf("$")!=-1)
+            ||(inputComment.indexOf("#")!=-1) ||(inputComment.indexOf("{")!=-1)||(inputComment.indexOf("}")!=-1)
+            ||(inputComment.indexOf("[")!=-1)||(inputComment.indexOf("]")!=-1)||(inputComment.indexOf("/")!=-1))
+        {
+            alert("특수문자는 사용할 수 없습니다!");
+            return;
+        }
 
         $('input[type="text"],textarea').val('');
         var $target = $('html,body');
@@ -32,9 +39,9 @@ $(document).ready(function(){
         });
     });
     $('#actor_input').keypress(function(e){
-       if(e.which == 13){
-           $('#actor_comment').click();
-       }
+        if(e.which == 13){
+            $('#actor_comment').click();
+        }
     });
 });
 /* 서버에서 계산한 결과가 왔을때 처리할 부분 */
