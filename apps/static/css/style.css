@@ -158,3 +158,10 @@ li>a{
 .panel{
     margin-bottom: 10px;
 }
+
+.review{
+    overflow: scroll;
+    height: 35em;
+    /*background-color:#e1ebec;*/
+    border-style: ridge
+}

@@ -65,13 +65,13 @@ class Actor(db.Model):
         list = [] # return할 list
         for review in self.actorReview_actor:
             numVideo = review.user.numVideo
-            if numVideo<25:
+            if numVideo<50:
                 sLevel= 0
-            elif 25<=numVideo<40:
+            elif 50<=numVideo<100:
                 sLevel= 1
-            elif 40<=numVideo<60:
+            elif 100<=numVideo<200:
                 sLevel= 2
-            elif 60<=numVideo<80:
+            elif 200<=numVideo<400:
                 sLevel= 3
             else:
                 sLevel= 4
@@ -109,13 +109,13 @@ class Video(db.Model):
         list = [] # return할 list
         for review in self.videoReview_video:
             numVideo = review.user.numVideo
-            if numVideo<25:
+            if numVideo<50:
                 sLevel= 0
-            elif 25<=numVideo<40:
+            elif 50<=numVideo<100:
                 sLevel= 1
-            elif 40<=numVideo<60:
+            elif 100<=numVideo<200:
                 sLevel= 2
-            elif 60<=numVideo<80:
+            elif 200<=numVideo<400:
                 sLevel= 3
             else:
                 sLevel= 4

@@ -7,7 +7,7 @@ def admin_main():
     email = session['session_user_email']
     user = User.query.get(email)
 
-    if user.level == 10:
+    if email =="ydproject777@gmail.com":
         return render_template("admin.html")
 
     return redirect(url_for("index"))
@@ -17,7 +17,7 @@ def admin_actor():
     email = session['session_user_email']
     user = User.query.get(email)
 
-    if user.level == 10:
+    if email =="ydproject777@gmail.com":
 
         if request.method == 'POST':
             height = request.form['height']
@@ -52,7 +52,7 @@ def admin_actor_check():
     email = session['session_user_email']
     user = User.query.get(email)
 
-    if user.level == 10:
+    if email =="ydproject777@gmail.com":
         if request.method == 'POST':
             name = request.form['name'].strip()
             actor = Actor.query.get(name)
@@ -70,7 +70,7 @@ def admin_video():
     email = session['session_user_email']
     user = User.query.get(email)
 
-    if user.level == 10:
+    if email =="ydproject777@gmail.com":
         if request.method == 'POST':
 
             video_write = Video(
@@ -93,7 +93,7 @@ def admin_video_check():
     email = session['session_user_email']
     user = User.query.get(email)
 
-    if user.level == 10:
+    if email =="ydproject777@gmail.com":
         if request.method == 'POST':
             name = request.form['name'].strip()
             video = Video.query.get(name)
@@ -108,7 +108,7 @@ def admin_connect():
     email = session['session_user_email']
     user = User.query.get(email)
 
-    if user.level == 10:
+    if email =="ydproject777@gmail.com":
         if request.method == 'POST':
             connect = Filmo(
                 ActorName=request.form['actor_name'],
@@ -128,7 +128,7 @@ def admin_edit():
     email = session['session_user_email']
     user = User.query.get(email)
 
-    if user.level == 10:
+    if email =="ydproject777@gmail.com":
         if request.method == 'POST':
             name = request.form['name']
             actor = Actor.query.get(name)
