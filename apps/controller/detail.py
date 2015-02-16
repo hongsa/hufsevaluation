@@ -14,7 +14,7 @@ def actorDetail(name):
     email = session['session_user_email']
     user = User.query.get(email)
     # 해당하는 배우추출
-    actorRow = Actor.query.get(name)
+    actorRow = Actor.query.get(name) #asf
     #출연작품 가져오기
     appearVideo = actorRow.videos()
     #댓글 가져오기
