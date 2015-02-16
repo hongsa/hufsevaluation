@@ -14,7 +14,7 @@ $(document).ready(function(){
             success: function(data) {
                 if(data.success){
 
-                    alert('배우 컬렉션에 저장 완료!!');
+                    alert('배우 컬렉션에 찜꽁!!');
                 }
                 else{
                     alert("error");

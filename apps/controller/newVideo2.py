@@ -11,7 +11,7 @@ def new_video2(name, page):
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-    releaseList = set([int(each.release) for each in Video.query.all()])
+    releaseList = set([int(each.release) for each in Video.query.with_entities(Video.release)])
     video = Video.query.filter(Video.release * 100 > name * 100,
                                       Video.release * 100 < (name + 1) * 100)
     videoRelease = video.order_by(desc(Video.release)).offset((page - 1) * 12)\

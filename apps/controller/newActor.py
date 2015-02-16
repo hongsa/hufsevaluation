@@ -11,7 +11,7 @@ def new_actor(name, page):
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-    releaseList = set([int(each.release) for each in Actor.query.all()])
+    releaseList = set([int(each.release) for each in Actor.query.with_entities(Actor.release)])
     actor = Actor.query.filter(Actor.release * 100 > name * 100,
                                       Actor.release * 100 < (name + 1) * 100)
     actorRelease = actor.order_by(desc(Actor.release)).offset((page - 1) * 12)\

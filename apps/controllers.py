@@ -22,6 +22,8 @@ def index():
 
 @app.errorhandler(Exception)
 def page_not_found(e):
+
+    logging.error(e)
     return render_template("error.html"), 500
 
 # 회원가입

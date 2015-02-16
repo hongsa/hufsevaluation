@@ -13,9 +13,9 @@ $(document).ready(function(){
         }
     });
 
-    $('.v_star_area').find('input').on('change', function () {
-        alert($(this).val()+'점 평가 완료!!');
-    });
+    //$('.v_star_area').find('input').on('change', function () {
+    //    alert($(this).val()+'점 평가 완료!!');
+    //});
 
     $('.v_star_area').find('input').on('change', function () {
         $.ajax({
@@ -29,7 +29,7 @@ $(document).ready(function(){
             success: function(data) {
                 if(data.success){
 
-                    alert($(this).val()+'점 평가 완료!!');
+                    alert('현명한 나의 평가완료!!');
                 }
                 else{
                     alert("error");
