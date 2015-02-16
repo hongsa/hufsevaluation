@@ -12,7 +12,7 @@ def actorDetail(name):
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
     email = session['session_user_email']
-    # user = User.query.get(email)
+    user = User.query.get(email)
     # 해당하는 배우추출
     actorRow = Actor.query.get(name)
     #출연작품 가져오기
@@ -24,42 +24,20 @@ def actorDetail(name):
     sList = False
     successful=False
     try:
-        #값도 있고 그 값이 비교적 최신인 경우 (10개 평가마다 갱신) (완벽한 조건)
-        if actorRow.prefs and actorRow.ratingActor_actor.count() < actorRow.rated +10:
+        #.prefs가 있을때
+        if actorRow.prefs:
             successful=True
         else:
-            #DB에 값들을 확인하는 참회의 시간을 가져보자.
-            if actorRow.ratingActor_actor.count()>4: #평가수가 충분한 경우. 평가수 부족하면 바로 OUT
-                if (not actorRow.rated > 4):#평가 수는 충분한데 그 값이 DB에 업데이트되지 않은 경우 or NULL값인경우
-                    try: #업데이트 시켜주자
-                        actorRow.rated = actorRow.ratingActor_actor.count()
-                        db.session.commit()
-                    except: pass
-                #그럼 이제 .rated는 다 있는거다.
-                if not actorRow.prefs:
-                    try: #.prefs 값을 넣자
-                        itemPrefs = recommendation.simActorPrefs()
-                        list = recommendation.getSoulmate(itemPrefs,name,n=5,similarity=recommendation.simPearson)
-                        a = json.dumps(list)
-                        actorRow.prefs = a
-                        db.session.commit()
-                        successful=True
-                    except: pass
-                try:
-                    #값이 최신으로 업데이트 되지 않았을 때
-                    if actorRow.ratingActor_actor.count()>=actorRow.rated +10:
-                        try:
-                            actorRow.rated = actorRow.ratingActor_actor.count()
-                            db.session.commit()
-                            itemPrefs = recommendation.simActorPrefs()
-                            list = recommendation.getSoulmate(itemPrefs,name,n=5,similarity=recommendation.simPearson)
-                            a = json.dumps(list)
-                            actorRow.prefs = a
-                            db.session.commit()
-                            successful=True
-                        except: pass
-                except:pass
-            else: pass #평가수가 부족하니까 OUT
+            if actorRow.count>4:
+                try: #.prefs 값을 넣자
+                    itemPrefs = recommendation.simActorPrefs()
+                    list = recommendation.getSoulmate(itemPrefs,name,n=5,similarity=recommendation.simPearson)
+                    a = json.dumps(list)
+                    actorRow.prefs = a
+                    db.session.commit()
+                    successful=True
+                except: pass
+            else:pass
     except:pass
     if successful:
         sList = json.loads(actorRow.prefs)
@@ -67,7 +45,8 @@ def actorDetail(name):
     list = actorRow.actorReview_actor.filter_by(userEmail=email).with_entities(ActorReview.id).all()
 
     #별점 있는 지 확인
-    rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
+    # rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
+    rating = user.ratingActor_user.filter_by(actorName=name).first()
     if rating:
         return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,rating=rating.rating,list=list,sList=sList)
     else:
@@ -135,7 +114,7 @@ def videoDetail(name):
         return redirect(url_for('index'))
 
     email = session['session_user_email']
-    # user = User.query.get(email)
+    user = User.query.get(email)
     # 해당하는 배우추출
     videoRow = Video.query.get(name)
 
@@ -149,39 +128,18 @@ def videoDetail(name):
     successful=False
     try:
         #값도 있고 그 값이 비교적 최신인 경우 (10개 평가마다 갱신) (완벽한 조건)
-        if videoRow.prefs and videoRow.ratingVideo_video.count() < videoRow.rated +10:
+        if videoRow.prefs:
             successful=True
         else:
             #DB에 값들을 확인하는 참회의 시간을 가져보자.
-            if videoRow.ratingVideo_video.count()>4: #평가수가 충분한 경우. 평가수 부족하면 바로 OUT
-                if (not videoRow.rated > 4):#평가 수는 충분한데 그 값이 DB에 업데이트되지 않은 경우 or NULL값인경우
-                    try: #업데이트 시켜주자
-                        videoRow.rated = videoRow.ratingVideo_video.count()
-                        db.session.commit()
-                    except: pass
-                #그럼 이제 .rated는 다 있는거다.
-                if not videoRow.prefs:
-                    try: #.prefs 값을 넣자
-                        itemPrefs = recommendation.simVideoPrefs()
-                        list = recommendation.getSoulmate(itemPrefs,name,n=5,similarity=recommendation.simPearson)
-                        a = json.dumps(list)
-                        videoRow.prefs = a
-                        db.session.commit()
-                        successful=True
-                    except: pass
-                try:
-                    #값이 최신으로 업데이트 되지 않았을 때
-                    if videoRow.ratingVideo_video.count()>=videoRow.rated +10:
-                        try:
-                            videoRow.rated = videoRow.ratingVideo_video.count()
-                            db.session.commit()
-                            itemPrefs = recommendation.simVideoPrefs()
-                            list = recommendation.getSoulmate(itemPrefs,name,n=5,similarity=recommendation.simPearson)
-                            a = json.dumps(list)
-                            videoRow.prefs = a
-                            db.session.commit()
-                            successful=True
-                        except: pass
+            if videoRow.count>4: #평가수가 충분한 경우. 평가수 부족하면 바로 OUT
+                try: #.prefs 값을 넣자
+                    itemPrefs = recommendation.simVideoPrefs()
+                    list = recommendation.getSoulmate(itemPrefs,name,n=5,similarity=recommendation.simPearson)
+                    a = json.dumps(list)
+                    videoRow.prefs = a
+                    db.session.commit()
+                    successful=True
                 except:pass
             else: pass #평가수가 부족하니까 OUT
     except:pass
@@ -191,7 +149,8 @@ def videoDetail(name):
 
     list = videoRow.videoReview_video.filter_by(userEmail=email).with_entities(VideoReview.id).all()
 
-    rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
+    # rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
+    rating = user.ratingVideo_user.filter_by(videoName=name).first()
     if rating:
         return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating,list=list,sList=sList)
     return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,list=list,sList=sList)
