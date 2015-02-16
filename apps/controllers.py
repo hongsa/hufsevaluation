@@ -475,27 +475,3 @@ def numVideo(page):
         else:
             pass
     return 'done'
-
-@app.route('/adrv/<int:page>',defaults={'page':1})
-@app.route('/adrv/<int:page>',methods=['GET', 'POST'])
-def addRatedVideo(page):
-    a = Video.query.order_by(desc(Video.release)).offset((page-1)*50).limit(50)
-    for each in a:
-        if not each.rated:
-            each.rated = each.ratingVideo_video.count()
-            db.session.commit()
-        else:
-            pass
-    return 'done'
-
-@app.route('/adra/<int:page>',defaults={'page':1})
-@app.route('/adra/<int:page>',methods=['GET', 'POST'])
-def addRatedActor(page):
-    a = Actor.query.order_by(desc(Actor.height)).offset((page-1)*50).limit(50)
-    for each in a:
-        if not each.rated:
-            each.rated = each.ratingActor_actor.count()
-            db.session.commit()
-        else:
-            pass
-    return 'done'
