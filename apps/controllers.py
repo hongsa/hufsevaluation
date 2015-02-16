@@ -13,10 +13,16 @@ from google.appengine.runtime import DeadlineExceededError
 from google.appengine.api import urlfetch
 from sqlalchemy import desc
 # userController에서 관리하는 부분 시작
+
+
 @app.route('/')
 @app.route('/index')
 def index():
     return user.index()
+
+@app.errorhandler(Exception)
+def page_not_found(e):
+    return render_template("error.html"), 500
 
 # 회원가입
 @app.route('/signup', methods=['GET', 'POST'])
