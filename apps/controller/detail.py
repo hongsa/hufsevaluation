@@ -12,9 +12,9 @@ def actorDetail(name):
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
     email = session['session_user_email']
-    user = User.query.get(email)
+    # user = User.query.get(email)
     # 해당하는 배우추출
-    actorRow = Actor.query.get(name) #asf
+    actorRow = Actor.query.get(name)
     #출연작품 가져오기
     appearVideo = actorRow.videos()
     #댓글 가져오기
@@ -135,7 +135,7 @@ def videoDetail(name):
         return redirect(url_for('index'))
 
     email = session['session_user_email']
-    user = User.query.get(email)
+    # user = User.query.get(email)
     # 해당하는 배우추출
     videoRow = Video.query.get(name)
 

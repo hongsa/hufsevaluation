@@ -19,19 +19,21 @@ def video_save_star():
         a = float(video.score / video.count)
         video.average = float(math.ceil(a * 100) / 100)
         rating.rating = star
+        db.session.commit()
     else:  # 평점을 매긴 적이 없음
         rating = RatingVideo(
             videoName=video.name,
             userEmail=email,
             rating=star)
-        db.session.add(rating)
         video.count += 1
         video.score += star
         a = float(video.score / video.count)
         video.average = float(math.ceil(a * 100) / 100)
         #영상평가갯수 db에 1추가
         User.query.get(email).numVideo += 1
-    db.session.commit()
+        db.session.add(rating)
+        db.session.commit()
+
     return jsonify(success=True)
 
 
@@ -52,18 +54,19 @@ def actor_save_star():
         a = float(actor.score / actor.count)
         actor.average = float(math.ceil(a * 100) / 100)
         rating.rating = star
+        db.session.commit()
     else:  # 평점을 매긴 적이 없음
         rating = RatingActor(
             actorName=actor.name,
             userEmail=email,
             rating=star)
-        db.session.add(rating)
         actor.count += 1
         actor.score += star
         a = float(actor.score / actor.count)
         actor.average = float(math.ceil(a * 100) / 100)
         #배우평가갯수 db에 1추가
         User.query.get(email).numActor +=1
-    db.session.commit()
+        db.session.add(rating)
+        db.session.commit()
 
     return jsonify(success=True)
