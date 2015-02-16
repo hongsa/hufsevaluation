@@ -248,7 +248,7 @@ def recommend():
     email = session['session_user_email']
     cUser = User.query.get(email)
     count = len(cUser.ratings())
-
+    rList = False
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if count <25:
         return render_template("recommendation.html",count=count)
@@ -283,6 +283,7 @@ def recommend2():
     email = session['session_user_email']
     cUser = User.query.get(email)
     count = len(cUser.aRatings())
+    rList = False
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if count<25:
         return render_template("recomm.html",count=count)
