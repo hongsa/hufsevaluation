@@ -277,7 +277,7 @@ def recommend2():
     if count<25:
         return render_template("recomm.html",count=count)
     else:
-        if not cUser.prefsVideo:
+        if not cUser.prefsActor:
             list = recommendation.getSoulmate(recommendation.makeActorRowData(),email,n=5)
             a = json.dumps(list)
             cUser.prefsActor = a

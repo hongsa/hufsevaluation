@@ -7,7 +7,7 @@ import json
 #영상평가를 위한 rowData 생성
 def makeVideoRowData():
     dict={}
-    oUser = User.query.filter(User.numVideo > 20)
+    oUser = User.query.filter(User.numVideo>20)
     for each in oUser:
         dict[each.email]=each.ratings()
     return dict
