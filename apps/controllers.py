@@ -254,12 +254,22 @@ def recommend():
         return render_template("recommendation.html",count=count)
     else:
         if not cUser.prefsVideo:
-            list = recommendation.getSoulmate(recommendation.makeVideoRowData(),email,n=5)
-            a = json.dumps(list)
-            cUser.prefsVideo = a
-            db.session.commit()
-        prefs = json.loads(cUser.prefsVideo)
-        rList = recommendation.getRecommendations(recommendation.makePrefs(prefs),email,similarity=recommendation.simPearson)
+            success = False
+            try:
+                list = recommendation.getSoulmate(recommendation.makeVideoRowData(),email,n=5)
+                a = json.dumps(list)
+                cUser.prefsVideo = a
+                db.session.commit()
+                success = True
+            except:pass
+            if success:
+                try:
+                    prefs = json.loads(cUser.prefsVideo)
+                    rList = recommendation.getRecommendations(recommendation.makePrefs(prefs),email,similarity=recommendation.simPearson)
+                except:pass
+        else:
+            prefs = json.loads(cUser.prefsVideo)
+            rList = recommendation.getRecommendations(recommendation.makePrefs(prefs),email,similarity=recommendation.simPearson)
         return render_template('recommendation.html', rList=rList,count=count)
     # return 'well done'
 
@@ -278,12 +288,22 @@ def recommend2():
         return render_template("recomm.html",count=count)
     else:
         if not cUser.prefsActor:
-            list = recommendation.getSoulmate(recommendation.makeActorRowData(),email,n=5)
-            a = json.dumps(list)
-            cUser.prefsActor = a
-            db.session.commit()
-        prefs = json.loads(cUser.prefsActor)
-        rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
+            success = False
+            try:
+                list = recommendation.getSoulmate(recommendation.makeActorRowData(),email,n=5)
+                a = json.dumps(list)
+                cUser.prefsActor = a
+                db.session.commit()
+                success = True
+            except:pass
+            if success:
+                try:
+                    prefs = json.loads(cUser.prefsActor)
+                    rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
+                except:pass
+        else:
+            prefs = json.loads(cUser.prefsActor)
+            rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
         return render_template('recomm.html', rList=rList, count=count)
     # return 'well done'
 

@@ -14,7 +14,7 @@ def makeVideoRowData():
 #배우평가를 위한 rowData 생성
 def makeActorRowData():
     dict={}
-    oUser = oUser = User.query.filter(User.numActor>20)
+    oUser = oUser = User.query.filter(User.numActor>30)
     for each in oUser:
         dict[each.email]=each.aRatings()
     return dict
