@@ -459,7 +459,7 @@ def numActor(page):
         if each.numVideo:
             pass
         else:
-            each.numActor = len(each.aRatings)
+            each.numActor = len(each.aRatings())
             db.session.commit()
     return 'done'
 
@@ -470,8 +470,8 @@ def numVideo(page):
     a = User.query.order_by(desc(User.joinDATE)).offset((page - 1) * 100).limit(100)
     for each in a:
         if not each.numVideo:
-            each.numVideo = len(each.ratings)
+            each.numVideo = len(each.ratings())
             db.session.commit()
         else:
             pass
-    return 'done'
+    return redirect(url_for("numVideo",page+1))
