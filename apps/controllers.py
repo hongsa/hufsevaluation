@@ -251,7 +251,7 @@ def recommend():
     rList = False
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if count <25:
-        return render_template("recommendation.html",count=count)
+        return render_template("recommendation.html",count=count, rList=rList)
     else:
         if not cUser.prefsVideo:
             success = False
@@ -268,8 +268,10 @@ def recommend():
                     rList = recommendation.getRecommendations(recommendation.makePrefs(prefs),email,similarity=recommendation.simPearson)
                 except:pass
         else:
-            prefs = json.loads(cUser.prefsVideo)
-            rList = recommendation.getRecommendations(recommendation.makePrefs(prefs),email,similarity=recommendation.simPearson)
+            try:
+                prefs = json.loads(cUser.prefsVideo)
+                rList = recommendation.getRecommendations(recommendation.makePrefs(prefs),email,similarity=recommendation.simPearson)
+            except:pass
         return render_template('recommendation.html', rList=rList,count=count)
     # return 'well done'
 
@@ -286,7 +288,7 @@ def recommend2():
     rList = False
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if count<25:
-        return render_template("recomm.html",count=count)
+        return render_template("recomm.html",count=count,rList=rList)
     else:
         if not cUser.prefsActor:
             success = False
@@ -303,8 +305,10 @@ def recommend2():
                     rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
                 except:pass
         else:
-            prefs = json.loads(cUser.prefsActor)
-            rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
+            try:
+                prefs = json.loads(cUser.prefsActor)
+                rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
+            except:pass
         return render_template('recomm.html', rList=rList, count=count)
     # return 'well done'
 
@@ -461,7 +465,9 @@ def numActor(page):
         else:
             each.numActor = len(each.aRatings())
             db.session.commit()
-    return 'done'
+    if page == 210:
+        return 'done'
+    return redirect(url_for("numActor",page=page+1))
 
 @app.route('/bozi/<int:page>',defaults={'page':1})
 @app.route('/bozi/<int:page>',methods=['GET', 'POST'])
@@ -474,4 +480,6 @@ def numVideo(page):
             db.session.commit()
         else:
             pass
-    return redirect(url_for("numVideo",page+1))
+    if page==210:
+        return 'done'
+    return redirect(url_for("numVideo",page=page+1))
