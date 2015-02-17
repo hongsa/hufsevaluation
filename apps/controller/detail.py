@@ -40,7 +40,9 @@ def actorDetail(name):
             else:pass
     except:pass
     if successful:
-        sList = json.loads(actorRow.prefs)
+        oList = json.loads(actorRow.prefs)
+        if len(oList)>1:
+            sList = oList[0:-1]
 
     list = actorRow.actorReview_actor.filter_by(userEmail=email).with_entities(ActorReview.id).all()
 
@@ -144,8 +146,9 @@ def videoDetail(name):
             else: pass #평가수가 부족하니까 OUT
     except:pass
     if successful:
-        sList = json.loads(videoRow.prefs)
-    
+        oList = json.loads(videoRow.prefs)
+        if len(oList)>1:
+            sList = oList[0:-1]
 
     list = videoRow.videoReview_video.filter_by(userEmail=email).with_entities(VideoReview.id).all()
 

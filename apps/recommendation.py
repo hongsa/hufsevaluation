@@ -7,14 +7,14 @@ import json
 #영상평가를 위한 rowData 생성
 def makeVideoRowData():
     dict={}
-    oUser = User.query.filter(User.numVideo>20)
+    oUser = User.query.filter(User.numVideo>24)
     for each in oUser:
         dict[each.email]=each.ratings()
     return dict
 #배우평가를 위한 rowData 생성
 def makeActorRowData():
     dict={}
-    oUser = oUser = User.query.filter(User.numActor>20)
+    oUser = oUser = User.query.filter(User.numActor>24)
     for each in oUser:
         dict[each.email]=each.aRatings()
     return dict
@@ -121,7 +121,7 @@ def topMatches(prefs,person,n=5,similarity=simPearson):
 #(나중을 대비한 함수)
 def getSoulmate(prefs,person,n=5,similarity=simPearson):
     outList = []
-    scores = [(similarity(prefs,person,other),other) for other in prefs if other!=person]
+    scores = [(similarity(prefs,person,other),other) for other in prefs if other!=person and (similarity(prefs,person,other)>0.3)]
     scores.sort()
     scores.reverse()
     for each in scores[0:n]:
@@ -157,7 +157,7 @@ def getRecommendations(prefs, person, similarity=simPearson):
 
     #정규화된 목록 생성
     # rankings = [(round(total/simSums[item],1),item) for item, total in totals.items()]
-    rankings = [(total/simSums[item],item) for item, total in totals.items()]
+    rankings = [(total/simSums[item],item) for item, total in totals.items() if total/simSums[item]>3.5 ]
     #정렬된 목록 리턴
     rankings.sort()
     rankings.reverse()

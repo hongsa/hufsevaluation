@@ -12,7 +12,7 @@ def index():
     if not 'session_user_email' in session:
         form=forms.LoginForm()
         return render_template("mainPageNew.html", form=form, number=number)
-    return redirect(url_for('actor_main'))
+    return redirect(url_for('video_main'))
 
 
 # 회원가입
@@ -53,7 +53,7 @@ def signup():
         session['session_user_email'] = form.email.data
         session['session_user_nickname'] = form.nickname.data
 
-        return redirect(url_for('actor_main'))
+        return redirect(url_for('video_main'))
 
     return render_template("signup.html", form=form,number=number)
 
@@ -67,7 +67,7 @@ def login():
     try:
         if session['session_user_email']:
             flash(u'이미 로그인 하셨습니다!', "error")
-            return redirect(url_for('actor_main'))
+            return redirect(url_for('video_main'))
 
     except Exception, e:
         pass
@@ -88,7 +88,7 @@ def login():
                 session.permanent = True
                 session['session_user_email'] = user.email
                 session['session_user_nickname'] = user.nickname
-                return redirect(url_for('actor_main'))
+                return redirect(url_for('video_main'))
 
 
     return render_template("mainPageNew.html", form=form)

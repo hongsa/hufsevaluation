@@ -404,7 +404,7 @@ def recommend2():
 @app.route('/backmirror1/<int:pag>',defaults={'page':1})
 @app.route('/backmirror1/<int:pag>',methods=['GET', 'POST'])
 def test1(pag):
-    oUser = User.query.filter(User.numVideo>24).order_by(desc(User.numVideo)).offset((pag-1)*10).limit(10)
+    oUser = User.query.filter(User.numVideo>24).order_by(desc(User.numVideo)).offset((pag-1)*5).limit(5)
     for each in oUser:
         list = recommendation.getSoulmate(recommendation.makeVideoRowData(),each.email,n=5)
         a = json.dumps(list)
@@ -416,7 +416,7 @@ def test1(pag):
 @app.route('/backmirror2/<int:page>',defaults={'page':1})
 @app.route('/backmirror2/<int:page>',methods=['GET', 'POST'])
 def test2(page):
-    oUser = User.query.filter(User.numActor>24).order_by(desc(User.numActor)).offset((page-1)*10).limit(10)
+    oUser = User.query.filter(User.numActor>24).order_by(desc(User.numActor)).offset((page-1)*5).limit(5)
     for each in oUser:
         list = recommendation.getSoulmate(recommendation.makeActorRowData(),each.email,n=5)
         a = json.dumps(list)
