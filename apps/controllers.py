@@ -425,38 +425,44 @@ def test2(page):
     return 'done'
 
 #유사 영상 찾는 함수
-@app.route('/simvideo',methods=['GET', 'POST'])
-def simvideos():
+@app.route('/simvideo/<int:page>',defaults={'page':1})
+@app.route('/simvideo/<int:page>',methods=['GET', 'POST'])
+def simvideos(page):
     oDict = recommendation.simVideoPrefs()
+    videos = Video.query.filter(Video.count>4).order_by(desc(Video.count)).offset((page - 1) * 100).limit(100)
     c = 0
-    for item in oDict:
+    for each in videos:
         #큰 데이터 세트를 위해 진척 상태를 갱신
         c+=1
         if c%100 == 0: print "%d / %d"%(c,len(oDict))
         #각 항목과 가장 유사한 항목들을 구함
-        list = recommendation.getSoulmate(oDict,item,n=5,similarity=recommendation.simPearson)
+        list = recommendation.getSoulmate(oDict,each.name,n=5,similarity=recommendation.simPearson)
         a = json.dumps(list)
-        oVideo = Video.query.get(item)
-        oVideo.prefs = a
+        each.prefs = a
         db.session.commit()
+
     return 'done'
 
 
 #유사 배우 찾는 함수
-@app.route('/simactor',methods=['GET', 'POST'])
-def simactors():
+@app.route('/simactor/<int:page>',defaults={'page':1})
+@app.route('/simactor/<int:page>',methods=['GET', 'POST'])
+def simactors(page):
     oItem = recommendation.simActorPrefs()
+    actors = Actor.query.filter(Actor.count>4).order_by(desc(Actor.count)).offset((page - 1) * 100).limit(100)
     c = 0
-    for item in oItem:
+    for each in actors:
         #큰 데이터 세트를 위해 진척 상태를 갱신
         c+=1
         if c%100 == 0: print "%d / %d"%(c,len(oItem))
         #각 항목과 가장 유사한 항목들을 구함
-        list = recommendation.getSoulmate(oItem,item,n=5,similarity=recommendation.simPearson)
+        list = recommendation.getSoulmate(oItem,each.name,n=5,similarity=recommendation.simPearson)
         a = json.dumps(list)
-        oActor = Actor.query.get(item)
-        oActor.prefs = a
+        each.prefs = a
         db.session.commit()
+    if page >11 : #db 갯수에 따라 다름 점점 늘어날듯
+        return 'done'
+
     return 'done'
 
 

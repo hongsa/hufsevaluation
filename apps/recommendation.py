@@ -47,14 +47,14 @@ def makePrefsActor(list):
 #제품매칭을 위한 표본 뒤집기 사람 :{영상:평점}  -> 영상:{사람: 평점}
 def simVideoPrefs(): #object는 Actor 아니면 Video다
     itemPrefs={}
-    Object = Video.query.filter(Video.rated>4)
+    Object = Video.query.filter(Video.count>4)
     for each in Object:
         itemPrefs[each.name]=each.ratedPerson()
     return itemPrefs
 
 def simActorPrefs(): #object는 Actor 아니면 Video다
     itemPrefs={}
-    Object = Actor.query.filter(Actor.rated>4)
+    Object = Actor.query.filter(Actor.count>4)
     for each in Object:
         itemPrefs[each.name]=each.ratedPerson()
     return itemPrefs

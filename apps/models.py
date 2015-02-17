@@ -10,8 +10,8 @@ class User(db.Model):
     #0은 남자 1은 여자
     sex = db.Column(db.Integer, default = 0)
     joinDATE = db.Column(db.DateTime(),default = db.func.now())
-    prefsVideo = db.Column(db.String(255))
-    prefsActor = db.Column(db.String(255))
+    prefsVideo = db.Column(db.Text(length=None, collation=None, convert_unicode=False, unicode_error=None, _warn_on_bytestring=False))
+    prefsActor = db.Column(db.Text(length=None, collation=None, convert_unicode=False, unicode_error=None, _warn_on_bytestring=False))
     numVideo = db.Column(db.Integer, default=0)
     numActor = db.Column(db.Integer, default=0)
     # 각 유저마다 {'영상':평점 ... } 형태로 dict 리턴
@@ -45,7 +45,7 @@ class Actor(db.Model):
     age = db.Column(db.Integer, default = 0)
     release = db.Column(db.Float, default=0)
     category = db.Column(db.String(255))
-    prefs = db.Column(db.String(255))
+    prefs = db.Column(db.Text(length=None, collation=None, convert_unicode=False, unicode_error=None, _warn_on_bytestring=False))
     rated = db.Column(db.Integer,default=0)
     # 모델 차원에서 리스트를 생성하는 함수를 생성
     # each.reviews() 실행하면 댓글 각 한 줄을 dict로 갖는 리스트를 리턴함
@@ -96,7 +96,7 @@ class Video(db.Model):
     count = db.Column(db.Integer, default = 0)
     average = db.Column(db.Float, default=0)
     company =db.Column(db.String(255))
-    prefs = db.Column(db.String(255))
+    prefs = db.Column(db.Text(length=None, collation=None, convert_unicode=False, unicode_error=None, _warn_on_bytestring=False))
     rated = db.Column(db.Integer,default=0)
     def ratedPerson(self):
         dict = {}
