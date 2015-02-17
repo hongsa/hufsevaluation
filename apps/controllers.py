@@ -479,7 +479,7 @@ def numActor(page):
         else:
             each.numActor = len(each.aRatings())
             db.session.commit()
-    if page == 300:
+    if page == 310:
         return 'done'
     return redirect(url_for("numActor",page=page+1))
 
@@ -494,6 +494,6 @@ def numVideo(page):
             db.session.commit()
         else:
             pass
-    if page==300:
+    if page==310:
         return 'done'
     return redirect(url_for("numVideo",page=page+1))
