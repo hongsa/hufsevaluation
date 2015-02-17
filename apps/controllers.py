@@ -429,7 +429,7 @@ def test2(page):
 @app.route('/simvideo/<int:page>',methods=['GET', 'POST'])
 def simvideos(page):
     oDict = recommendation.simVideoPrefs()
-    videos = Video.query.filter(Video.count>4).order_by(desc(Video.count)).offset((page - 1) * 100).limit(100)
+    videos = Video.query.filter(Video.count>4).order_by(desc(Video.count)).offset((page - 1) * 50).limit(50)
     c = 0
     for each in videos:
         #큰 데이터 세트를 위해 진척 상태를 갱신
@@ -440,7 +440,6 @@ def simvideos(page):
         a = json.dumps(list)
         each.prefs = a
         db.session.commit()
-
     return 'done'
 
 
@@ -449,7 +448,7 @@ def simvideos(page):
 @app.route('/simactor/<int:page>',methods=['GET', 'POST'])
 def simactors(page):
     oItem = recommendation.simActorPrefs()
-    actors = Actor.query.filter(Actor.count>4).order_by(desc(Actor.count)).offset((page - 1) * 100).limit(100)
+    actors = Actor.query.filter(Actor.count>4).order_by(desc(Actor.count)).offset((page - 1) * 30).limit(30)
     c = 0
     for each in actors:
         #큰 데이터 세트를 위해 진척 상태를 갱신
@@ -460,10 +459,9 @@ def simactors(page):
         a = json.dumps(list)
         each.prefs = a
         db.session.commit()
-    if page >11 : #db 갯수에 따라 다름 점점 늘어날듯
+    if page > 31:
         return 'done'
-
-    return 'done'
+    return redirect(url_for('simactors',page=page+1))
 
 
 
