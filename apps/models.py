@@ -46,7 +46,6 @@ class Actor(db.Model):
     release = db.Column(db.Float, default=0)
     category = db.Column(db.String(255))
     prefs = db.Column(db.Text(length=None, collation=None, convert_unicode=False, unicode_error=None, _warn_on_bytestring=False))
-    rated = db.Column(db.Integer,default=0)
     # 모델 차원에서 리스트를 생성하는 함수를 생성
     # each.reviews() 실행하면 댓글 각 한 줄을 dict로 갖는 리스트를 리턴함
     # 댓글 각 한줄 및 전체 리스트는 javascript가 인식 가능하게 json형태로 리턴!
@@ -97,7 +96,6 @@ class Video(db.Model):
     average = db.Column(db.Float, default=0)
     company =db.Column(db.String(255))
     prefs = db.Column(db.Text(length=None, collation=None, convert_unicode=False, unicode_error=None, _warn_on_bytestring=False))
-    rated = db.Column(db.Integer,default=0)
     def ratedPerson(self):
         dict = {}
         for oRating in self.ratingVideo_video:
