@@ -41,7 +41,7 @@ def actorDetail(name):
     except:pass
     if successful:
         oList = json.loads(actorRow.prefs)
-        if len(oList)>1:
+        if len(oList) >1:
             sList = oList[0:-1]
 
     list = actorRow.actorReview_actor.filter_by(userEmail=email).with_entities(ActorReview.id).all()
