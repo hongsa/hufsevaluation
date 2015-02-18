@@ -14,10 +14,10 @@ $(document).ready(function(){
             },
             success: function(data) {
                 if(data.success){
-                    $('#b_like').html(data.like);
-                    $('#b_hate').html(data.hate);
+                    $('#b_like').html('<span class="glyphicon glyphicon-thumbs-up"></span>'+data.like);
+                    $('#b_hate').html('<span class="glyphicon glyphicon-thumbs-down"></span>'+data.hate);
 
-                    alert('좋아용!!');
+                    alert('좋습니다!!');
                 }
                 else{
                     alert("error");

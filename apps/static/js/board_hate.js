@@ -14,9 +14,9 @@ $(document).ready(function(){
             },
             success: function(data) {
                 if(data.success){
-                    $('#b_like').html(data.like);
-                    $('#b_hate').html(data.hate);
-                    alert('싫어용!!');
+                    $('#b_like').html('<span class="glyphicon glyphicon-thumbs-up"></span>'+data.like);
+                    $('#b_hate').html('<span class="glyphicon glyphicon-thumbs-down"></span>'+data.hate);
+                    alert('싫습니다!!');
                 }
                 else{
                     alert("error");

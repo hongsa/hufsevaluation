@@ -135,18 +135,20 @@ def boardLike():
     id = request.form.get('id')
     board = Board.query.get(id)
     email = session['session_user_email']
+    user = User.query.get(email)
 
+    exist = board.like_board
     exist = board.like_board.filter_by(userEmail = email).first()
 
     if exist:
         if exist.evaluate == 0:
-            return jsonify(success=True)
+            return jsonify(success=True,like=board.like,hate=board.hate)
         else:
             board.hate-=1
             board.like+=1
             exist.evaluate = 0
             db.session.commit()
-            return jsonify(success=True)
+            return jsonify(success=True,like=board.like,hate=board.hate)
 
     else:
         this = Like(
@@ -158,7 +160,7 @@ def boardLike():
 
         db.session.add(this)
         db.session.commit()
-        return jsonify(success=True)
+        return jsonify(success=True,like=board.like,hate=board.hate)
 
 
 def boardHate():
@@ -175,13 +177,13 @@ def boardHate():
 
     if exist:
         if exist.evaluate == 1:
-            return jsonify(success=True)
+            return jsonify(success=True,like=board.like,hate=board.hate)
         else:
             board.hate+=1
             board.like-=1
             exist.evaluate = 1
             db.session.commit()
-            return jsonify(success=True)
+            return jsonify(success=True,like=board.like,hate=board.hate)
 
     else:
         this = Like(
@@ -193,7 +195,7 @@ def boardHate():
 
         db.session.add(this)
         db.session.commit()
-        return jsonify(success=True)
+        return jsonify(success=True,like=board.like,hate=board.hate)
 
 
 
