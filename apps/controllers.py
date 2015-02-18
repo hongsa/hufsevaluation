@@ -3,8 +3,8 @@ from flask import redirect, url_for, flash, session,render_template
 from google.appengine.api import urlfetch
 from apps import app,db
 from apps.controller import video
-from models import User,Actor,Video
-from controller import user,actor,newActor,newVideo,newVideo2,search,admin,collection,star,bookmark,detail
+from models import User,Actor,Video,Board,BoardReview
+from controller import user,actor,newActor,newVideo,newVideo2,search,admin,collection,star,bookmark,detail,board
 import recommendation
 import readImage
 import logging
@@ -12,6 +12,7 @@ import json
 from google.appengine.runtime import DeadlineExceededError
 from google.appengine.api import urlfetch
 from sqlalchemy import desc
+import math
 # userController에서 관리하는 부분 시작
 
 
@@ -19,12 +20,13 @@ from sqlalchemy import desc
 @app.route('/index')
 def index():
     return user.index()
+    # return render_template("serverout.html")
 
-@app.errorhandler(Exception)
-def page_not_found(e):
-
-    logging.error(e)
-    return render_template("error.html"), 500
+# @app.errorhandler(Exception)
+# def page_not_found(e):
+#
+#     logging.error(e)
+#     return render_template("error.html"), 500
 
 # 회원가입
 @app.route('/signup', methods=['GET', 'POST'])
@@ -61,6 +63,7 @@ def contact():
 #배우 평가(actorController)
 @app.route('/actor_main', methods=['GET', 'POST'])
 def actor_main():
+    # return render_template("serverout.html")
     return actor.actor_main()
 
 @app.route('/show2/<key>', methods=['GET', 'POST'])
@@ -78,6 +81,8 @@ def actor_category(name, page):
 #영상 평가(videoController)
 @app.route('/video_main', methods=['GET', 'POST'])
 def video_main():
+
+    # return render_template("serverout.html")
     return video.video_main()
 
 @app.route('/show1/<key>', methods=['GET', 'POST'])
@@ -245,6 +250,41 @@ def video_comment():
 @app.route('/v_comment/delete/<int:id>', methods=['GET','POST'])
 def v_comment_delete(id):
     return detail.v_comment_delete(id)
+
+
+# 게시판
+@app.route('/board/<int:page>')
+@app.route('/board<int:page>',methods=['GET', 'POST'])
+def boardList(page):
+    return board.boardList(page)
+
+@app.route('/b_write',methods=['GET', 'POST'])
+def boardWrite():
+    return board.boardWrite()
+
+@app.route('/b_detail/<int:id>',methods=['GET', 'POST'])
+def boardDetail(id):
+    return board.boardDetail(id)
+
+@app.route('/b_comment',methods=['GET', 'POST'])
+def boardComment():
+    return board.boardComment()
+
+@app.route('/b_like',methods=['GET', 'POST'])
+def boardLike():
+    return board.boardLike()
+
+@app.route('/b_hate',methods=['GET', 'POST'])
+def boardHate():
+    return board.boardHate()
+
+@app.route('/notice/<int:page>')
+@app.route('/notice/<int:page>',methods=['GET', 'POST'])
+def noticeList(page):
+    return board.noticeList(page)
+
+
+
 
 # 영상 추천기능
 @app.route('/recommendation',methods=['GET','POST'])
@@ -495,3 +535,7 @@ def numVideo(page):
     if page==310:
         return 'done'
     return redirect(url_for("numVideo",page=page+1))
+
+
+
+

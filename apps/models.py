@@ -2,6 +2,12 @@
 from apps import db
 import json
 import urllib
+import pytz
+import datetime
+
+def get_current_time():
+    return datetime.datetime.now(pytz.timezone('Asia/Seoul'))
+
 
 class User(db.Model):
     email = db.Column(db.String(255),primary_key=True)
@@ -183,4 +189,59 @@ class Bookmark(db.Model):
     user = db.relationship('User', backref=db.backref('bookmark_user',cascade='all, delete-orphan',lazy='dynamic'))
     userEmail=db.Column(db.String(255), db.ForeignKey(User.email))
 
+
+
+# class Notice(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     nickname = db.Column(db.String(255))
+#     title = db.Column(db.String(255))
+#     content = db.Column(db.Text())
+#     category = db.Column(db.Integer,default=0)
+#     click = db.Column(db.Integer,default =0)
+#     commentCount = db.Column(db.Integer, default=0)
+#     created = db.Column(db.DateTime(), default=db.func.now())
+#
+#
+# class Review(db.Model):
+#     id = db.Column(db.Integer, primary_key = True)
+#     notice = db.relationship('BoardNotice', backref=db.backref('noticeReview_notice', cascade='all, delete-orphan', lazy='dynamic'))
+#     noticeId = db.Column(db.Integer, db.ForeignKey(BoardNotice.id))
+#     user = db.relationship('User', backref=db.backref('noticeReview_user', cascade='all, delete-orphan', lazy='dynamic'))
+#     userEmail = db.Column(db.String(255), db.ForeignKey(User.email))
+#     content = db.Column(db.Text())
+#     created = db.Column(db.DateTime(), default=db.func.now())
+
+
+class Board(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    userEmail = db.Column(db.String(255), db.ForeignKey(User.email))
+    user = db.relationship('User',backref=db.backref('board_user', cascade='all, delete-orphan', lazy='dynamic'))
+    nickname = db.Column(db.String(255))
+    title = db.Column(db.String(120))
+    content = db.Column(db.Text())
+    category = db.Column(db.Integer,default=0)
+    like = db.Column(db.Integer,default = 0)
+    hate = db.Column(db.Integer,default = 0)
+    click = db.Column(db.Integer,default =0)
+    commentCount = db.Column(db.Integer,default =0)
+    created = db.Column(db.DateTime(), default=get_current_time)
+
+
+class BoardReview(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    board = db.relationship('Board', backref=db.backref('boardReview_board', cascade='all, delete-orphan', lazy='dynamic'))
+    boardId = db.Column(db.Integer, db.ForeignKey(Board.id))
+    user = db.relationship('User', backref=db.backref('boardReview_user', cascade='all, delete-orphan', lazy='dynamic'))
+    userEmail = db.Column(db.String(255), db.ForeignKey(User.email))
+    content = db.Column(db.Text())
+    created = db.Column(db.DateTime(), default=get_current_time)
+
+class Like(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    userEmail = db.Column(db.String(255), db.ForeignKey(User.email))
+    user = db.relationship('User', backref=db.backref('like_user', cascade='all, delete-orphan', lazy='dynamic'))
+    boardId = db.Column(db.Integer, db.ForeignKey(Board.id))
+    board = db.relationship('Board', backref = db.backref('like_board', cascade='all, delete-orphan', lazy='dynamic'))
+    #like 0 , hate 1
+    evaluate = db.Column(db.Integer,default=0)
 

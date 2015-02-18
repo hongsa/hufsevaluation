@@ -67,7 +67,7 @@
             <div class="detail_box2 text-center">
                 <p style="font-size: 25px;">출연 작품</p>
                 {% for each in oFilmo %}
-                <p><a href="../videoDetail/{{each.video.name}}"><span>{{each.video.name}}&nbsp;({{each.video.average}} 점)</span></a></p>
+                <p><a href="../videoDetail/{{each.videoName}}"><span>{{each.videoName}}&nbsp;({{each.video.average}} 점)</span></a></p>
                 {% endfor %}
             </div>
         </div>
@@ -116,6 +116,17 @@
                     <div class="row">
                         <div class="col-sm-2 text-left">
                             <p class="comment_author">
+                                {% if each.user.numVideo < 50 %}
+                                <img src="/static/img/0.png" alt=""/>
+                                {% elif 50<= each.user.numVideo < 100 %}
+                                <img src="/static/img/1.png" alt=""/>
+                                {% elif 100 <= each.user.numVideo < 200 %}
+                                <img src="/static/img/2.png" alt=""/>
+                                {% elif 200 <= each.user.numVideo < 400 %}
+                                <img src="/static/img/3.png" alt=""/>
+                                {% else %}
+                                <img src="/static/img/4.png" alt=""/>
+                                {% endif %}
                                 &nbsp;&nbsp;{{each.user.nickname}}
                             </p>
                         </div>

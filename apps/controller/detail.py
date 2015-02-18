@@ -64,14 +64,14 @@ def actor_comment():
             email = session['session_user_email']
             user= User.query.get(email)
             sUser=user.nickname
-            numActor = user.numActor
-            if numActor<50:
+            num = user.numVideo
+            if num<50:
                 sLevel= 0
-            elif 50<=numActor<100:
+            elif 50<=num<100:
                 sLevel= 1
-            elif 100<=numActor<200:
+            elif 100<=num<200:
                 sLevel= 2
-            elif 200<=numActor<400:
+            elif 200<=num<400:
                 sLevel= 3
             else:
                 sLevel= 4
@@ -168,14 +168,14 @@ def video_comment():
             email = session['session_user_email']
             user= User.query.get(email)
             sUser=user.nickname
-            numVideo = user.numVideo
-            if numVideo<50:
+            num = user.numVideo
+            if num<50:
                 sLevel= 0
-            elif 50<=numVideo<100:
+            elif 50<=num<100:
                 sLevel= 1
-            elif 100<=numVideo<200:
+            elif 100<=num<200:
                 sLevel= 2
-            elif 200<=numVideo<400:
+            elif 200<=num<400:
                 sLevel= 3
             else:
                 sLevel= 4

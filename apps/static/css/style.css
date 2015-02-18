@@ -163,5 +163,21 @@ li>a{
     overflow: scroll;
     height: 35em;
     /*background-color:#e1ebec;*/
-    border-style: ridge
+    /*border-style: ridge*/
+    border:1px solid;
+    border-radius: 10px;
+}   
+.boardBox{
+    height: 25em;
+    border-style: ridge;
+    margin-bottom: 1em;
+    border-radius: 10px;
+}
+.boardTitle{
+    background-color: #e1ebec;
+    margin-bottom: 3px;
+    height: 3.5em;
+    padding: 0.8em;
+    border-radius: 10px;
+    border: 1px solid;
 }

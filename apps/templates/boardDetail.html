@@ -1,0 +1,134 @@
+<!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지 -->
+{% extends "nav_layout.html" %}
+{% block css %}
+{% endblock css %}
+{% block js %}
+<script type='text/javascript' src="{{url_for('static', filename='js/board_comment.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/board_like.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/board_hate.js')}}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="col-md-1"></div>
+<div class="col-md-10">
+
+    <div >
+        <div>
+            <div class="boardTitle">
+                <div class="col-md-10 text-left" >
+                    {{detail.title}}
+                </div>
+                <div class = "col-md-2 text-right">
+                    {{detail.created}}
+                </div>
+            </div>
+
+            <div class="boardBox">
+                <div class = "row" style="margin-left: 5px;padding: 0.5em">
+                    <div class="col-md-2">
+                        {% if detail.user.numVideo < 50 %}
+                        <img src="/static/img/0.png" alt=""/>
+                        {% elif 50<= detail.user.numVideo < 100 %}
+                        <img src="/static/img/1.png" alt=""/>
+                        {% elif 100 <= detail.user.numVideo < 200 %}
+                        <img src="/static/img/2.png" alt=""/>
+                        {% elif 200 <= detail.user.numVideo < 400 %}
+                        <img src="/static/img/3.png" alt=""/>
+                        {% else %}
+                        <img src="/static/img/4.png" alt=""/>
+                        {% endif %}
+                        <span style="color: #1473b3;">{{detail.nickname}}</span></div>
+
+                    <div class="col-md-8"></div>
+                    <div class="col-md-2 text-right" id="{{detail.id}}">
+                        <button class="btn btn-primary" id="b_like">
+                            <span class="glyphicon glyphicon-thumbs-up"></span>{{detail.like}}
+                        </button>
+
+                        <button class="btn btn-danger" id="b_hate">
+                            <span class="glyphicon glyphicon-thumbs-down"></span>{{detail.hate}}
+                        </button>
+                    </div>
+
+                </div>
+
+                <hr style="margin-top: 0px; margin-bottom: 0.5em; border: 1px solid;"/>
+                <div class = "text-left" style="margin-left: 1em;">
+                    {{detail.content}}
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <!--댓글 입력부분 시작-->
+    <div class="row" style="margin-top: 1.5em;">
+        <div class="col-sm-12">
+
+            <div class="form-group">
+                <div class="col-sm-1 text-center"><span style="font-size: 25px;">댓글</span></div>
+                <div class="col-sm-10">
+                    <input class="form-control" id = "board_input" type="text" name="comment" placeholder="댓글과 관심은 사랑입니다." maxlength="68" />
+                    <input class="form-control" type="hidden" name="board_id" value="{{detail.id}}" maxlength="68" />
+                </div>
+                <div class="col-sm-1 text-center">
+                    <!--<button  class="btn btn-blueblack" onclick="void(sendData());"style="position:relative;left:40px;top:16px;font-size:18px;">-->
+                    <button  class="btn btn-warning" id="board_comment">가자!</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--댓글 입력부분 종료-->
+
+    <!--댓글 출력부분 시작-->
+    <div class="row review" style="margin-top: 1.5em;">
+        <!--<p class="detailBoxTitle">댓글</p>-->
+        <div class="col-sm-12">
+
+            {% for each in review %}
+            <div class="panel panel-default">
+                <div class="row">
+                    <div class="col-sm-2 text-left">
+                        <p class="comment_author">
+                            {% if each.user.numVideo < 50 %}
+                            <img src="/static/img/0.png" alt=""/>
+                            {% elif 50< each.user.numVideo < 100 %}
+                            <img src="/static/img/1.png" alt=""/>
+                            {% elif 100 < each.user.numVideo < 200 %}
+                            <img src="/static/img/2.png" alt=""/>
+                            {% elif 200 < each.user.numVideo < 400 %}
+                            <img src="/static/img/3.png" alt=""/>
+                            {% else %}
+                            <img src="/static/img/4.png" alt=""/>
+                            {% endif %}
+                            &nbsp;&nbsp;{{each.user.nickname}}
+                        </p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="text-center commentBox">{{each.content}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <p id="current"></p>
+        </div>
+
+        <div class="col-sm-1"></div>
+    </div>
+
+    <div class="row text-right" style="margin-top: 1em;">
+        <a href="/b_write"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>&nbsp;글쓰기</button></a>
+        <a href="/board/{{list}}"><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-th-list"></span>&nbsp;목록</button></a>
+        <a href="/b_detail/{{detail.id-1|int}}"><button class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;이전글</button></a>
+        <a href="/b_detail/{{detail.id+1|int}}"><button class="btn btn-primary"><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;다음글</button></a>
+    </div>
+
+
+
+</div>
+
+<div class="col-md-1"></div>
+
+{% endblock %}

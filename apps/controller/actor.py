@@ -15,6 +15,7 @@ def actor_main():
         return redirect(url_for('index'))
 
     totalRank = Actor.query.order_by(desc(Actor.average)).with_entities(Actor.name).limit(15)
+
     content = {}
     content['one'] = Actor.query.filter_by(category="1").order_by(desc(Actor.average))\
         .with_entities(Actor.name,Actor.average).limit(5)

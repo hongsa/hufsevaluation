@@ -77,7 +77,7 @@
             <div class="detail_box2 text-center">
                 <p style="font-size: 25px;">출연 배우</p>
                 {% for each in oFilmo %}
-                <p><a href="../actorDetail/{{each.actor.name}}"><span>{{each.actor.name}}&nbsp;({{each.actor.average}} 점)</span></a></p>
+                <p><a href="../actorDetail/{{each.ActorName}}"><span>{{each.ActorName}}&nbsp;({{each.actor.average}} 점)</span></a></p>
                 {% endfor %}
             </div>
         </div>
@@ -125,7 +125,17 @@
                     <div class="row">
                         <div class="col-sm-2 text-left" >
                             <p class="comment_author">
-{#                                <img src="/static/img/{{each['level']}}.png" alt=""/>&nbsp;&nbsp;{{each['author']}}#}
+                                {% if each.user.numVideo < 50 %}
+                                <img src="/static/img/0.png" alt=""/>
+                                {% elif 50<= each.user.numVideo < 100 %}
+                                <img src="/static/img/1.png" alt=""/>
+                                {% elif 100 <= each.user.numVideo < 200 %}
+                                <img src="/static/img/2.png" alt=""/>
+                                {% elif 200 <= each.user.numVideo < 400 %}
+                                <img src="/static/img/3.png" alt=""/>
+                                {% else %}
+                                <img src="/static/img/4.png" alt=""/>
+                                {% endif %}
                                 &nbsp;&nbsp;{{each.user.nickname}}
                             </p>
                         </div>
