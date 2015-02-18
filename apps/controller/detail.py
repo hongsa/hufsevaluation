@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import redirect, url_for, render_template, request, flash, session
 from apps import db
-from apps.models import User, Actor, Video, ActorReview, VideoReview
+from apps.models import User, Actor, Video, ActorReview, VideoReview,Filmo
 from apps import recommendation
 import json
 import logging
@@ -16,7 +16,8 @@ def actorDetail(name):
     # 해당하는 배우추출
     actorRow = Actor.query.get(name)
     #출연작품 가져오기
-    appearVideo = actorRow.videos()
+    oFilmo = Filmo.query.filter_by(ActorName=name).all()
+
     #댓글 가져오기
     comments = actorRow.reviews()
 
@@ -50,9 +51,9 @@ def actorDetail(name):
     # rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
     rating = user.ratingActor_user.filter_by(actorName=name).first()
     if rating:
-        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,rating=rating.rating,list=list,sList=sList)
+        return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo, comments=comments,rating=rating.rating,list=list,sList=sList)
     else:
-        return render_template("actorDetail.html", actorRow=actorRow, appearVideo=appearVideo, comments=comments,list=list,sList=sList)
+        return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo, comments=comments,list=list,sList=sList)
 
 
 #댓글입력
@@ -121,7 +122,8 @@ def videoDetail(name):
     videoRow = Video.query.get(name)
 
     #출연작품 가져오기
-    appearActor = videoRow.actors()
+    oFilmo = Filmo.query.filter_by(videoName=name).all()
+    appearActor = []
     #댓글 가져오기
     comments = videoRow.reviews()
 
@@ -155,8 +157,8 @@ def videoDetail(name):
     # rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
     rating = user.ratingVideo_user.filter_by(videoName=name).first()
     if rating:
-        return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,rating=rating.rating,list=list,sList=sList)
-    return render_template("videoDetail.html", videoRow=videoRow, appearActor=appearActor, comments=comments,list=list,sList=sList)
+        return render_template("videoDetail.html", videoRow=videoRow, oFilmo=oFilmo, comments=comments,rating=rating.rating,list=list,sList=sList)
+    return render_template("videoDetail.html", videoRow=videoRow, oFilmo=oFilmo, comments=comments,list=list,sList=sList)
 
 #댓글입력
 def video_comment():

@@ -66,8 +66,8 @@
         <div class="col-sm-6 col-md-3">
             <div class="detail_box2 text-center">
                 <p style="font-size: 25px;">출연 작품</p>
-                {% for each in appearVideo %}
-                <p><a href="../videoDetail/{{each['name']}}"><span>{{each['name']}}&nbsp;({{each['average']}} 점)</span></a></p>
+                {% for each in oFilmo %}
+                <p><a href="../videoDetail/{{each.video.name}}"><span>{{each.video.name}}&nbsp;({{each.video.average}} 점)</span></a></p>
                 {% endfor %}
             </div>
         </div>
