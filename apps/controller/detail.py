@@ -16,11 +16,11 @@ def actorDetail(name):
     # 해당하는 배우추출
     actorRow = Actor.query.get(name)
     #출연작품 가져오기
-    oFilmo = Filmo.query.filter_by(ActorName=name).all()
-
+    # oFilmo = Filmo.query.filter_by(ActorName=name).all()
+    oFilmo = actorRow.filmo_actor
     #댓글 가져오기
-    comments = actorRow.reviews()
-
+    # comments = ActorReview.query.filter_by(actorName=name).all()
+    comments = actorRow.actorReview_actor
     #유사배우 목록 가져오기
     sList = False
     successful=False
@@ -122,11 +122,12 @@ def videoDetail(name):
     videoRow = Video.query.get(name)
 
     #출연작품 가져오기
-    oFilmo = Filmo.query.filter_by(videoName=name).all()
+    # oFilmo = Filmo.query.filter_by(videoName=name).all()
+    oFilmo = videoRow.filmo_video
     appearActor = []
     #댓글 가져오기
-    comments = videoRow.reviews()
-
+    # comments = videoRow.reviews()
+    comments = videoRow.videoReview_video
     #유사영상 목록 가져오기
     sList = False
     successful=False
