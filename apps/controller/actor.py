@@ -72,7 +72,9 @@ def actor_category(name, page):
 
     email = session['session_user_email']
     user = User.query.get(email)
-    rating = user.ratingsActor()
+    rating = user.ratingActor_user
+    logging.error(rating)
+
 
     list = []
     for i in actorCategory:
@@ -80,8 +82,8 @@ def actor_category(name, page):
 
     ratingList=[]
     for r in rating:
-        if r['name'] in list:
-            ratingList.append(dict(name = r['name'], rating=r['rating']))
+        if r.actorName in list:
+            ratingList.append(dict(name = r.actorName, rating=r.rating))
 
 
     a = float(math.ceil(float(page)/10))
@@ -98,4 +100,4 @@ def actor_category(name, page):
         up = int(total_page)
 
     return render_template("actor_category.html", actorCategory=actorCategory, category=category,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page)
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name)

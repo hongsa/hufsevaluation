@@ -29,7 +29,7 @@ def new_video2(name, page):
 
     email = session['session_user_email']
     user = User.query.get(email)
-    rating = user.ratingsActor()
+    rating = user.ratingVideo_user
 
     list = []
     for v in videoRelease:
@@ -37,8 +37,8 @@ def new_video2(name, page):
 
     ratingList=[]
     for r in rating:
-        if r['name'] in list:
-            ratingList.append(dict(name = r['name'], rating=r['rating']))
+        if r.videoName in list:
+            ratingList.append(dict(name = r.videoName, rating=r.rating))
 
 
 

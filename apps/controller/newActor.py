@@ -29,7 +29,7 @@ def new_actor(name, page):
 
     email = session['session_user_email']
     user = User.query.get(email)
-    rating = user.ratingsActor()
+    rating = user.ratingActor_user
 
     list = []
     for v in actorRelease:
@@ -37,8 +37,8 @@ def new_actor(name, page):
 
     ratingList=[]
     for r in rating:
-        if r['name'] in list:
-            ratingList.append(dict(name = r['name'], rating=r['rating']))
+        if r.actorName in list:
+            ratingList.append(dict(name = r.actorName, rating=r.rating))
 
 
 

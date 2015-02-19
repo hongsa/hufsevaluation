@@ -21,7 +21,7 @@ def new_video(name, page):
 
     email = session['session_user_email']
     user = User.query.get(email)
-    rating = user.ratingsActor()
+    rating = user.ratingVideo_user
 
     list = []
     for v in videoCompany:
@@ -29,8 +29,8 @@ def new_video(name, page):
 
     ratingList=[]
     for r in rating:
-        if r['name'] in list:
-            ratingList.append(dict(name = r['name'], rating=r['rating']))
+        if r.videoName in list:
+            ratingList.append(dict(name = r.videoName, rating=r.rating))
 
     a = float(math.ceil(float(page)/10))
     if a ==1:

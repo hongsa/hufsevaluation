@@ -59,7 +59,7 @@ def video_category(name, page):
 
     email = session['session_user_email']
     user = User.query.get(email)
-    rating = user.ratingsVideo()
+    rating = user.ratingVideo_user
 
     list = []
     for v in videoCategory:
@@ -67,8 +67,8 @@ def video_category(name, page):
 
     ratingList=[]
     for r in rating:
-        if r['name'] in list:
-            ratingList.append(dict(name = r['name'], rating=r['rating']))
+        if r.videoName in list:
+            ratingList.append(dict(name = r.videoName, rating=r.rating))
 
 
     a = float(math.ceil(float(page)/10))
@@ -85,7 +85,7 @@ def video_category(name, page):
         up = int(total_page)
 
     return render_template("video_category.html", videoCategory=videoCategory, category=category,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page)
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name)
 
 
 # def show1(key):
