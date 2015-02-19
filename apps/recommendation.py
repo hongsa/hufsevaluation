@@ -1,23 +1,50 @@
 # -*- coding: utf-8 -*-
 from math import sqrt
-from models import User,Video,Actor
+from models import User,Video,Actor, RatingActor, RatingVideo
 import logging
 import json
+from apps import db, app
+import  time
+
+#쿼리문을 통한 명령 가능하게 만든 부분
+engine = db.get_engine(app)
+conn = engine.connect()
+
+
+
+def getMicrotime():
+    return time.time()
+
+def timeLogger(message, startTime, endTime):
+    sMessage = message + " :: " + str( endTime - startTime )
+    logging.error( sMessage)
+
 
 #영상평가를 위한 rowData 생성
 def makeVideoRowData():
     dict={}
-    oUser = User.query.filter(User.numVideo>24)
-    for each in oUser:
-        dict[each.email]=each.ratings()
+    a = conn.execute("SELECT * FROM rating_video WHERE userEmail IN ( SELECT email FROM user WHERE numVideo > 20 )")
+    for each in a:
+        if each.userEmail not in dict:
+            dict[each.userEmail] = {}
+        dict[each.userEmail].update({each.videoName:each.rating})
     return dict
+
+
 #배우평가를 위한 rowData 생성
 def makeActorRowData():
     dict={}
-    oUser = oUser = User.query.filter(User.numActor>24)
-    for each in oUser:
-        dict[each.email]=each.aRatings()
+    _s = getMicrotime()
+    a = conn.execute("SELECT * FROM rating_actor WHERE userEmail IN ( SELECT email FROM user WHERE numActor > 20 )")
+    for each in a:
+        if each.userEmail not in dict:
+            dict[each.userEmail] = {}
+        dict[each.userEmail].update({each.actorName:each.rating})
+    _e = getMicrotime()
+    timeLogger("makePrefs", _s, _e)
     return dict
+
+
 
 #영상평가를 위한 표본 딕셔너리 생성
 def makePrefs(list):
@@ -28,6 +55,8 @@ def makePrefs(list):
         if len(oUser.ratings())>10:
             dict[each]=oUser.ratings()
     return dict
+
+
 
 #배우평가를 위한 표본 딕셔너리 생성
 def makePrefsActor(list):
@@ -47,18 +76,46 @@ def makePrefsActor(list):
 #제품매칭을 위한 표본 뒤집기 사람 :{영상:평점}  -> 영상:{사람: 평점}
 def simVideoPrefs(): #object는 Actor 아니면 Video다
     itemPrefs={}
-    Object = Video.query.filter(Video.count>4)
-    for each in Object:
-        itemPrefs[each.name]=each.ratedPerson()
+    a = conn.execute("SELECT * FROM rating_video WHERE userEmail IN ( SELECT email FROM user WHERE numVideo > 4 )")
+    for each in a:
+        if each.videoName not in itemPrefs:
+            itemPrefs[each.videoName] = {}
+        itemPrefs[each.videoName].update({each.userEmail:each.rating})
+
     return itemPrefs
 
 def simActorPrefs(): #object는 Actor 아니면 Video다
     itemPrefs={}
-    Object = Actor.query.filter(Actor.count>4)
-    for each in Object:
-        itemPrefs[each.name]=each.ratedPerson()
-    return itemPrefs
+    #평가가 4개이상인 놈들만 유사배우를 보여줄거
+    # Object = Actor.query.filter(Actor.count>4)
+    # logging.error(" Total object items (simActorPrefs) : " + str(Object.count() ) )
+    # for each in Object:
+    #     #평가가 모여있는 새끼들중에서, 배우명: [평가한사람 : 평점]
+    #     itemPrefs[each.name]=each.ratedPerson()
+    # SELECT * FROM rating_actor WHERE actorName IN ( SELECT name FROM actor WHERE count > 4 )
 
+    # a = RatingActor.query.filter(RatingActor.actor.count>4).all()
+
+
+    _s = getMicrotime()
+    a = conn.execute("SELECT RA.* FROM rating_actor RA, ( SELECT name FROM actor WHERE count > 4 ) AC WHERE RA.actorName = AC.name")
+
+    _e = getMicrotime()
+
+    timeLogger("query", _s, _e)
+
+    _s = getMicrotime()
+    for each in a:
+        if each.actorName not in itemPrefs:
+            itemPrefs[each.actorName] ={}
+        itemPrefs[each.actorName].update({each.userEmail:each.rating})
+    _e = getMicrotime()
+    timeLogger("forStatement", _s, _e)
+
+
+    logging.error(itemPrefs)
+
+    return itemPrefs
 
 
             #유클리디안 거리점수
@@ -136,6 +193,7 @@ def getSoulmate(prefs,person,n=5,similarity=simPearson):
 #다른 사람과의 가중평균값을 이용해서 특정 사람에게 추천
 
 def getRecommendations(prefs, person, similarity=simPearson):
+    _s = getMicrotime()
     totals ={}
     simSums = {}
     for other in prefs:
@@ -161,6 +219,7 @@ def getRecommendations(prefs, person, similarity=simPearson):
     #정렬된 목록 리턴
     rankings.sort()
     rankings.reverse()
-
+    _e = getMicrotime()
+    timeLogger("algo", _s, _e)
     return rankings
 

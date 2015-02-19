@@ -4,26 +4,58 @@ from apps import db
 from apps.models import User, Actor, Video, ActorReview, VideoReview,Filmo
 from apps import recommendation
 import json
+import time
 import logging
 
+def getMicrotime():
+    return time.time()
+
+def timeLogger(message, startTime, endTime):
+    sMessage = message + " :: " + str( endTime - startTime )
+    logging.error( sMessage)
+
+
 def actorDetail(name):
+    _x = getMicrotime()
     # 로그인 안한 상태로 오면 index로 빠꾸
     if not 'session_user_email' in session:
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
     email = session['session_user_email']
+    _s = getMicrotime()
     user = User.query.get(email)
+    _e = getMicrotime()
+    timeLogger(" user", _s, _e)
+
+
+
     # 해당하는 배우추출
+    _s = getMicrotime()
     actorRow = Actor.query.get(name)
+    _e = getMicrotime()
+    timeLogger(" ActorRow", _s, _e)
+
+
     #출연작품 가져오기
+    _s = getMicrotime()
     # oFilmo = Filmo.query.filter_by(ActorName=name).all()
     oFilmo = actorRow.filmo_actor
+    _e = getMicrotime()
+    timeLogger(" oFilmo", _s, _e)
     #댓글 가져오기
     # comments = ActorReview.query.filter_by(actorName=name).all()
+
+    _s = getMicrotime()
     comments = actorRow.actorReview_actor
+    _e = getMicrotime()
+    timeLogger("comments", _s, _e)
     #유사배우 목록 가져오기
     sList = False
     successful=False
+
+
+
+    _s = getMicrotime()
     try:
         #.prefs가 있을때
         if actorRow.prefs:
@@ -40,27 +72,44 @@ def actorDetail(name):
                 except: pass
             else:pass
     except:pass
+
+    _e = getMicrotime()
+    timeLogger("firstTry", _s, _e)
+
     if successful:
         oList = json.loads(actorRow.prefs)
         if len(oList) >1:
             sList = oList[0:-1]
 
+    _s = getMicrotime()
     list = actorRow.actorReview_actor.filter_by(userEmail=email).with_entities(ActorReview.id).all()
+    _e = getMicrotime()
+    timeLogger("list", _s, _e)
+
+    #별점 있는 지 확인
+    # rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
+
+    _s = getMicrotime()
+    rating = user.ratingActor_user.filter_by(actorName=name).first()
+    _e = getMicrotime()
+    timeLogger("rating", _s, _e)
+
+    _y = getMicrotime()
+    timeLogger("total", _x, _y)
+
+
 
     if actorRow.category=='1':
         category='진짜 작은애당'
     elif actorRow.category=='2':
         category='품에 쏘오오옥'
     elif actorRow.category =='3':
-        category='걸그룹 키당'
+        category='걸그룹 미당'
     else:
         category='힐 신지 말아조'
 
 
 
-    #별점 있는 지 확인
-    # rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
-    rating = user.ratingActor_user.filter_by(actorName=name).first()
     if rating:
         return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo, comments=comments,rating=rating.rating,list=list,sList=sList,category=category)
     else:

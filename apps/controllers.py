@@ -9,12 +9,19 @@ import recommendation
 import readImage
 import logging
 import json
+import time
 from google.appengine.runtime import DeadlineExceededError
 from google.appengine.api import urlfetch
 from sqlalchemy import desc
 import math
 # userController에서 관리하는 부분 시작
 
+def getMicrotime():
+    return time.time()
+
+def timeLogger(message, startTime, endTime):
+    sMessage = message + " :: " + str( endTime - startTime )
+    logging.error( sMessage)
 
 @app.route('/')
 @app.route('/index')
@@ -340,6 +347,7 @@ def recommend2():
     else:
         if not cUser.prefsActor:
             success = False
+            _x = getMicrotime()
             try:
                 list = recommendation.getSoulmate(recommendation.makeActorRowData(),email,n=5)
                 a = json.dumps(list)
@@ -352,11 +360,21 @@ def recommend2():
                     prefs = json.loads(cUser.prefsActor)
                     rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
                 except:pass
+            _y = getMicrotime()
+            timeLogger("firstTry", _x, _y)
         else:
             try:
+
+                _s = getMicrotime()
                 prefs = json.loads(cUser.prefsActor)
                 rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
+                _e = getMicrotime()
+                timeLogger("rList", _s, _e)
             except:pass
+        # _s = getMicrotime()
+        # rList = recommendation.getRecommendations(recommendation.makeActorRowData(),email,similarity=recommendation.simPearson)
+        # _e = getMicrotime()
+        # timeLogger("rList", _s, _e)
         return render_template('recomm.html', rList=rList, count=count)
     # return 'well done'
 
@@ -487,21 +505,37 @@ def simvideos(page):
 @app.route('/simactor/<int:page>',defaults={'page':1})
 @app.route('/simactor/<int:page>',methods=['GET', 'POST'])
 def simactors(page):
+    _s = getMicrotime()
     oItem = recommendation.simActorPrefs()
+    _e = getMicrotime()
+    timeLogger("oItem", _s, _e)
+
+    _s = getMicrotime()
     actors = Actor.query.filter(Actor.count>4).order_by(desc(Actor.count)).offset((page - 1) * 30).limit(30)
+    _e = getMicrotime()
+    timeLogger("actors", _s, _e)
+
     c = 0
     for each in actors:
         #큰 데이터 세트를 위해 진척 상태를 갱신
         c+=1
         if c%100 == 0: print "%d / %d"%(c,len(oItem))
         #각 항목과 가장 유사한 항목들을 구함
+
+        _s = getMicrotime()
         list = recommendation.getSoulmate(oItem,each.name,n=5,similarity=recommendation.simPearson)
+        _e = getMicrotime()
+        timeLogger("list", _s, _e)
+
+        _s = getMicrotime()
         a = json.dumps(list)
         each.prefs = a
         db.session.commit()
+        _e = getMicrotime()
+        timeLogger("commit", _s, _e)
     if page > 31:
         return 'done'
-    return redirect(url_for('simactors',page=page+1))
+    return 'done'
 
 
 
