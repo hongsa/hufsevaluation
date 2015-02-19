@@ -491,15 +491,28 @@ def simvideos(page):
     c = 0
     for each in videos:
         #큰 데이터 세트를 위해 진척 상태를 갱신
-        c+=1
-        if c%100 == 0: print "%d / %d"%(c,len(oDict))
-        #각 항목과 가장 유사한 항목들을 구함
-        list = recommendation.getSoulmate(oDict,each.name,n=5,similarity=recommendation.simPearson)
-        a = json.dumps(list)
-        each.prefs = a
-        db.session.commit()
-    return 'done'
 
+        #각 항목과 가장 유사한 항목들을 구함
+        list = []
+        success = False
+        try:
+            list = recommendation.getSoulmate(oDict,each.name,n=5,similarity=recommendation.simPearson)
+            success = True
+        except: logging.error(str(each.name)+"'s error")
+        if success:
+            logging.error(list)
+            each.prefs = json.dumps(list)
+            db.session.commit()
+
+
+        # a = json.dumps(list)
+        # each.prefs = a
+        # db.session.commit()
+    # if page>25:
+    #     return 'done'
+    # else:
+    #     return redirect(url_for('simvideos', page=page+1))
+    return 'done'
 
 #유사 배우 찾는 함수
 @app.route('/simactor/<int:page>',defaults={'page':1})
@@ -517,25 +530,33 @@ def simactors(page):
 
     c = 0
     for each in actors:
-        #큰 데이터 세트를 위해 진척 상태를 갱신
-        c+=1
-        if c%100 == 0: print "%d / %d"%(c,len(oItem))
+
         #각 항목과 가장 유사한 항목들을 구함
-
         _s = getMicrotime()
-        list = recommendation.getSoulmate(oItem,each.name,n=5,similarity=recommendation.simPearson)
+        list = []
+        success = False
+        try:
+            list = recommendation.getSoulmate(oItem,each.name,n=5,similarity=recommendation.simPearson)
+            success=True
+        except: logging.error(str(each.name)+"'s error")
+        if success:
+            logging.error(list)
+            each.prefs = json.dumps(list)
+            db.session.commit()
         _e = getMicrotime()
+
         timeLogger("list", _s, _e)
-
-        _s = getMicrotime()
-        a = json.dumps(list)
-        each.prefs = a
-        db.session.commit()
-        _e = getMicrotime()
-        timeLogger("commit", _s, _e)
-    if page > 31:
-        return 'done'
-    return 'done'
+    #
+    #     _s = getMicrotime()
+    #     a = json.dumps(list)
+    #     each.prefs = a
+    #     db.session.commit()
+    #     _e = getMicrotime()
+    #     timeLogger("commit", _s, _e)
+    # if page > 31:
+    #     return 'done'
+    # return redirect(url_for('simactors',page=page+1))
+    return  'done'
 
 
 
