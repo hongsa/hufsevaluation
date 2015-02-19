@@ -47,13 +47,24 @@ def actorDetail(name):
 
     list = actorRow.actorReview_actor.filter_by(userEmail=email).with_entities(ActorReview.id).all()
 
+    if actorRow.category=='1':
+        category='진짜 작은애당'
+    elif actorRow.category=='2':
+        category='품에 쏘오오옥'
+    elif actorRow.category =='3':
+        category='걸그룹 키당'
+    else:
+        category='힐 신지 말아조'
+
+
+
     #별점 있는 지 확인
     # rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
     rating = user.ratingActor_user.filter_by(actorName=name).first()
     if rating:
-        return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo, comments=comments,rating=rating.rating,list=list,sList=sList)
+        return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo, comments=comments,rating=rating.rating,list=list,sList=sList,category=category)
     else:
-        return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo, comments=comments,list=list,sList=sList)
+        return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo, comments=comments,list=list,sList=sList,category=category)
 
 
 #댓글입력
@@ -155,11 +166,25 @@ def videoDetail(name):
 
     list = videoRow.videoReview_video.filter_by(userEmail=email).with_entities(VideoReview.id).all()
 
+    if videoRow.category=='1':
+        category='러브 액츄얼리'
+    elif videoRow.category=='2':
+        category='금기된 사랑'
+    elif videoRow.category =='3':
+        category='코스튬'
+    elif videoRow.category =='4':
+        category='협동조합'
+    elif videoRow.category =='5':
+        category='이게 말이 돼?'
+    elif videoRow.category =='6':
+        category='나 등 밀어줘'
+
+
     # rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
     rating = user.ratingVideo_user.filter_by(videoName=name).first()
     if rating:
-        return render_template("videoDetail.html", videoRow=videoRow, oFilmo=oFilmo, comments=comments,rating=rating.rating,list=list,sList=sList)
-    return render_template("videoDetail.html", videoRow=videoRow, oFilmo=oFilmo, comments=comments,list=list,sList=sList)
+        return render_template("videoDetail.html", videoRow=videoRow, oFilmo=oFilmo, comments=comments,rating=rating.rating,list=list,sList=sList,category=category)
+    return render_template("videoDetail.html", videoRow=videoRow, oFilmo=oFilmo, comments=comments,list=list,sList=sList,category=category)
 
 #댓글입력
 def video_comment():

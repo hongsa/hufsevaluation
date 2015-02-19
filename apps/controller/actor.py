@@ -54,7 +54,17 @@ def actor_category(name, page):
     actor = Actor.query.filter_by(category=name)
     actorCategory = actor.order_by(desc(Actor.average)).offset(
         (page - 1) * 12).with_entities(Actor.name,Actor.average,Actor.count).limit(12)
-    category = actor.first().category
+    # category = actor.first().category
+
+    if name=='1':
+        category="진짜 작은애당"
+    elif name=='2':
+        category="품에 쏘오오옥"
+    elif name=='3':
+        category="걸그룹 키당"
+    else:
+        category="힐 신지 말아조"
+
 
     total = actor.count()
     calclulate = float(float(total) / 12)

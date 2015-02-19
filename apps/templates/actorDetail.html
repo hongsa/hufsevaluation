@@ -41,18 +41,7 @@
                 <p>평가인원 : <span>{{actorRow.count}}</span> 명</p>
                 <p>키 : <span >{{actorRow.height}}</span> cm</p>
                 <p>체형 :
-                    {% if actorRow.category == '1'%}
-                    <a href="../a_category/1"><span >진짜 작은애당</span></a>
-                    {% endif %}
-                    {% if actorRow.category  == '2' %}
-                    <a href="../a_category/2"><span >품에 쏘오오옥</span></a>
-                    {% endif %}
-                    {% if actorRow.category == '3' %}
-                    <a href="../a_category/3"><span >걸그룹 키당</span></a>
-                    {% endif %}
-                    {% if actorRow.category == '4' %}
-                    <a href="../a_category/4"><span >힐 신지 말아조</span></a>
-                    {% endif %}
+                    <a href="../a_category/{{actorRow.category}}"><span >{{category}}</span></a>
                 </p>
                 <p>나이 : <span >{{actorRow.age}}</span> 년생</p>
                 <p>데뷔년도 :

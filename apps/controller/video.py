@@ -42,7 +42,20 @@ def video_category(name, page):
 
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)
-    category = video.first().category
+
+    if name=='1':
+        category="러브 액츄얼리"
+    elif name=='2':
+        category="금기된 사랑"
+    elif name=='3':
+        category="코스튬"
+    elif name=='4':
+        category="협동조합"
+    elif name=='5':
+        category="이게 말이 돼?"
+    else:
+        category ="나 등 밀어줘"
+
 
     email = session['session_user_email']
     user = User.query.get(email)
