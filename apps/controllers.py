@@ -242,6 +242,15 @@ def actor_comment():
 def a_comment_delete(id):
     return detail.a_comment_delete(id)
 
+@app.route('/a_comment_rows', methods=['GET','POST'])
+def a_comment_rows():
+    return detail.a_comment_rows()
+
+@app.route('/v_comment_rows', methods=['GET','POST'])
+def v_comment_rows():
+    return detail.v_comment_rows()
+
+
 
 
 #영상 디테일

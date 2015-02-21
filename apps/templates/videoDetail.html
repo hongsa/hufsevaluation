@@ -6,8 +6,35 @@
 <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
 <script type='text/javascript' src="{{url_for('static', filename='js/video_star.js')}}"></script>
 <script type='text/javascript' src="{{url_for('static', filename='js/video_bookmark.js')}}"></script>
-<script type="text/javascript">
+<script>
+$(document).ready(function() {
+        var name = '{{videoRow.name}}';
+
+        $.ajax({
+            url:'../v_comment_rows',
+            dataType:'JSON',
+            method: 'POST',
+            data:{
+                name:name
+            },
+            success:function(data){
+
+                if( typeof data !== 'object') return;
+                for (var i=0;i<data.length;i++){
+                    var string = '<div class="panel panel-default">'+'<div class="row">'+
+                    '<div class="col-sm-2 text-left">'+'<p class="comment_author">'+
+                    '<img src="/static/img/'+data[i].level+'.png"/>'+'&nbsp;&nbsp;'+
+                    data[i].user+'</p>'+'</div>'+'<div class="col-sm-9">'+'<p class="text-center commentBox">'
+                    +data[i].comments+'</p>'+'</div>'+'</div>'+'</div>';
+                    $('#additional2').append(string);
+                }
+            }
+        });
+
+    });
+
 </script>
+
 {% endblock js %}
 {% block content %}
 <div class="col-md-1"></div>
@@ -28,9 +55,6 @@
                          onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
                          onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
                          style="margin-bottom: 0.4em"/>
-                    <!--<button type="button" class="v_bookmark btn btn-success btn-xs">-->
-                    <!--<span class="v_bookmark glyphicon glyphicon-bookmark"></span>-->
-                    <!--</button>-->
                 </div>
             </div>
         </div>
@@ -101,49 +125,8 @@
         <!--댓글 출력부분 시작-->
         <div class="row review" style="margin-top: 1.5em;">
             <!--<p class="detailBoxTitle">댓글</p>-->
-            <div class="col-sm-12">
+            <div class="col-sm-12" id="additional2">
 
-                {% for each in comments %}
-                <div class="panel panel-default">
-                    <div class="row">
-                        <div class="col-sm-2 text-left" >
-                            <p class="comment_author">
-                                {% if each.user.numVideo < 50 %}
-                                <img src="/static/img/0.png" alt=""/>
-                                {% elif 50<= each.user.numVideo < 100 %}
-                                <img src="/static/img/1.png" alt=""/>
-                                {% elif 100 <= each.user.numVideo < 200 %}
-                                <img src="/static/img/2.png" alt=""/>
-                                {% elif 200 <= each.user.numVideo < 400 %}
-                                <img src="/static/img/3.png" alt=""/>
-                                {% else %}
-                                <img src="/static/img/4.png" alt=""/>
-                                {% endif %}
-                                &nbsp;&nbsp;{{each.user.nickname}}
-                            </p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-center commentBox">{{each.content}}</p>
-                        </div>
-
-                        {% set counter = [] %}
-
-                        {% for i in list %}
-                        {% if i.id ==  each.id %}
-                        {% if counter.append(i) %}
-                        {% endif %}
-                        {% endif %}
-                        {% endfor %}
-
-                        {%if counter != []%}
-                        <div class="col-sm-1">
-                            <p class="text-center commentBox"><a href="/v_comment/delete/{{each.id}}" style="color: gray;">삭제</a></p>
-                        </div>
-                        {% endif %}
-
-                    </div>
-                </div>
-                {% endfor %}
                 <p id="current"></p>
             </div>
 

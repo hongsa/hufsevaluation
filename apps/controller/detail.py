@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import redirect, url_for, render_template, request, flash, session
+from flask import redirect, url_for, render_template, request, flash, session,jsonify
 from apps import db
 from apps.models import User, Actor, Video, ActorReview, VideoReview,Filmo
 from apps import recommendation
@@ -7,55 +7,55 @@ import json
 import time
 import logging
 
-def getMicrotime():
-    return time.time()
-
-def timeLogger(message, startTime, endTime):
-    sMessage = message + " :: " + str( endTime - startTime )
-    logging.error( sMessage)
+# def getMicrotime():
+#     return time.time()
+#
+# def timeLogger(message, startTime, endTime):
+#     sMessage = message + " :: " + str( endTime - startTime )
+#     logging.error( sMessage)
 
 
 def actorDetail(name):
-    _x = getMicrotime()
+    # _x = getMicrotime()
     # 로그인 안한 상태로 오면 index로 빠꾸
     if not 'session_user_email' in session:
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
     email = session['session_user_email']
-    _s = getMicrotime()
+    # _s = getMicrotime()
     user = User.query.get(email)
-    _e = getMicrotime()
-    timeLogger(" user", _s, _e)
+    # _e = getMicrotime()
+    # timeLogger(" user", _s, _e)
 
 
 
     # 해당하는 배우추출
-    _s = getMicrotime()
+    # _s = getMicrotime()
     actorRow = Actor.query.get(name)
-    _e = getMicrotime()
-    timeLogger(" ActorRow", _s, _e)
+    # _e = getMicrotime()
+    # timeLogger(" ActorRow", _s, _e)
 
 
     #출연작품 가져오기
-    _s = getMicrotime()
+    # _s = getMicrotime()
     # oFilmo = Filmo.query.filter_by(ActorName=name).all()
     oFilmo = actorRow.filmo_actor
-    _e = getMicrotime()
-    timeLogger(" oFilmo", _s, _e)
+    # _e = getMicrotime()
+    # timeLogger(" oFilmo", _s, _e)
     #댓글 가져오기
     # comments = ActorReview.query.filter_by(actorName=name).all()
 
-    _s = getMicrotime()
-    comments = actorRow.actorReview_actor
-    _e = getMicrotime()
-    timeLogger("comments", _s, _e)
+    # _s = getMicrotime()
+    # comments = actorRow.actorReview_actor
+    # _e = getMicrotime()
+    # timeLogger("comments", _s, _e)
     #유사배우 목록 가져오기
     sList = False
     successful=False
 
 
 
-    _s = getMicrotime()
+    # _s = getMicrotime()
     try:
         #.prefs가 있을때
         if actorRow.prefs:
@@ -73,29 +73,29 @@ def actorDetail(name):
             else:pass
     except:pass
 
-    _e = getMicrotime()
-    timeLogger("firstTry", _s, _e)
+    # _e = getMicrotime()
+    # timeLogger("firstTry", _s, _e)
 
     if successful:
         oList = json.loads(actorRow.prefs)
         if len(oList) >1:
             sList = oList[0:-1]
 
-    _s = getMicrotime()
-    list = actorRow.actorReview_actor.filter_by(userEmail=email).with_entities(ActorReview.id).all()
-    _e = getMicrotime()
-    timeLogger("list", _s, _e)
+    # _s = getMicrotime()
+    # list = actorRow.actorReview_actor.filter_by(userEmail=email).with_entities(ActorReview.id).all()
+    # _e = getMicrotime()
+    # timeLogger("list", _s, _e)
 
     #별점 있는 지 확인
     # rating = actorRow.ratingActor_actor.filter_by(userEmail=email).first()
 
-    _s = getMicrotime()
+    # _s = getMicrotime()
     rating = user.ratingActor_user.filter_by(actorName=name).first()
-    _e = getMicrotime()
-    timeLogger("rating", _s, _e)
+    # _e = getMicrotime()
+    # timeLogger("rating", _s, _e)
 
-    _y = getMicrotime()
-    timeLogger("total", _x, _y)
+    # _y = getMicrotime()
+    # timeLogger("total", _x, _y)
 
 
 
@@ -111,9 +111,9 @@ def actorDetail(name):
 
 
     if rating:
-        return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo, comments=comments,rating=rating.rating,list=list,sList=sList,category=category)
+        return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo,rating=rating.rating,sList=sList,category=category)
     else:
-        return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo, comments=comments,list=list,sList=sList,category=category)
+        return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo, sList=sList,category=category)
 
 
 #댓글입력
@@ -187,7 +187,7 @@ def videoDetail(name):
     appearActor = []
     #댓글 가져오기
     # comments = videoRow.reviews()
-    comments = videoRow.videoReview_video
+    # comments = videoRow.videoReview_video
     #유사영상 목록 가져오기
     sList = False
     successful=False
@@ -213,7 +213,7 @@ def videoDetail(name):
         if len(oList)>1:
             sList = oList[0:-1]
 
-    list = videoRow.videoReview_video.filter_by(userEmail=email).with_entities(VideoReview.id).all()
+    # list = videoRow.videoReview_video.filter_by(userEmail=email).with_entities(VideoReview.id).all()
 
     if videoRow.category=='1':
         category='러브 액츄얼리'
@@ -232,8 +232,8 @@ def videoDetail(name):
     # rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
     rating = user.ratingVideo_user.filter_by(videoName=name).first()
     if rating:
-        return render_template("videoDetail.html", videoRow=videoRow, oFilmo=oFilmo, comments=comments,rating=rating.rating,list=list,sList=sList,category=category)
-    return render_template("videoDetail.html", videoRow=videoRow, oFilmo=oFilmo, comments=comments,list=list,sList=sList,category=category)
+        return render_template("videoDetail.html", videoRow=videoRow, oFilmo=oFilmo,rating=rating.rating,sList=sList,category=category)
+    return render_template("videoDetail.html", videoRow=videoRow, oFilmo=oFilmo, sList=sList,category=category)
 
 #댓글입력
 def video_comment():
@@ -286,3 +286,56 @@ def v_comment_delete(id):
 
 
         return redirect(url_for("videoDetail",name=name))
+
+
+def a_comment_rows():
+
+    if request.method == 'POST':
+        name = request.form.get('name')
+        actorRow = Actor.query.get(name)
+        comments = actorRow.actorReview_actor
+
+
+        rows=[]
+        for each in comments:
+            if each.user.numVideo<50:
+                level= 0
+            elif 50<=each.user.numVideo<100:
+                level= 1
+            elif 100<=each.user.numVideo<200:
+                level= 2
+            elif 200<=each.user.numVideo<400:
+                level= 3
+            else:
+                level= 4
+
+            rows.append(dict(level=level,user=each.user.nickname,comments=each.content))
+
+        logging.error(rows)
+        return json.dumps(rows)
+
+def v_comment_rows():
+
+    if request.method == 'POST':
+        name = request.form.get('name')
+        videoRow = Video.query.get(name)
+        comments = videoRow.videoReview_video
+
+
+        rows=[]
+        for each in comments:
+            if each.user.numVideo<50:
+                level= 0
+            elif 50<=each.user.numVideo<100:
+                level= 1
+            elif 100<=each.user.numVideo<200:
+                level= 2
+            elif 200<=each.user.numVideo<400:
+                level= 3
+            else:
+                level= 4
+
+            rows.append(dict(level=level,user=each.user.nickname,comments=each.content))
+
+        logging.error(rows)
+        return json.dumps(rows)
