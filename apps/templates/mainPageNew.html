@@ -10,7 +10,7 @@
 
     <meta property="og:title" content="직박구리 : 취향을 알려줄게!" />
     <meta property="og:site_name" content="건국 이래 최고의 사이" />
-    <meta property="og:image" content="http://storage.googleapis.com/jikbakguri/image/main{{ number }}.png" />
+    <meta property="og:image" content="http://storage.googleapis.com/jikbakguri/image/main.png" />
     <meta property="og:url" content="http://www.jikbakguri.com/" />
     <meta property="og:type" content="website" />
     <!--<meta property="fb:app_id" content="149190165235116" />-->
@@ -25,7 +25,6 @@
     <!--<link rel="stylesheet" type="text/css" href="http://doc.smarchal.com/so/fiddle.css">-->
     <!--<link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">-->
 
-
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -38,9 +37,18 @@
     </script>
 
     <style type=text/css>
+        @media only screen and (max-width : 1000px) {
+            .countmain{
+                color: #ffffff;
+                font-size: 18px;;
+            }
+        }
         @media only screen and (min-width : 1000px) {
-            .bird{
-                display: None;
+
+            .countmain{
+                color: #ffffff;
+                font-size: 28px;
+                margin-top: 1em;
             }
             .left{
                 margin-top: 5em;
@@ -133,6 +141,13 @@
                 </div>
 
             </div>
+        </div>
+        <br/><br/>
+        <div class="row text-center">
+            <div class="countmain">
+                현재 <span style="color: orange">&nbsp;&nbsp;{{count}}&nbsp;&nbsp;</span> 개의 별점이 쌓였습니다.
+            </div>
+
         </div>
     </div>
 

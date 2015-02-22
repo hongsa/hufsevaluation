@@ -2,7 +2,7 @@
 from flask import redirect, url_for, render_template, request, flash, session
 from apps import db
 from werkzeug.security import generate_password_hash, check_password_hash
-from apps.models import User
+from apps.models import User,RatingActor,RatingVideo
 from apps import forms
 import random
 import logging
@@ -11,7 +11,8 @@ def index():
     number = random.randint(1,5)
     if not 'session_user_email' in session:
         form=forms.LoginForm()
-        return render_template("mainPageNew.html", form=form, number=number)
+        count = int(RatingActor.query.count()) + int(RatingVideo.query.count())
+        return render_template("mainPageNew.html", form=form, number=number,count=count)
     return redirect(url_for('video_main'))
 
 
