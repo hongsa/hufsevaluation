@@ -311,7 +311,7 @@ def a_comment_rows():
 
             rows.append(dict(level=level,user=each.user.nickname,comments=each.content))
 
-        logging.error(rows)
+        # logging.error(rows)
         return json.dumps(rows)
 
 def v_comment_rows():
@@ -337,5 +337,5 @@ def v_comment_rows():
 
             rows.append(dict(level=level,user=each.user.nickname,comments=each.content))
 
-        logging.error(rows)
+        # logging.error(rows)
         return json.dumps(rows)

@@ -24,16 +24,23 @@
                 if( typeof data !== 'object') return;
                 for (var i=0;i<data.length;i++){
                     var string = '<div class="panel panel-default">'+'<div class="row">'+
-                    '<div class="col-sm-2 text-left">'+'<p class="comment_author">'+
-                    '<img src="/static/img/'+data[i].level+'.png"/>'+'&nbsp;&nbsp;'+
-                    data[i].user+'</p>'+'</div>'+'<div class="col-sm-9">'+'<p class="text-center commentBox">'
-                    +data[i].comments+'</p>'+'</div>'+'</div>'+'</div>';
+                            '<div class="col-sm-2 text-left">'+'<p class="comment_author">'+
+                            '<img src="/static/img/'+data[i].level+'.png"/>'+'&nbsp;&nbsp;'+
+                            data[i].user+'</p>'+'</div>'+'<div class="col-sm-9">'+'<p class="text-center commentBox">'
+                            +data[i].comments+'</p>'+'</div>'+'</div>'+'</div>';
                     $('#additional').append(string);
                 }
             }
         });
 
     });
+
+    $(document).ajaxStart(function() {
+        $('.loading').fadeIn('fast');
+    })
+    $(document).ajaxStop( function() {
+        $('.loading').fadeOut('slow');
+    })
 
 </script>
 
@@ -125,7 +132,9 @@
 
         <!--댓글 출력부분 시작-->
         <div class="row review" style="margin-top: 1.5em;">
-            <!--<p class="detailBoxTitle">댓글</p>-->
+            <div class="loading" style="display: none;"></div>
+
+
             <div class="col-sm-12" id="additional">
                 <p id="current"></p>
             </div>
