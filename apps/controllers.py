@@ -473,10 +473,13 @@ def recommend2():
 def test1(pag):
     oUser = User.query.filter(User.numVideo>24).order_by(desc(User.numVideo)).offset((pag-1)*5).limit(5)
     for each in oUser:
-        list = recommendation.getSoulmate(recommendation.makeVideoRowData(),each.email,n=5)
-        a = json.dumps(list)
-        each.prefsVideo = a
-        db.session.commit()
+        try:
+            list = recommendation.getSoulmate(recommendation.makeVideoRowData(),each.email,n=5)
+            a = json.dumps(list)
+            each.prefsVideo = a
+            db.session.commit()
+        except:
+            logging.error(each.email)
     return 'done'
 
 #배우평가가 유사한 친구들을 추가하는 부분.
@@ -485,10 +488,13 @@ def test1(pag):
 def test2(page):
     oUser = User.query.filter(User.numActor>24).order_by(desc(User.numActor)).offset((page-1)*5).limit(5)
     for each in oUser:
-        list = recommendation.getSoulmate(recommendation.makeActorRowData(),each.email,n=5)
-        a = json.dumps(list)
-        each.prefsActor = a
-        db.session.commit()
+        try:
+            list = recommendation.getSoulmate(recommendation.makeActorRowData(),each.email,n=5)
+            a = json.dumps(list)
+            each.prefsActor = a
+            db.session.commit()
+        except:
+            logging.error(each.name)
     return 'done'
 
 #유사 영상 찾는 함수
