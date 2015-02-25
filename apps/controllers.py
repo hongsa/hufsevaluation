@@ -3,7 +3,7 @@ from flask import redirect, url_for, flash, session,render_template
 from google.appengine.api import urlfetch
 from apps import app,db
 from apps.controller import video
-from models import User,Actor,Video,Board,BoardReview
+from models import User,Actor,Video
 from controller import user,actor,newActor,newVideo,newVideo2,search,admin,collection,star,bookmark,detail,board
 import recommendation
 import readImage
@@ -16,12 +16,12 @@ from sqlalchemy import desc
 import math
 # userController에서 관리하는 부분 시작
 
-def getMicrotime():
-    return time.time()
-
-def timeLogger(message, startTime, endTime):
-    sMessage = message + " :: " + str( endTime - startTime )
-    logging.error( sMessage)
+# def getMicrotime():
+#     return time.time()
+#
+# def timeLogger(message, startTime, endTime):
+#     sMessage = message + " :: " + str( endTime - startTime )
+#     logging.error( sMessage)
 
 @app.route('/')
 @app.route('/index')
@@ -29,11 +29,11 @@ def index():
     return user.index()
     # return render_template("serverout.html")
 
-# @app.errorhandler(Exception)
-# def page_not_found(e):
-#
-#     logging.error(e)
-#     return render_template("error.html"), 500
+@app.errorhandler(Exception)
+def page_not_found(e):
+
+    logging.error(e)
+    return render_template("error.html"), 500
 
 # 회원가입
 @app.route('/signup', methods=['GET', 'POST'])
@@ -356,7 +356,7 @@ def recommend2():
     else:
         if not cUser.prefsActor:
             success = False
-            _x = getMicrotime()
+            # _x = getMicrotime()
             try:
                 list = recommendation.getSoulmate(recommendation.makeActorRowData(),email,n=5)
                 a = json.dumps(list)
@@ -369,16 +369,16 @@ def recommend2():
                     prefs = json.loads(cUser.prefsActor)
                     rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
                 except:pass
-            _y = getMicrotime()
-            timeLogger("firstTry", _x, _y)
+            # _y = getMicrotime()
+            # timeLogger("firstTry", _x, _y)
         else:
             try:
 
-                _s = getMicrotime()
+                # _s = getMicrotime()
                 prefs = json.loads(cUser.prefsActor)
                 rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
-                _e = getMicrotime()
-                timeLogger("rList", _s, _e)
+                # _e = getMicrotime()
+                # timeLogger("rList", _s, _e)
             except:pass
         # _s = getMicrotime()
         # rList = recommendation.getRecommendations(recommendation.makeActorRowData(),email,similarity=recommendation.simPearson)
@@ -561,7 +561,7 @@ def simactors(page):
     for each in actors:
 
         #각 항목과 가장 유사한 항목들을 구함
-        _s = getMicrotime()
+        # _s = getMicrotime()
         list = []
         success = False
         try:
@@ -573,9 +573,9 @@ def simactors(page):
             logging.error(list)
             each.prefs = json.dumps(list)
             db.session.commit()
-        _e = getMicrotime()
+        # _e = getMicrotime()
 
-        timeLogger("list", _s, _e)
+        # timeLogger("list", _s, _e)
     #
     #     _s = getMicrotime()
     #     a = json.dumps(list)

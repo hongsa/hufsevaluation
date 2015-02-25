@@ -5,7 +5,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from apps.models import User,RatingActor,RatingVideo
 from apps import forms
 import random
+import pytz
+import datetime
 import logging
+
+def get_current_time():
+    return datetime.datetime.now(pytz.timezone('Asia/Seoul'))
+
 
 def index():
     number = random.randint(1,5)
@@ -44,7 +50,7 @@ def signup():
             return render_template("signup.html", form=form)
 
         user = User(email=form.email.data, password=generate_password_hash(form.password.data),
-                    nickname=form.nickname.data, sex=form.sex.data)
+                    nickname=form.nickname.data, sex=form.sex.data,joinDATE=get_current_time())
 
         db.session.add(user)
         db.session.commit()

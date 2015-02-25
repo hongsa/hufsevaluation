@@ -73,7 +73,7 @@ def actor_category(name, page):
     email = session['session_user_email']
     user = User.query.get(email)
     rating = user.ratingActor_user
-    logging.error(rating)
+    # logging.error(rating)
 
 
     list = []

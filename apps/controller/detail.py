@@ -6,6 +6,12 @@ from apps import recommendation
 import json
 import time
 import logging
+from sqlalchemy import desc
+import math
+import pytz
+import datetime
+
+
 
 # def getMicrotime():
 #     return time.time()
@@ -13,6 +19,9 @@ import logging
 # def timeLogger(message, startTime, endTime):
 #     sMessage = message + " :: " + str( endTime - startTime )
 #     logging.error( sMessage)
+
+def get_current_time():
+    return datetime.datetime.now(pytz.timezone('Asia/Seoul'))
 
 
 def actorDetail(name):
@@ -144,7 +153,8 @@ def actor_comment():
             thisComment=ActorReview(
             actorName=sName,
             userEmail=session['session_user_email'],
-            content=sComment
+            content=sComment,
+            created = get_current_time()
             )
         #댓글 DB에 저장
             jsonDict = {}
@@ -265,7 +275,8 @@ def video_comment():
             thisComment=VideoReview(
             videoName=sName,
             userEmail=session['session_user_email'],
-            content=sComment
+            content=sComment,
+            created = get_current_time()
             )
         #댓글 DB에 저장
             jsonDict = {}
@@ -298,11 +309,16 @@ def a_comment_rows():
 
     if request.method == 'POST':
         name = request.form.get('name')
+        # num = int(request.form.get('num'))
         actorRow = Actor.query.get(name)
         comments = actorRow.actorReview_actor
+        # comments = actorRow.actorReview_actor.order_by(desc(ActorReview.id)).\
+        #     offset((num-1)*20).limit(20)
 
+        # total = int(math.ceil(float(actorRow.actorReview_actor.count())/20))
 
         rows=[]
+        # rows.append(total)
         for each in comments:
             if each.user.numVideo<50:
                 level= 0
