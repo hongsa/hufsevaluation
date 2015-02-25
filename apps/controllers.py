@@ -29,11 +29,11 @@ def index():
     return user.index()
     # return render_template("serverout.html")
 
-@app.errorhandler(Exception)
-def page_not_found(e):
-
-    logging.error(e)
-    return render_template("error.html"), 500
+# @app.errorhandler(Exception)
+# def page_not_found(e):
+#
+#     logging.error(e)
+#     return render_template("error.html"), 500
 
 # 회원가입
 @app.route('/signup', methods=['GET', 'POST'])
@@ -472,9 +472,15 @@ def recommend2():
 @app.route('/backmirror1/<int:pag>',methods=['GET', 'POST'])
 def test1(pag):
     oUser = User.query.filter(User.numVideo>24).order_by(desc(User.numVideo)).offset((pag-1)*20).limit(20)
+
+    if not 'oVideo' in session:
+        session['oVideo'] = recommendation.makeVideoRowData()
+
+    oVideo = session['oVideo']
+
     for each in oUser:
         try:
-            list = recommendation.getSoulmate(recommendation.makeVideoRowData(),each.email,n=5)
+            list = recommendation.getSoulmate(oVideo,each.email,n=5)
             a = json.dumps(list)
             each.prefsVideo = a
             db.session.commit()
@@ -487,10 +493,16 @@ def test1(pag):
 @app.route('/backmirror2/<int:page>',defaults={'page':1})
 @app.route('/backmirror2/<int:page>',methods=['GET', 'POST'])
 def test2(page):
+
     oUser = User.query.filter(User.numActor>24).order_by(desc(User.numActor)).offset((page-1)*20).limit(20)
+
+    if not 'oActor' in session:
+        session['oActor'] = recommendation.makeActorRowData()
+    oActor = session['oActor']
+
     for each in oUser:
         try:
-            list = recommendation.getSoulmate(recommendation.makeActorRowData(),each.email,n=5)
+            list = recommendation.getSoulmate(oActor,each.email,n=5)
             a = json.dumps(list)
             each.prefsActor = a
             db.session.commit()
@@ -503,7 +515,11 @@ def test2(page):
 @app.route('/simvideo/<int:page>',defaults={'page':1})
 @app.route('/simvideo/<int:page>',methods=['GET', 'POST'])
 def simvideos(page):
-    oDict = recommendation.simVideoPrefs()
+
+    if not 'oDict' in session:
+        session['oDict'] = recommendation.simVideoPrefs()
+
+    oDict = session['oDict']
     videos = Video.query.filter(Video.count>4).order_by(desc(Video.count)).offset((page - 1) * 50).limit(50)
     c = 0
     for each in videos:
@@ -536,21 +552,10 @@ def simvideos(page):
 @app.route('/simactor/<int:page>',defaults={'page':1})
 @app.route('/simactor/<int:page>',methods=['GET', 'POST'])
 def simactors(page):
-
-
-    _s = getMicrotime()
+    if not 'oItem' in session:
+        session['oItem'] = recommendation.simVideoPrefs()
     actors = Actor.query.filter(Actor.count>4).order_by(desc(Actor.count)).offset((page - 1) * 30).limit(30)
-    _e = getMicrotime()
-    timeLogger("actors", _s, _e)
-
-
-    if actors:
-        _s = getMicrotime()
-        oItem = recommendation.simActorPrefs()
-        _e = getMicrotime()
-        timeLogger("oItem", _s, _e)
-    else:
-        return 'finish'
+    oItem = session['oItem']
 
     c = 0
     for each in actors:
@@ -586,36 +591,39 @@ def simactors(page):
 
 
 
-
-@app.route('/sex/<int:page>',defaults={'page':1})
-@app.route('/sex/<int:page>',methods=['GET', 'POST'])
-def numActor(page):
-    a = User.query.order_by(desc(User.joinDATE)).offset((page - 1) * 100).limit(100)
-    for each in a:
-        if each.numVideo:
-            pass
-        else:
-            each.numActor = len(each.aRatings())
-            db.session.commit()
-    if page == 310:
-        return 'done'
-    return redirect(url_for("numActor",page=page+1))
-
-@app.route('/bozi/<int:page>',defaults={'page':1})
-@app.route('/bozi/<int:page>',methods=['GET', 'POST'])
-def numVideo(page):
-    # 배우랑 키 가져오기
-    a = User.query.order_by(desc(User.joinDATE)).offset((page - 1) * 100).limit(100)
-    for each in a:
-        if not each.numVideo:
-            each.numVideo = len(each.ratings())
-            db.session.commit()
-        else:
-            pass
-    if page==310:
-        return 'done'
-    return redirect(url_for("numVideo",page=page+1))
+#이제 필요없음
 
 
-
-
+#
+# @app.route('/sex/<int:page>',defaults={'page':1})
+# @app.route('/sex/<int:page>',methods=['GET', 'POST'])
+# def numActor(page):
+#     a = User.query.order_by(desc(User.joinDATE)).offset((page - 1) * 100).limit(100)
+#     for each in a:
+#         if each.numVideo:
+#             pass
+#         else:
+#             each.numActor = len(each.aRatings())
+#             db.session.commit()
+#     if page == 310:
+#         return 'done'
+#     return redirect(url_for("numActor",page=page+1))
+#
+# @app.route('/bozi/<int:page>',defaults={'page':1})
+# @app.route('/bozi/<int:page>',methods=['GET', 'POST'])
+# def numVideo(page):
+#     # 배우랑 키 가져오기
+#     a = User.query.order_by(desc(User.joinDATE)).offset((page - 1) * 100).limit(100)
+#     for each in a:
+#         if not each.numVideo:
+#             each.numVideo = len(each.ratings())
+#             db.session.commit()
+#         else:
+#             pass
+#     if page==310:
+#         return 'done'
+#     return redirect(url_for("numVideo",page=page+1))
+#
+#
+#
+#
