@@ -78,8 +78,11 @@ def actorDetail(name):
 
     if successful:
         oList = json.loads(actorRow.prefs)
-        if len(oList) >1:
-            sList = oList[0:-1]
+        sList = []
+        for each in oList:
+            if each != name:
+                sList.append(each)
+
 
     # _s = getMicrotime()
     # list = actorRow.actorReview_actor.filter_by(userEmail=email).with_entities(ActorReview.id).all()
@@ -210,8 +213,11 @@ def videoDetail(name):
     except:pass
     if successful:
         oList = json.loads(videoRow.prefs)
-        if len(oList)>1:
-            sList = oList[0:-1]
+        sList = []
+        for each in oList:
+            if each != name:
+                sList.append(each)
+
 
     # list = videoRow.videoReview_video.filter_by(userEmail=email).with_entities(VideoReview.id).all()
 

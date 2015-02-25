@@ -183,7 +183,8 @@ def getSoulmate(prefs,person,n=5,similarity=simPearson):
     scores.reverse()
     for each in scores[0:n]:
         outList.append(each[1])
-    #
+
+    outList.append(person)
     # if len(outList) ==0:
     #     outList.append(person)
     return outList

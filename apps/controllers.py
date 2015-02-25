@@ -471,7 +471,7 @@ def recommend2():
 @app.route('/backmirror1/<int:pag>',defaults={'page':1})
 @app.route('/backmirror1/<int:pag>',methods=['GET', 'POST'])
 def test1(pag):
-    oUser = User.query.filter(User.numVideo>24).order_by(desc(User.numVideo)).offset((pag-1)*5).limit(5)
+    oUser = User.query.filter(User.numVideo>24).order_by(desc(User.numVideo)).offset((pag-1)*20).limit(20)
     for each in oUser:
         try:
             list = recommendation.getSoulmate(recommendation.makeVideoRowData(),each.email,n=5)
@@ -486,7 +486,7 @@ def test1(pag):
 @app.route('/backmirror2/<int:page>',defaults={'page':1})
 @app.route('/backmirror2/<int:page>',methods=['GET', 'POST'])
 def test2(page):
-    oUser = User.query.filter(User.numActor>24).order_by(desc(User.numActor)).offset((page-1)*5).limit(5)
+    oUser = User.query.filter(User.numActor>24).order_by(desc(User.numActor)).offset((page-1)*20).limit(20)
     for each in oUser:
         try:
             list = recommendation.getSoulmate(recommendation.makeActorRowData(),each.email,n=5)
@@ -515,6 +515,7 @@ def simvideos(page):
             success = True
         except: logging.error(str(each.name)+"'s error")
         if success:
+            logging.error(str(each.name)+"'s list")
             logging.error(list)
             each.prefs = json.dumps(list)
             db.session.commit()
@@ -533,15 +534,21 @@ def simvideos(page):
 @app.route('/simactor/<int:page>',defaults={'page':1})
 @app.route('/simactor/<int:page>',methods=['GET', 'POST'])
 def simactors(page):
-    _s = getMicrotime()
-    oItem = recommendation.simActorPrefs()
-    _e = getMicrotime()
-    timeLogger("oItem", _s, _e)
+
 
     _s = getMicrotime()
     actors = Actor.query.filter(Actor.count>4).order_by(desc(Actor.count)).offset((page - 1) * 30).limit(30)
     _e = getMicrotime()
     timeLogger("actors", _s, _e)
+
+
+    if actors:
+        _s = getMicrotime()
+        oItem = recommendation.simActorPrefs()
+        _e = getMicrotime()
+        timeLogger("oItem", _s, _e)
+    else:
+        return 'finish'
 
     c = 0
     for each in actors:
@@ -555,6 +562,7 @@ def simactors(page):
             success=True
         except: logging.error(str(each.name)+"'s error")
         if success:
+            logging.error(str(each.name)+"'s list")
             logging.error(list)
             each.prefs = json.dumps(list)
             db.session.commit()
