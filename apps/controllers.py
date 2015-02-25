@@ -478,8 +478,9 @@ def test1(pag):
             a = json.dumps(list)
             each.prefsVideo = a
             db.session.commit()
+            logging.error(str(each.email)+"'s list" + a)
         except:
-            logging.error(each.email)
+            logging.error(str(each.email)+"'s error")
     return 'done'
 
 #배우평가가 유사한 친구들을 추가하는 부분.
@@ -493,8 +494,9 @@ def test2(page):
             a = json.dumps(list)
             each.prefsActor = a
             db.session.commit()
+            logging.error(str(each.email)+"'s list" + a)
         except:
-            logging.error(each.name)
+            logging.error(str(each.email)+"'s error")
     return 'done'
 
 #유사 영상 찾는 함수
