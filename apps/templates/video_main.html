@@ -21,7 +21,6 @@
 {% endblock %}
 {% block content %}
 
-<div class="col-md-1"></div>
 <div class="col-md-10">
 
     <div class="col-md-2 rank_chart">
@@ -176,13 +175,32 @@
             {% endfor %}
         </div>
 
-
-
-
     </div>
 </div>
 
-<div class="col-md-1"></div>
+<div class="col-md-2">
+    <div class="review_chart">
+        <div class="text-center" style="font-size: 16px;">실시간 한줄평</div>
+        <hr style="margin-top: 5px; margin-bottom: 5px; border-color: black"/>
+        <div style="font-size: 13px;">
+            {% for each in review %}
+            <a href="/videoDetail/{{each.videoName}}">
+                <div class="row" style="border-bottom:ridge;">
+                    <div class="col-sm-6 text-center">
+                        <img src="http://storage.googleapis.com/jikbakguri/video/{{each.videoName}}.jpg" class="review_img"/>
+                        <p style="color: #000000">{{each.videoName}}</p>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <p class="review_content">{{each.content}}</p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
 
 

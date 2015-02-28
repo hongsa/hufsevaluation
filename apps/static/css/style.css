@@ -194,3 +194,26 @@ li>a{
     50% 50%
     no-repeat;
 }
+.review_img{
+    width: 5em;
+    height: 5em;
+    background-size: cover;
+    border-radius: 12.5em;
+}
+
+.review_chart{
+    padding-top: 0.7em;
+    border-radius: 10px;
+    background-color: #e1ebec;
+    margin-bottom: 10px;
+    /*font-family: "Nanum Gothic";*/
+    /*font-weight: bold;*/
+    overflow: scroll;
+    height: 40em;
+}
+
+.review_content{
+    color: #000000;
+    padding-top:10px;
+    padding-right:5px;
+}

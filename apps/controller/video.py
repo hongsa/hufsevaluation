@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import redirect, url_for, render_template, flash, session,current_app
-from apps.models import Video,User
+from apps.models import Video,User,VideoReview
 from sqlalchemy import desc
 import math
 from werkzeug.contrib.cache import GAEMemcachedCache
@@ -13,20 +13,22 @@ def video_main():
 
     totalRank = Video.query.order_by(desc(Video.average)).with_entities(Video.name).limit(15)
     content={}
-    content['one'] = Video.query.filter_by(category="1").order_by(desc(Video.average))\
+    content['one'] = Video.query.filter(Video.category=="1",Video.count>10).order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5)
-    content['two'] = Video.query.filter_by(category="2").order_by(desc(Video.average))\
+    content['two'] = Video.query.filter(Video.category=="2",Video.count>10).order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5).limit(5)
-    content['three'] = Video.query.filter_by(category="3").order_by(desc(Video.average))\
+    content['three'] = Video.query.filter(Video.category=="3",Video.count>10).order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5).limit(5)
-    content['four'] = Video.query.filter_by(category="4").order_by(desc(Video.average))\
+    content['four'] = Video.query.filter(Video.category=="4",Video.count>10).order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5).limit(5)
-    content['five'] = Video.query.filter_by(category="5").order_by(desc(Video.average))\
+    content['five'] = Video.query.filter(Video.category=="5",Video.count>10).order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5).limit(5)
-    content['six'] = Video.query.filter_by(category="6").order_by(desc(Video.average))\
+    content['six'] = Video.query.filter(Video.category=="6",Video.count>10).order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5).limit(5)
 
-    return render_template("video_main.html", totalRank=totalRank, content=content)
+    review = VideoReview.query.order_by(desc(VideoReview.id)).limit(40)
+
+    return render_template("video_main.html", totalRank=totalRank, content=content,review=review)
 
 import logging
 def video_category(name, page):

@@ -4,7 +4,7 @@ import math
 from flask import redirect, url_for, render_template,flash, session, current_app
 from sqlalchemy import desc
 
-from apps.models import Actor,User
+from apps.models import Actor,User,ActorReview
 # from werkzeug.contrib.cache import GAEMemcachedCache
 import logging
 
@@ -17,16 +17,20 @@ def actor_main():
     totalRank = Actor.query.order_by(desc(Actor.average)).with_entities(Actor.name).limit(15)
 
     content = {}
-    content['one'] = Actor.query.filter_by(category="1").order_by(desc(Actor.average))\
+    content['one'] = Actor.query.filter(Actor.category=="1",Actor.count>10).order_by(desc(Actor.average))\
         .with_entities(Actor.name,Actor.average).limit(5)
-    content['two'] = Actor.query.filter_by(category="2").order_by(desc(Actor.average))\
+    content['two'] = Actor.query.filter(Actor.category=="2",Actor.count>10).order_by(desc(Actor.average))\
         .with_entities(Actor.name,Actor.average).limit(5)
-    content['three'] = Actor.query.filter_by(category="3").order_by(desc(Actor.average))\
+    content['three'] = Actor.query.filter(Actor.category=="3",Actor.count>10).order_by(desc(Actor.average))\
         .with_entities(Actor.name,Actor.average).limit(5)
-    content['four'] = Actor.query.filter_by(category="4").order_by(desc(Actor.average))\
+    content['four'] = Actor.query.filter(Actor.category=="4",Actor.count>10).order_by(desc(Actor.average))\
         .with_entities(Actor.name,Actor.average).limit(5)
 
-    return render_template("actor_main.html", totalRank=totalRank, content=content)
+    review = ActorReview.query.order_by(desc(ActorReview.id)).limit(40)
+
+
+
+    return render_template("actor_main.html", totalRank=totalRank, content=content,review=review)
 
 
 
