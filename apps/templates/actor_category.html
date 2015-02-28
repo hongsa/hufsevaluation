@@ -53,9 +53,28 @@
 
     <div class="col-md-10">
         <div class="text-center">
-
             <span class="category_name">{{category}}</span>
+            <div class="text-right">
+                <ul class="pagination" style="margin: 0px;">
+                    <li class="active">
+                        <a href="/a_category/{{name}}/{{page}}"><span class="standard" >평점순</span></a>
+                    </li>
+                    <li>
+                        <a href="/a_category2/{{name}}/{{page}}"><span class="standard">조회순</span></a>
+                    </li>
+
+                </ul>
+            </div>
         </div>
+            <!--<div class="text-right">-->
+            <!--<span class="badge">-->
+            <!--<a href="/a_category/{{name}}/{{page}}"><span class="standard" >평점순</span></a>-->
+            <!--</span>-->
+            <!--<span class="badge">-->
+            <!--<a href="/a_category2/{{name}}/{{page}}"><span class="standard">조회순</span></a>-->
+            <!--</span>-->
+            <!--</div>-->
+
 
 
         <div class="row">
@@ -84,12 +103,12 @@
 
                         <a href="../../actorDetail/{{each.name}}"><span class="all_name">{{each.name}}</span></a>
                         <!--<button type="button" class="a_bookmark btn btn-success btn-xs">-->
-                            <!--<span class="a_bookmark glyphicon glyphicon-bookmark"></span>-->
+                        <!--<span class="a_bookmark glyphicon glyphicon-bookmark"></span>-->
                         <!--</button>-->
                         <img class="a_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
                              onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
                              onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
-                                style="margin-bottom: 0.4em"/>
+                             style="margin-bottom: 0.4em"/>
                     </div>
 
 

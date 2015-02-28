@@ -116,7 +116,7 @@ def actorDetail(name):
     elif actorRow.category=='2':
         category='품에 쏘오오옥'
     elif actorRow.category =='3':
-        category='걸그룹 미당'
+        category='걸그룹 키당'
     else:
         category='힐 신지 말아조'
 

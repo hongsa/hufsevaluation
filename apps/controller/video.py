@@ -11,7 +11,7 @@ def video_main():
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-    totalRank = Video.query.order_by(desc(Video.average)).with_entities(Video.name).limit(15)
+    totalRank = Video.query.filter(Video.count>10).order_by(desc(Video.average)).with_entities(Video.name).limit(15)
     content={}
     content['one'] = Video.query.filter(Video.category=="1",Video.count>10).order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5)
@@ -88,6 +88,66 @@ def video_category(name, page):
 
     return render_template("video_category.html", videoCategory=videoCategory, category=category,
                            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name)
+
+
+def video_category2(name, page):
+    # 로그인 안한 상태로 오면 index로 빠꾸
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+
+    video = Video.query.filter_by(category=name)
+    videoCategory = video.order_by(desc(Video.count)).offset(
+        (page - 1) * 12).with_entities(Video.name,Video.average,Video.count).limit(12)
+    total = video.count()
+
+    calclulate = float(float(total) / 12)
+    total_page = math.ceil(calclulate)
+
+    if name=='1':
+        category="러브 액츄얼리"
+    elif name=='2':
+        category="금기된 사랑"
+    elif name=='3':
+        category="코스튬"
+    elif name=='4':
+        category="협동조합"
+    elif name=='5':
+        category="이게 말이 돼?"
+    else:
+        category ="나 등 밀어줘"
+
+
+    email = session['session_user_email']
+    user = User.query.get(email)
+    rating = user.ratingVideo_user
+
+    list = []
+    for v in videoCategory:
+        list.append(v.name)
+
+    ratingList=[]
+    for r in rating:
+        if r.videoName in list:
+            ratingList.append(dict(name = r.videoName, rating=r.rating))
+
+
+    a = float(math.ceil(float(page)/10))
+    if a ==1:
+        down=1
+    else:
+        down = int((a-1) * 10)
+
+    if total_page > a*10:
+        total_page = a * 10
+        up = int(total_page+1)
+
+    else:
+        up = int(total_page)
+
+    return render_template("video_category2.html", videoCategory=videoCategory, category=category,
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name)
+
 
 
 # def show1(key):

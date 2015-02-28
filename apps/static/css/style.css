@@ -217,3 +217,8 @@ li>a{
     padding-top:10px;
     padding-right:5px;
 }
+.standard{
+    color: #000000;
+    font-size: 12px;
+    font-family: 'Nanum Gothic';
+}

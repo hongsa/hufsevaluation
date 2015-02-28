@@ -81,6 +81,12 @@ def show2(key):
 @app.route('/a_category/<path:name>/<int:page>', methods=['GET', 'POST'])
 def actor_category(name, page):
     return actor.actor_category(name,page)
+
+@app.route('/a_category2/<path:name>', defaults={'page': 1})
+@app.route('/a_category2/<path:name>/<int:page>', methods=['GET', 'POST'])
+def actor_category2(name, page):
+    return actor.actor_category2(name,page)
+
 #배우 평가(actorController) 끝
 
 
@@ -100,6 +106,11 @@ def show1(key):
 @app.route('/v_category/<path:name>/<int:page>', methods=['GET', 'POST'])
 def video_category(name, page):
     return video.video_category(name,page)
+
+@app.route('/v_category2/<path:name>', defaults={'page': 1})
+@app.route('/v_category2/<path:name>/<int:page>', methods=['GET', 'POST'])
+def video_category2(name, page):
+    return video.video_category2(name,page)
 #영상 평가(videoController) 끝
 
 

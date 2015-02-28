@@ -14,81 +14,79 @@
     }
 
 </style>
+
 {% endblock css %}
 {% block js %}
-<script type="text/javascript" src="{{url_for('static', filename='js/video_star.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/video_bookmark.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/actor_star.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/actor_bookmark.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
-
+<script type="text/javascript">
+    //  $(document).ready(function () {
+    //     $('.a_bookmark').hover(function () {
+    //         $(this).addClass('btn-hoverClass');
+    //     }, function () {
+    //         $(this).removeClass('btn-hoverClass');
+    //     });
+    // });
+</script>
 {% endblock %}
-
 
 {% block content %}
 <div class="col-md-1"></div>
 <div class="col-md-10">
 
     <div class="col-md-2 category_chart">
-        <div class="text-center" style="color: #ffffff; font-size: 20px;">영상 분류</div>
+        <div class="text-center" style="color: #ffffff; font-size: 20px;">배우 분류</div>
         <hr style="margin-top: 10px; margin-bottom: 10px;"/>
         <ul class="text-center">
-
             <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/1">러브 액츄얼리
-                </a></li>
+                <a href="/a_category/1">진짜 작은애당</a></li>
             <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/2">금기된 사랑
-                </a></li>
+                <a href="/a_category/2">품에 쏘오오옥</a></li>
             <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/3">코스튬
-                </a></li>
+                <a href="/a_category/3">걸그룹 키당</a></li>
             <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/4">협동조합
-                </a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/5">이게 말이 돼?
-                </a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/6">나 등 밀어줘
-                </a></li>
+                <a href="/a_category/4">힐 신지 말아조</a></li>
         </ul>
     </div>
+
 
     <div class="col-md-10">
         <div class="text-center">
             <span class="category_name">{{category}}</span>
             <div class="text-right">
                 <ul class="pagination" style="margin: 0px;">
-                    <li class="active">
-                        <a href="/v_category/{{name}}/{{page}}"><span class="standard" >평점순</span></a>
-                    </li>
                     <li>
-                        <a href="/v_category2/{{name}}/{{page}}"><span class="standard">조회순</span></a>
+                        <a href="/a_category/{{name}}/{{page}}"><span class="standard" >평점순</span></a>
+                    </li>
+                    <li class="active">
+                        <a href="/a_category2/{{name}}/{{page}}"><span class="standard">조회순</span></a>
                     </li>
 
                 </ul>
             </div>
         </div>
-            <!--<div class="text-right">-->
-                <!--<span class="badge">-->
-            <!--<a href="/v_category/{{name}}/{{page}}"><span class="standard" >평점순</span></a>-->
-                <!--</span>-->
-                <!--<span class="badge">-->
-            <!--<a href="/v_category2/{{name}}/{{page}}"><span class="standard">조회순</span></a>-->
-                <!--</span>-->
-            <!--</div>-->
+        <!--<div class="text-right">-->
+        <!--<span class="badge">-->
+        <!--<a href="/a_category/{{name}}/{{page}}"><span class="standard" >평점순</span></a>-->
+        <!--</span>-->
+        <!--<span class="badge">-->
+        <!--<a href="/a_category2/{{name}}/{{page}}"><span class="standard">조회순</span></a>-->
+        <!--</span>-->
+        <!--</div>-->
+
 
         <div class="row">
-            {% for each in videoCategory %}
+            {% for each in actorCategory %}
             <div class="col-sm-6 col-md-3">
                 <div class="thumbnail text-center" id="{{each.name}}">
-                    <a href="../../videoDetail/{{each.name}}">
+                    <a href="../../actorDetail/{{each.name}}">
                         <div>
-                            <span>{{each.average}} 점</span>&nbsp;<span>({{each.count}} 명)</span>
+                            <span>{{each.average}} 점</span> <span>({{each.count}} 명)</span>
                         </div>
-                        <img src="http://storage.googleapis.com/jikbakguri/video/{{each.name}}.jpg" alt="" class="category_img"/>
+                        <img src='http://storage.googleapis.com/jikbakguri/actor2/{{each.name}}.jpg'  class="category_img" alt=""/>
                     </a>
-
-                    <div class="v_star_area">
+                    <div class="a_star_area">
 
                         {% set counter = [] %}
                         {% for r in ratingList %}
@@ -102,16 +100,17 @@
                         <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
                         {% endif %}
 
-
-                        <a href="../../videoDetail/{{each.name}}"><span class="all_name">{{each.name}}</span></a>
-                        <img class="v_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
+                        <a href="../../actorDetail/{{each.name}}"><span class="all_name">{{each.name}}</span></a>
+                        <!--<button type="button" class="a_bookmark btn btn-success btn-xs">-->
+                        <!--<span class="a_bookmark glyphicon glyphicon-bookmark"></span>-->
+                        <!--</button>-->
+                        <img class="a_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
                              onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
                              onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
                              style="margin-bottom: 0.4em"/>
-                        <!--<button type="button" class="v_bookmark btn btn-success btn-xs">-->
-                        <!--<span class="v_bookmark glyphicon glyphicon-bookmark"></span>-->
-                        <!--</button>-->
                     </div>
+
+
                 </div>
             </div>
             {% endfor %}
@@ -120,20 +119,21 @@
         <div class="row text-center">
             <ul class="pagination">
                 <li>
-                    <a href="/v_category/{{name}}/{{down}}">&laquo;</a>
-                    {% for each in total_page %}
-                    {% if each == page %}
+                    <a href="/a_category2/{{name}}/{{down}}">&laquo;</a>
+                </li>
+                {% for each in total_page %}
+                {% if each == page %}
                 <li class="active">
-                    <a href="/v_category/{{name}}/{{page}}">{{page}}</a>
+                    <a href="/a_category2/{{name}}/{{page}}">{{page}}</a>
                 </li>
                 {% else %}
                 <li>
-                    <a href="/v_category/{{name}}/{{each}}">{{each}}</a>
+                    <a href="/a_category2/{{name}}/{{each}}">{{each}}</a>
                 </li>
                 {% endif %}
                 {% endfor %}
                 <li>
-                    <a href="/v_category/{{name}}/{{up}}">&raquo;</a>
+                    <a href="/a_category2/{{name}}/{{up}}">&raquo;</a>
                 </li>
             </ul>
         </div>

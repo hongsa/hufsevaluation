@@ -14,7 +14,7 @@ def actor_main():
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-    totalRank = Actor.query.order_by(desc(Actor.average)).with_entities(Actor.name).limit(15)
+    totalRank = Actor.query.filter(Actor.count>10).order_by(desc(Actor.average)).with_entities(Actor.name).limit(15)
 
     content = {}
     content['one'] = Actor.query.filter(Actor.category=="1",Actor.count>10).order_by(desc(Actor.average))\
@@ -105,3 +105,62 @@ def actor_category(name, page):
 
     return render_template("actor_category.html", actorCategory=actorCategory, category=category,
                            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name)
+
+def actor_category2(name, page):
+    # 로그인 안한 상태로 오면 index로 빠꾸
+    if not 'session_user_email' in session:
+        flash(u"로그인 되어있지 않습니다.", "error")
+        return redirect(url_for('index'))
+
+    actor = Actor.query.filter_by(category=name)
+    actorCategory = actor.order_by(desc(Actor.count)).offset(
+        (page - 1) * 12).with_entities(Actor.name,Actor.average,Actor.count).limit(12)
+    # category = actor.first().category
+
+    if name=='1':
+        category="진짜 작은애당"
+    elif name=='2':
+        category="품에 쏘오오옥"
+    elif name=='3':
+        category="걸그룹 키당"
+    else:
+        category="힐 신지 말아조"
+
+
+    total = actor.count()
+    calclulate = float(float(total) / 12)
+    total_page = math.ceil(calclulate)
+
+    email = session['session_user_email']
+    user = User.query.get(email)
+    rating = user.ratingActor_user
+    # logging.error(rating)
+
+
+    list = []
+    for i in actorCategory:
+        list.append(i.name)
+
+    ratingList=[]
+    for r in rating:
+        if r.actorName in list:
+            ratingList.append(dict(name = r.actorName, rating=r.rating))
+
+
+    a = float(math.ceil(float(page)/10))
+    if a ==1:
+        down=1
+    else:
+        down = int((a-1) * 10)
+
+    if total_page > a*10:
+        total_page = a * 10
+        up = int(total_page+1)
+
+    else:
+        up = int(total_page)
+
+    return render_template("actor_category2.html", actorCategory=actorCategory, category=category,
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name)
+
+
