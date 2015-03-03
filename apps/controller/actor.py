@@ -3,8 +3,8 @@ import math
 
 from flask import redirect, url_for, render_template,flash, session, current_app
 from sqlalchemy import desc
-
 from apps.models import Actor,User,ActorReview
+from  sqlalchemy.sql.expression import func
 # from werkzeug.contrib.cache import GAEMemcachedCache
 import logging
 
@@ -14,8 +14,8 @@ def actor_main():
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-
     totalRank = Actor.query.filter(Actor.count>10).order_by(desc(Actor.average)).with_entities(Actor.name).limit(15)
+    # random = Actor.query.order_by(func.rand()).with_entities(Actor.name).limit(15)
 
     content = {}
     content['one'] = Actor.query.filter(Actor.category=="1",Actor.count>10).order_by(desc(Actor.average))\

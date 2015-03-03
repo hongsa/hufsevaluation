@@ -31,6 +31,8 @@
 {% endblock css %}
 
 {% block js %}
+<script type="text/javascript" src="{{url_for('static', filename='js/actor_star.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
 {% endblock %}
 
 
@@ -47,6 +49,24 @@
             {% endfor %}
         </ol>
     </div>
+
+    <!--<div class="col-md-2 rank_chart">-->
+    <!--{% for each in random %}-->
+    <!--<div class="row" style="border-bottom:ridge;">-->
+    <!--<div class="col-sm-6 text-center">-->
+    <!--<img src="http://storage.googleapis.com/jikbakguri/actor2/{{each.name}}.jpg" class="review_img"/>-->
+    <!--<p style="color: #000000">{{each.name}}</p>-->
+    <!--</div>-->
+    <!--<div class="col-sm-6 text-center a_star_area">-->
+    <!--<div class="a_star_area">-->
+    <!--<input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--{% endfor %}-->
+
+    <!--</div>-->
+
 
     <div class="col-md-10">
         <!--<div class="row">-->
@@ -159,9 +179,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <div class="col-md-2">
     <div class="review_chart">

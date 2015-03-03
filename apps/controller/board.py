@@ -200,25 +200,25 @@ def boardHate():
 
 
 
-# def noticeList(page):
+def noticeList(page):
 
-    # board = Board.query.filter_by(category=1).order_by(desc(Board.created)).offset((page - 1) * 15).limit(15)
-    #
-    # total = Board.query.filter_by(category=1).count()
-    # calclulate = float(float(total) / 15)
-    # total_page = math.ceil(calclulate)
-    # a = float(math.ceil(float(page)/10))
-    # if a ==1:
-    #     down=1
-    # else:
-    #     down = int((a-1) * 10)
-    #
-    # if total_page > a*10:
-    #     total_page = a * 10
-    #     up = int(total_page+1)
-    #
-    # else:
-    #     up = int(total_page)
-    #
-    #
-    # return render_template("notice.html", board=board,total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,page=page)
+    board = Board.query.filter_by(category=1).order_by(desc(Board.created)).offset((page - 1) * 15).limit(15)
+
+    total = Board.query.filter_by(category=1).count()
+    calclulate = float(float(total) / 15)
+    total_page = math.ceil(calclulate)
+    a = float(math.ceil(float(page)/10))
+    if a ==1:
+        down=1
+    else:
+        down = int((a-1) * 10)
+
+    if total_page > a*10:
+        total_page = a * 10
+        up = int(total_page+1)
+
+    else:
+        up = int(total_page)
+
+
+    return render_template("notice.html", board=board,total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,page=page)
