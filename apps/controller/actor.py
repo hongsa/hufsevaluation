@@ -14,6 +14,7 @@ def actor_main():
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
+
     totalRank = Actor.query.filter(Actor.count>10).order_by(desc(Actor.average)).with_entities(Actor.name).limit(15)
 
     content = {}
