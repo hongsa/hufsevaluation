@@ -17,6 +17,7 @@ def actor_main():
     totalRank = Actor.query.filter(Actor.count>10).order_by(desc(Actor.average)).with_entities(Actor.name).limit(15)
     # random = Actor.query.order_by(func.rand()).with_entities(Actor.name).limit(15)
 
+
     content = {}
     content['one'] = Actor.query.filter(Actor.category=="1",Actor.count>10).order_by(desc(Actor.average))\
         .with_entities(Actor.name,Actor.average).limit(5)
