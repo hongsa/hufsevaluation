@@ -93,7 +93,8 @@
                 {% for each in oFilmo %}
                 <div>
                 <a href="../videoDetail/{{each.videoName}}">
-                    <img src="http://storage.googleapis.com/jikbakguri/video/{{each.videoName}}.jpg" class="small_img"/>
+                    <img src="http://storage.googleapis.com/jikbakguri/video/{{each.videoName}}.jpg"
+                         style="width: 3.5em;height: 3.5em;background-size: cover;border-radius: 12.5em;"class="small_img"/>
                     &nbsp;&nbsp;
                     <span>{{each.videoName}}&nbsp;({{each.video.average}} 점)</span>
                 </a>
@@ -109,7 +110,8 @@
                 {% for each in sList %}
                 <div>
                     <a href="../actorDetail/{{each}}">
-                        <img src="http://storage.googleapis.com/jikbakguri/actor2/{{each}}.jpg" class="small_img"/>
+                        <img src="http://storage.googleapis.com/jikbakguri/actor2/{{each}}.jpg"
+                             style="width: 3.5em;height: 3.5em;background-size: cover;border-radius: 12.5em;"class="small_img"/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <span>{{each}}</span>
                     </a>
