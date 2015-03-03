@@ -91,8 +91,13 @@
             <div class="detail_box2 text-center">
                 <p style="font-size: 25px;">출연 작품</p>
                 {% for each in oFilmo %}
-                <img src="http://storage.googleapis.com/jikbakguri/video/{{each.videoName}}.jpg" class="review_img"/>
-                <p><a href="../videoDetail/{{each.videoName}}"><span>{{each.videoName}}&nbsp;({{each.video.average}} 점)</span></a></p>
+                <div>
+                <a href="../videoDetail/{{each.videoName}}">
+                    <img src="http://storage.googleapis.com/jikbakguri/video/{{each.videoName}}.jpg" class="small_img"/>
+                    &nbsp;&nbsp;
+                    <span>{{each.videoName}}&nbsp;({{each.video.average}} 점)</span>
+                </a>
+                </div>
                 {% endfor %}
             </div>
         </div>
@@ -102,8 +107,13 @@
                 <p style="font-size: 25px;">유사한 배우</p>
                 {% if not sList == False %}
                 {% for each in sList %}
-                <img src="http://storage.googleapis.com/jikbakguri/actor2/{{each}}.jpg" class="review_img"/>
-                <p><a href="../actorDetail/{{each}}"><span>{{each}}</span></a></p>
+                <div>
+                    <a href="../actorDetail/{{each}}">
+                        <img src="http://storage.googleapis.com/jikbakguri/actor2/{{each}}.jpg" class="small_img"/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>{{each}}</span>
+                    </a>
+                </div>
                 {% endfor %}
                 {% else %}
                 <p></p>
@@ -113,8 +123,8 @@
         </div>
     </div>
     <!--<div class="row text-center">-->
-        <!--<button style="width: 57.143em; height: 2.857em; margin-bottom: 1em;">광고자리</button>-->
-<!---->
+    <!--<button style="width: 57.143em; height: 2.857em; margin-bottom: 1em;">광고자리</button>-->
+    <!---->
     <!--</div>-->
     <!--댓글 입력부분 시작-->
     <div class="row">
