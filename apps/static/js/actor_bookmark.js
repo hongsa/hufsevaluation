@@ -14,7 +14,25 @@ $(document).ready(function(){
             success: function(data) {
                 if(data.success){
 
-                    alert('배우 컬렉션에 찜꽁!!');
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "1500",
+                        "extendedTimeOut": "1500",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    Command: toastr["success"]("배우컬렉션에 저장되었습니다!");
                 }
                 else{
                     alert("error");

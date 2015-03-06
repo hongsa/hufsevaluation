@@ -1,6 +1,8 @@
 /**
  * Created by hongsa on 2014-12-20.
  */
+
+
 $(document).ready(function(){
 
     $('.a_star_area').find('input').rating({
@@ -30,7 +32,28 @@ $(document).ready(function(){
             success: function(data) {
                 if(data.success){
 
-                    alert('소신있는 나의 평가완료!!');
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "1500",
+                        "extendedTimeOut": "1500",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    Command: toastr["success"]("평가완료되었습니다!");
+
+
+                    //alert('소신있는 나의 평가완료!!');
                 }
                 else{
                     alert("error");

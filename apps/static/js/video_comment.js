@@ -66,7 +66,25 @@ var receiverHandler = function(result, textStatus, xhr) {
         //뷰에 뿌리자.
     $('#current').before('<div class="panel panel-default">'+'<div class="row">'+'<div class="col-sm-2 text-left">'+'<p class="comment_author">'+'<img src="/static/img/'+result['level']+'.png"/>'+'&nbsp;&nbsp;'+result['user']+'</p>'+'</div>'+'<div class="col-sm-9">'+'<p class="text-center commentBox">' +result['comments']+'</p>'+'</div>'+'</div>'+'</div>');
     //actorName을 뿌릴 땐 (myData.actorName) 이용
-    alert('한줄평 쓰기 완료!');
+        toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "1500",
+        "extendedTimeOut": "1500",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
+    Command: toastr["success"]("소중한 한줄평 저장완료되었습니다!");
 }
 
 var errorHandler = function(){

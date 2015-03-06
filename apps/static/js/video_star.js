@@ -29,7 +29,25 @@ $(document).ready(function(){
             success: function(data) {
                 if(data.success){
 
-                    alert('현명한 나의 평가완료!!');
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "1500",
+                        "extendedTimeOut": "1500",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    Command: toastr["success"]("평가완료되었습니다!");
                 }
                 else{
                     alert("error");

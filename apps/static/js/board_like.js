@@ -17,7 +17,25 @@ $(document).ready(function(){
                     $('#b_like').html('<span class="glyphicon glyphicon-thumbs-up"></span>'+data.like);
                     $('#b_hate').html('<span class="glyphicon glyphicon-thumbs-down"></span>'+data.hate);
 
-                    alert('좋습니다!!');
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "1500",
+                        "extendedTimeOut": "1500",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    Command: toastr["success"]("좋아요~~~!");
                 }
                 else{
                     alert("error");
