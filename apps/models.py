@@ -66,6 +66,13 @@ class Actor(db.Model):
         # a = urllib.quote(url.encode('utf8'), '/:')
         # return a
         return 'http://storage.googleapis.com/jikbakguri/actor2/'+self.name+'.jpg'
+
+    def yesfile(self):
+        a = urllib.quote(str(self.name).encode('euc-kr'))
+        url = u'http://www.yesfile.com/partner/link.php?pid=jikbakguri&div=AD&ss=all&sc='+a
+
+        return url
+
     def reviews(self):
         list = [] # return할 list
         for review in self.actorReview_actor:

@@ -66,6 +66,12 @@
                          onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
                          style="margin-bottom: 0.4em"/>
                 </div>
+                <!--<a href="{{actorRow.yesfile()}}" target="_blank">-->
+                <!--<button  class="btn btn-primary">-->
+                <!--<span class="glyphicon glyphicon-download"></span>&nbsp;&nbsp;영상 보러가기-->
+                <!--</button>-->
+                <!--</a>-->
+
             </div>
         </div>
 
@@ -92,12 +98,12 @@
                 <p style="font-size: 25px;">출연 작품</p>
                 {% for each in oFilmo %}
                 <div>
-                <a href="../videoDetail/{{each.videoName}}">
-                    <img src="http://storage.googleapis.com/jikbakguri/video/{{each.videoName}}.jpg"
-                         style="width: 3.5em;height: 3.5em;background-size: cover;border-radius: 12.5em;"class="small_img"/>
-                    &nbsp;&nbsp;
-                    <span>{{each.videoName}}&nbsp;({{each.video.average}} 점)</span>
-                </a>
+                    <a href="../videoDetail/{{each.videoName}}">
+                        <img src="http://storage.googleapis.com/jikbakguri/video/{{each.videoName}}.jpg"
+                             style="width: 3.5em;height: 3.5em;background-size: cover;border-radius: 12.5em;"class="small_img"/>
+                        &nbsp;&nbsp;
+                        <span>{{each.videoName}}&nbsp;({{each.video.average}} 점)</span>
+                    </a>
                 </div>
                 {% endfor %}
             </div>
