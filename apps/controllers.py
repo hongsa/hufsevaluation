@@ -322,10 +322,11 @@ def recommend():
         return redirect(url_for('index'))
     email = session['session_user_email']
     cUser = User.query.get(email)
-    count = len(cUser.ratings())
+    # count = len(cUser.ratings())
+    count = cUser.numVideo
     rList = False
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
-    if count <25:
+    if count <24:
         return render_template("recommendation.html",count=count, rList=rList)
     else:
         if not cUser.prefsVideo:
@@ -359,10 +360,11 @@ def recommend2():
         return redirect(url_for('index'))
     email = session['session_user_email']
     cUser = User.query.get(email)
-    count = len(cUser.aRatings())
+    # count = len(cUser.aRatings())
+    count = cUser.numActor
     rList = False
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
-    if count<25:
+    if count<24:
         return render_template("recomm.html",count=count,rList=rList)
     else:
         if not cUser.prefsActor:
