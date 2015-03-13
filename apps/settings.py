@@ -15,4 +15,4 @@ class Production(Config):
     SQLALCHEMY_DATABASE_URI = 'mysql+gaerdbms:///jikbakguri?instance=yd-project777:group-project'
     # SQLALCHEMY_ECHO = True
     migration_directory = 'migrations'
-    PERMANENT_SESSION_LIFETIME = timedelta(days=3)
+    PERMANENT_SESSION_LIFETIME = timedelta(days=1)
