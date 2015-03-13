@@ -6,7 +6,7 @@ from apps import recommendation
 import json
 import time
 import logging
-from sqlalchemy import desc
+from sqlalchemy import desc,asc
 import math
 import pytz
 import datetime
@@ -151,12 +151,12 @@ def actor_comment():
             sName = request.form['actorName']
             thisComment={}
             thisComment=ActorReview(
-            actorName=sName,
-            userEmail=session['session_user_email'],
-            content=sComment,
-            created = get_current_time()
+                actorName=sName,
+                userEmail=session['session_user_email'],
+                content=sComment,
+                created = get_current_time()
             )
-        #댓글 DB에 저장
+            #댓글 DB에 저장
             jsonDict = {}
             jsonDict['user']=sUser
             jsonDict['level']=sLevel
@@ -273,12 +273,12 @@ def video_comment():
             sName = request.form['videoName']
             thisComment={}
             thisComment=VideoReview(
-            videoName=sName,
-            userEmail=session['session_user_email'],
-            content=sComment,
-            created = get_current_time()
+                videoName=sName,
+                userEmail=session['session_user_email'],
+                content=sComment,
+                created = get_current_time()
             )
-        #댓글 DB에 저장
+            #댓글 DB에 저장
             jsonDict = {}
             jsonDict['user'] = sUser
             jsonDict['level'] = sLevel
@@ -309,16 +309,17 @@ def a_comment_rows():
 
     if request.method == 'POST':
         name = request.form.get('name')
-        # num = int(request.form.get('num'))
+        num = int(request.form.get('num'))
         actorRow = Actor.query.get(name)
-        comments = actorRow.actorReview_actor
-        # comments = actorRow.actorReview_actor.order_by(desc(ActorReview.id)).\
-        #     offset((num-1)*20).limit(20)
+        # comments = actorRow.actorReview_actor
+        comments = actorRow.actorReview_actor.order_by(asc(ActorReview.created)). \
+            offset((num-1)*30).limit(30)
 
-        # total = int(math.ceil(float(actorRow.actorReview_actor.count())/20))
+        total = int(math.ceil(float(actorRow.actorReview_actor.count())/30))
+
 
         rows=[]
-        # rows.append(total)
+        rows.append(total)
         for each in comments:
             if each.user.numVideo<50:
                 level= 0
@@ -333,18 +334,23 @@ def a_comment_rows():
 
             rows.append(dict(level=level,user=each.user.nickname,comments=each.content))
 
-        # logging.error(rows)
         return json.dumps(rows)
 
 def v_comment_rows():
 
     if request.method == 'POST':
         name = request.form.get('name')
+        num = int(request.form.get('num'))
         videoRow = Video.query.get(name)
-        comments = videoRow.videoReview_video
+        # comments = actorRow.actorReview_actor
+        comments = videoRow.videoReview_video.order_by(asc(VideoReview.created)).\
+            offset((num-1)*30).limit(30)
+
+        total = int(math.ceil(float(videoRow.videoReview_video.count())/30))
 
 
         rows=[]
+        rows.append(total)
         for each in comments:
             if each.user.numVideo<50:
                 level= 0
@@ -359,5 +365,4 @@ def v_comment_rows():
 
             rows.append(dict(level=level,user=each.user.nickname,comments=each.content))
 
-        # logging.error(rows)
         return json.dumps(rows)

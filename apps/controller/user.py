@@ -17,8 +17,8 @@ def index():
     number = random.randint(1,5)
     if not 'session_user_email' in session:
         form=forms.LoginForm()
-        count = int(RatingActor.query.count()) + int(RatingVideo.query.count())
-        return render_template("mainPageNew.html", form=form, number=number,count=count)
+        # count = int(RatingActor.query.count()) + int(RatingVideo.query.count())
+        return render_template("mainPageNew.html", form=form, number=number)
     return redirect(url_for('video_main'))
 
 

@@ -15,7 +15,7 @@ def actor_main():
         return redirect(url_for('index'))
 
     totalRank = Actor.query.filter(Actor.count>10).order_by(desc(Actor.average)).with_entities(Actor.name).limit(15)
-    random = Actor.query.order_by(func.rand()).with_entities(Actor.name).limit(15)
+    # random = Actor.query.order_by(func.rand()).with_entities(Actor.name).limit(15)
 
 
     content = {}

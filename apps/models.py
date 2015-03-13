@@ -12,14 +12,14 @@ def get_current_time():
 class User(db.Model):
     email = db.Column(db.String(255),primary_key=True)
     password = db.Column(db.String(255))
-    nickname = db.Column(db.String(255))
+    nickname = db.Column(db.String(255),index=True)
     #0은 남자 1은 여자
     sex = db.Column(db.Integer, default = 0)
     joinDATE = db.Column(db.DateTime(),default = db.func.now())
     prefsVideo = db.Column(db.Text(length=None, collation=None, convert_unicode=False, unicode_error=None, _warn_on_bytestring=False))
     prefsActor = db.Column(db.Text(length=None, collation=None, convert_unicode=False, unicode_error=None, _warn_on_bytestring=False))
-    numVideo = db.Column(db.Integer, default=0)
-    numActor = db.Column(db.Integer, default=0)
+    numVideo = db.Column(db.Integer, default=0, index=True)
+    numActor = db.Column(db.Integer, default=0, index=True)
     # 각 유저마다 {'영상':평점 ... } 형태로 dict 리턴
     def ratings(self):
         dict = {}
@@ -46,11 +46,11 @@ class Actor(db.Model):
     name = db.Column(db.String(255),primary_key=True)
     height =db.Column(db.Integer, default=0)
     score = db.Column(db.Float, default =0)
-    count = db.Column(db.Integer, default = 0)
+    count = db.Column(db.Integer, default = 0 ,index=True)
     average = db.Column(db.Float, default=0)
     age = db.Column(db.Integer, default = 0)
-    release = db.Column(db.Float, default=0)
-    category = db.Column(db.String(255))
+    release = db.Column(db.Float, default=0, index=True)
+    category = db.Column(db.String(255),index=True)
     prefs = db.Column(db.Text(length=None, collation=None, convert_unicode=False, unicode_error=None, _warn_on_bytestring=False))
     # 모델 차원에서 리스트를 생성하는 함수를 생성
     # each.reviews() 실행하면 댓글 각 한 줄을 dict로 갖는 리스트를 리턴함
@@ -100,14 +100,14 @@ class Actor(db.Model):
 
 class Video(db.Model):
     name = db.Column(db.String(255),primary_key=True)
-    category = db.Column(db.String(255))
+    category = db.Column(db.String(255),index=True)
     #노모가 0, 유모가 1
     exposure = db.Column(db.Integer, default=1)
-    release = db.Column(db.Float, default=0)
+    release = db.Column(db.Float, default=0, index=True)
     score = db.Column(db.Float, default =0)
-    count = db.Column(db.Integer, default = 0)
+    count = db.Column(db.Integer, default = 0, index=True)
     average = db.Column(db.Float, default=0)
-    company =db.Column(db.String(255))
+    company =db.Column(db.String(255), index=True)
     prefs = db.Column(db.Text(length=None, collation=None, convert_unicode=False, unicode_error=None, _warn_on_bytestring=False))
     def ratedPerson(self):
         dict = {}

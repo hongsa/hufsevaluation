@@ -9,34 +9,85 @@
 <script>
     $(document).ready(function() {
         var name = '{{videoRow.name}}';
+        var total;
+        var i=2;
 
         $.ajax({
             url:'../v_comment_rows',
             dataType:'JSON',
             method: 'POST',
             data:{
-                name:name
+                name:name,
+                num:1
             },
             success:function(data){
 
                 if( typeof data !== 'object') return;
-                for (var i=0;i<data.length;i++){
+                for (var i=1;i<data.length;i++){
                     var string = '<div class="panel panel-default">'+'<div class="row">'+
                             '<div class="col-sm-2 text-left">'+'<p class="comment_author">'+
                             '<img src="/static/img/'+data[i].level+'.png"/>'+'&nbsp;&nbsp;'+
                             data[i].user+'</p>'+'</div>'+'<div class="col-sm-9">'+'<p class="text-center commentBox">'
                             +data[i].comments+'</p>'+'</div>'+'</div>'+'</div>';
-                    $('#additional2').append(string);
+                    $('#v_additional').append(string);
+                }
+                total = data[0];
+                if(total>=2) {
+                    $('#v_more').show();
                 }
             }
         });
+
+
+        function getComment(i){
+
+            $.ajax({
+                url:'../v_comment_rows',
+                dataType:'JSON',
+                method: 'POST',
+                data:{
+                    name:name,
+                    num:i
+                },
+                success:function(data){
+
+                    if( typeof data !== 'object') return;
+                    for (var i=1;i<data.length;i++){
+                        var string = '<div class="panel panel-default">'+'<div class="row">'+
+                                '<div class="col-sm-2 text-left">'+'<p class="comment_author">'+
+                                '<img src="/static/img/'+data[i].level+'.png"/>'+'&nbsp;&nbsp;'+
+                                data[i].user+'</p>'+'</div>'+'<div class="col-sm-9">'+'<p class="text-center commentBox">'
+                                +data[i].comments+'</p>'+'</div>'+'</div>'+'</div>';
+                        $('#v_additional').append(string);
+                    }
+                }
+            });
+        }
+
+//        if(total<2) {
+//            $('#a_more').hide();
+//        }
+//        else{
+        $('#v_more').click(function () {
+//            for (var i = 2; i <= total; i++) {
+            getComment(i);
+            i=i+1;
+//            }
+            if(i>total){
+
+                $('#v_more').hide();
+            }
+        });
+//        };
     });
+
+
     $(document).ajaxStart(function() {
         $('.loading').fadeIn('fast');
-    })
+    });
     $(document).ajaxStop( function() {
         $('.loading').fadeOut('fast');
-    })
+    });
 
 
 </script>
@@ -63,9 +114,9 @@
                          style="margin-bottom: 0.4em"/>
                 </div>
                 <!--<a href="http://www.yesfile.com/partner/link.php?pid=jikbakguri&div=AD&ss=all&sc={{videoRow.name}}" target="_blank">-->
-                    <!--<button  class="btn btn-primary">-->
-                        <!--<span class="glyphicon glyphicon-download"></span>&nbsp;&nbsp;영상 보러가기-->
-                    <!--</button>-->
+                <!--<button  class="btn btn-primary">-->
+                <!--<span class="glyphicon glyphicon-download"></span>&nbsp;&nbsp;영상 보러가기-->
+                <!--</button>-->
                 <!--</a>-->
             </div>
         </div>
@@ -148,19 +199,22 @@
         <!--댓글 입력부분 종료-->
 
         <!--댓글 출력부분 시작-->
-        <div class="row review" style="margin-top: 1.5em;">
-            <div class="loading" style="display: none;"></div>
+        <div class="row review" style="margin-top: 1.5em; margin-bottom: 2.5em;">
 
 
-            <div class="col-sm-12" id="additional2">
-
+            <div class="col-sm-12">
                 <p id="current"></p>
+                <div id="v_additional"></div>
+                <div class="loading" style="display: none;"></div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-warning btn-block" id="v_more" style="display: none;">한줄평 더 보기</button>
             </div>
 
-            <div class="col-sm-1"></div>
+            <!--<div class="col-sm-1"></div>-->
         </div>
     </div>
-</div>
 
-<div class="col-md-1"></div>
-{% endblock %}
+
+    <div class="col-md-1"></div>
+    {% endblock %}

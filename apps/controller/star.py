@@ -13,7 +13,10 @@ def video_save_star():
     name = request.form.get('name')
     video = Video.query.get(name)
     email = session['session_user_email']
-    rating = video.ratingVideo_video.filter_by(userEmail=email).first()
+    user = User.query.get(email)
+    rating = user.ratingVideo_user.filter_by(videoName=name).first()
+    # rating = video.ratingVideo_video.filter_by(userEmail=email).first()
+
     if rating:  # 이미 평점을 매겼었음
         video.score += star - rating.rating
         a = float(video.score / video.count)
@@ -30,7 +33,7 @@ def video_save_star():
         a = float(video.score / video.count)
         video.average = float(math.ceil(a * 100) / 100)
         #영상평가갯수 db에 1추가
-        User.query.get(email).numVideo += 1
+        user.numVideo += 1
         db.session.add(rating)
         db.session.commit()
 
@@ -47,7 +50,9 @@ def actor_save_star():
     name = request.form.get('name')
     actor = Actor.query.get(name)
     email = session['session_user_email']
-    rating = actor.ratingActor_actor.filter_by(userEmail=email).first()
+    user = User.query.get(email)
+    rating = user.ratingActor_user.filter_by(actorName=name).first()
+    # rating = actor.ratingActor_actor.filter_by(userEmail=email).first()
 
     if rating:  # 이미 평점을 매겼었음
         actor.score += star - rating.rating
@@ -65,7 +70,7 @@ def actor_save_star():
         a = float(actor.score / actor.count)
         actor.average = float(math.ceil(a * 100) / 100)
         #배우평가갯수 db에 1추가
-        User.query.get(email).numActor +=1
+        user.numActor +=1
         db.session.add(rating)
         db.session.commit()
 

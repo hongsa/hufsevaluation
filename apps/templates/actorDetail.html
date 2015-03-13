@@ -10,36 +10,85 @@
 <script>
     $(document).ready(function() {
         var name = '{{actorRow.name}}';
+        var total;
+        var i=2;
 
         $.ajax({
             url:'../a_comment_rows',
             dataType:'JSON',
             method: 'POST',
             data:{
-                name:name
+                name:name,
+                num:1
             },
             success:function(data){
 
                 if( typeof data !== 'object') return;
-                for (var i=0;i<data.length;i++){
+                for (var i=1;i<data.length;i++){
                     var string = '<div class="panel panel-default">'+'<div class="row">'+
                             '<div class="col-sm-2 text-left">'+'<p class="comment_author">'+
                             '<img src="/static/img/'+data[i].level+'.png"/>'+'&nbsp;&nbsp;'+
                             data[i].user+'</p>'+'</div>'+'<div class="col-sm-9">'+'<p class="text-center commentBox">'
                             +data[i].comments+'</p>'+'</div>'+'</div>'+'</div>';
-                    $('#additional').append(string);
+                    $('#a_additional').append(string);
+                }
+                total = data[0];
+                if(total>=2) {
+                    $('#a_more').show();
                 }
             }
         });
 
+
+        function getComment(i){
+
+            $.ajax({
+                url:'../a_comment_rows',
+                dataType:'JSON',
+                method: 'POST',
+                data:{
+                    name:name,
+                    num:i
+                },
+                success:function(data){
+
+                    if( typeof data !== 'object') return;
+                    for (var i=1;i<data.length;i++){
+                        var string = '<div class="panel panel-default">'+'<div class="row">'+
+                                '<div class="col-sm-2 text-left">'+'<p class="comment_author">'+
+                                '<img src="/static/img/'+data[i].level+'.png"/>'+'&nbsp;&nbsp;'+
+                                data[i].user+'</p>'+'</div>'+'<div class="col-sm-9">'+'<p class="text-center commentBox">'
+                                +data[i].comments+'</p>'+'</div>'+'</div>'+'</div>';
+                        $('#a_additional').append(string);
+                    }
+                }
+            });
+        }
+
+//        if(total<2) {
+//            $('#a_more').hide();
+//        }
+//        else{
+        $('#a_more').click(function () {
+//            for (var i = 2; i <= total; i++) {
+            getComment(i);
+            i=i+1;
+//            }
+            if(i>total){
+
+                $('#a_more').hide();
+            }
+        });
+//        };
     });
+
 
     $(document).ajaxStart(function() {
         $('.loading').fadeIn('fast');
-    })
+    });
     $(document).ajaxStop( function() {
         $('.loading').fadeOut('fast');
-    })
+    });
 
 
 </script>
@@ -155,16 +204,19 @@
     <!--댓글 입력부분 종료-->
 
     <!--댓글 출력부분 시작-->
-    <div class="row review" style="margin-top: 1.5em;">
-        <div class="loading" style="display: none;"></div>
+    <div class="row review" style="margin-top: 1.5em; margin-bottom: 2.5em;">
 
-        <!--<button id="more">더 보기</button>-->
 
-        <div class="col-sm-12" id="additional">
+        <div class="col-sm-12">
             <p id="current"></p>
+            <div id="a_additional"></div>
+            <div class="loading" style="display: none;"></div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-warning btn-block" id="a_more" style="display: none;">한줄평 더 보기</button>
         </div>
 
-        <div class="col-sm-1"></div>
+        <!--<div class="col-sm-1"></div>-->
     </div>
 </div>
 

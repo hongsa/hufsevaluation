@@ -72,7 +72,7 @@ var receiverHandler = function(result, textStatus, xhr) {
         "newestOnTop": false,
         "progressBar": false,
         "positionClass": "toast-top-center",
-        "preventDuplicates": true,
+        "preventDuplicates": false,
         "onclick": null,
         "showDuration": "300",
         "hideDuration": "1000",
