@@ -13,16 +13,19 @@
             height:15em ;
             overflow: scroll;
         }
-    }
-    /*ol {*/
-    /*list-style:decimal;*/
-    /*counter-reset:inherit;*/
-    /*}*/
-    ol li {
-        display: list-item;
-        list-style-type: decimal;
-        margin-bottom: 10px;
-        color: #ffffff;
+
+        .review_chart{
+            padding-top: 0.7em;
+            border-radius: 10px;
+            background-color: #e1ebec;
+            margin-bottom: 10px;
+            /*font-family: "Nanum Gothic";*/
+            /*font-weight: bold;*/
+            overflow: scroll;
+            height: 15em;
+        }
+
+
     }
 
 </style>
@@ -38,42 +41,63 @@
 
 {% block content %}
 <!--<div class="col-md-1"></div>-->
-<div class="col-md-10">
 
-    <div class="col-md-2 rank_chart">
-        <div class="text-center" style="color: #ffffff; font-size: 20px;">전체 배우 랭킹</div>
-        <hr style="margin-top: 10px; margin-bottom: 10px;"/>
-        <ol style="font-size: 14px;" class="text-center">
-            {% for each in totalRank %}
-            <div><li style=""><a href="../actorDetail/{{each.name}}">{{each.name}}</a></li></div>
+<div class="col-md-2">
+    <div class="review_chart">
+        <div class="text-center" style="font-size: 16px;">실시간 한줄평</div>
+        <hr style="margin-top: 5px; margin-bottom: 5px; border-color: black"/>
+        <div style="font-size: 13px;">
+            {% for each in review %}
+            <a href="/actorDetail/{{each.actorName}}">
+                <div class="row" style="border-bottom:ridge;">
+                    <div class="col-sm-6 text-center">
+                        <img src="http://storage.googleapis.com/jikbakguri/actor2/{{each.actorName}}.jpg" class="review_img"/>
+                        <p style="color: #000000">{{each.actorName}}</p>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <p class="review_content">{{each.content}}</p>
+                    </div>
+                </div>
+            </a>
             {% endfor %}
-        </ol>
+        </div>
     </div>
+</div>
+<!--<div class="text-center" style="color: #ffffff; font-size: 20px;">전체 배우 랭킹</div>-->
 
-    <!--<div class="col-md-2 rank_chart">-->
-    <!--{% for each in random %}-->
-    <!--<div class="row" style="border-bottom:ridge;">-->
-    <!--<div class="col-sm-6 text-center">-->
-    <!--<img src="http://storage.googleapis.com/jikbakguri/actor2/{{each.name}}.jpg" class="review_img"/>-->
-    <!--<p style="color: #000000">{{each.name}}</p>-->
-    <!--</div>-->
-    <!--<div class="col-sm-6 text-center a_star_area">-->
-    <!--<div class="a_star_area">-->
-    <!--<input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--{% endfor %}-->
+<!--<hr style="margin-top: 10px; margin-bottom: 10px;"/>-->
+<!--<ol style="font-size: 14px;" class="text-center">-->
+<!--{% for each in totalRank %}-->
+<!--<div><li style=""><a href="../actorDetail/{{each.name}}">{{each.name}}</a></li></div>-->
+<!--{% endfor %}-->
+<!--</ol>-->
 
+<!--<div class="col-md-2 rank_chart">-->
+<!--{% for each in random %}-->
+<!--<div class="row" style="border-bottom:ridge;">-->
+<!--<div class="col-sm-6 text-center">-->
+<!--<img src="http://storage.googleapis.com/jikbakguri/actor2/{{each.name}}.jpg" class="review_img"/>-->
+<!--<p style="color: #000000">{{each.name}}</p>-->
+<!--</div>-->
+<!--<div class="col-sm-6 text-center a_star_area">-->
+<!--<div class="a_star_area">-->
+<!--<input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--{% endfor %}-->
+
+<!--</div>-->
+
+
+<div class="col-md-10">
+    <!--<div class="row">-->
+    <!--<button style="width: 57.143em; height: 7.143em;margin-left:2em;">광고자리</button>-->
+    <!--<div>-->
+    <!--<img src="{{url_for('static', filename='img/banner.png')}}" />-->
     <!--</div>-->
-
-
+    <!--</div>-->
     <div class="col-md-10">
-        <!--<div class="row">-->
-        <!--<button style="width: 57.143em; height: 7.143em;margin-left:2em;">광고자리</button>-->
-        <!---->
-        <!--</div>-->
-
         <div class="row">
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
@@ -178,29 +202,15 @@
             {% endfor %}
         </div>
     </div>
-</div>
-
-<div class="col-md-2">
-    <div class="review_chart">
-        <div class="text-center" style="font-size: 16px;">실시간 한줄평</div>
-        <hr style="margin-top: 5px; margin-bottom: 5px; border-color: black"/>
-        <div style="font-size: 13px;">
-            {% for each in review %}
-            <a href="/actorDetail/{{each.actorName}}">
-                <div class="row" style="border-bottom:ridge;">
-                    <div class="col-sm-6 text-center">
-                        <img src="http://storage.googleapis.com/jikbakguri/actor2/{{each.actorName}}.jpg" class="review_img"/>
-                        <p style="color: #000000">{{each.actorName}}</p>
-                    </div>
-                    <div class="col-sm-6 text-center">
-                        <p class="review_content">{{each.content}}</p>
-                    </div>
-                </div>
+    <div class="col-md-2">
+        <div class="text-center">
+            <a href="http://www.yesfile.com/partner/link.php?pid=jikbakguri&intro=intro" target="_blank">
+                <img src="" class="ad"/>
             </a>
-            {% endfor %}
         </div>
     </div>
 </div>
+
 
 <!--<div class="col-md-1"></div>-->
 {% endblock %}

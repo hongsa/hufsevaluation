@@ -14,7 +14,7 @@ def actor_main():
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-    totalRank = Actor.query.filter(Actor.count>10).order_by(desc(Actor.average)).with_entities(Actor.name).limit(15)
+    # totalRank = Actor.query.filter(Actor.count>10).order_by(desc(Actor.average)).with_entities(Actor.name).limit(15)
     # random = Actor.query.order_by(func.rand()).with_entities(Actor.name).limit(15)
 
 
@@ -32,7 +32,7 @@ def actor_main():
 
 
 
-    return render_template("actor_main.html", totalRank=totalRank, content=content,review=review)
+    return render_template("actor_main.html", content=content,review=review)
 
 
 

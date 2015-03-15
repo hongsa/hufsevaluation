@@ -85,10 +85,10 @@
 
     $(document).ajaxStart(function() {
         $('.loading').fadeIn('fast');
-    });
+    })
     $(document).ajaxStop( function() {
         $('.loading').fadeOut('fast');
-    });
+    })
 
 
 </script>
@@ -115,11 +115,11 @@
                          onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
                          style="margin-bottom: 0.4em"/>
                 </div>
-                <!--<a href="{{actorRow.yesfile()}}" target="_blank">-->
-                <!--<button  class="btn btn-primary">-->
-                <!--<span class="glyphicon glyphicon-download"></span>&nbsp;&nbsp;영상 보러가기-->
-                <!--</button>-->
-                <!--</a>-->
+                <a href="{{actorRow.yesfile()}}" target="_blank">
+                <button  class="btn btn-primary">
+                <span class="glyphicon glyphicon-download"></span>&nbsp;&nbsp;영상 보러가기
+                </button>
+                </a>
 
             </div>
         </div>
@@ -212,6 +212,7 @@
             <div id="a_additional"></div>
             <div class="loading" style="display: none;"></div>
         </div>
+
         <div class="text-center">
             <button class="btn btn-warning btn-block" id="a_more" style="display: none;">한줄평 더 보기</button>
         </div>

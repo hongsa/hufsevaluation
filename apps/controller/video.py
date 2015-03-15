@@ -11,7 +11,7 @@ def video_main():
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
 
-    totalRank = Video.query.filter(Video.count>10).order_by(desc(Video.average)).with_entities(Video.name).limit(15)
+    # totalRank = Video.query.filter(Video.count>10).order_by(desc(Video.average)).with_entities(Video.name).limit(15)
     content={}
     content['one'] = Video.query.filter(Video.category=="1",Video.count>10).order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5)
@@ -28,7 +28,7 @@ def video_main():
 
     review = VideoReview.query.order_by(desc(VideoReview.id)).limit(40)
 
-    return render_template("video_main.html", totalRank=totalRank, content=content,review=review)
+    return render_template("video_main.html", content=content,review=review)
 
 import logging
 def video_category(name, page):

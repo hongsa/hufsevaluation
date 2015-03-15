@@ -271,3 +271,28 @@ li>a{
         left: -6px;
     }
 }
+
+.ad{
+    height: 32em;
+    width: 12em;
+    background-image: url(../img/ad_desktop2.png);
+    background-size: cover;
+
+}
+@media (max-width: 1000px){
+
+    .ad{
+        height: 18em;
+        width: 24em;
+        background-image: url(../img/ad_mobile2.png);
+        background-size: cover;
+
+    }
+}
+
+
+/*.ad_mobile{*/
+/*height: 15em;*/
+/*width: 30em;*/
+/*background-image: url(../img/star_off2.png);*/
+/*}*/
