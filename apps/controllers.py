@@ -481,126 +481,126 @@ def recommend2():
 
 #전설이 시작되는 부분
 #영상평가가 유사한 친구들을 추가하는 부분.
-# @app.route('/backmirror1/<int:pag>',defaults={'page':1})
-# @app.route('/backmirror1/<int:pag>',methods=['GET', 'POST'])
-# def test1(pag):
-#     oUser = User.query.filter(User.numVideo>24).order_by(desc(User.numVideo)).offset((pag-1)*20).limit(20)
+@app.route('/backmirror1/<int:pag>',defaults={'page':1})
+@app.route('/backmirror1/<int:pag>',methods=['GET', 'POST'])
+def test1(pag):
+    oUser = User.query.filter(User.numVideo>24).order_by(desc(User.numVideo)).offset((pag-1)*20).limit(20)
 
-    # if not 'oVideo' in session:
-    #     session['oVideo'] = recommendation.makeVideoRowData()
+    if not 'oVideo' in session:
+        session['oVideo'] = recommendation.makeVideoRowData()
+
+    oVideo = session['oVideo']
+
+    for each in oUser:
+        try:
+            list = recommendation.getSoulmate(oVideo,each.email,n=5)
+            a = json.dumps(list)
+            each.prefsVideo = a
+            db.session.commit()
+            logging.error(str(each.email)+"'s list" + a)
+        except:
+            logging.error(str(each.email)+"'s error")
+    return 'done'
+#
+# 배우평가가 유사한 친구들을 추가하는 부분.
+@app.route('/backmirror2/<int:page>',defaults={'page':1})
+@app.route('/backmirror2/<int:page>',methods=['GET', 'POST'])
+def test2(page):
     #
-    # oVideo = session['oVideo']
+    oUser = User.query.filter(User.numActor>24).order_by(desc(User.numActor)).offset((page-1)*20).limit(20)
     #
-    # for each in oUser:
-    #     try:
-    #         list = recommendation.getSoulmate(oVideo,each.email,n=5)
-    #         a = json.dumps(list)
-    #         each.prefsVideo = a
-    #         db.session.commit()
-    #         logging.error(str(each.email)+"'s list" + a)
-    #     except:
-    #         logging.error(str(each.email)+"'s error")
-    # return 'done'
+    if not 'oActor' in session:
+        session['oActor'] = recommendation.makeActorRowData()
+    oActor = session['oActor']
 
-#배우평가가 유사한 친구들을 추가하는 부분.
-# @app.route('/backmirror2/<int:page>',defaults={'page':1})
-# @app.route('/backmirror2/<int:page>',methods=['GET', 'POST'])
-# def test2(page):
-
-    # oUser = User.query.filter(User.numActor>24).order_by(desc(User.numActor)).offset((page-1)*20).limit(20)
-
-    # if not 'oActor' in session:
-    #     session['oActor'] = recommendation.makeActorRowData()
-    # oActor = session['oActor']
-    #
-    # for each in oUser:
-    #     try:
-    #         list = recommendation.getSoulmate(oActor,each.email,n=5)
-    #         a = json.dumps(list)
-    #         each.prefsActor = a
-    #         db.session.commit()
-    #         logging.error(str(each.email)+"'s list" + a)
-    #     except:
-    #         logging.error(str(each.email)+"'s error")
-    # return 'done'
-
-#유사 영상 찾는 함수
-# @app.route('/simvideo/<int:page>',defaults={'page':1})
-# @app.route('/simvideo/<int:page>',methods=['GET', 'POST'])
-# def simvideos(page):
+    for each in oUser:
+        try:
+            list = recommendation.getSoulmate(oActor,each.email,n=5)
+            a = json.dumps(list)
+            each.prefsActor = a
+            db.session.commit()
+            logging.error(str(each.email)+"'s list" + a)
+        except:
+            logging.error(str(each.email)+"'s error")
+    return 'done'
 #
-#     if not 'oDict' in session:
-#         session['oDict'] = recommendation.simVideoPrefs()
+# 유사 영상 찾는 함수
+@app.route('/simvideo/<int:page>',defaults={'page':1})
+@app.route('/simvideo/<int:page>',methods=['GET', 'POST'])
+def simvideos(page):
+
+    if not 'oDict' in session:
+        session['oDict'] = recommendation.simVideoPrefs()
+
+    oDict = session['oDict']
+    videos = Video.query.filter(Video.count>4).order_by(desc(Video.count)).offset((page - 1) * 50).limit(50)
+    c = 0
+    for each in videos:
+        # 큰 데이터 세트를 위해 진척 상태를 갱신
+        #
+        # 각 항목과 가장 유사한 항목들을 구함
+        list = []
+        success = False
+        try:
+            list = recommendation.getSoulmate(oDict,each.name,n=5,similarity=recommendation.simPearson)
+            success = True
+        except: logging.error(str(each.name)+"'s error")
+        if success:
+            logging.error(str(each.name)+"'s list")
+            logging.error(list)
+            each.prefs = json.dumps(list)
+            db.session.commit()
+        #
+        #
+        a = json.dumps(list)
+        each.prefs = a
+        db.session.commit()
+    if page>25:
+        return 'done'
+    else:
+        return redirect(url_for('simvideos', page=page+1))
+    return 'done'
 #
-#     oDict = session['oDict']
-#     videos = Video.query.filter(Video.count>4).order_by(desc(Video.count)).offset((page - 1) * 50).limit(50)
-#     c = 0
-#     for each in videos:
-        #큰 데이터 세트를 위해 진척 상태를 갱신
+# 유사 배우 찾는 함수
+@app.route('/simactor/<int:page>',defaults={'page':1})
+@app.route('/simactor/<int:page>',methods=['GET', 'POST'])
+def simactors(page):
+    if not 'oItem' in session:
+        session['oItem'] = recommendation.simVideoPrefs()
+    actors = Actor.query.filter(Actor.count>4).order_by(desc(Actor.count)).offset((page - 1) * 30).limit(30)
+    oItem = session['oItem']
 
-        #각 항목과 가장 유사한 항목들을 구함
-        # list = []
-        # success = False
-        # try:
-        #     list = recommendation.getSoulmate(oDict,each.name,n=5,similarity=recommendation.simPearson)
-        #     success = True
-        # except: logging.error(str(each.name)+"'s error")
-        # if success:
-        #     logging.error(str(each.name)+"'s list")
-        #     logging.error(list)
-        #     each.prefs = json.dumps(list)
-        #     db.session.commit()
+    c = 0
+    for each in actors:
 
-
-        # a = json.dumps(list)
-        # each.prefs = a
-        # db.session.commit()
-    # if page>25:
-    #     return 'done'
-    # else:
-    #     return redirect(url_for('simvideos', page=page+1))
-    # return 'done'
-
-#유사 배우 찾는 함수
-# @app.route('/simactor/<int:page>',defaults={'page':1})
-# @app.route('/simactor/<int:page>',methods=['GET', 'POST'])
-# def simactors(page):
-#     if not 'oItem' in session:
-#         session['oItem'] = recommendation.simVideoPrefs()
-#     actors = Actor.query.filter(Actor.count>4).order_by(desc(Actor.count)).offset((page - 1) * 30).limit(30)
-#     oItem = session['oItem']
-#
-#     c = 0
-#     for each in actors:
-#
-#         각 항목과 가장 유사한 항목들을 구함
-#         _s = getMicrotime()
-        # list = []
-        # success = False
-        # try:
-        #     list = recommendation.getSoulmate(oItem,each.name,n=5,similarity=recommendation.simPearson)
-        #     success=True
-        # except: logging.error(str(each.name)+"'s error")
-        # if success:
-        #     logging.error(str(each.name)+"'s list")
-        #     logging.error(list)
-        #     each.prefs = json.dumps(list)
-        #     db.session.commit()
+        # 각 항목과 가장 유사한 항목들을 구함
+        # _s = getMicrotime()
+        list = []
+        success = False
+        try:
+            list = recommendation.getSoulmate(oItem,each.name,n=5,similarity=recommendation.simPearson)
+            success=True
+        except: logging.error(str(each.name)+"'s error")
+        if success:
+            logging.error(str(each.name)+"'s list")
+            logging.error(list)
+            each.prefs = json.dumps(list)
+            db.session.commit()
         # _e = getMicrotime()
-
+        #
         # timeLogger("list", _s, _e)
-    #
-    #     _s = getMicrotime()
-    #     a = json.dumps(list)
-    #     each.prefs = a
-    #     db.session.commit()
-    #     _e = getMicrotime()
-    #     timeLogger("commit", _s, _e)
-    # if page > 31:
-    #     return 'done'
-    # return redirect(url_for('simactors',page=page+1))
-    # return  'done'
 
+        # _s = getMicrotime()
+        a = json.dumps(list)
+        each.prefs = a
+        db.session.commit()
+        # _e = getMicrotime()
+        # timeLogger("commit", _s, _e)
+    if page > 31:
+        return 'done'
+    return redirect(url_for('simactors',page=page+1))
+    # return  'done'
+#
 
 
 
