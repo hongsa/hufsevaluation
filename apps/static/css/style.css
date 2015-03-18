@@ -272,23 +272,23 @@ li>a{
     }
 }
 
-.ad{
-    height: 32em;
-    width: 12em;
-    background-image: url(../img/ad_desktop2.png);
-    background-size: cover;
+/*.ad{*/
+    /*height: 32em;*/
+    /*width: 12em;*/
+    /*background-image: url(../img/ad_desktop2.png);*/
+    /*background-size: cover;*/
 
-}
-@media (max-width: 1000px){
+/*}*/
+/*@media (max-width: 1000px){*/
 
-    .ad{
-        height: 18em;
-        width: 24em;
-        background-image: url(../img/ad_mobile2.png);
-        background-size: cover;
+    /*.ad{*/
+        /*height: 18em;*/
+        /*width: 24em;*/
+        /*background-image: url(../img/ad_mobile2.png);*/
+        /*background-size: cover;*/
 
-    }
-}
+    /*}*/
+/*}*/
 
 
 /*.ad_mobile{*/

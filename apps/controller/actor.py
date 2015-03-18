@@ -7,6 +7,7 @@ from apps.models import Actor,User,ActorReview
 from  sqlalchemy.sql.expression import func
 # from werkzeug.contrib.cache import GAEMemcachedCache
 import logging
+import random
 
 def actor_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
@@ -29,10 +30,10 @@ def actor_main():
         .with_entities(Actor.name,Actor.average).limit(5)
 
     review = ActorReview.query.order_by(desc(ActorReview.id)).limit(40)
+    number = random.randint(1,5)
 
 
-
-    return render_template("actor_main.html", content=content,review=review)
+    return render_template("actor_main.html", content=content,review=review,number=number)
 
 
 

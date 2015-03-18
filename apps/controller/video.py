@@ -4,6 +4,7 @@ from apps.models import Video,User,VideoReview
 from sqlalchemy import desc
 import math
 from werkzeug.contrib.cache import GAEMemcachedCache
+import random
 
 def video_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
@@ -27,8 +28,9 @@ def video_main():
         .with_entities(Video.name,Video.average).limit(5).limit(5)
 
     review = VideoReview.query.order_by(desc(VideoReview.id)).limit(40)
+    number = random.randint(1,5)
 
-    return render_template("video_main.html", content=content,review=review)
+    return render_template("video_main.html", content=content,review=review,number=number)
 
 import logging
 def video_category(name, page):
