@@ -29,11 +29,11 @@ def index():
     return user.index()
     # return render_template("serverout.html")
 
-@app.errorhandler(Exception)
-def page_not_found(e):
-
-    logging.error(e)
-    return render_template("error.html"), 500
+# @app.errorhandler(Exception)
+# def page_not_found(e):
+#
+#     logging.error(e)
+#     return render_template("error.html"), 500
 
 # 회원가입
 @app.route('/signup', methods=['GET', 'POST'])
@@ -324,6 +324,7 @@ def recommend():
     cUser = User.query.get(email)
     # count = len(cUser.ratings())
     count = cUser.numVideo
+    # logging.error(count)
     rList = False
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if count <24:
@@ -362,6 +363,7 @@ def recommend2():
     cUser = User.query.get(email)
     # count = len(cUser.aRatings())
     count = cUser.numActor
+    # logging.error(count)
     rList = False
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if count<24:
@@ -402,80 +404,85 @@ def recommend2():
 
 
 # 키 수정하기 크롤링
-# from flask import Flask, render_template
-# from apps import app
-# from bs4 import BeautifulSoup
-# import urllib2
-# import re
-# import logging
+from flask import Flask, render_template
+from apps import app
+from bs4 import BeautifulSoup
+import urllib2
+import re
+import logging
 
-# from apps import db
-# #
-# @app.route('/crawling/<int:page>',defaults={'page':1})
-# @app.route('/crawling/<int:page>',methods=['GET', 'POST'])
-# def crawling(page):
-#     # 배우랑 키 가져오기
-#     a = Actor.query.order_by(desc(Actor.average)).offset((page - 1) * 20).limit(20)
-#     actor = []
-#     for i in a:
-#         actor.append(i.name.replace(" ","") )
-#
-#     final=[]
-#     for each in actor:
-#
-#         url = "http://hentaku.tistory.com/entry/" + str(each)
-#         try:
-#             source = urllib2.urlopen( url ).read()
-#         except:
-#             continue
-#         soup = BeautifulSoup( source ,from_encoding="utf-8")
-#
-#         list=""
-#         for total in soup.find_all("div","avstar_info_b"):
-#             list=total.text
-#         # logging.error(list)
-#
-#         # final = []
-#         name = re.compile(u"[^ \u3131-\u3163\uac00-\ud7a3]+")
-#         height = re.compile("[1][4-8][0-9]")
-#
-#         result1 = name.sub("",list)
-#         result2 = height.findall(list)
-#         str2 = ''.join(result2)
-#
-#         final.append(dict(name=result1,value=str2))
-#
-#
-#         logging.error(final)
-#         # logging.error(result1)
-#         # logging.error(result2)
-#
-#
-#     for each in final:
-#         actor = Actor.query.get(each['name'])
-#         if actor == None:
-#             continue
-#
-#         if each['value'] =="" :
-#             actor.height = 155
-#             each['value'] = 155
-#         else:
-#             actor.height = int(each['value'])
-#
-#         if int(each['value']) <=154:
-#             actor.category ="1"
-#         elif 155 <=int(each['value']) <=159:
-#             actor.category="2"
-#         elif 160 <=int(each['value']) <=164:
-#             actor.category="3"
-#         elif int(each['value']) >=165:
-#             actor.category="4"
-#         else:
-#             actor.category="2"
-#         flash(u"저장 완료")
-#         db.session.commit()
-#
-#     return render_template("crawl.html", final=final)
+from apps import db
+    # 배우랑 키 가져오기
+@app.route('/crawling',methods=['GET', 'POST'])
+def crawling():
+
+    exist = Actor.query.with_entities(Actor.name).all()
+
+
+    url = "http://hentaku.net/list.php"
+    source = urllib2.urlopen( url ).read()
+    soup = BeautifulSoup( source ,from_encoding="utf-8")
+    #
+    a=[]
+    for each in soup.find_all("div","list"):
+        result = re.findall(ur'[ㄱ-ㅣ가-힣]+', unicode(each.text).encode('utf-8'))
+        result = re.compile(u"[^ \u3131-\u3163\uac00-\ud7a3]+").sub("",unicode(each.text))
+        a.append(result)
+
+
+    logging.error(a)
+
+
+    # list=[]
+    # for each in a:
+    #     list.append(re.findall(u'[ㄱ-ㅣ가-힣]+', unicode(each)))
+    #
+    #
+    # logging.error(list)
+
+    return render_template("crawl.html", list=list)
+
+    # logging.error(list)
+
+    # final = []
+    # name = re.compile(u"[^ \u3131-\u3163\uac00-\ud7a3]+")
+    # height = re.compile("[1][4-8][0-9]")
+
+    # result1 = name.sub("",list)
+    # result2 = height.findall(list)
+    # str2 = ''.join(result2)
+
+    # final.append(dict(name=result1,value=str2))
+
+
+    # logging.error(final)
+        # logging.error(result1)
+        # logging.error(result2)
+
+
+    # for each in final:
+    #     actor = Actor.query.get(each['name'])
+    #     if actor == None:
+    #         continue
+    #
+    #     if each['value'] =="" :
+    #         actor.height = 155
+    #         each['value'] = 155
+    #     else:
+    #         actor.height = int(each['value'])
+    #
+    #     if int(each['value']) <=154:
+    #         actor.category ="1"
+    #     elif 155 <=int(each['value']) <=159:
+    #         actor.category="2"
+    #     elif 160 <=int(each['value']) <=164:
+    #         actor.category="3"
+    #     elif int(each['value']) >=165:
+    #         actor.category="4"
+    #     else:
+    #         actor.category="2"
+    #     flash(u"저장 완료")
+    #     db.session.commit()
 
 
 

@@ -56,9 +56,9 @@ def video_category(name, page):
     elif name=='4':
         category="협동조합"
     elif name=='5':
-        category="이게 말이 돼?"
+        category="상황극"
     else:
-        category ="나 등 밀어줘"
+        category ="온천물"
 
 
     email = session['session_user_email']
@@ -115,9 +115,9 @@ def video_category2(name, page):
     elif name=='4':
         category="협동조합"
     elif name=='5':
-        category="이게 말이 돼?"
+        category="상황극"
     else:
-        category ="나 등 밀어줘"
+        category ="온천물"
 
 
     email = session['session_user_email']

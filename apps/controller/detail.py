@@ -240,9 +240,9 @@ def videoDetail(name):
     elif videoRow.category =='4':
         category='협동조합'
     elif videoRow.category =='5':
-        category='이게 말이 돼?'
+        category='상황극'
     elif videoRow.category =='6':
-        category='나 등 밀어줘'
+        category='온천물'
 
 
     # rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()

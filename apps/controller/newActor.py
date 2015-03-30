@@ -24,6 +24,10 @@ def new_actor(name, page):
         release = 0
         actorRelease = Actor.query.filter_by(release=0).offset((page - 1) * 12)\
             .with_entities(Actor.name,Actor.average,Actor.count).limit(12)
+        total = Actor.query.filter_by(release=0).count()
+        calclulate = float(float(total) / 12)
+        total_page = math.ceil(calclulate)
+
     else:
         release = int(actor.first().release)
 
