@@ -88,8 +88,10 @@ def video_category(name, page):
     else:
         up = int(total_page)
 
+    number = random.randint(1,5)
+
     return render_template("video_category.html", videoCategory=videoCategory, category=category,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name)
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name,number=number)
 
 
 def video_category2(name, page):
@@ -147,8 +149,10 @@ def video_category2(name, page):
     else:
         up = int(total_page)
 
+    number = random.randint(1,5)
+
     return render_template("video_category2.html", videoCategory=videoCategory, category=category,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name)
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name,number=number)
 
 
 

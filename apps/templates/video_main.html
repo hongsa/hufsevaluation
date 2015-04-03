@@ -33,12 +33,15 @@
 
 
     }
-    .ad{
-        height: 32em;
-        width: 12em;
-        background-image: url(../static/img/ad_desktop{{number}}.png);
-        background-size: cover;
 
+    @media only screen and (min-width : 1000px) {
+        .ad {
+            height: 32em;
+            width: 12em;
+            background-image: url(../static/img/ad_desktop{{number}}.png);
+            background-size: cover;
+
+        }
     }
 
 </style>

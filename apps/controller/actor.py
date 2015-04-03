@@ -106,8 +106,10 @@ def actor_category(name, page):
     else:
         up = int(total_page)
 
+    number = random.randint(1,5)
+
     return render_template("actor_category.html", actorCategory=actorCategory, category=category,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name)
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name,number=number)
 
 def actor_category2(name, page):
     # 로그인 안한 상태로 오면 index로 빠꾸
@@ -163,7 +165,9 @@ def actor_category2(name, page):
     else:
         up = int(total_page)
 
+    number = random.randint(1,5)
+
     return render_template("actor_category2.html", actorCategory=actorCategory, category=category,
-                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name)
+                           total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name,number=number)
 
 

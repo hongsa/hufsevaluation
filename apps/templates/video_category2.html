@@ -11,6 +11,24 @@
             font-weight: bold;
             margin-top: 0em;
         }
+        .ad{
+            height: 18em;
+            width: 24em;
+            background-image: url(../static/img/ad_mobile2.png);
+            background-size: cover;
+
+        }
+    }
+
+    @media only screen and (min-width : 1000px) {
+        .ad {
+            margin-top: 5em;
+            height: 32em;
+            width: 12em;
+            background-image: url(../static/img/ad_desktop{{number}}.png);
+            background-size: cover;
+
+        }
     }
 
 </style>
@@ -24,35 +42,35 @@
 
 
 {% block content %}
-<div class="col-md-1"></div>
+<!--<div class="col-md-1"></div>-->
+<!--<div class="col-md-10">-->
+
+<div class="col-md-2 category_chart">
+    <div class="text-center" style="color: #ffffff; font-size: 20px;">영상 분류</div>
+    <hr style="margin-top: 10px; margin-bottom: 10px;"/>
+    <ul class="text-center">
+
+        <li style="margin-bottom: 10px; color: #ffffff">
+            <a href="/v_category/1">러브 액츄얼리
+            </a></li>
+        <li style="margin-bottom: 10px; color: #ffffff">
+            <a href="/v_category/2">금기된 사랑
+            </a></li>
+        <li style="margin-bottom: 10px; color: #ffffff">
+            <a href="/v_category/3">코스튬
+            </a></li>
+        <li style="margin-bottom: 10px; color: #ffffff">
+            <a href="/v_category/4">협동조합
+            </a></li>
+        <li style="margin-bottom: 10px; color: #ffffff">
+            <a href="/v_category/5">상황극
+            </a></li>
+        <li style="margin-bottom: 10px; color: #ffffff">
+            <a href="/v_category/6">온천물
+            </a></li>
+    </ul>
+</div>
 <div class="col-md-10">
-
-    <div class="col-md-2 category_chart">
-        <div class="text-center" style="color: #ffffff; font-size: 20px;">영상 분류</div>
-        <hr style="margin-top: 10px; margin-bottom: 10px;"/>
-        <ul class="text-center">
-
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/1">러브 액츄얼리
-                </a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/2">금기된 사랑
-                </a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/3">코스튬
-                </a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/4">협동조합
-                </a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/5">상황극
-                </a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/v_category/6">온천물
-                </a></li>
-        </ul>
-    </div>
-
     <div class="col-md-10">
         <div class="text-center">
             <span class="category_name">{{category}}</span>
@@ -69,14 +87,14 @@
             </div>
         </div>
 
-            <!--<div class="text-right">-->
-                <!--<span class="badge">-->
-            <!--<a href="/v_category/{{name}}/{{page}}"><span class="standard" >평점순</span></a>-->
-                <!--</span>-->
-                <!--<span class="badge">-->
-            <!--<a href="/v_category2/{{name}}/{{page}}"><span class="standard">조회순</span></a>-->
-                <!--</span>-->
-            <!--</div>-->
+        <!--<div class="text-right">-->
+        <!--<span class="badge">-->
+        <!--<a href="/v_category/{{name}}/{{page}}"><span class="standard" >평점순</span></a>-->
+        <!--</span>-->
+        <!--<span class="badge">-->
+        <!--<a href="/v_category2/{{name}}/{{page}}"><span class="standard">조회순</span></a>-->
+        <!--</span>-->
+        <!--</div>-->
 
         <div class="row">
             {% for each in videoCategory %}
@@ -117,29 +135,38 @@
             </div>
             {% endfor %}
         </div>
+    </div>
 
-        <div class="row text-center">
-            <ul class="pagination">
-                <li>
-                    <a href="/v_category2/{{name}}/{{down}}">&laquo;</a>
-                    {% for each in total_page %}
-                    {% if each == page %}
-                <li class="active">
-                    <a href="/v_category2/{{name}}/{{page}}">{{page}}</a>
-                </li>
-                {% else %}
-                <li>
-                    <a href="/v_category2/{{name}}/{{each}}">{{each}}</a>
-                </li>
-                {% endif %}
-                {% endfor %}
-                <li>
-                    <a href="/v_category2/{{name}}/{{up}}">&raquo;</a>
-                </li>
-            </ul>
+    <div class="col-md-2">
+        <div class="text-center">
+            <a href="http://www.yesfile.com/partner/link.php?pid=jikbakguri" target="_blank">
+                <img src="" class="ad"/>
+            </a>
         </div>
     </div>
 </div>
+<div class="row text-center">
+    <ul class="pagination">
+        <li>
+            <a href="/v_category2/{{name}}/{{down}}">&laquo;</a>
+            {% for each in total_page %}
+            {% if each == page %}
+        <li class="active">
+            <a href="/v_category2/{{name}}/{{page}}">{{page}}</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="/v_category2/{{name}}/{{each}}">{{each}}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        <li>
+            <a href="/v_category2/{{name}}/{{up}}">&raquo;</a>
+        </li>
+    </ul>
+</div>
+<!--</div>-->
+<!--</div>-->
 
 <div class="col-md-1"></div>
 {% endblock %}

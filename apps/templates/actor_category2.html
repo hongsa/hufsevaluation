@@ -11,6 +11,25 @@
             font-weight: bold;
             margin-top: 0em;
         }
+
+        .ad{
+            height: 18em;
+            width: 24em;
+            background-image: url(../static/img/ad_mobile2.png);
+            background-size: cover;
+
+        }
+    }
+
+    @media only screen and (min-width : 1000px) {
+        .ad {
+            margin-top: 5em;
+            height: 32em;
+            width: 12em;
+            background-image: url(../static/img/ad_desktop{{number}}.png);
+            background-size: cover;
+
+        }
     }
 
 </style>
@@ -32,25 +51,25 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-md-1"></div>
+<!--<div class="col-md-1"></div>-->
+<!--<div class="col-md-10">-->
+
+<div class="col-md-2 category_chart">
+    <div class="text-center" style="color: #ffffff; font-size: 20px;">배우 분류</div>
+    <hr style="margin-top: 10px; margin-bottom: 10px;"/>
+    <ul class="text-center">
+        <li style="margin-bottom: 10px; color: #ffffff">
+            <a href="/a_category/1">진짜 작은애당</a></li>
+        <li style="margin-bottom: 10px; color: #ffffff">
+            <a href="/a_category/2">품에 쏘오오옥</a></li>
+        <li style="margin-bottom: 10px; color: #ffffff">
+            <a href="/a_category/3">걸그룹 키당</a></li>
+        <li style="margin-bottom: 10px; color: #ffffff">
+            <a href="/a_category/4">힐 신지 말아조</a></li>
+    </ul>
+</div>
+
 <div class="col-md-10">
-
-    <div class="col-md-2 category_chart">
-        <div class="text-center" style="color: #ffffff; font-size: 20px;">배우 분류</div>
-        <hr style="margin-top: 10px; margin-bottom: 10px;"/>
-        <ul class="text-center">
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/a_category/1">진짜 작은애당</a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/a_category/2">품에 쏘오오옥</a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/a_category/3">걸그룹 키당</a></li>
-            <li style="margin-bottom: 10px; color: #ffffff">
-                <a href="/a_category/4">힐 신지 말아조</a></li>
-        </ul>
-    </div>
-
-
     <div class="col-md-10">
         <div class="text-center">
             <span class="category_name">{{category}}</span>
@@ -115,30 +134,40 @@
             </div>
             {% endfor %}
         </div>
+    </div>
 
-        <div class="row text-center">
-            <ul class="pagination">
-                <li>
-                    <a href="/a_category2/{{name}}/{{down}}">&laquo;</a>
-                </li>
-                {% for each in total_page %}
-                {% if each == page %}
-                <li class="active">
-                    <a href="/a_category2/{{name}}/{{page}}">{{page}}</a>
-                </li>
-                {% else %}
-                <li>
-                    <a href="/a_category2/{{name}}/{{each}}">{{each}}</a>
-                </li>
-                {% endif %}
-                {% endfor %}
-                <li>
-                    <a href="/a_category2/{{name}}/{{up}}">&raquo;</a>
-                </li>
-            </ul>
+    <div class="col-md-2">
+        <div class="text-center">
+            <a href="http://www.yesfile.com/partner/link.php?pid=jikbakguri" target="_blank">
+                <img src="" class="ad"/>
+            </a>
         </div>
     </div>
 </div>
+
+<div class="row text-center">
+    <ul class="pagination">
+        <li>
+            <a href="/a_category2/{{name}}/{{down}}">&laquo;</a>
+        </li>
+        {% for each in total_page %}
+        {% if each == page %}
+        <li class="active">
+            <a href="/a_category2/{{name}}/{{page}}">{{page}}</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="/a_category2/{{name}}/{{each}}">{{each}}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        <li>
+            <a href="/a_category2/{{name}}/{{up}}">&raquo;</a>
+        </li>
+    </ul>
+</div>
+<!--</div>-->
+<!--</div>-->
 
 <div class="col-md-1"></div>
 {% endblock %}
