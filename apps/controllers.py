@@ -5,7 +5,7 @@ from apps import app,db
 from apps.controller import video
 from models import User,Actor,Video
 from controller import user,actor,newActor,newVideo,newVideo2,search,admin,collection,star,bookmark,detail,board
-import recommendation
+import recommendation,recommendation2
 import readImage
 import logging
 import json
@@ -29,11 +29,11 @@ def index():
     return user.index()
     # return render_template("serverout.html")
 
-# @app.errorhandler(Exception)
-# def page_not_found(e):
-#
-#     logging.error(e)
-#     return render_template("error.html"), 500
+@app.errorhandler(Exception)
+def page_not_found(e):
+
+    logging.error(e)
+    return render_template("error.html"), 500
 
 # 회원가입
 @app.route('/signup', methods=['GET', 'POST'])
@@ -403,89 +403,6 @@ def recommend2():
     # return 'well done'
 
 
-# 키 수정하기 크롤링
-from flask import Flask, render_template
-from apps import app
-from bs4 import BeautifulSoup
-import urllib2
-import re
-import logging
-
-from apps import db
-    # 배우랑 키 가져오기
-@app.route('/crawling',methods=['GET', 'POST'])
-def crawling():
-
-    exist = Actor.query.with_entities(Actor.name).all()
-
-
-    url = "http://hentaku.net/list.php"
-    source = urllib2.urlopen( url ).read()
-    soup = BeautifulSoup( source ,from_encoding="utf-8")
-    #
-    a=[]
-    for each in soup.find_all("div","list"):
-        result = re.findall(ur'[ㄱ-ㅣ가-힣]+', unicode(each.text).encode('utf-8'))
-        result = re.compile(u"[^ \u3131-\u3163\uac00-\ud7a3]+").sub("",unicode(each.text))
-        a.append(result)
-
-
-    logging.error(a)
-
-
-    # list=[]
-    # for each in a:
-    #     list.append(re.findall(u'[ㄱ-ㅣ가-힣]+', unicode(each)))
-    #
-    #
-    # logging.error(list)
-
-    return render_template("crawl.html", list=list)
-
-    # logging.error(list)
-
-    # final = []
-    # name = re.compile(u"[^ \u3131-\u3163\uac00-\ud7a3]+")
-    # height = re.compile("[1][4-8][0-9]")
-
-    # result1 = name.sub("",list)
-    # result2 = height.findall(list)
-    # str2 = ''.join(result2)
-
-    # final.append(dict(name=result1,value=str2))
-
-
-    # logging.error(final)
-        # logging.error(result1)
-        # logging.error(result2)
-
-
-    # for each in final:
-    #     actor = Actor.query.get(each['name'])
-    #     if actor == None:
-    #         continue
-    #
-    #     if each['value'] =="" :
-    #         actor.height = 155
-    #         each['value'] = 155
-    #     else:
-    #         actor.height = int(each['value'])
-    #
-    #     if int(each['value']) <=154:
-    #         actor.category ="1"
-    #     elif 155 <=int(each['value']) <=159:
-    #         actor.category="2"
-    #     elif 160 <=int(each['value']) <=164:
-    #         actor.category="3"
-    #     elif int(each['value']) >=165:
-    #         actor.category="4"
-    #     else:
-    #         actor.category="2"
-    #     flash(u"저장 완료")
-    #     db.session.commit()
-
-
-
 #전설이 시작되는 부분
 #영상평가가 유사한 친구들을 추가하는 부분.
 @app.route('/backmirror1/<int:pag>',defaults={'page':1})
@@ -494,20 +411,25 @@ def test1(pag):
     oUser = User.query.filter(User.numVideo>24).order_by(desc(User.numVideo)).offset((pag-1)*20).limit(20)
 
     if not 'oVideo' in session:
-        session['oVideo'] = recommendation.makeVideoRowData()
+        session['oVideo'] = recommendation2.makeVideoRowData()
 
     oVideo = session['oVideo']
 
     for each in oUser:
         try:
-            list = recommendation.getSoulmate(oVideo,each.email,n=5)
+            list = recommendation2.getSoulmate(oVideo,each.email,n=5)
             a = json.dumps(list)
             each.prefsVideo = a
             db.session.commit()
-            logging.error(str(each.email)+"'s list" + a)
+            # logging.error(str(each.email)+"'s list" + a)
         except:
             logging.error(str(each.email)+"'s error")
-    return 'done'
+
+    if pag>20:
+        return 'done'
+    else:
+        logging.error("now"+pag)
+        return redirect(url_for('test1', pag=pag+1))
 #
 # 배우평가가 유사한 친구들을 추가하는 부분.
 @app.route('/backmirror2/<int:page>',defaults={'page':1})
@@ -517,30 +439,34 @@ def test2(page):
     oUser = User.query.filter(User.numActor>24).order_by(desc(User.numActor)).offset((page-1)*20).limit(20)
     #
     if not 'oActor' in session:
-        session['oActor'] = recommendation.makeActorRowData()
+        session['oActor'] = recommendation2.makeActorRowData()
     oActor = session['oActor']
 
     for each in oUser:
         try:
-            list = recommendation.getSoulmate(oActor,each.email,n=5)
+            list = recommendation2.getSoulmate(oActor,each.email,n=5)
             a = json.dumps(list)
             each.prefsActor = a
             db.session.commit()
-            logging.error(str(each.email)+"'s list" + a)
+            # logging.error(str(each.email)+"'s list" + a)
         except:
             logging.error(str(each.email)+"'s error")
-    return 'done'
-#
+
+    if page>20:
+        return 'done'
+    else:
+        logging.error("now"+page)
+        return redirect(url_for('test2', page=page+1))
 # 유사 영상 찾는 함수
 @app.route('/simvideo/<int:page>',defaults={'page':1})
 @app.route('/simvideo/<int:page>',methods=['GET', 'POST'])
 def simvideos(page):
 
-    if not 'oDict' in session:
-        session['oDict'] = recommendation.simVideoPrefs()
+    # if not 'oDict' in session:
+    oDict = recommendation2.simVideoPrefs()
 
-    oDict = session['oDict']
-    videos = Video.query.filter(Video.count>4).order_by(desc(Video.count)).offset((page - 1) * 50).limit(50)
+    # oDict = session['oDict']
+    videos = Video.query.filter(Video.count>4).order_by(desc(Video.count)).offset((page - 1) * 50).limit(30)
     c = 0
     for each in videos:
         # 큰 데이터 세트를 위해 진척 상태를 갱신
@@ -549,33 +475,36 @@ def simvideos(page):
         list = []
         success = False
         try:
-            list = recommendation.getSoulmate(oDict,each.name,n=5,similarity=recommendation.simPearson)
+            list = recommendation2.getSoulmate(oDict,each.name,n=5,similarity=recommendation2.simPearson)
+            # logging.error(list)
             success = True
         except: logging.error(str(each.name)+"'s error")
         if success:
             logging.error(str(each.name)+"'s list")
-            logging.error(list)
+            # logging.error(list)
             each.prefs = json.dumps(list)
             db.session.commit()
-        #
-        #
-        a = json.dumps(list)
-        each.prefs = a
-        db.session.commit()
-    if page>25:
+
+        # a = json.dumps(list)
+        # each.prefs = a
+        # db.session.commit()
+
+    if page>50:
         return 'done'
     else:
+        logging.error("now"+str(page))
         return redirect(url_for('simvideos', page=page+1))
-    return 'done'
+    # return 'done'
 #
 # 유사 배우 찾는 함수
 @app.route('/simactor/<int:page>',defaults={'page':1})
 @app.route('/simactor/<int:page>',methods=['GET', 'POST'])
 def simactors(page):
-    if not 'oItem' in session:
-        session['oItem'] = recommendation.simVideoPrefs()
+    # if not 'oItem' in session:
+    oItem = recommendation2.simActorPrefs()
+
     actors = Actor.query.filter(Actor.count>4).order_by(desc(Actor.count)).offset((page - 1) * 30).limit(30)
-    oItem = session['oItem']
+    # oItem = session['oItem']
 
     c = 0
     for each in actors:
@@ -585,12 +514,15 @@ def simactors(page):
         list = []
         success = False
         try:
-            list = recommendation.getSoulmate(oItem,each.name,n=5,similarity=recommendation.simPearson)
+            list = recommendation2.getSoulmate(oItem,each.name,n=5,similarity=recommendation2.simPearson)
+            logging.error(list)
             success=True
+
         except: logging.error(str(each.name)+"'s error")
+
         if success:
             logging.error(str(each.name)+"'s list")
-            logging.error(list)
+            # logging.error(list)
             each.prefs = json.dumps(list)
             db.session.commit()
         # _e = getMicrotime()
@@ -598,14 +530,16 @@ def simactors(page):
         # timeLogger("list", _s, _e)
 
         # _s = getMicrotime()
-        a = json.dumps(list)
-        each.prefs = a
-        db.session.commit()
+        # a = json.dumps(list)
+        # each.prefs = a
+        # db.session.commit()
         # _e = getMicrotime()
         # timeLogger("commit", _s, _e)
-    if page > 31:
+    if page > 50:
         return 'done'
-    return redirect(url_for('simactors',page=page+1))
+    else:
+        logging.error("now"+str(page))
+        return redirect(url_for('simactors',page=page+1))
     # return  'done'
 #
 
