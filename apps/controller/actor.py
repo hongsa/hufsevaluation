@@ -30,7 +30,7 @@ def actor_main():
         .with_entities(Actor.name,Actor.average).limit(5)
 
     review = ActorReview.query.order_by(desc(ActorReview.id)).limit(40)
-    number = random.randint(1,5)
+    number = random.randint(1,3)
 
 
     return render_template("actor_main.html", content=content,review=review,number=number)
@@ -106,7 +106,7 @@ def actor_category(name, page):
     else:
         up = int(total_page)
 
-    number = random.randint(1,5)
+    number = random.randint(1,3)
 
     return render_template("actor_category.html", actorCategory=actorCategory, category=category,
                            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name,number=number)
@@ -165,7 +165,7 @@ def actor_category2(name, page):
     else:
         up = int(total_page)
 
-    number = random.randint(1,5)
+    number = random.randint(1,3)
 
     return render_template("actor_category2.html", actorCategory=actorCategory, category=category,
                            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name,number=number)

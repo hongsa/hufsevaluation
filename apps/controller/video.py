@@ -28,7 +28,7 @@ def video_main():
         .with_entities(Video.name,Video.average).limit(5).limit(5)
 
     review = VideoReview.query.order_by(desc(VideoReview.id)).limit(40)
-    number = random.randint(1,5)
+    number = random.randint(1,3)
 
     return render_template("video_main.html", content=content,review=review,number=number)
 
@@ -88,7 +88,7 @@ def video_category(name, page):
     else:
         up = int(total_page)
 
-    number = random.randint(1,5)
+    number = random.randint(1,3)
 
     return render_template("video_category.html", videoCategory=videoCategory, category=category,
                            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name,number=number)
@@ -149,7 +149,7 @@ def video_category2(name, page):
     else:
         up = int(total_page)
 
-    number = random.randint(1,5)
+    number = random.randint(1,3)
 
     return render_template("video_category2.html", videoCategory=videoCategory, category=category,
                            total_page=range(1+(10*(int(a)-1)), int(total_page+1)), up = up, down = down,ratingList=ratingList,page=page,name=name,number=number)

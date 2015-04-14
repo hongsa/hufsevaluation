@@ -323,34 +323,42 @@ def recommend():
     email = session['session_user_email']
     cUser = User.query.get(email)
     # count = len(cUser.ratings())
-    count = cUser.numVideo
+    countVideo = cUser.numVideo
     # logging.error(count)
     rList = False
+    success=""
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
-    if count <24:
-        return render_template("recommendation.html",count=count, rList=rList)
+    if countVideo < 24:
+        return render_template("recommendation.html",count=countVideo, rList=rList)
     else:
-        if not cUser.prefsVideo:
+        logging.error("1")
+        if cUser.prefsVideo == None:
+            logging.error("2")
             success = False
             try:
                 list = recommendation.getSoulmate(recommendation.makeVideoRowData(),email,n=5)
+                logging.error(list)
+                logging.error("3")
                 a = json.dumps(list)
                 cUser.prefsVideo = a
                 db.session.commit()
                 success = True
             except:pass
             if success:
+                logging.error("4")
                 try:
                     prefs = json.loads(cUser.prefsVideo)
                     rList = recommendation.getRecommendations(recommendation.makePrefs(prefs),email,similarity=recommendation.simPearson)
                 except:pass
         else:
             try:
+                logging.error("5")
                 prefs = json.loads(cUser.prefsVideo)
                 rList = recommendation.getRecommendations(recommendation.makePrefs(prefs),email,similarity=recommendation.simPearson)
             except:pass
-        return render_template('recommendation.html', rList=rList,count=count)
-    # return 'well done'
+
+        return render_template('recommendation.html', rList=rList,count=countVideo)
+        # return 'well done'
 
 # 배우 추천기능
 @app.route('/recomm',methods=['GET','POST'])
@@ -362,18 +370,23 @@ def recommend2():
     email = session['session_user_email']
     cUser = User.query.get(email)
     # count = len(cUser.aRatings())
-    count = cUser.numActor
+    countActor = cUser.numActor
     # logging.error(count)
     rList = False
+    success=""
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
-    if count<24:
-        return render_template("recomm.html",count=count,rList=rList)
+    if countActor<24:
+        return render_template("recomm.html",count=countActor,rList=rList)
     else:
-        if not cUser.prefsActor:
+        logging.error("1")
+        if cUser.prefsActor ==None:
+            logging.error("2")
             success = False
             # _x = getMicrotime()
             try:
+                logging.error("3")
                 list = recommendation.getSoulmate(recommendation.makeActorRowData(),email,n=5)
+                logging.error(list)
                 a = json.dumps(list)
                 cUser.prefsActor = a
                 db.session.commit()
@@ -381,6 +394,7 @@ def recommend2():
             except:pass
             if success:
                 try:
+                    logging.error("4")
                     prefs = json.loads(cUser.prefsActor)
                     rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
                 except:pass
@@ -390,6 +404,7 @@ def recommend2():
             try:
 
                 # _s = getMicrotime()
+                logging.error("5")
                 prefs = json.loads(cUser.prefsActor)
                 rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
                 # _e = getMicrotime()
@@ -399,7 +414,7 @@ def recommend2():
         # rList = recommendation.getRecommendations(recommendation.makeActorRowData(),email,similarity=recommendation.simPearson)
         # _e = getMicrotime()
         # timeLogger("rList", _s, _e)
-        return render_template('recomm.html', rList=rList, count=count)
+        return render_template('recomm.html', rList=rList, count=countActor)
     # return 'well done'
 
 
