@@ -26,7 +26,7 @@
         .ad{
             height: 18em;
             width: 24em;
-            background-image: url(../static/img/ad_mobile{{number}}.png);
+            background-image: url(../static/img/sora_mobile{{number}}.png);
             background-size: cover;
 
         }
@@ -38,7 +38,7 @@
         .ad {
             height: 32em;
             width: 12em;
-            background-image: url(../static/img/ad_desktop{{number}}.png);
+            background-image: url(../static/img/soramall{{number}}.png);
             background-size: cover;
 
         }
@@ -52,7 +52,9 @@
 
 <div class="col-md-2">
     <div class="review_chart">
-        <div class="text-center" style="font-size: 16px;">실시간 한줄평</div>
+        <div class="text-center" style="font-size: 16px;">
+        <span style="font-family: 'Hanna';">실시간 한줄평</span>
+        </div>
         <hr style="margin-top: 5px; margin-bottom: 5px; border-color: black"/>
         <div style="font-size: 13px;">
             {% for each in review %}
@@ -115,7 +117,7 @@
             <div class="col-sm-4 col-md-2">
                 <div class="thumbnail text-center">
                     <a href="/v_category/2">
-                        <div><span>"금기된 사랑"</span></div>
+                        <div><span>"금지된 사랑"</span></div>
                         <div ><img src="{{url_for('static', filename='img/folder.png')}}" class="plus_sign" class="img-responsive" alt="Responsive image"/></div>
                         <div class="all_name_small">영상 더보기</div>
                     </a>
@@ -230,7 +232,7 @@
     </div>
     <div class="col-md-2">
         <div class="text-center">
-            <a href="http://www.yesfile.com/partner/link.php?pid=jikbakguri" target="_blank">
+            <a href="http://soramall.kr/intro.php?p_id=guri" target="_blank">
                 <img src="" class="ad"/>
             </a>
         </div>

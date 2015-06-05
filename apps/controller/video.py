@@ -50,7 +50,7 @@ def video_category(name, page):
     if name=='1':
         category="러브 액츄얼리"
     elif name=='2':
-        category="금기된 사랑"
+        category="금지된 사랑"
     elif name=='3':
         category="코스튬"
     elif name=='4':
@@ -111,7 +111,7 @@ def video_category2(name, page):
     if name=='1':
         category="러브 액츄얼리"
     elif name=='2':
-        category="금기된 사랑"
+        category="금지된 사랑"
     elif name=='3':
         category="코스튬"
     elif name=='4':

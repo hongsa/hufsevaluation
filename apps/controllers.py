@@ -26,6 +26,7 @@ import math
 @app.route('/')
 @app.route('/index')
 def index():
+
     return user.index()
     # return render_template("serverout.html")
 
@@ -326,7 +327,7 @@ def recommend():
     countVideo = cUser.numVideo
     # logging.error(count)
     rList = False
-    success=""
+    # success=""
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if countVideo < 24:
         return render_template("recommendation.html",count=countVideo, rList=rList)
@@ -334,28 +335,28 @@ def recommend():
         logging.error("1")
         if cUser.prefsVideo == None:
             logging.error("2")
-            success = False
-            try:
-                list = recommendation.getSoulmate(recommendation.makeVideoRowData(),email,n=5)
-                logging.error(list)
-                logging.error("3")
-                a = json.dumps(list)
-                cUser.prefsVideo = a
-                db.session.commit()
-                success = True
-            except:pass
-            if success:
-                logging.error("4")
-                try:
-                    prefs = json.loads(cUser.prefsVideo)
-                    rList = recommendation.getRecommendations(recommendation.makePrefs(prefs),email,similarity=recommendation.simPearson)
-                except:pass
+            # success = False
+            # try:
+            list = recommendation2.getSoulmate(recommendation2.makeVideoRowData(),email,n=5)
+            # logging.error(list)
+            logging.error("3")
+            a = json.dumps(list)
+            cUser.prefsVideo = a
+            db.session.commit()
+            # success = True
+            # except:pass
+            # if success == True:
+            #     logging.error("4")
+            #     try:
+            # prefs = json.loads(cUser.prefsVideo)
+            rList = recommendation2.getRecommendations(recommendation2.makePrefs(list),email,similarity=recommendation2.simPearson)
+                # except:pass
         else:
-            try:
-                logging.error("5")
-                prefs = json.loads(cUser.prefsVideo)
-                rList = recommendation.getRecommendations(recommendation.makePrefs(prefs),email,similarity=recommendation.simPearson)
-            except:pass
+            # try:
+            logging.error("4")
+            prefs = json.loads(cUser.prefsVideo)
+            rList = recommendation2.getRecommendations(recommendation2.makePrefs(prefs),email,similarity=recommendation2.simPearson)
+            # except:pass
 
         return render_template('recommendation.html', rList=rList,count=countVideo)
         # return 'well done'
@@ -373,7 +374,7 @@ def recommend2():
     countActor = cUser.numActor
     # logging.error(count)
     rList = False
-    success=""
+    # success=""
     # 추천 수가 부족할 경우 추천 알고리즘 안돌림
     if countActor<24:
         return render_template("recomm.html",count=countActor,rList=rList)
@@ -381,35 +382,34 @@ def recommend2():
         logging.error("1")
         if cUser.prefsActor ==None:
             logging.error("2")
-            success = False
+            # success = False
             # _x = getMicrotime()
-            try:
-                logging.error("3")
-                list = recommendation.getSoulmate(recommendation.makeActorRowData(),email,n=5)
-                logging.error(list)
-                a = json.dumps(list)
-                cUser.prefsActor = a
-                db.session.commit()
-                success = True
-            except:pass
-            if success:
-                try:
-                    logging.error("4")
-                    prefs = json.loads(cUser.prefsActor)
-                    rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
-                except:pass
+            # try:
+            list = recommendation2.getSoulmate(recommendation2.makeActorRowData(),email,n=5)
+            logging.error("3")
+            # logging.error(list)
+            a = json.dumps(list)
+            cUser.prefsActor = a
+            db.session.commit()
+            # success = True
+            # except:pass
+            # if success == True:
+            #     try:
+            # prefs = json.loads(cUser.prefsActor)
+            rList = recommendation2.getRecommendations(recommendation2.makePrefsActor(list),email,similarity=recommendation2.simPearson)
+                # except:pass
             # _y = getMicrotime()
             # timeLogger("firstTry", _x, _y)
         else:
-            try:
+            # try:
 
                 # _s = getMicrotime()
-                logging.error("5")
-                prefs = json.loads(cUser.prefsActor)
-                rList = recommendation.getRecommendations(recommendation.makePrefsActor(prefs),email,similarity=recommendation.simPearson)
+            logging.error("4")
+            prefs = json.loads(cUser.prefsActor)
+            rList = recommendation2.getRecommendations(recommendation2.makePrefsActor(prefs),email,similarity=recommendation2.simPearson)
                 # _e = getMicrotime()
                 # timeLogger("rList", _s, _e)
-            except:pass
+            # except:pass
         # _s = getMicrotime()
         # rList = recommendation.getRecommendations(recommendation.makeActorRowData(),email,similarity=recommendation.simPearson)
         # _e = getMicrotime()

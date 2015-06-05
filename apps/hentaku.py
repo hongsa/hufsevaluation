@@ -197,7 +197,7 @@ def value():
  
     print final
  
-# value()
+value()
  
  
  
@@ -246,7 +246,7 @@ def image():
         url_detail = "http://hentaku.net/star/"+ str(a)
         hdr = {'User-Agent': 'Mozilla/5.0'}
         req = urllib2.Request(url_detail,headers=hdr)
- 
+
         try:
             b = urllib2.urlopen(req)
         except:
@@ -411,5 +411,5 @@ def db_eng():
                 logging.error(a.name)
                 db.session.commit()
 
-db_eng()
+# db_eng()
 

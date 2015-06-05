@@ -52,7 +52,7 @@ def makePrefs(list):
     for each in list:
         oUser = User.query.get(each)
         # 평가를 안한 user의 경우 표본에서 제외
-        if len(oUser.ratings())>10:
+        if oUser.numVideo>10:
             dict[each]=oUser.ratings()
     return dict
 
@@ -64,7 +64,7 @@ def makePrefsActor(list):
     for each in list:
         oUser=User.query.get(each)
         #평가를 안한 새끼 ㄲㅈ
-        if len(oUser.aRatings())>10:
+        if oUser.numActor>10:
             dict[each] = oUser.aRatings()
     return dict
 

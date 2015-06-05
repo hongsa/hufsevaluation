@@ -234,7 +234,7 @@ def videoDetail(name):
     if videoRow.category=='1':
         category='러브 액츄얼리'
     elif videoRow.category=='2':
-        category='금기된 사랑'
+        category='금지된 사랑'
     elif videoRow.category =='3':
         category='코스튬'
     elif videoRow.category =='4':
@@ -312,7 +312,7 @@ def a_comment_rows():
         num = int(request.form.get('num'))
         actorRow = Actor.query.get(name)
         # comments = actorRow.actorReview_actor
-        comments = actorRow.actorReview_actor.order_by(asc(ActorReview.created)). \
+        comments = actorRow.actorReview_actor.order_by(desc(ActorReview.id)). \
             offset((num-1)*30).limit(30)
 
         total = int(math.ceil(float(actorRow.actorReview_actor.count())/30))
@@ -343,7 +343,7 @@ def v_comment_rows():
         num = int(request.form.get('num'))
         videoRow = Video.query.get(name)
         # comments = actorRow.actorReview_actor
-        comments = videoRow.videoReview_video.order_by(asc(VideoReview.created)).\
+        comments = videoRow.videoReview_video.order_by(desc(VideoReview.id)).\
             offset((num-1)*30).limit(30)
 
         total = int(math.ceil(float(videoRow.videoReview_video.count())/30))

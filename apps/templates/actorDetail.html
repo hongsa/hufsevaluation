@@ -79,16 +79,15 @@
                 $('#a_more').hide();
             }
         });
-//        };
-    });
 
+    });
 
     $(document).ajaxStart(function() {
         $('.loading').fadeIn('fast');
-    })
+    });
     $(document).ajaxStop( function() {
         $('.loading').fadeOut('fast');
-    })
+    });
 
 
 </script>
@@ -115,18 +114,25 @@
                          onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
                          style="margin-bottom: 0.4em"/>
                 </div>
-                <a href="{{actorRow.yesfile()}}" target="_blank">
-                <button  class="btn btn-primary">
-                <span class="glyphicon glyphicon-download"></span>&nbsp;&nbsp;영상 보러가기
-                </button>
+                <a href="http://soramall.kr/intro.php?p_id=guri" target="_blank">
+                    <button  class="btn btn-primary">
+                        <span class="glyphicon glyphicon-plane"></span>&nbsp;&nbsp;홍콩가기!
+                    </button>
                 </a>
-
+                <a href="https://www.google.co.kr/?gfe_rd=cr&ei=CIddVeeYMMPC8AfvsoCIDQ#newwindow=1&q={{actorRow.name}}+torrent" target="_blank">
+                    <button name="submitbutton" value="second" type="submit" class="btn btn-default btn-xs" style="background-color:transparent;border-color:transparent;">
+                        <img src="{{url_for('static', filename='img/torrentBlue.png')}}"
+                             onmouseover="this.src='{{url_for('static', filename='img/torrentYellow.png')}}'"
+                             onmouseout="this.src='{{url_for('static', filename='img/torrentBlue.png')}}'" alt=""
+                             style="padding-bottom: 3px;height:30px;"/>
+                    </button>
+                </a>
             </div>
         </div>
 
         <div class="col-sm-6 col-md-3">
             <div class="detail_box text-center">
-                <p style="font-size: 25px;">기본 정보</p>
+                <p style="font-size: 25px; font-family: 'Hanna';">기본 정보</p>
                 <p>평균평점 : <span>{{actorRow.average}}</span> 점</p>
                 <p>평가인원 : <span>{{actorRow.count}}</span> 명</p>
                 <p>키 : <span >{{actorRow.height}}</span> cm</p>
@@ -144,7 +150,7 @@
 
         <div class="col-sm-6 col-md-3">
             <div class="detail_box2 text-center">
-                <p style="font-size: 25px;">출연 작품</p>
+                <p style="font-size: 25px; font-family: 'Hanna';">출연 작품</p>
                 {% for each in oFilmo %}
                 <div>
                     <a href="../videoDetail/{{each.videoName}}">
@@ -160,7 +166,7 @@
 
         <div class="col-sm-6 col-md-3" >
             <div class="detail_box2 text-center">
-                <p style="font-size: 25px;">유사한 배우</p>
+                <p style="font-size: 25px;font-family: 'Hanna';">유사한 배우</p>
                 {% if not sList == False %}
                 {% for each in sList %}
                 <div>
@@ -214,7 +220,7 @@
         </div>
 
         <div class="text-center">
-            <button class="btn btn-warning btn-block" id="a_more" style="display: none;">한줄평 더 보기</button>
+            <button class="btn btn-warning btn-lg" id="a_more" style="display: none;">한줄평 더 보기</button>
         </div>
 
         <!--<div class="col-sm-1"></div>-->
