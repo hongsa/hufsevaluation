@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import redirect, url_for, render_template, request, flash, session,jsonify
 from apps import db
-from apps.models import User, Actor, Video, ActorReview, VideoReview,Filmo
+from apps.models import User, Actor, Video, ActorReview, VideoReview,Filmo,HashActor,HashVideo
 from apps import recommendation
 import json
 import time
@@ -10,6 +10,7 @@ from sqlalchemy import desc,asc
 import math
 import pytz
 import datetime
+import re
 
 
 
@@ -43,6 +44,12 @@ def actorDetail(name):
     actorRow = Actor.query.get(name)
     # _e = getMicrotime()
     # timeLogger(" ActorRow", _s, _e)
+
+    #해시태그 가져오기
+    hashTotal = actorRow.hash_actor
+    hash =[]
+    for each in hashTotal:
+        hash.append(each.tag)
 
 
     #출연작품 가져오기
@@ -123,9 +130,9 @@ def actorDetail(name):
 
 
     if rating:
-        return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo,rating=rating.rating,sList=sList,category=category)
+        return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo,rating=rating.rating,sList=sList,category=category,hash=set(hash))
     else:
-        return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo, sList=sList,category=category)
+        return render_template("actorDetail.html", actorRow=actorRow, oFilmo=oFilmo, sList=sList,category=category,hash=set(hash))
 
 
 #댓글입력
@@ -149,6 +156,20 @@ def actor_comment():
                 sLevel= 4
             sComment = request.form['comment']
             sName = request.form['actorName']
+
+
+            hash = re.compile(u"[#][a-zA-Z\u3131-\u3163\uac00-\ud7a3]+")
+            hashList = hash.findall(sComment)
+
+            for each in hashList:
+                thisHash = HashActor(
+                    actorName = sName,
+                    tag = each
+                )
+                db.session.add(thisHash)
+                db.session.commit()
+
+
             thisComment={}
             thisComment=ActorReview(
                 actorName=sName,
@@ -193,6 +214,14 @@ def videoDetail(name):
     user = User.query.get(email)
     # 해당하는 배우추출
     videoRow = Video.query.get(name)
+
+
+    #해시태그 가져오기
+    hashTotal = videoRow.hash_video
+    hash =[]
+    for each in hashTotal:
+        hash.append(each.tag)
+
 
     #출연작품 가져오기
     # oFilmo = Filmo.query.filter_by(videoName=name).all()
@@ -248,8 +277,8 @@ def videoDetail(name):
     # rating = videoRow.ratingVideo_video.filter_by(userEmail=email).first()
     rating = user.ratingVideo_user.filter_by(videoName=name).first()
     if rating:
-        return render_template("videoDetail.html", videoRow=videoRow, oFilmo=oFilmo,rating=rating.rating,sList=sList,category=category)
-    return render_template("videoDetail.html", videoRow=videoRow, oFilmo=oFilmo, sList=sList,category=category)
+        return render_template("videoDetail.html", videoRow=videoRow, oFilmo=oFilmo,rating=rating.rating,sList=sList,category=category,hash=set(hash))
+    return render_template("videoDetail.html", videoRow=videoRow, oFilmo=oFilmo, sList=sList,category=category,hash=set(hash))
 
 #댓글입력
 def video_comment():
@@ -271,6 +300,19 @@ def video_comment():
                 sLevel= 4
             sComment = request.form['comment']
             sName = request.form['videoName']
+
+
+            hash = re.compile(u"[#][a-zA-Z\u3131-\u3163\uac00-\ud7a3]+")
+            hashList = hash.findall(sComment)
+
+            for each in hashList:
+                thisHash = HashVideo(
+                    videoName = sName,
+                    tag = each
+                )
+                db.session.add(thisHash)
+                db.session.commit()
+
             thisComment={}
             thisComment=VideoReview(
                 videoName=sName,

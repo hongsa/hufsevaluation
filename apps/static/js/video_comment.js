@@ -10,7 +10,7 @@ $(document).ready(function(){
             return;
         }
         if ((inputComment.indexOf("<")!=-1) ||(inputComment.indexOf(">")!=-1) || (inputComment.indexOf("$")!=-1)
-            ||(inputComment.indexOf("#")!=-1) ||(inputComment.indexOf("{")!=-1)||(inputComment.indexOf("}")!=-1)
+            ||(inputComment.indexOf("{")!=-1)||(inputComment.indexOf("}")!=-1)
             ||(inputComment.indexOf("[")!=-1)||(inputComment.indexOf("]")!=-1)||(inputComment.indexOf("/")!=-1))
         {
             alert("특수문자는 사용할 수 없습니다!");

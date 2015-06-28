@@ -46,6 +46,35 @@
         </div>
 
         {% endfor %}
+
+        {% for a in result['hash_actor'] %}
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail text-center">
+                <a href="../actorDetail/{{a}}">
+                    <img src="http://storage.googleapis.com/jikbakguri/actor2/{{a}}.jpg"  class="category_img" alt=""/>
+                    <div>
+                        <span class="all_name">{{a}}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+
+
+
+        {% for b in result['hash_video'] %}
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail text-center">
+                <a href="../videoDetail/{{b}}">
+                    <img src="http://storage.googleapis.com/jikbakguri/video/{{b}}.jpg"  class="category_img" alt=""/>
+                    <div>
+                        <span class="all_name">{{b}}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+
         {% endif %}
     </div>
 </div>

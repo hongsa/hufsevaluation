@@ -90,8 +90,8 @@ def detailPage():
 
 
             logging.error(str0)
-            # logging.error(str1)
-            # logging.error(str2)
+            logging.error(str1)
+            logging.error(str2)
             # logging.error(result3)
             # logging.error(str3)
 
@@ -134,7 +134,7 @@ def detailPage():
     logging.error(total)
     print total
 
-# detailPage()
+detailPage()
 
 def image():
 
@@ -203,21 +203,28 @@ def proxy():
         url = "http://pics.dmm.co.jp/mono/movie/"+ each['img']
         logging.error(url)
 
-        # if len(url) > 0:
+        if len(url) > 0:
             # Proxy set up
-        proxy = urllib2.ProxyHandler( {'http': url} )
-        logging.error(proxy)
+            proxy = urllib2.ProxyHandler( {'http': url} )
+            logging.error(proxy)
 
-        # Create an URL opener utilizing proxy
-        opener = urllib2.build_opener( proxy )
-        urllib2.install_opener( opener )
+            # Create an URL opener utilizing proxy
+            opener = urllib2.build_opener( proxy )
+            urllib2.install_opener( opener )
 
-        # Aquire data from URL
-        request = urllib2.Request( url )
-        response = urllib2.urlopen( request )
+            # Aquire data from URL
+            request = urllib2.Request( url )
+            response = urllib2.urlopen( request )
+            logging.error(response)
+        else:
+            response = urllib2.urlopen( url )
+            logging.error(response)
+
+
 
         file_path = "%s%s" % ("/Users/hongsasung/Desktop/crawl/", '%s.jpg'%each['name'])
         downloaded_image = file(file_path, "wb")
+        logging.error(downloaded_image)
         while True:
             buf = response.read(100000000)
             if len(buf) == 0:

@@ -186,44 +186,57 @@
                 {% endif %}
             </div>
         </div>
-
-        <!--댓글 입력부분 시작-->
-        <div class="row">
-            <div class="col-sm-12">
-
-                <div class="form-group">
-                    <div class="col-sm-2 text-center"><span style="font-size: 25px;">한줄평</span></div>
-                    <div class="col-sm-8">
-                        <input class="form-control" id = "video_input" type="text" name="comment" placeholder="나만의 진솔한 한줄평!" maxlength="68" />
-                        <input class="form-control" type="hidden" name="videoname" value="{{videoRow.name}}" maxlength="68" />
-                    </div>
-                    <div class="col-sm-2 text-center">
-                        <!--<button  class="btn btn-blueblack" onclick="void(sendData());"style="position:relative;left:40px;top:16px;font-size:18px;">-->
-                        <button  class="btn btn-warning" id="video_comment">가자!</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <!--댓글 입력부분 종료-->
-
-        <!--댓글 출력부분 시작-->
-        <div class="row review" style="margin-top: 1.5em; margin-bottom: 2.5em;">
-
-
-            <div class="col-sm-12">
-                <p id="current"></p>
-                <div id="v_additional"></div>
-                <div class="loading" style="display: none;"></div>
-            </div>
-            <div class="text-center">
-                <button class="btn btn-warning btn-lg" id="v_more" style="display: none;">한줄평 더 보기</button>
-            </div>
-
-            <!--<div class="col-sm-1"></div>-->
-        </div>
     </div>
 
+    <div class="row">
+        <div class="detail_box2" style="height:6em;">
+            <div class="text-center" style="font-size: 25px;font-family: 'Hanna';">#해시태그#(다같이 만들어가요!)</div>
+            {% for each in hash%}
+            <span style="color:#1473b3;">
+                    {{each}}
+            </span>
+            {% endfor %}
+        </div>
+    </div>
+    <br/>
 
-    <div class="col-md-1"></div>
-    {% endblock %}
+    <!--댓글 입력부분 시작-->
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="form-group">
+                <div class="col-sm-2 text-center"><span style="font-size: 25px;">한줄평</span></div>
+                <div class="col-sm-8">
+                    <input class="form-control" id = "video_input" type="text" name="comment" placeholder="진솔한 한줄평! (#을 붙이면 해시태그로 저장 - #사랑)" maxlength="68" />
+                    <input class="form-control" type="hidden" name="videoname" value="{{videoRow.name}}" maxlength="68" />
+                </div>
+                <div class="col-sm-2 text-center">
+                    <!--<button  class="btn btn-blueblack" onclick="void(sendData());"style="position:relative;left:40px;top:16px;font-size:18px;">-->
+                    <button  class="btn btn-warning" id="video_comment">가자!</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--댓글 입력부분 종료-->
+
+    <!--댓글 출력부분 시작-->
+    <div class="row review" style="margin-top: 1.5em; margin-bottom: 2.5em;">
+
+
+        <div class="col-sm-12">
+            <p id="current"></p>
+            <div id="v_additional"></div>
+            <div class="loading" style="display: none;"></div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-warning btn-lg" id="v_more" style="display: none;">한줄평 더 보기</button>
+        </div>
+
+        <!--<div class="col-sm-1"></div>-->
+    </div>
+</div>
+
+
+<div class="col-md-1"></div>
+{% endblock %}

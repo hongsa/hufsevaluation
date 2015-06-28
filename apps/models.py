@@ -253,3 +253,17 @@ class Like(db.Model):
     #like 0 , hate 1
     evaluate = db.Column(db.Integer,default=0)
 
+
+class HashActor(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    actor = db.relationship('Actor', backref=db.backref('hash_actor', cascade='all, delete-orphan', lazy='dynamic'))
+    actorName = db.Column(db.String(255), db.ForeignKey(Actor.name))
+    tag = db.Column(db.Text())
+    created = db.Column(db.DateTime(), default=get_current_time)
+
+class HashVideo(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    video = db.relationship('Video', backref=db.backref('hash_video', cascade='all, delete-orphan', lazy='dynamic'))
+    videoName = db.Column(db.String(255), db.ForeignKey(Video.name))
+    tag = db.Column(db.Text())
+    created = db.Column(db.DateTime(), default=get_current_time)
