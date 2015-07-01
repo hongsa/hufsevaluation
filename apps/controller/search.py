@@ -14,7 +14,6 @@ def db_search(searching_word):
     i = searching_word.upper()
 
     if "#" in i:
-        logging.error("find")
         result['hash_actor'] = set([each.actorName for each in HashActor.query.filter(HashActor.tag.like("%"+i+"%")).with_entities(HashActor.actorName).all()])
         result['hash_video'] =set([each.videoName for each in HashVideo.query.filter(HashVideo.tag.like("%"+i+"%")).with_entities(HashVideo.videoName).all()])
 

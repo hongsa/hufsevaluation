@@ -157,8 +157,9 @@
                 {% for each in oFilmo %}
                 <div>
                     <a href="../actorDetail/{{each.ActorName}}">
-                        <img src="http://storage.googleapis.com/jikbakguri/actor2/{{each.ActorName}}.jpg"
-                             style="width: 3.5em;height: 3.5em;background-size: cover;border-radius: 12.5em;"class="small_img"/>
+                        <!--<img src="http://storage.googleapis.com/jikbakguri/actor2/{{each.ActorName}}.jpg"-->
+                             <!--style="width: 3.5em;height: 3.5em;background-size: cover;border-radius: 12.5em;"class="small_img"/>-->
+                        <img src="{{each.urlActor()}}" alt="" style="width: 3.5em;height: 3.5em;background-size: cover;border-radius: 12.5em;"class="small_img"/>
                         &nbsp;&nbsp;
                         <span>{{each.ActorName}}&nbsp;({{each.actor.average}} 점)</span>
                     </a>
@@ -190,7 +191,7 @@
 
     <div class="row">
         <div class="detail_box2" style="height:6em;">
-            <div class="text-center" style="font-size: 25px;font-family: 'Hanna';">#해시태그#(다같이 만들어가요!)</div>
+            <div class="text-center" style="font-size: 25px;font-family: 'Hanna';">#해시태그#(핵심정보는 해시태그로!)</div>
             {% for each in hash%}
             <span style="color:#1473b3;">
                     {{each}}
@@ -207,7 +208,7 @@
             <div class="form-group">
                 <div class="col-sm-2 text-center"><span style="font-size: 25px;">한줄평</span></div>
                 <div class="col-sm-8">
-                    <input class="form-control" id = "video_input" type="text" name="comment" placeholder="진솔한 한줄평! (#을 붙이면 해시태그로 저장 - #사랑)" maxlength="68" />
+                    <input class="form-control" id = "video_input" type="text" name="comment" placeholder="진솔한 한줄평! (#을 붙이면 해시태그로 저장 - #육덕)" maxlength="68" />
                     <input class="form-control" type="hidden" name="videoname" value="{{videoRow.name}}" maxlength="68" />
                 </div>
                 <div class="col-sm-2 text-center">

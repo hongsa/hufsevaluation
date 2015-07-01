@@ -13,6 +13,7 @@ def video_main():
         return redirect(url_for('index'))
 
     # totalRank = Video.query.filter(Video.count>10).order_by(desc(Video.average)).with_entities(Video.name).limit(15)
+
     content={}
     content['one'] = Video.query.filter(Video.category=="1",Video.count>10).order_by(desc(Video.average))\
         .with_entities(Video.name,Video.average).limit(5)
@@ -40,8 +41,9 @@ def video_category(name, page):
         return redirect(url_for('index'))
 
     video = Video.query.filter_by(category=name)
-    videoCategory = video.order_by(desc(Video.average)).offset(
-        (page - 1) * 12).with_entities(Video.name,Video.average,Video.count).limit(12)
+    # videoCategory = video.order_by(desc(Video.average)).offset(
+    #     (page - 1) * 12).with_entities(Video.name,Video.average,Video.count).limit(12)
+    videoCategory = video.order_by(desc(Video.average)).offset((page - 1) * 12).limit(12)
     total = video.count()
 
     calclulate = float(float(total) / 12)
@@ -101,8 +103,11 @@ def video_category2(name, page):
         return redirect(url_for('index'))
 
     video = Video.query.filter_by(category=name)
-    videoCategory = video.order_by(desc(Video.count)).offset(
-        (page - 1) * 12).with_entities(Video.name,Video.average,Video.count).limit(12)
+    # videoCategory = video.order_by(desc(Video.count)).offset(
+    #     (page - 1) * 12).with_entities(Video.name,Video.average,Video.count).limit(12)
+
+    videoCategory = video.order_by(desc(Video.count)).offset((page - 1) * 12).limit(12)
+
     total = video.count()
 
     calclulate = float(float(total) / 12)

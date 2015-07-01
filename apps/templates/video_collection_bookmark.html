@@ -28,7 +28,8 @@
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail text-center">
                 <a href="../../videoDetail/{{each.videoName}}">
-                    <img src="http://storage.googleapis.com/jikbakguri/video/{{each.videoName}}.jpg"  class="category_img" alt=""/>
+                    <!--<img src="http://storage.googleapis.com/jikbakguri/video/{{each.videoName}}.jpg"  class="category_img" alt=""/>-->
+                    <img src="{{each.video.url()}}" alt="" class="category_img"/>
                     <div>
                         <div class="all_name">{{each.videoName}}</div>
                     </div>

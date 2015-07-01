@@ -13,8 +13,10 @@ def new_video(name, page):
     companyList = set([each.company for each in Video.query.with_entities(Video.company).all()])
 
     video = Video.query.filter_by(company=name)
-    videoCompany = video.order_by(desc(Video.release)).offset(
-        (page - 1) * 12).with_entities(Video.name,Video.average,Video.count).limit(12)
+    # videoCompany = video.order_by(desc(Video.release)).offset(
+    #     (page - 1) * 12).with_entities(Video.name,Video.average,Video.count).limit(12)
+    videoCompany = video.order_by(desc(Video.release)).offset((page - 1) * 12).limit(12)
+
     total = video.count()
     calclulate = float(float(total) / 12)
     total_page = math.ceil(calclulate)

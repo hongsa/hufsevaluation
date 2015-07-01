@@ -4,6 +4,8 @@ import json
 import urllib
 import pytz
 import datetime
+import httplib
+import logging
 
 def get_current_time():
     return datetime.datetime.now(pytz.timezone('Asia/Seoul'))
@@ -15,7 +17,7 @@ class User(db.Model):
     nickname = db.Column(db.String(255),index=True)
     #0은 남자 1은 여자
     sex = db.Column(db.Integer, default = 0)
-    joinDATE = db.Column(db.DateTime(),default = db.func.now())
+    joinDATE = db.Column(db.DateTime(),default = get_current_time)
     prefsVideo = db.Column(db.Text(length=None, collation=None, convert_unicode=False, unicode_error=None, _warn_on_bytestring=False))
     prefsActor = db.Column(db.Text(length=None, collation=None, convert_unicode=False, unicode_error=None, _warn_on_bytestring=False))
     numVideo = db.Column(db.Integer, default=0, index=True)
@@ -61,12 +63,26 @@ class Actor(db.Model):
         for oRating in self.ratingActor_actor:
             dict[oRating.userEmail] = oRating.rating
         return dict
-    def url(self):
+    # def url(self):
 
         # url = u'http://storage.googleapis.com/jikbakguri/actor2/'+str(self.name)+'.jpg'
         # a = urllib.quote(url.encode('utf8'), '/:')
         # return a
-        return 'http://storage.googleapis.com/jikbakguri/actor2/'+self.name+'.jpg'
+        # return 'http://storage.googleapis.com/jikbakguri/actor2/'+self.name+'.jpg'
+
+    def url(self):
+        conn = httplib.HTTPConnection('storage.googleapis.com/jikbakguri/actor2/')
+        conn.request('HEAD',self.name+'.jpg')
+        response = conn.getresponse()
+        if response.status == 200:
+            a = 'http://storage.googleapis.com/jikbakguri/actor2/'+self.name+'.jpg'
+            conn.close()
+            return a
+        else:
+            a = 'http://storage.googleapis.com/jikbakguri/image/girl.png'
+            conn.close()
+            return a
+
 
     def yesfile(self):
         a = urllib.quote(str(self.name).encode('euc-kr'))
@@ -115,8 +131,22 @@ class Video(db.Model):
         for oRating in self.ratingVideo_video:
             dict[oRating.userEmail] = oRating.rating
         return dict
+    # def url(self):
+    #     return 'http://storage.googleapis.com/jikbakguri/video/'+self.name+'.jpg'
+
     def url(self):
-        return 'http://storage.googleapis.com/jikbakguri/video/'+self.name+'.jpg'
+        conn = httplib.HTTPConnection('storage.googleapis.com/jikbakguri/video/')
+        conn.request('HEAD',self.name+'.jpg')
+        response = conn.getresponse()
+        if response.status == 200:
+            a = 'http://storage.googleapis.com/jikbakguri/video/'+self.name+'.jpg'
+            conn.close()
+            return a
+        else:
+            a = 'http://storage.googleapis.com/jikbakguri/image/girl.png'
+            conn.close()
+            return a
+
     def reviews(self):
         list = [] # return할 list
         for review in self.videoReview_video:
@@ -148,7 +178,7 @@ class ActorReview(db.Model):
     user = db.relationship('User', backref=db.backref('actorReview_user', cascade='all, delete-orphan', lazy='dynamic'))
     userEmail = db.Column(db.String(255), db.ForeignKey(User.email))
     content = db.Column(db.String(68))
-    created=db.Column(db.Date(), default=db.func.now())
+    created = db.Column(db.DateTime(), default=get_current_time)
 
 class VideoReview(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -157,7 +187,7 @@ class VideoReview(db.Model):
     user = db.relationship('User', backref=db.backref('videoReview_user', cascade='all, delete-orphan', lazy='dynamic'))
     userEmail = db.Column(db.String(255), db.ForeignKey(User.email))
     content = db.Column(db.String(68))
-    created=db.Column(db.Date(), default=db.func.now())
+    created = db.Column(db.DateTime(), default=get_current_time)
 
 class Filmo(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -166,6 +196,31 @@ class Filmo(db.Model):
     videoName = db.Column(db.String(255), db.ForeignKey(Video.name))
     ActorName = db.Column(db.String(255), db.ForeignKey(Actor.name))
 
+    def urlActor(self):
+        conn = httplib.HTTPConnection('storage.googleapis.com/jikbakguri/actor2/')
+        conn.request('HEAD',self.ActorName+'.jpg')
+        response = conn.getresponse()
+        if response.status == 200:
+            a = 'http://storage.googleapis.com/jikbakguri/actor2/'+self.ActorName+'.jpg'
+            conn.close()
+            return a
+        else:
+            a = 'http://storage.googleapis.com/jikbakguri/image/girl.png'
+            conn.close()
+            return a
+
+    def urlVideo(self):
+        conn = httplib.HTTPConnection('storage.googleapis.com/jikbakguri/video/')
+        conn.request('HEAD',self.videoName+'.jpg')
+        response = conn.getresponse()
+        if response.status == 200:
+            a = 'http://storage.googleapis.com/jikbakguri/video/'+self.videoName+'.jpg'
+            conn.close()
+            return a
+        else:
+            a = 'http://storage.googleapis.com/jikbakguri/image/girl.png'
+            conn.close()
+            return a
 
 class RatingActor(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -174,6 +229,7 @@ class RatingActor(db.Model):
     user = db.relationship('User', backref=db.backref('ratingActor_user', cascade='all, delete-orphan', lazy='dynamic'))
     userEmail = db.Column(db.String(255), db.ForeignKey(User.email))
     rating = db.Column(db.Integer, default=0)
+    created = db.Column(db.DateTime(), default=get_current_time)
 
 class RatingVideo(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -182,6 +238,7 @@ class RatingVideo(db.Model):
     user = db.relationship('User', backref=db.backref('ratingVideo_user', cascade='all, delete-orphan', lazy='dynamic'))
     userEmail = db.Column(db.String(255), db.ForeignKey(User.email))
     rating = db.Column(db.Integer, default=0)
+    created = db.Column(db.DateTime(), default=get_current_time)
 
 class Favorite(db.Model):
     id = db.Column(db.Integer, primary_key = True)

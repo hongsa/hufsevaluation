@@ -103,7 +103,9 @@
                         <div>
                             <span>{{each.average}} 점</span> <span>({{each.count}} 명)</span>
                         </div>
-                        <img src='http://storage.googleapis.com/jikbakguri/actor2/{{each.name}}.jpg'  class="category_img" alt=""/>
+                        <!--<img src='http://storage.googleapis.com/jikbakguri/actor2/{{each.name}}.jpg'  class="category_img" alt=""/>-->
+                        <img src="{{each.url()}}" alt="" class="category_img"/>
+
                     </a>
                     <div class="a_star_area">
 

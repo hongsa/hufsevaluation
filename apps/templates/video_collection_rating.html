@@ -29,7 +29,8 @@
             <div class="thumbnail text-center">
                 <a href="../../videoDetail/{{each.videoName}}">
                     <div>내 평점: <span>{{each.rating}}</span> 점</div>
-                    <img src="http://storage.googleapis.com/jikbakguri/video/{{each.videoName}}.jpg"  class="category_img" alt=""/>
+                    <!--<img src="http://storage.googleapis.com/jikbakguri/video/{{each.videoName}}.jpg"  class="category_img" alt=""/>-->
+                    <img src="{{each.video.url()}}" alt="" class="category_img"/>
                     <div>
                         <div class="all_name">{{each.videoName}}</div>
                     </div>

@@ -59,8 +59,10 @@ def actor_category(name, page):
         return redirect(url_for('index'))
 
     actor = Actor.query.filter_by(category=name)
-    actorCategory = actor.order_by(desc(Actor.average)).offset(
-        (page - 1) * 12).with_entities(Actor.name,Actor.average,Actor.count).limit(12)
+    # actorCategory = actor.order_by(desc(Actor.average)).offset(
+    #     (page - 1) * 12).with_entities(Actor.name,Actor.average,Actor.count).limit(12)
+    actorCategory = actor.order_by(desc(Actor.average)).offset((page - 1) * 12).limit(12)
+
     # category = actor.first().category
 
     if name=='1':
@@ -118,8 +120,11 @@ def actor_category2(name, page):
         return redirect(url_for('index'))
 
     actor = Actor.query.filter_by(category=name)
-    actorCategory = actor.order_by(desc(Actor.count)).offset(
-        (page - 1) * 12).with_entities(Actor.name,Actor.average,Actor.count).limit(12)
+    # actorCategory = actor.order_by(desc(Actor.count)).offset(
+    #     (page - 1) * 12).with_entities(Actor.name,Actor.average,Actor.count).limit(12)
+    actorCategory = actor.order_by(desc(Actor.count)).offset((page - 1) * 12).limit(12)
+
+
     # category = actor.first().category
 
     if name=='1':
