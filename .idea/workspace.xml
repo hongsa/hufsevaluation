@@ -2,26 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="757e3d2c-92c3-4efa-ad92-5d8b20e585e1" name="Default" comment="최신">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/migrations/versions/302533209f4_.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/controller/actor.py" afterPath="$PROJECT_DIR$/apps/controller/actor.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/actorDetail.html" afterPath="$PROJECT_DIR$/apps/templates/actorDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/actor_category.html" afterPath="$PROJECT_DIR$/apps/templates/actor_category.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/actor_category2.html" afterPath="$PROJECT_DIR$/apps/templates/actor_category2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/actor_collection_bookmark.html" afterPath="$PROJECT_DIR$/apps/templates/actor_collection_bookmark.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/actor_collection_rating.html" afterPath="$PROJECT_DIR$/apps/templates/actor_collection_rating.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/javLibrary.py" afterPath="$PROJECT_DIR$/apps/javLibrary.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/models.py" afterPath="$PROJECT_DIR$/apps/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/controller/newActor.py" afterPath="$PROJECT_DIR$/apps/controller/newActor.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/controller/newVideo.py" afterPath="$PROJECT_DIR$/apps/controller/newVideo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/controller/newVideo2.py" afterPath="$PROJECT_DIR$/apps/controller/newVideo2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/controller/search.py" afterPath="$PROJECT_DIR$/apps/controller/search.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/static/css/style.css" afterPath="$PROJECT_DIR$/apps/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/controller/video.py" afterPath="$PROJECT_DIR$/apps/controller/video.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/new_actor_main.html" afterPath="$PROJECT_DIR$/apps/templates/new_actor_main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/new_video_main.html" afterPath="$PROJECT_DIR$/apps/templates/new_video_main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/new_video_main2.html" afterPath="$PROJECT_DIR$/apps/templates/new_video_main2.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/videoDetail.html" afterPath="$PROJECT_DIR$/apps/templates/videoDetail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/video_category.html" afterPath="$PROJECT_DIR$/apps/templates/video_category.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/video_category2.html" afterPath="$PROJECT_DIR$/apps/templates/video_category2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/video_collection_bookmark.html" afterPath="$PROJECT_DIR$/apps/templates/video_collection_bookmark.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/video_collection_rating.html" afterPath="$PROJECT_DIR$/apps/templates/video_collection_rating.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Jikbakguri.iws" />
@@ -61,23 +46,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.yaml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.yaml">
+      <file leaf-file-name="actor_main.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/templates/actor_main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
-              <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+            <state vertical-scroll-proportion="-57.583332" vertical-offset="1663" max-vertical-offset="3420">
+              <caret line="203" column="42" selection-start-line="203" selection-start-column="42" selection-end-line="203" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="javLibrary.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/javLibrary.py">
+      <file leaf-file-name="actor.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/controller/actor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2955665" vertical-offset="4515" max-vertical-offset="5430">
-              <caret line="313" column="0" selection-start-line="313" selection-start-column="0" selection-end-line="313" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="2685">
+              <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apps/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.49261084" vertical-offset="720" max-vertical-offset="4965">
+              <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
               <folding>
-                <element signature="e#24#44#0" expanded="true" />
+                <element signature="e#23#42#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -95,9 +90,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/apps/static/js/actor_star.js" />
-        <option value="$PROJECT_DIR$/apps/static/js/video_star.js" />
-        <option value="$PROJECT_DIR$/apps/static/js/actor_bookmark.js" />
         <option value="$PROJECT_DIR$/apps/static/js/board_comment.js" />
         <option value="$PROJECT_DIR$/apps/static/js/board_hate.js" />
         <option value="$PROJECT_DIR$/apps/static/js/board_like.js" />
@@ -141,11 +133,14 @@
         <option value="$PROJECT_DIR$/apps/templates/video_collection_rating.html" />
         <option value="$PROJECT_DIR$/apps/templates/actor_collection_bookmark.html" />
         <option value="$PROJECT_DIR$/apps/templates/actor_collection_rating.html" />
-        <option value="$PROJECT_DIR$/apps/templates/videoDetail.html" />
-        <option value="$PROJECT_DIR$/apps/templates/actorDetail.html" />
         <option value="$PROJECT_DIR$/apps/settings.py" />
         <option value="$PROJECT_DIR$/app.yaml" />
         <option value="$PROJECT_DIR$/apps/javLibrary.py" />
+        <option value="$PROJECT_DIR$/apps/templates/new_actor_main.html" />
+        <option value="$PROJECT_DIR$/apps/templates/new_video_main.html" />
+        <option value="$PROJECT_DIR$/apps/templates/new_video_main2.html" />
+        <option value="$PROJECT_DIR$/apps/templates/actorDetail.html" />
+        <option value="$PROJECT_DIR$/apps/templates/videoDetail.html" />
       </list>
     </option>
   </component>
@@ -214,7 +209,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -285,6 +279,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -994,7 +989,6 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.50549453" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3124019" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32810047" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3956044" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2800633" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -1003,12 +997,13 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32496077" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26494345" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.273021" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32496077" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2967033" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32810047" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3878205" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1077,27 +1072,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/templates/main_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="105.625" vertical-offset="2535" max-vertical-offset="4155">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/templates/_form_field.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="315">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/static/js/bootstrap-rating.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.33004925" vertical-offset="1221" max-vertical-offset="1830">
-          <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/static/js/actor_star.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.23152709" vertical-offset="441" max-vertical-offset="1050">
@@ -1241,20 +1215,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/controller/newActor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4187192" vertical-offset="0" max-vertical-offset="1050">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/controller/newVideo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36945814" vertical-offset="0" max-vertical-offset="810">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/controller/video.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13793103" vertical-offset="2121" max-vertical-offset="2730">
@@ -1297,13 +1257,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/templates/actor_main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.3623931" vertical-offset="1663" max-vertical-offset="3420">
-          <caret line="203" column="42" selection-start-line="203" selection-start-column="42" selection-end-line="203" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/controllers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.56650245" vertical-offset="0" max-vertical-offset="8850">
@@ -1315,23 +1268,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="4.2118225" vertical-offset="510" max-vertical-offset="6060">
           <caret line="216" column="0" selection-start-line="216" selection-start-column="0" selection-end-line="216" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/templates/actor_category.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.375" vertical-offset="1530" max-vertical-offset="2685">
-          <caret line="117" column="16" selection-start-line="117" selection-start-column="16" selection-end-line="117" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/controller/newVideo2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.20689656" vertical-offset="366" max-vertical-offset="975">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1339,7 +1275,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.63076925" vertical-offset="126" max-vertical-offset="1125">
           <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1347,7 +1282,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8102564" vertical-offset="36" max-vertical-offset="1125">
           <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1355,7 +1289,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.5862069" vertical-offset="1311" max-vertical-offset="1920">
           <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1363,7 +1296,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49261084" vertical-offset="0" max-vertical-offset="675">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1371,7 +1303,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.71794873" vertical-offset="60" max-vertical-offset="1110">
           <caret line="32" column="43" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1379,41 +1310,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5897436" vertical-offset="120" max-vertical-offset="1095">
           <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.236453" vertical-offset="3285" max-vertical-offset="4965">
-          <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
-          <folding>
-            <element signature="e#23#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/controller/actor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.364532" vertical-offset="405" max-vertical-offset="2685">
-          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/templates/actorDetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77205884" vertical-offset="2880" max-vertical-offset="3780">
-          <caret line="213" column="138" selection-start-line="213" selection-start-column="138" selection-end-line="213" selection-end-column="138" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/templates/videoDetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1029412" vertical-offset="2700" max-vertical-offset="3720">
-          <caret line="210" column="138" selection-start-line="210" selection-start-column="138" selection-end-line="210" selection-end-column="138" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1421,7 +1317,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1538461" vertical-offset="240" max-vertical-offset="1380">
           <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1429,9 +1324,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36945814" vertical-offset="30" max-vertical-offset="810">
           <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
-          <folding>
-            <element signature="e#24#76#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1439,7 +1331,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5" vertical-offset="0" max-vertical-offset="420">
           <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/javLibrary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2955665" vertical-offset="4515" max-vertical-offset="5430">
+          <caret line="313" column="0" selection-start-line="313" selection-start-column="0" selection-end-line="313" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1451,12 +1349,99 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/javLibrary.py">
+    <entry file="file://$PROJECT_DIR$/apps/templates/actor_category.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2955665" vertical-offset="4515" max-vertical-offset="5430">
-          <caret line="313" column="0" selection-start-line="313" selection-start-column="0" selection-end-line="313" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.23076923" vertical-offset="1455" max-vertical-offset="2685">
+          <caret line="106" column="79" selection-start-line="106" selection-start-column="24" selection-end-line="106" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/templates/new_video_main2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5641026" vertical-offset="585" max-vertical-offset="1860">
+          <caret line="61" column="79" selection-start-line="61" selection-start-column="79" selection-end-line="61" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/templates/new_video_main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4871795" vertical-offset="585" max-vertical-offset="1830">
+          <caret line="58" column="79" selection-start-line="58" selection-start-column="79" selection-end-line="58" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/templates/new_actor_main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6923077" vertical-offset="630" max-vertical-offset="1995">
+          <caret line="69" column="79" selection-start-line="69" selection-start-column="79" selection-end-line="69" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/controller/newVideo2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31034482" vertical-offset="51" max-vertical-offset="975">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/controller/newVideo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.039408866" vertical-offset="201" max-vertical-offset="810">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/controller/newActor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1050">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/templates/actorDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2820513" vertical-offset="2715" max-vertical-offset="3780">
+          <caret line="192" column="90" selection-start-line="192" selection-start-column="90" selection-end-line="192" selection-end-column="104" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/templates/videoDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5641026" vertical-offset="2700" max-vertical-offset="3720">
+          <caret line="202" column="0" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/templates/actor_main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-57.583332" vertical-offset="1663" max-vertical-offset="3420">
+          <caret line="203" column="42" selection-start-line="203" selection-start-column="42" selection-end-line="203" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/controller/actor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="2685">
+          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.49261084" vertical-offset="720" max-vertical-offset="4965">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
           <folding>
-            <element signature="e#24#44#0" expanded="true" />
+            <element signature="e#23#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
