@@ -19,7 +19,7 @@ def index():
         form=forms.LoginForm()
         # count = int(RatingActor.query.count()) + int(RatingVideo.query.count())
         return render_template("mainPageNew.html", form=form, number=number)
-    return redirect(url_for('video_main'))
+    return redirect(url_for('main_page'))
 
 
 # 회원가입
@@ -60,7 +60,7 @@ def signup():
         session['session_user_email'] = form.email.data
         session['session_user_nickname'] = form.nickname.data
 
-        return redirect(url_for('video_main'))
+        return redirect(url_for('main_page'))
 
     return render_template("signup.html", form=form,number=number)
 
@@ -95,7 +95,7 @@ def login():
                 session.permanent = True
                 session['session_user_email'] = user.email
                 session['session_user_nickname'] = user.nickname
-                return redirect(url_for('video_main'))
+                return redirect(url_for('main_page'))
 
 
     return render_template("mainPageNew.html", form=form)

@@ -50,7 +50,7 @@ def video_category(name, page):
     total_page = math.ceil(calclulate)
 
     if name=='1':
-        category="러브 액츄얼리"
+        category="그냥 사랑"
     elif name=='2':
         category="금지된 사랑"
     elif name=='3':

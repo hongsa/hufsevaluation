@@ -8,9 +8,18 @@ from  sqlalchemy.sql.expression import func
 # from werkzeug.contrib.cache import GAEMemcachedCache
 import logging
 import random
+import time,logging
+
+def getMicrotime():
+    return time.time()
+#
+def timeLogger(message, startTime, endTime):
+    sMessage = message + " :: " + str( endTime - startTime )
+    logging.error( sMessage)
 
 def actor_main():
     # 로그인 안한 상태로 오면 index로 빠꾸
+    _s = getMicrotime()
     if not 'session_user_email' in session:
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
@@ -33,6 +42,8 @@ def actor_main():
     number = random.randint(1,3)
 
 
+    _e = getMicrotime()
+    timeLogger(" actor", _s, _e)
     return render_template("actor_main.html", content=content,review=review,number=number)
 
 

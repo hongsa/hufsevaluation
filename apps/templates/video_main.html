@@ -61,7 +61,8 @@
             <a href="/videoDetail/{{each.videoName}}">
                 <div class="row" style="border-bottom:ridge;">
                     <div class="col-sm-6 text-center">
-                        <img src="http://storage.googleapis.com/jikbakguri/video/{{each.videoName}}.jpg" class="review_img"/>
+                        <!--<img src="http://storage.googleapis.com/jikbakguri/video/{{each.videoName}}.jpg" class="review_img"/>-->
+                        <img src="{{each.video.url()}}" alt="" class="review_img"/>
                         <p style="color: #000000">{{each.videoName}}</p>
                     </div>
                     <div class="col-sm-6 text-center">

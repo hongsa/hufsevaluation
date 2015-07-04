@@ -1,0 +1,538 @@
+<!--영상 메인 페이지-->
+
+{% extends "nav_layout.html" %}
+{% block css %}
+<style type=text/css>
+    @media only screen and (max-width : 1000px) {
+        .ad{
+            height: 18em;
+            width: 24em;
+            background-image: url(../static/img/sora_mobile{{number}}.png);
+            background-size: cover;
+
+        }
+
+    }
+
+    @media only screen and (min-width : 1000px) {
+        .ad {
+            height: 32em;
+            width: 12em;
+            background-image: url(../static/img/soramall{{number}}.png);
+            background-size: cover;
+        }
+    }
+</style>
+
+
+{% endblock css %}
+
+{% block content %}
+<div class="col-md-1"></div>
+
+<div class="col-md-10">
+    <div class="col-md-6">
+        <!--<div class="col-md-12">-->
+        <div class="row">
+            <span class="col-md-6"><img src="{{url_for('static', filename='img/girl.png')}}" style="width: 3.333em;">
+                배우 TOP 랭킹
+            <a href="/a_category/1">
+                <!--<button type="button" class="btn btn-warning btn-sm"><span>더 보기</span></button>-->
+                <img src="{{url_for('static', filename='img/folder.png')}}" style="width: 2em;height: 2em;"/>
+                <span>더보기</span>
+            </a>
+            </span>
+            <span class="col-md-2"></span>
+            <button type="button" id="actor_rank" class="btn btn-warning btn-sm col-md-2"><span>평점순</span></button>
+            <button type="button" id="actor_click" class="btn btn-primary btn-sm col-md-2"><span >조회순</span></button>
+        </div>
+
+
+        <div class="row panel panel-default main_background">
+            {% for each in actorRank1 %}
+            <div class="col-sm-8 col-md-4 actor_show_rank">
+                <div class="thumbnail text-center" id="{{each.name}}">
+                    <a href="../actorDetail/{{each.name}}">
+                        <div>
+                            <span>{{each.average}} 점</span> <span>({{each.count}} 명)</span>
+                        </div>
+                        <!--<img src='http://storage.googleapis.com/jikbakguri/actor2/{{each.name}}.jpg'  class="category_img" alt=""/>-->
+                        <img src="{{each.url()}}" alt="" class="main_img"/>
+                    </a>
+                    <div class="a_star_area">
+
+                        {% set counter = [] %}
+                        {% for r in rating_actor %}
+                        {%if r['name'] == each.name %}
+                        {% if counter.append('1') %}
+                        {% endif %}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" value="{{r['rating']}}"/>
+                        {% endif %}
+                        {% endfor %}
+                        {%if counter == []%}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                        {% endif %}
+
+                        <a href="../actorDetail/{{each.name}}"><span class="main_name_small">{{each.name}}</span></a>
+                        <img class="a_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
+                             onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
+                             onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
+                             style="margin-bottom: 0.4em"/>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% for each in actorRank2 %}
+            <div class="col-sm-8 col-md-4 actor_show_click">
+                <div class="thumbnail text-center" id="{{each.name}}">
+                    <a href="../actorDetail/{{each.name}}">
+                        <div>
+                            <span>{{each.average}} 점</span> <span>({{each.count}} 명)</span>
+                        </div>
+                        <!--<img src='http://storage.googleapis.com/jikbakguri/actor2/{{each.name}}.jpg'  class="category_img" alt=""/>-->
+                        <img src="{{each.url()}}" alt="" class="main_img"/>
+                    </a>
+                    <div class="a_star_area">
+
+                        {% set counter = [] %}
+                        {% for r in rating_actor %}
+                        {%if r['name'] == each.name %}
+                        {% if counter.append('1') %}
+                        {% endif %}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" value="{{r['rating']}}"/>
+                        {% endif %}
+                        {% endfor %}
+                        {%if counter == []%}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                        {% endif %}
+
+                        <a href="../actorDetail/{{each.name}}"><span class="main_name_small">{{each.name}}</span></a>
+                        <img class="a_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
+                             onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
+                             onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
+                             style="margin-bottom: 0.4em"/>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <!--<div class="col-md-12">-->
+        <div class="row">
+             <span class="col-md-6"><img src="{{url_for('static', filename='img/video.png')}}" style="width: 3.333em;">
+                 영상 TOP 랭킹
+             <a href="/v_category/1">
+                 <!--<button type="button" class="btn btn-warning btn-sm"><span>더 보기</span></button>-->
+                 <img src="{{url_for('static', filename='img/folder.png')}}" style="width: 2em;height: 2em;"/>
+                 <span >더보기</span>
+             </a>
+             </span>
+            <span class="col-md-2"></span>
+            <button type="button" id="video_rank" class="btn btn-warning btn-sm col-md-2"><span>평점순</span></button>
+            <button type="button" id="video_click" class="btn btn-primary btn-sm col-md-2"><span >조회순</span></button>
+        </div>
+
+        <div class="row panel panel-default main_background">
+            {% for each in videoRank1 %}
+            <div class="col-sm-8 col-md-4 video_show_rank">
+                <div class="thumbnail text-center" id="{{each.name}}">
+                    <a href="../videoDetail/{{each.name}}">
+                        <div>
+                            <span>{{each.average}} 점</span> <span>({{each.count}} 명)</span>
+                        </div>
+                        <!--<img src='http://storage.googleapis.com/jikbakguri/actor2/{{each.name}}.jpg'  class="category_img" alt=""/>-->
+                        <img src="{{each.url()}}" alt="" class="main_img"/>
+                    </a>
+                    <div class="v_star_area">
+
+                        {% set counter = [] %}
+                        {% for r in rating_video %}
+                        {%if r['name'] == each.name %}
+                        {% if counter.append('1') %}
+                        {% endif %}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" value="{{r['rating']}}"/>
+                        {% endif %}
+                        {% endfor %}
+                        {%if counter == []%}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                        {% endif %}
+
+                        <a href="../videoDetail/{{each.name}}"><span class="main_name_small">{{each.name}}</span></a>
+                        <img class="v_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
+                             onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
+                             onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
+                             style="margin-bottom: 0.4em"/>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% for each in videoRank2 %}
+            <div class="col-sm-8 col-md-4 video_show_click">
+                <div class="thumbnail text-center" id="{{each.name}}">
+                    <a href="../videoDetail/{{each.name}}">
+                        <div>
+                            <span>{{each.average}} 점</span> <span>({{each.count}} 명)</span>
+                        </div>
+                        <!--<img src='http://storage.googleapis.com/jikbakguri/actor2/{{each.name}}.jpg'  class="category_img" alt=""/>-->
+                        <img src="{{each.url()}}" alt="" class="main_img"/>
+                    </a>
+                    <div class="v_star_area">
+
+                        {% set counter = [] %}
+                        {% for r in rating_video %}
+                        {%if r['name'] == each.name %}
+                        {% if counter.append('1') %}
+                        {% endif %}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" value="{{r['rating']}}"/>
+                        {% endif %}
+                        {% endfor %}
+                        {%if counter == []%}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                        {% endif %}
+
+                        <a href="../videoDetail/{{each.name}}"><span class="main_name_small">{{each.name}}</span></a>
+                        <img class="v_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
+                             onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
+                             onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
+                             style="margin-bottom: 0.4em"/>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <!--탑랭킹-->
+
+    <div class="row">
+        <div class="col-md-6 text-center category_background">
+            <a href="/a_category/1">
+                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>진짜 작은애당</span></button>
+            </a>
+            <a href="/a_category/2">
+                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>품에 쏘오오옥</span></button>
+            </a>
+            <a href="/a_category/3">
+                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>걸그룹 키당</span></button>
+            </a>
+            <a href="/a_category/4">
+                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>힐 신지 말아조</span></button>
+            </a>
+        </div>
+
+        <div class="col-md-6 text-center category_background">
+            <a href="/v_category/1">
+                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>그냥 사랑</span></button>
+            </a>
+            <a href="/v_category/2">
+                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>금지된 사랑</span></button>
+            </a>
+            <a href="/v_category/3">
+                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>코스튬</span></button>
+            </a>
+            <a href="/v_category/4">
+                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>협동조합</span></button>
+            </a>
+            <a href="/v_category/5">
+                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>상황극</span></button>
+            </a>
+            <a href="/v_category/6">
+                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>온천물</span></button>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <!--<div class="col-md-12">-->
+        <div class="row">
+            <span class="col-md-6"><img src="{{url_for('static', filename='img/girl.png')}}" style="width: 3.333em;">
+                배우 랜덤 Pick!
+            <a href="/a_category/1">
+                <!--<button type="button" class="btn btn-warning btn-sm"><span>더 보기</span></button>-->
+                <img src="{{url_for('static', filename='img/folder.png')}}" style="width: 2em;height: 2em;"/>
+                <span>더보기</span>
+            </a>
+            </span>
+        </div>
+
+
+        <div class="row panel panel-default main_background">
+            {% for each in random_actor %}
+            <div class="col-sm-8 col-md-4">
+                <div class="thumbnail text-center" id="{{each.name}}">
+                    <a href="../actorDetail/{{each.name}}">
+                        <div>
+                            <span>{{each.average}} 점</span> <span>({{each.count}} 명)</span>
+                        </div>
+                        <!--<img src='http://storage.googleapis.com/jikbakguri/actor2/{{each.name}}.jpg'  class="category_img" alt=""/>-->
+                        <img src="{{each.url()}}" alt="" class="main_img"/>
+                    </a>
+                    <div class="a_star_area">
+
+                        {% set counter = [] %}
+                        {% for r in rating_actor %}
+                        {%if r['name'] == each.name %}
+                        {% if counter.append('1') %}
+                        {% endif %}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" value="{{r['rating']}}"/>
+                        {% endif %}
+                        {% endfor %}
+                        {%if counter == []%}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                        {% endif %}
+
+                        <a href="../actorDetail/{{each.name}}"><span class="main_name_small">{{each.name}}</span></a>
+                        <img class="a_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
+                             onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
+                             onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
+                             style="margin-bottom: 0.4em"/>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="row">
+             <span class="col-md-6"><img src="{{url_for('static', filename='img/video.png')}}" style="width: 3.333em;">
+                 영상 랜덤 Pick!
+             <a href="/v_category/1">
+                 <!--<button type="button" class="btn btn-warning btn-sm"><span>더 보기</span></button>-->
+                 <img src="{{url_for('static', filename='img/folder.png')}}" style="width: 2em;height: 2em;"/>
+                 <span >더보기</span>
+             </a>
+             </span>
+        </div>
+
+        <div class="row panel panel-default main_background">
+            {% for each in random_video %}
+            <div class="col-sm-8 col-md-4">
+                <div class="thumbnail text-center" id="{{each.name}}">
+                    <a href="../videoDetail/{{each.name}}">
+                        <div>
+                            <span>{{each.average}} 점</span> <span>({{each.count}} 명)</span>
+                        </div>
+                        <!--<img src='http://storage.googleapis.com/jikbakguri/actor2/{{each.name}}.jpg'  class="category_img" alt=""/>-->
+                        <img src="{{each.url()}}" alt="" class="main_img"/>
+                    </a>
+                    <div class="v_star_area">
+
+                        {% set counter = [] %}
+                        {% for r in rating_video %}
+                        {%if r['name'] == each.name %}
+                        {% if counter.append('1') %}
+                        {% endif %}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty" value="{{r['rating']}}"/>
+                        {% endif %}
+                        {% endfor %}
+                        {%if counter == []%}
+                        <input type="hidden" class="rating-tooltip" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                        {% endif %}
+
+                        <a href="../videoDetail/{{each.name}}"><span class="main_name_small">{{each.name}}</span></a>
+                        <img class="v_bookmark" src="{{url_for('static', filename='img/love2.png')}}"
+                             onmouseover="this.src='{{url_for('static', filename='img/love_on2.png')}}'"
+                             onmouseout="this.src='{{url_for('static', filename='img/love2.png')}}'" alt=""
+                             style="margin-bottom: 0.4em"/>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <div class="row text-center">
+
+        <div class="col-md-6">
+            <a href="/n_actor/2015">
+                <button type="button" class="btn btn-danger btn-lg btn-block">
+                    <img src="{{url_for('static', filename='img/new.png')}}" style="width: 3em;height: 2em;"/>
+                    <span>이달의 신인!</span>
+                <img src="{{url_for('static', filename='img/girl.png')}}" style="width: 3.333em;">
+                </button>
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="/n_video2/2015">
+                <button type="button" class="btn btn-success btn-lg btn-block">
+                    <img src="{{url_for('static', filename='img/new.png')}}" style="width: 3em;height: 2em;"/>
+                    <span>이달의 신작!</span>
+                <img src="{{url_for('static', filename='img/video.png')}}" style="width: 3.333em;">
+                </button>
+            </a>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="col-md-3">
+        <div class="review_chart">
+            <div class="text-center" style="font-size: 16px;">
+                <span style="font-family: 'Hanna';"><img src="{{url_for('static', filename='img/girl.png')}}" style="width: 2.333em;">실시간 한줄평</span>
+            </div>
+            <hr style="margin-top: 5px; margin-bottom: 5px; border-color: black"/>
+            <div style="font-size: 13px;">
+
+
+                <div id="review_actor"></div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="star_recent">
+            <div class="text-center" style="font-size: 16px;">
+                <span style="font-family: 'Hanna';"><img src="{{url_for('static', filename='img/girl.png')}}" style="width: 2.333em;">실시간 평점</span>
+            </div>
+            <hr style="margin-top: 5px; margin-bottom: 5px; border-color: black"/>
+            <div style="font-size: 13px;">
+
+                <div id="star_actor"></div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+        <div class="review_chart">
+            <div class="text-center" style="font-size: 16px;">
+                <span style="font-family: 'Hanna';"><img src="{{url_for('static', filename='img/video.png')}}" style="width: 2.333em;">실시간 한줄평</span>
+            </div>
+            <hr style="margin-top: 5px; margin-bottom: 5px; border-color: black"/>
+            <div style="font-size: 13px;">
+
+                <div id="review_video"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="star_recent">
+            <div class="text-center" style="font-size: 16px;">
+                <span style="font-family: 'Hanna';"><img src="{{url_for('static', filename='img/video.png')}}" style="width: 2.333em;">실시간 평점</span>
+            </div>
+            <hr style="margin-top: 5px; margin-bottom: 5px; border-color: black"/>
+            <div style="font-size: 13px;">
+
+                <div id="star_video"></div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="col-md-1"></div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{url_for('static', filename='js/main_show.js')}}"></script>
+
+<!--<script type='text/javascript' src="{{url_for('static', filename='js/actor_detail.js')}}"></script>-->
+<script>
+    $(document).ready(function() {
+
+        $.ajax({
+            url: '../r_actor',
+            dataType: 'JSON',
+            method: 'POST',
+            data:{
+            },
+            success: function (review) {
+
+                if (typeof review !== 'object') return;
+                for (var i = 1; i < review.length; i++) {
+                    var string1 = '<a href="/actorDetail/' + review[i].r_name + '">' +
+                            '<div class="row" style="border-bottom:ridge;">' + '<div class="col-sm-6 text-center">' +
+                            '<img src="http://storage.googleapis.com/jikbakguri/actor2/' + review[i].r_name + '.jpg"' + 'class="review_img"/>'
+                            + '<p style="color: #000000">' + review[i].r_name + '</p>' + '</div>' + '<div class="col-sm-6 text-center">' + '<p class="review_content">'
+                            + review[i].content + '</p>' + '</div>' + '</a>';
+                    $('#review_actor').append(string1);
+                }
+
+            }
+        });
+
+        $.ajax({
+            url: '../s_actor',
+            dataType: 'JSON',
+            method: 'POST',
+            data:{
+            },
+            success: function (star) {
+
+                if (typeof star !== 'object') return;
+                for (var j = 1; j < star.length; j++) {
+                    var string2 = '<a href="/actorDetail/' + star[j].s_name+'">' +
+                            '<div class="row" style="border-bottom:ridge;">' + '<div class="col-sm-6 text-center">' +
+                            '<img src="http://storage.googleapis.com/jikbakguri/actor2/' + star[j].s_name + '.jpg"'+'class="review_img"/>'
+                            + '<p style="color: #000000">'+star[j].s_name + '</p>' + '</div>' + '<div class="col-sm-6 text-center">' + '<p class="review_content">'
+                            +star[j].nick+':'+ star[j].rating +'점'+ '</p>' + '</div>' + '</a>';
+                    $('#star_actor').append(string2);
+
+                }
+            }
+        });
+
+
+        $.ajax({
+            url: '../r_video',
+            dataType: 'JSON',
+            method: 'POST',
+            data:{
+            },
+            success: function (review) {
+
+                if (typeof review !== 'object') return;
+                for (var i = 1; i < review.length; i++) {
+                    var string1 = '<a href="/videoDetail/' + review[i].r_name + '">' +
+                            '<div class="row" style="border-bottom:ridge;">' + '<div class="col-sm-6 text-center">' +
+                            '<img src="http://storage.googleapis.com/jikbakguri/video/' + review[i].r_name + '.jpg"' + 'class="review_img"/>'
+                            + '<p style="color: #000000">' + review[i].r_name + '</p>' + '</div>' + '<div class="col-sm-6 text-center">' + '<p class="review_content">'
+                            + review[i].content + '</p>' + '</div>' + '</a>';
+                    $('#review_video').append(string1);
+                }
+
+            }
+        });
+
+        $.ajax({
+            url: '../s_video',
+            dataType: 'JSON',
+            method: 'POST',
+            data:{
+            },
+            success: function (star) {
+
+                if (typeof star !== 'object') return;
+                for (var j = 1; j < star.length; j++) {
+                    var string2 = '<a href="/videoDetail/' + star[j].s_name+'">' +
+                            '<div class="row" style="border-bottom:ridge;">' + '<div class="col-sm-6 text-center">' +
+                            '<img src="http://storage.googleapis.com/jikbakguri/video/' + star[j].s_name + '.jpg"'+'class="review_img"/>'
+                            + '<p style="color: #000000">'+star[j].s_name + '</p>' + '</div>' + '<div class="col-sm-6 text-center">' + '<p class="review_content">'
+                            +star[j].nick+':'+ star[j].rating +'점'+ '</p>' + '</div>' + '</a>';
+                    $('#star_video').append(string2);
+
+                }
+            }
+        });
+    });
+</script>
+
+{% endblock %}

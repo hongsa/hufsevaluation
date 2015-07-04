@@ -4,7 +4,7 @@ from google.appengine.api import urlfetch
 from apps import app,db
 from apps.controller import video
 from models import User,Actor,Video
-from controller import user,actor,newActor,newVideo,newVideo2,search,admin,collection,star,bookmark,detail,board
+from controller import user,actor,newActor,newVideo,newVideo2,search,admin,collection,star,bookmark,detail,board,main
 import recommendation,recommendation2
 import readImage
 import logging
@@ -30,11 +30,11 @@ def index():
     return user.index()
     # return render_template("serverout.html")
 
-@app.errorhandler(Exception)
-def page_not_found(e):
-
-    logging.error(e)
-    return render_template("error.html"), 500
+# @app.errorhandler(Exception)
+# def page_not_found(e):
+#
+#     logging.error(e)
+#     return render_template("error.html"), 500
 
 # 회원가입
 @app.route('/signup', methods=['GET', 'POST'])
@@ -65,6 +65,29 @@ def modify_nickname():
 def contact():
     return user.contact()
 # userController 관리부분 끝
+
+
+#메인페이지!!
+@app.route('/main', methods=['GET','POST'])
+def main_page():
+    return main.main_page()
+
+@app.route('/r_actor', methods=['GET','POST'])
+def review_actor():
+    return main.review_actor()
+
+@app.route('/r_video', methods=['GET','POST'])
+def review_video():
+    return main.review_video()
+
+@app.route('/s_actor', methods=['GET','POST'])
+def star_actor():
+    return main.star_actor()
+
+@app.route('/s_video', methods=['GET','POST'])
+def star_video():
+    return main.star_video()
+
 
 
 
