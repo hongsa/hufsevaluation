@@ -261,7 +261,7 @@ def videoDetail(name):
     # list = videoRow.videoReview_video.filter_by(userEmail=email).with_entities(VideoReview.id).all()
 
     if videoRow.category=='1':
-        category='그냥 사랑'
+        category='진짜 사랑(농밀)'
     elif videoRow.category=='2':
         category='금지된 사랑'
     elif videoRow.category =='3':

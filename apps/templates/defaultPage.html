@@ -210,39 +210,39 @@
     <!--탑랭킹-->
 
     <div class="row">
-        <div class="col-md-6 text-center category_background">
+        <div class="col-md-6 text-center">
             <a href="/a_category/1">
-                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>진짜 작은애당</span></button>
+                <button type="button" class="btn btn-danger btn-category1 col-md-3 col-xs-6"><span>진짜 작은애당</span></button>
             </a>
             <a href="/a_category/2">
-                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>품에 쏘오오옥</span></button>
+                <button type="button" class="btn btn-danger btn-category1 col-md-3 col-xs-6"><span>품에 쏘오오옥</span></button>
             </a>
             <a href="/a_category/3">
-                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>걸그룹 키당</span></button>
+                <button type="button" class="btn btn-danger btn-category1 col-md-3 col-xs-6"><span>걸그룹 키당</span></button>
             </a>
             <a href="/a_category/4">
-                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>힐 신지 말아조</span></button>
+                <button type="button" class="btn btn-danger btn-category1 col-md-3 col-xs-6"><span>힐 신지 말아조</span></button>
             </a>
         </div>
 
-        <div class="col-md-6 text-center category_background">
+        <div class="col-md-6 text-center">
             <a href="/v_category/1">
-                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>그냥 사랑</span></button>
+                <button type="button" class="btn btn-success btn-category2 col-md-2 col-xs-4"><span>진짜 사랑(농밀)</span></button>
             </a>
             <a href="/v_category/2">
-                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>금지된 사랑</span></button>
+                <button type="button" class="btn btn-success btn-category2 col-md-2 col-xs-4"><span>금지된 사랑</span></button>
             </a>
             <a href="/v_category/3">
-                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>코스튬</span></button>
+                <button type="button" class="btn btn-success btn-category2 col-md-2 col-xs-4"><span>코스튬</span></button>
             </a>
             <a href="/v_category/4">
-                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>협동조합</span></button>
+                <button type="button" class="btn btn-success btn-category2 col-md-2 col-xs-4"><span>협동조합</span></button>
             </a>
             <a href="/v_category/5">
-                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>상황극</span></button>
+                <button type="button" class="btn btn-success btn-category2 col-md-2 col-xs-4"><span>상황극</span></button>
             </a>
             <a href="/v_category/6">
-                <button type="button" class="btn btn-info" style="border-radius: 100px;"><span>온천물</span></button>
+                <button type="button" class="btn btn-success btn-category2 col-md-2 col-xs-4"><span>온천물</span></button>
             </a>
         </div>
     </div>
@@ -373,20 +373,16 @@
 
     </div>
 
-
-
-
     <div class="col-md-3">
         <div class="review_chart">
             <div class="text-center" style="font-size: 16px;">
-                <span style="font-family: 'Hanna';"><img src="{{url_for('static', filename='img/girl.png')}}" style="width: 2.333em;">실시간 한줄평</span>
+                <span style="font-family: 'Hanna';"><img src="{{url_for('static', filename='img/girl.png')}}" style="width: 2.333em;">
+                    실시간 한줄평&nbsp;<span class="glyphicon glyphicon-pencil"></span></span>
             </div>
             <hr style="margin-top: 5px; margin-bottom: 5px; border-color: black"/>
             <div style="font-size: 13px;">
 
-
                 <div id="review_actor"></div>
-
 
             </div>
         </div>
@@ -395,7 +391,8 @@
     <div class="col-md-3">
         <div class="star_recent">
             <div class="text-center" style="font-size: 16px;">
-                <span style="font-family: 'Hanna';"><img src="{{url_for('static', filename='img/girl.png')}}" style="width: 2.333em;">실시간 평점</span>
+                <span style="font-family: 'Hanna';"><img src="{{url_for('static', filename='img/girl.png')}}" style="width: 2.333em;">
+                    실시간 평점&nbsp;<img src="{{url_for('static', filename='img/star_on2.png')}}"></span>
             </div>
             <hr style="margin-top: 5px; margin-bottom: 5px; border-color: black"/>
             <div style="font-size: 13px;">
@@ -411,7 +408,8 @@
     <div class="col-md-3">
         <div class="review_chart">
             <div class="text-center" style="font-size: 16px;">
-                <span style="font-family: 'Hanna';"><img src="{{url_for('static', filename='img/video.png')}}" style="width: 2.333em;">실시간 한줄평</span>
+                <span style="font-family: 'Hanna';"><img src="{{url_for('static', filename='img/video.png')}}" style="width: 2.333em;">
+                    실시간 한줄평&nbsp;<span class="glyphicon glyphicon-pencil"></span></span>
             </div>
             <hr style="margin-top: 5px; margin-bottom: 5px; border-color: black"/>
             <div style="font-size: 13px;">
@@ -425,7 +423,8 @@
     <div class="col-md-3">
         <div class="star_recent">
             <div class="text-center" style="font-size: 16px;">
-                <span style="font-family: 'Hanna';"><img src="{{url_for('static', filename='img/video.png')}}" style="width: 2.333em;">실시간 평점</span>
+                <span style="font-family: 'Hanna';"><img src="{{url_for('static', filename='img/video.png')}}" style="width: 2.333em;">
+                    실시간 평점&nbsp;<img src="{{url_for('static', filename='img/star_on2.png')}}"></span>
             </div>
             <hr style="margin-top: 5px; margin-bottom: 5px; border-color: black"/>
             <div style="font-size: 13px;">

@@ -363,3 +363,12 @@ li>a{
     border-radius: 100px;
     border: solid 1px;
 }
+.btn-category1{
+    display: block;
+    width: 50%;
+}
+.btn-category2{
+    display: block;
+    width: 33%;
+}
+
