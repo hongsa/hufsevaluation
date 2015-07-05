@@ -15,10 +15,17 @@
     }
 
     @media only screen and (min-width : 1000px) {
-        .ad {
+        .ad1 {
             height: 32em;
             width: 12em;
-            background-image: url(../static/img/soramall{{number}}.png);
+            background-image: url(../static/img/soramall{{number1}}.png);
+            background-size: cover;
+        }
+
+        .ad2 {
+            height: 32em;
+            width: 12em;
+            background-image: url(../static/img/soramall{{number2}}.png);
             background-size: cover;
         }
     }
@@ -28,7 +35,7 @@
 {% endblock css %}
 
 {% block content %}
-<div class="col-md-1"></div>
+<!--<div class="col-md-1"></div>-->
 
 <div class="col-md-10">
     <div class="col-md-6">
@@ -356,7 +363,7 @@
                 <button type="button" class="btn btn-danger btn-lg btn-block">
                     <img src="{{url_for('static', filename='img/new.png')}}" style="width: 3em;height: 2em;"/>
                     <span>이달의 신인!</span>
-                <img src="{{url_for('static', filename='img/girl.png')}}" style="width: 3.333em;">
+                    <img src="{{url_for('static', filename='img/girl.png')}}" style="width: 3.333em;">
                 </button>
             </a>
         </div>
@@ -366,7 +373,7 @@
                 <button type="button" class="btn btn-success btn-lg btn-block">
                     <img src="{{url_for('static', filename='img/new.png')}}" style="width: 3em;height: 2em;"/>
                     <span>이달의 신작!</span>
-                <img src="{{url_for('static', filename='img/video.png')}}" style="width: 3.333em;">
+                    <img src="{{url_for('static', filename='img/video.png')}}" style="width: 3.333em;">
                 </button>
             </a>
         </div>
@@ -437,7 +444,19 @@
 
 </div>
 
-<div class="col-md-1"></div>
+<div class="col-md-2">
+    <div class="text-center" style="margin-top: 3em;">
+        <a href="http://soramall.kr/intro.php?p_id=guri" target="_blank">
+            <img src="" class="ad1"/>
+        </a>
+    </div>
+    <div class="text-center" style="margin-top: 3em;">
+        <a href="http://soramall.kr/intro.php?p_id=guri" target="_blank">
+            <img src="" class="ad2"/>
+        </a>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block js %}

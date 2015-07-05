@@ -8,16 +8,8 @@ import random
 from  sqlalchemy.sql.expression import func
 import time,logging,json
 
-def getMicrotime():
-    return time.time()
-#
-def timeLogger(message, startTime, endTime):
-    sMessage = message + " :: " + str( endTime - startTime )
-    logging.error( sMessage)
-
 def main_page():
     # 로그인 안한 상태로 오면 index로 빠꾸
-    _s = getMicrotime()
     if not 'session_user_email' in session:
         flash(u"로그인 되어있지 않습니다.", "error")
         return redirect(url_for('index'))
@@ -57,13 +49,11 @@ def main_page():
         if r.videoName in list_video:
             rating_video.append(dict(name = r.videoName, rating=r.rating))
 
-    number = random.randint(1,3)
-
-    _e = getMicrotime()
-    timeLogger(" main", _s, _e)
+    number1 = random.randint(1,3)
+    number2 = random.randint(1,3)
 
     return render_template("defaultPage.html", actorRank1=actorRank1,actorRank2=actorRank2,videoRank1=videoRank1,videoRank2=videoRank2,
-                           number=number,rating_actor=rating_actor,rating_video=rating_video,random_actor=random_actor,random_video=random_video)
+                           number1=number1,number2=number2,rating_actor=rating_actor,rating_video=rating_video,random_actor=random_actor,random_video=random_video)
 
 
 def review_actor():
