@@ -30,11 +30,11 @@ def index():
     return user.index()
     # return render_template("serverout.html")
 
-# @app.errorhandler(Exception)
-# def page_not_found(e):
-#
-#     logging.error(e)
-#     return render_template("error.html"), 500
+@app.errorhandler(Exception)
+def page_not_found(e):
+
+    logging.error(e)
+    return render_template("error.html"), 500
 
 # 회원가입
 @app.route('/signup', methods=['GET', 'POST'])

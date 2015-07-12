@@ -58,7 +58,7 @@ def main_page():
 
 def review_actor():
 
-    review_actor = ActorReview.query.order_by(desc(ActorReview.id)).limit(20)
+    review_actor = ActorReview.query.order_by(desc(ActorReview.created)).limit(20)
     review=[]
 
     for each in review_actor:
@@ -67,7 +67,7 @@ def review_actor():
     return json.dumps(review)
 
 def review_video():
-    review_video = VideoReview.query.order_by(desc(VideoReview.id)).limit(20)
+    review_video = VideoReview.query.order_by(desc(VideoReview.created)).limit(20)
 
     review=[]
 
@@ -78,7 +78,7 @@ def review_video():
 
 def star_actor():
 
-    star_actor = RatingActor.query.order_by(desc(RatingActor.id)).limit(20)
+    star_actor = RatingActor.query.order_by(desc(RatingActor.created)).limit(20)
     star=[]
 
     for each in star_actor:
@@ -88,7 +88,7 @@ def star_actor():
 
 def star_video():
 
-    star_video = RatingVideo.query.order_by(desc(RatingVideo.id)).limit(20)
+    star_video = RatingVideo.query.order_by(desc(RatingVideo.created)).limit(20)
     star=[]
     for each in star_video:
         star.append(dict(nick = each.user.nickname,rating = each.rating, s_name = each.videoName))

@@ -475,7 +475,7 @@
             success: function (review) {
 
                 if (typeof review !== 'object') return;
-                for (var i = 1; i < review.length; i++) {
+                for (var i = 0; i < review.length; i++) {
                     var string1 = '<a href="/actorDetail/' + review[i].r_name + '">' +
                             '<div class="row" style="border-bottom:ridge;">' + '<div class="col-sm-6 text-center">' +
                             '<img src="http://storage.googleapis.com/jikbakguri/actor2/' + review[i].r_name + '.jpg"' + 'class="review_img"/>'
@@ -496,7 +496,7 @@
             success: function (star) {
 
                 if (typeof star !== 'object') return;
-                for (var j = 1; j < star.length; j++) {
+                for (var j = 0; j < star.length; j++) {
                     var string2 = '<a href="/actorDetail/' + star[j].s_name+'">' +
                             '<div class="row" style="border-bottom:ridge;">' + '<div class="col-sm-6 text-center">' +
                             '<img src="http://storage.googleapis.com/jikbakguri/actor2/' + star[j].s_name + '.jpg"'+'class="review_img"/>'
@@ -518,7 +518,7 @@
             success: function (review) {
 
                 if (typeof review !== 'object') return;
-                for (var i = 1; i < review.length; i++) {
+                for (var i = 0; i < review.length; i++) {
                     var string1 = '<a href="/videoDetail/' + review[i].r_name + '">' +
                             '<div class="row" style="border-bottom:ridge;">' + '<div class="col-sm-6 text-center">' +
                             '<img src="http://storage.googleapis.com/jikbakguri/video/' + review[i].r_name + '.jpg"' + 'class="review_img"/>'
@@ -539,7 +539,7 @@
             success: function (star) {
 
                 if (typeof star !== 'object') return;
-                for (var j = 1; j < star.length; j++) {
+                for (var j = 0; j < star.length; j++) {
                     var string2 = '<a href="/videoDetail/' + star[j].s_name+'">' +
                             '<div class="row" style="border-bottom:ridge;">' + '<div class="col-sm-6 text-center">' +
                             '<img src="http://storage.googleapis.com/jikbakguri/video/' + star[j].s_name + '.jpg"'+'class="review_img"/>'
