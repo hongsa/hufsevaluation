@@ -31,11 +31,38 @@
     }
 </style>
 
-
 {% endblock css %}
 
 {% block content %}
 <!--<div class="col-md-1"></div>-->
+
+<div class="modal fade" id="layerpop" >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- header -->
+          <div class="modal-header">
+            <!-- 닫기(x) 버튼 -->
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <!-- header title -->
+    <div class="text-center">
+        <img style="height:5.33em; display: inline-block" src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="img-responsive" alt="Responsive image">
+    </div>
+          </div>
+          <!-- body -->
+          <div class="modal-body">
+               <span style="color: orange;font-size: 16px;">1. # 해시태그 추가! </span><span>(댓글에 #를 붙이고 형님들의 의견을 적어주세요)</span><br/>
+               <span style="color: orange;font-size: 16px;">2. DB 업데이트 완료! </span><span>(이미지도 빨리 업로드하겠습니다 형님들)</span><br/>
+               <span style="color: orange;font-size: 16px;">3. 메인 디자인 변경! </span><span>(좀 더 깔끔하지 않습니까)</span><br/>
+          </div>
+          <!-- Footer -->
+          <div class="modal-footer text-center">
+            형님들 사랑합니다. 더욱 열심히 하겠습니다.
+            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+          </div>
+        </div>
+      </div>
+</div>
+
 
 <div class="col-md-10">
     <div class="col-md-6">
@@ -461,8 +488,20 @@
 
 {% block js %}
 <script type="text/javascript" src="{{url_for('static', filename='js/main_show.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/js.cookie.js')}}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        if (Cookies.get('name') != 'exist') {
+            $('div.modal').modal();
+            Cookies.set('name', 'exist', { expires: 1 });
+        }
+    })
+</script>
 
-<!--<script type='text/javascript' src="{{url_for('static', filename='js/actor_detail.js')}}"></script>-->
+
+
+
 <script>
     $(document).ready(function() {
 
