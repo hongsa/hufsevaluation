@@ -1,50 +1,10 @@
-<!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지-->
-{% extends "nav_layout.html" %}
-{% block css %}
-{% endblock css %}
-{% block js %}
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
 
-{% block content %}
-
-<div class="col-md-1"></div>
-<div class="col-md-10 text-center">
-   <img style="height:13.33em; display: inline-block" src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="img-responsive" alt="Responsive image">
-    <p style="font-size: 30px;">비밀번호 변경하기</p>
-    <form action="{{url_for('modify_password')}}" method="post">
-        <input type="password" name="password" placeholder="  변경할 비밀번호를 입력" style="width: 30%"/> &nbsp;&nbsp;&nbsp;<button class="btn btn-warning" type="submit">변경하기!</button>
-        <br/>
-        {% with errors = get_flashed_messages(category_filter=["password"]) %}
-        {% if errors %}
-        {% for msg in errors %}
-        {{ msg }}
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-
-    </form>
-
-    <p style="font-size: 30px;">닉네임 변경하기</p>
-    <form action="{{url_for('modify_nickname')}}" method="post">
-        <input type="text" name="nickname" maxlength="7" placeholder="  변경할 닉네임을 입력 (최대 7자)" style="width: 30%"/>&nbsp;&nbsp;&nbsp;<button class="btn btn-warning" type="submit">변경하기!</button>
-        <br/>
-        {% with errors = get_flashed_messages(category_filter=["nickname"]) %}
-        {% if errors %}
-        {% for msg in errors %}
-        {{ msg }}
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-
-    </form>
-
-    <p style="font-size: 30px;">나의 등급 :<img src="/static/img/{{level}}.png" alt=""/> </p>
-
-</div>
-
-<div class="col-md-1"></div>
-
-
-
-
-{% endblock %}
+</body>
+</html>

@@ -2,7 +2,7 @@
 from flask import redirect, url_for, render_template, request, flash, session
 from apps import db
 from werkzeug.security import generate_password_hash, check_password_hash
-from apps.models import User,RatingActor,RatingVideo
+from apps.models import User
 from apps import forms
 import random
 import pytz

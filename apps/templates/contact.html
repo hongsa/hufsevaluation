@@ -1,37 +1,10 @@
-<!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지-->
-{% extends "nav_layout.html" %}
-{% block css %}
-{% endblock css %}
-{% block js %}
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&appId=735497843177342&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
 
-{% block content %}
-
-<div class="col-md-1"></div>
-<div class="col-md-10 text-center">
-
-  <img style="height:13.33em; display: inline-block" src="{{url_for('static', filename='img/jikbak_yellow.png')}}" class="img-responsive" alt="Responsive image">
-
-    <p class="contact">직박구리는 서로의 취향을 부끄러워 하지 않고 재미있게 이야기할 수 있도록</p>
-    <p class="contact">젊은 청년들이 모여서 만든 기괴한 서비스입니다. 즐겨주세요!</p>
-    <br/>
-    <p class="contact">제휴문의 및 건의사항을 보내주세요!</p>
-    <p class="contact" style="color: #47038C;">help@jikbakguri.com</p>
-
-<div class="fb-like" data-href="http://www.jikbakguri.com/" data-width="600" data-layout="box_count" data-action="like" data-show-faces="false" data-share="false"></div>
-</div>
-
-
-
-<div class="col-md-1"></div>
-
-
-{% endblock %}
+</body>
+</html>

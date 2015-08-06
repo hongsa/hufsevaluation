@@ -1,0 +1,119 @@
+<!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지-->
+{% extends "navigation.html" %}
+{% block css %}
+{% endblock css %}
+{% block content %}
+
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <p class="text-center">
+            직전하기 혹은 작년학기 과목을
+            최소 5개를 평가하셔야 이용하실 수 있습니다.
+
+        </p>
+
+        <form class="navbar-form navbar-left" role="search" action="/begin" method="POST">
+
+            <div class="form-group">
+                <input type="text" name="search" class="form-control" placeholder="강의명 혹은 교수님으로 검색해주세요!" style="width: 30em;">
+            </div>
+            <!--디비 검색 버튼-->
+            <button name="submitbutton" type="submit" class="btn btn-default btn-xs" style="background-color:transparent;border-color:transparent;">
+                <span class="glyphicon glyphicon-search" style="font-size: 20px;"></span>
+            </button>
+        </form>
+
+
+
+        <form class="navbar-form navbar-left" role="search" action="/begin2" method="POST">
+            <select name="year">
+                <option value="2015" selected="selected">2015</option>
+                <option value="2014">2014</option>
+            </select>
+
+            <select name="semester">
+                <option value="3" selected="selected">전체</option>
+                <option value="1">1학기</option>
+                <option value="2">2학기</option>
+            </select>
+
+            <br>
+            <br>
+
+            <button type="button" id="show_major" class="btn btn-warning btn-lg"><span>전공/부전공</span></button>
+            <button type="button" id="show_free" class="btn btn-primary btn-lg"><span >실용외국어/교양과목</span></button>
+
+            <div>
+
+                <select name="category1" class="major">
+                    <option value="0" >전공 선택!</option>
+                    <option value="경제">경제</option>
+                    <option value="경영">경영</option>
+                </select>
+
+                <select name="category2" class="free" style="display: none">
+                    <option value="0" >교양 선택!</option>
+                    <option value="인문">인문</option>
+                    <option value="세계">세계</option>
+                </select>
+
+            </div>
+
+            <div>
+                <button name="submitbutton" type="submit" class="btn btn-default btn-xs" style="background-color:transparent;border-color:transparent;">
+                    <span class="glyphicon glyphicon-search" style="font-size: 20px;"></span>
+                </button>
+            </div>
+        </form>
+
+
+
+        <br/>
+
+
+        {% if empty is defined %}
+            {% if empty == 0 %}
+                <p style="font-size: 20px;">{{ search }}의 검색결과가 없습니다. 다른 단어로 검색해주세요</p>
+            {% else %}
+            {% endif %}
+
+        {% else %}
+            <p style="font-size:30px;"><span style="color: #1473b3;">"{{search}}"</span> 검색결과 입니다.</p>
+            <div class="row">
+            {% for i in lecture['name'] %}
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail text-center">
+                        <span>{{i.name}}</span>
+                    </div>
+                </div>
+            {% endfor %}
+            {% for j in lecture['professor'] %}
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail text-center">
+                        <span>{{j.name}}</span>
+                    </div>
+                </div>
+            {% endfor %}
+
+            {% for k in lecture %}
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail text-center">
+                        <span>{{k.name}}</span>
+                    </div>
+                </div>
+            {% endfor %}
+
+        {% endif %}
+        </div>
+    </div>
+
+    <div class="col-md-1"></div>
+
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{url_for('static', filename='js/select.js')}}"></script>
+{% endblock %}
