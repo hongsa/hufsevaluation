@@ -14,24 +14,20 @@ def get_current_time():
 
 
 def index():
-    number = random.randint(1,5)
-    if not 'session_user_email' in session:
+    number = random.randint(1,4)
+    if not 'session_user_code' in session:
         form=forms.LoginForm()
-        # count = int(RatingActor.query.count()) + int(RatingVideo.query.count())
-        return render_template("mainPageNew.html", form=form, number=number)
-    return redirect(url_for('main_page'))
+        return render_template("index.html", form=form, number=number)
+    return redirect(url_for('search'))
 
 
 # 회원가입
 def signup():
-    number = random.randint(1,5)
+    number = random.randint(1,4)
     form = forms.JoinForm()
 
-    # nickname_list=[]
-    # for i in User.query.with_entities(User.nickname).all():
-    #     nickname_list.append(i.nickname)
     try:
-        if session['session_user_email']:
+        if session['session_user_code']:
             flash(u"이미 회원가입 하셨습니다!", "error")
             return render_template("signup.html", form=form)
     except Exception, e:
@@ -39,9 +35,19 @@ def signup():
 
 
     if request.method == 'POST':
-        if User.query.get(form.email.data):
-            flash(u"이미 등록된 메일 주소 입니다!", "error")
+        if User.query.filter_by(code=form.code.data).first():
+            flash(u"이미 등록된 학번 입니다!", "error")
             return render_template("signup.html", form=form)
+        if not len(form.code.data) ==9:
+            flash(u"제대로된 학번이 아닙니다!", "error")
+            return render_template("signup.html", form=form)
+        # if User.query.filter_by(email=form.email.data).first():
+        #     flash(u"이미 등록된 메일 주소 입니다!", "error")
+        #     return render_template("signup.html", form=form)
+        # if not "@hufs.ac.kr" in form.email.data:
+        #     flash(u"외대 메일이 아닙니다.", "error")
+        #     return render_template("signup.html", form=form)
+
         if User.query.filter_by(nickname=form.nickname.data).first():
             flash(u"이미 사용중인 닉네임입니다!", "error")
             return render_template("signup.html", form=form)
@@ -49,18 +55,18 @@ def signup():
             flash(u"올바른 형식으로 입력해주세요!", "error")
             return render_template("signup.html", form=form)
 
-        user = User(email=form.email.data, password=generate_password_hash(form.password.data),
-                    nickname=form.nickname.data, sex=form.sex.data,joinDATE=get_current_time())
+        user = User(code = form.code.data, password=generate_password_hash(form.password.data),
+                    nickname=form.nickname.data, sex=form.sex.data,college= form.college.data,joinDATE=get_current_time())
 
         db.session.add(user)
         db.session.commit()
 
 
         # flash(u"회원가입 되셨습니다!")
-        session['session_user_email'] = form.email.data
+        session['session_user_code'] = form.code.data
         session['session_user_nickname'] = form.nickname.data
 
-        return redirect(url_for('main_page'))
+        return redirect(url_for('search'))
 
     return render_template("signup.html", form=form,number=number)
 
@@ -72,9 +78,9 @@ def login():
     form = forms.LoginForm()
 
     try:
-        if session['session_user_email']:
+        if session['session_user_code']:
             flash(u'이미 로그인 하셨습니다!', "error")
-            return redirect(url_for('video_main'))
+            return redirect(url_for('begin'))
 
     except Exception, e:
         pass
@@ -82,28 +88,28 @@ def login():
 
     if request.method == "POST":
         if form.validate_on_submit():
-            email = form.email.data
+            code = form.code.data
             pwd = form.password.data
-            user = User.query.get(email)
+            user = User.query.filter_by(code=code).first()
             if user is None:
-                flash(u"존재하지 않는 이메일 입니다.", "error")
-                return render_template("mainPageNew.html", form=form)
+                flash(u"존재하지 않는 학번입니다.", "error")
+                return render_template("index.html", form=form)
             elif not check_password_hash(user.password, pwd):
                 flash(u"비밀번호가 틀렸습니다!", "error")
-                return render_template("mainPageNew.html", form=form)
+                return render_template("index.html", form=form)
             else:
                 session.permanent = True
-                session['session_user_email'] = user.email
+                session['session_user_code'] = user.code
                 session['session_user_nickname'] = user.nickname
-                return redirect(url_for('main_page'))
+                return redirect(url_for('search'))
 
 
-    return render_template("mainPageNew.html", form=form)
+    return render_template("index.html", form=form)
 
 #로그아웃 부분.
 def logout():
 
-    if "session_user_email" in session:
+    if "session_user_code" in session:
         session.clear()
         # flash(u"로그아웃 되었습니다.")
     else:
@@ -111,19 +117,8 @@ def logout():
     return redirect(url_for('index'))
 
 def modify_password():
-    email = session['session_user_email']
-    user= User.query.get(email)
-    num = user.numVideo
-    if num<50:
-        level= 0
-    elif 50<=num<100:
-        level= 1
-    elif 100<=num<200:
-        level= 2
-    elif 200<=num<400:
-        level= 3
-    else:
-        level= 4
+
+    user = User.query.filter_by(code=session['session_user_code']).first()
 
     if request.method == 'POST':
         user.password = generate_password_hash(request.form['password'])
@@ -131,22 +126,11 @@ def modify_password():
         flash(u"변경 완료되었습니다.", "password")
         return redirect(url_for('modify_password'))
 
-    return render_template("modify.html",level=level)
+    return render_template("modify.html")
 
 def modify_nickname():
-    email = session['session_user_email']
-    user= User.query.get(email)
-    num = user.numVideo
-    if num<50:
-        level= 0
-    elif 50<=num<100:
-        level= 1
-    elif 100<=num<200:
-        level= 2
-    elif 200<=num<400:
-        level= 3
-    else:
-        level= 4
+
+    user = User.query.filter_by(code=session['session_user_code']).first()
 
     if request.method == 'POST':
         nickname=request.form['nickname']
@@ -165,7 +149,7 @@ def modify_nickname():
         flash(u"변경 완료되었습니다.", "nickname")
         return redirect(url_for('modify_nickname'))
 
-    return render_template("modify.html", level=level)
+    return render_template("modify.html")
 
 
 def contact():

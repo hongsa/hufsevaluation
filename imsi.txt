@@ -1,1 +1,0 @@
-python "C:\Program Files (x86)\Google\google_appengine\dev_appserver.py" --mysql_host=173.194.111.157 --mysql_user=root --mysql_password=hsskjhkjh C:\Users\hongsa\Desktop\yd_google

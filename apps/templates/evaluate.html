@@ -1,10 +1,81 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<!--네비게이션 위에 붙여서 만든 카테고리 레이아웃 페이지-->
+{% extends "navigation.html" %}
+{% block css %}
+{% endblock css %}
+{% block content %}
 
-</body>
-</html>
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+
+    <div class="row">
+        <div>
+            <div class="text-center" style="font-family: Hanna;font-size: 20px;font-weight: bold;">
+                <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span>
+                강의평가 쓰기<span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span></div>
+            <div style="font-weight: bold;font-family: Hanna;font-size: 17px;">
+                1. 평가를 <span style="color: red">5개 이상</span> 해야 볼 권한이 생깁니다!<br>
+                2. 외대인다운 <span style="color: red">정성스런 평가</span>부탁해요!<br>
+                3. 허위평가나 너무 무성의하면 <span style="color: red">제재</span>가 있을 수 있어요!
+            </div>
+
+
+        </div>
+        <hr/>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+
+                            <span class="col-md-9">
+                                <span style="color:#1473b3; font-size: 18px;">{{lecture.name}}</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span style="font-family: Hanna;">{{lecture.professor}} 교수님 / {{ lecture.get_grade }} 학점</span>
+                            </span>
+                            <span class="col-md-3">
+                                <span style="font-family: Hanna;">{{ lecture.year }}-{{ lecture.semester }}학기 / {{ lecture.category }} </span>
+                            </span>
+            </div>
+
+        </div>
+        <div class="panel-body">
+            {#            <form action="/evaluate/{{ lecture.id }}" method="POST">#}
+
+            <div class="row average_box">
+                <div class="col-md-4">
+                    <span>총평 : </span><input name ="total" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                    <span>난이도(얼마나 어렵나요) : </span><input name ="difficulty" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                </div>
+
+                <div class="col-md-4">
+                    <span>학습량(공부량은 어떤가요) : </span><input name ="study_time" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                    <span>출첵(출석체크 잘 안하시면 1점!, 항상 하면 5점) : </span><input name ="attendance" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                </div>
+                <div class="col-md-4">
+                    <span>학점(받기 어려우면 1점!, 쉬우면 5점) : </span><input name ="grade" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                    <span>성취감(배우는 것이 많나요) : </span><input name ="achievement" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                </div>
+            </div>
+            <br>
+            <input name="id" type="hidden" value="{{ lecture.id }}">
+
+            <textarea class="form-control" rows="7" name = "content" placeholder="평가 내용을 입력해주세요."></textarea>
+
+            <br>
+
+            <button type="submit" class="btn btn-primary btn-block" id="lec_ev">
+                입력하기
+            </button>
+            {#            </form>#}
+        </div>
+    </div>
+
+    <div class="col-md-1"></div>
+
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/evaluate.js')}}"></script>
+{% endblock %}

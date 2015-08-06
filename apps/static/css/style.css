@@ -38,110 +38,6 @@ html,body{
 .symbol-filled {
     background-image: url(../img/star_on2.png);
 }
-.main_img{
-    width: 8em;
-    height: 8em;
-    background-size: cover;
-    border-radius: 12.5em;
-}
-.plus_sign{
-    width: 7em;
-    height: 8em;
-    background-size: cover;
-}
-.rank_chart{
-    padding-top: 0.7em;
-    border-radius: 10px;
-    background-color: #1473b3;
-    margin-bottom: 10px;
-    font-family: "Nanum Gothic";
-    font-weight: bold;
-}
-
-.category_chart{
-    padding-top: 0.7em;
-    border-radius: 10px;
-    background-color: #1473b3;
-    margin-bottom: 10px;
-    font-family: "Nanum Gothic";
-    font-weight: bold;
-    margin-top: 5em;
-}
-.category_chart2{
-    padding-top: 0.7em;
-    border-radius: 10px;
-    background-color: #1473b3;
-    margin-bottom: 10px;
-    font-family: "Nanum Gothic";
-    font-weight: bold;
-    height:31.250em ;
-    overflow: scroll;
-    margin-top: 5em;
-}
-
-
-
-.category_name{
-    font-size: 30px;
-    margin-bottom: 3em;
-}
-
-.category_img{
-    width: 11em;
-    height:11em;
-    background-size: cover;
-    border-radius: 12.5em;
-}
-.detail_img{
-    width: 12em;
-    height: 12em;
-    background-size: cover;
-    border-radius: 12.5em;
-}
-.detail_box{
-    background-color:#e1ebec;
-    height: 16.400em;
-    border-style: ridge;
-}
-.detail_box2{
-    background-color:#e1ebec;
-    height: 16.400em;
-    border-style: ridge;
-    overflow: scroll;
-}
-
-.detail_name{
-    font-size: 30px;
-    color: black;
-}
-.comment_author{
-    color: #1473b3;
-    margin-left: 1em;
-}
-.all_name{
-    color: black;
-    font-size: 19px;
-    font-family: 'Hanna';
-}
-.contact{
-    font-size: 25px;
-}
-.all_name_small{
-    color: #000000;
-    font-family: 'Hanna';
-}
-
-.main_name_small{
-    color: #000000;
-    font-family: 'Hanna';
-    font-size: 13px;
-}
-
-
-.love{
-    background-image:url(../img/love.png); ;
-}
-
 
 
 li>a{
@@ -171,91 +67,6 @@ li>a{
 }
 .panel{
     margin-bottom: 10px;
-}
-
-.review{
-    overflow: scroll;
-    height: 35em;
-    /*background-color:#e1ebec;*/
-    /*border-style: ridge*/
-    border:1px solid;
-    border-radius: 10px;
-}
-
-
-.boardBox{
-    height: 25em;
-    border-style: ridge;
-    margin-bottom: 1em;
-    border-radius: 10px;
-}
-.boardTitle{
-    background-color: #e1ebec;
-    margin-bottom: 3px;
-    height: 3.5em;
-    padding: 0.8em;
-    border-radius: 10px;
-    border: 1px solid;
-}
-
-.loading {
-    display:    none;
-    /*position:   fixed;*/
-    z-index:    1000;
-    top:        0;
-    left:       0;
-    height:     100%;
-    width:      100%;
-    background: url(../img/loading.gif)
-    50% 50%
-    no-repeat;
-}
-.review_img{
-    width: 5em;
-    height: 5em;
-    background-size: cover;
-    border-radius: 12.5em;
-}
-
-.review_chart{
-    padding-top: 0.7em;
-    border-radius: 10px;
-    background-color: #e1ebec;
-    margin-bottom: 10px;
-    /*font-family: "Nanum Gothic";*/
-    /*font-weight: bold;*/
-    overflow: scroll;
-    height: 30em;
-}
-
-.star_recent{
-    padding-top: 0.7em;
-    border-radius: 10px;
-    background-color: rgba(244, 158, 26, 0.61);
-    margin-bottom: 10px;
-    /*font-family: "Nanum Gothic";*/
-    /*font-weight: bold;*/
-    overflow: scroll;
-    height: 30em;
-}
-
-
-
-.review_content{
-    color: #000000;
-    padding-top:10px;
-    padding-right:5px;
-}
-.standard{
-    color: #000000;
-    font-size: 12px;
-    font-family: 'Nanum Gothic';
-}
-.small_img{
-    width: 3.5em;
-    height: 3.5em;
-    background-size: cover;
-    border-radius: 12.5em;
 }
 
 @media (min-width: 768px) {
@@ -298,77 +109,44 @@ li>a{
         left: -6px;
     }
 }
-
-/*.ad{*/
-/*height: 32em;*/
-/*width: 12em;*/
-/*background-image: url(../img/ad_desktop2.png);*/
-/*background-size: cover;*/
-
-/*}*/
-/*@media (max-width: 1000px){*/
-
-/*.ad{*/
-/*height: 18em;*/
-/*width: 24em;*/
-/*background-image: url(../img/ad_mobile2.png);*/
-/*background-size: cover;*/
-
-/*}*/
-/*}*/
-
-
-/*.ad_mobile{*/
-/*height: 15em;*/
-/*width: 30em;*/
-/*background-image: url(../img/star_off2.png);*/
-/*}*/
-
-.main_background{
-    background-color: rgba(10, 1, 1, 0.11);
-    overflow: scroll;
-    height: 31em;
+select{
+    border: 1px solid #CCC;
+    /*width: 100%;*/
+    width: 120px;
+    height: 30px;
 }
-.actor_show_click{
-    display: none;
-}
-.video_show_click{
-    display: none;
-}
-@media only screen and (max-width : 1000px) {
-    .review_chart{
-        padding-top: 0.7em;
-        border-radius: 10px;
-        background-color: #e1ebec;
-        margin-bottom: 10px;
-        overflow: scroll;
-        height: 0em;
-        display: none;
-    }
-    .star_recent{
-        padding-top: 0.7em;
-        border-radius: 10px;
-        background-color: rgba(244, 158, 26, 0.61);
-        margin-bottom: 10px;
-        overflow: scroll;
-        height: 0em;
-        display: none;
-    }
-}
-.category_background{
+.rating_box{
     background-color: rgba(10, 1, 1, 0.11);
     padding: 1em;
-    margin-top: 1em;
+    margin-top: 1.5em;
     margin-bottom: 1em;
-    border-radius: 100px;
+    /*border-radius: 100px;*/
     border: solid 1px;
+    font-family: Hanna;
+    font-size: 16px;
+    color: #008000;
 }
-.btn-category1{
-    display: block;
-    width: 50%;
+.search_box{
+    background-color:#e1ebec;
+    border-style: ridge;
+    padding: 2.5em;
 }
-.btn-category2{
-    display: block;
-    width: 33%;
+.detail_box{
+    background-color:#e1ebec;
+    border-style: ridge;
+    padding: 1.5em;
 }
+.average_box{
+    font-family: Hanna;
+    color: rgba(2, 167, 255, 0.73);
+}
+.text_box{
+    padding: 2em;
+}
+.text_sign{
+    font-family: Hanna;
+    font-weight: bold;
+    font-size: 18px;
+    color: blue;
 
+}

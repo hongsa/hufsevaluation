@@ -6,78 +6,162 @@
 
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        <p class="text-center">
-            직전하기 혹은 작년학기 과목을
-            최소 5개를 평가하셔야 이용하실 수 있습니다.
-
-        </p>
-
-        <form class="navbar-form navbar-left" role="search" action="/begin" method="POST">
-
-            <div class="form-group">
-                <input type="text" name="search" class="form-control" placeholder="강의명 혹은 교수님으로 검색해주세요!" style="width: 30em;">
-            </div>
-            <!--디비 검색 버튼-->
-            <button name="submitbutton" type="submit" class="btn btn-default btn-xs" style="background-color:transparent;border-color:transparent;">
-                <span class="glyphicon glyphicon-search" style="font-size: 20px;"></span>
-            </button>
-        </form>
-
-
-        <form class="navbar-form navbar-left" role="search" action="/begin2" method="POST">
-            <select name="year">
-                <option value="2015" selected="selected">2015</option>
-                <option value="2014">2014</option>
-            </select>
-
-            <select name="semester">
-                <option value="3" selected="selected">전체</option>
-                <option value="1">1학기</option>
-                <option value="2">2학기</option>
-            </select>
-
-            <br>
-            <br>
-
-            <button type="button" id="show_major" class="btn btn-warning btn-lg"><span>전공/부전공</span></button>
-            <button type="button" id="show_free" class="btn btn-primary btn-lg"><span >실용외국어/교양과목</span></button>
-
-            <div>
-
-                <select name="category1" class="major">
-                    <option value="0" >전공 선택!</option>
-                    <option value="경제">경제</option>
-                    <option value="경영">경영</option>
-                </select>
-
-                <select name="category2" class="free" style="display: none">
-                    <option value="0" >교양 선택!</option>
-                    <option value="인문">인문</option>
-                    <option value="세계">세계</option>
-                </select>
-
+        <div class="search_box col-md-12">
+            <div class="row">
+                <div class="col-md-7">
+                    <span style="font-weight: bold;font-family: Hanna;font-size: 18px;">1. "강의명" 혹은 "교수님" 으로 검색</span>
+                    <div class="row">
+                        <form role="search" action="/search" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="search" class="form-control col-md-10" placeholder="강의명 혹은 교수님으로 검색해주세요!" style="width: 20em; display: inline">
+                                <!--디비 검색 버튼-->
+                                <button type="submit" class="btn btn-primary btn-md col-md-2">
+                                    검색하기
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-5" style="font-weight: bold;font-family: Hanna;font-size: 17px;">
+                    1. 평가를 <span style="color: red">5개 이상</span> 해야 볼 권한이 생깁니다!<br>
+                    2. 외대인다운 <span style="color: red">정성스런 평가</span>부탁해요!<br>
+                    3. 허위평가나 너무 무성의하면 <span style="color: red">제재</span>가 있을 수 있어요!
+                </div>
             </div>
 
-            <div>
-                <button name="submitbutton" type="submit" class="btn btn-default btn-xs" style="background-color:transparent;border-color:transparent;">
-                    <span class="glyphicon glyphicon-search" style="font-size: 20px;"></span>
-                </button>
+            <span style="font-weight: bold;font-family: Hanna;font-size: 18px;">2. 구분 검색</span>
+            <div class="row">
+                <form role="search" action="/search2" method="POST">
+                    &nbsp;&nbsp;&nbsp;
+                    <select name="year" class="col-md-2">
+                        <option value="2015" selected="selected">2015</option>
+                        <option value="2014">2014</option>
+                    </select>
+                    <select name="semester" class="col-md-2">
+                        <option value="3" selected="selected">전체</option>
+                        <option value="1">1학기</option>
+                        <option value="2">2학기</option>
+                    </select>
+
+                    <span class="col-md-3">
+                      <button type="button" id="show_major" class="btn btn-danger btn-sm"><span>전공/부전공</span></button>
+                    <button type="button" id="show_free" class="btn btn-warning btn-sm"><span >실용외국어/교양과목</span></button>
+                    </span>
+
+                    <select name="category1" class="major col-md-2">
+                        <option value="0" >전공 선택!</option>
+                        <option value="EICC학과">EICC학과</option><option value="EU전공">EU전공</option>
+                        <option value="LD전공">LD전공</option><option value="LD학부">LD학부</option>
+                        <option value="LT학부">LT학부</option><option value="경영학부">경영학부</option>
+                        <option value="경영학전공">경영학전공</option><option value="경제학부">경제학부</option>
+                        <option value="경제학전공">경제학전공</option><option value="광고,홍보전공">광고,홍보전공</option>
+                        <option value="교육학">교육학</option><option value="국가리더 연계전공">국가리더 연계전공</option>
+                        <option value="국제통상학과">국제통상학과</option><option value="국제학부">국제학부</option>
+                        <option value="국제학전공">국제학전공</option><option value="네덜란드어과">네덜란드어과</option>
+                        <option value="노어과">노어과</option><option value="독일어과">독일어과</option>
+                        <option value="독일어교육과">독일어교육과</option><option value="동북아전공">동북아전공</option>
+                        <option value="동양어대학">동양어대학</option>
+                        <option value="말레이,인도네시아어과">말레이,인도네시아어과</option><option value="몽골어과">몽골어과</option>
+                        <option value="문화콘텐츠학전공">문화콘텐츠학전공</option><option value="미디어커뮤니케이션학부">미디어커뮤니케이션학부</option>
+                        <option value="방송,영상전공">방송,영상전공</option><option value="법학과">법학과</option>
+                        <option value="베트남어과">베트남어과</option>
+                        <option value="브릭스전공">브릭스전공</option><option value="사학과">사학과</option>
+                        <option value="사회과학전공">사회과학전공</option><option value="서양어대학">서양어대학</option>
+                        <option value="스칸디나비아어과">스칸디나비아어과</option>
+                        <option value="스페인어과">스페인어과</option><option value="아랍어과">아랍어과</option>
+                        <option value="정보전공">언론,정보전공</option><option value="언어인지학과">언어인지학과</option>
+                        <option value="영문학과">영문학과</option><option value="영미문학,문화학과">영미문학,문화학과</option>
+                        <option value="영어교육과">영어교육과</option><option value="영어전공">영어전공</option>
+                        <option value="영어통번역학과">영어통번역학과</option><option value="영어학과">영어학과</option>
+                        <option value="영어학부">영어학부</option>
+                        <option value="외국어로서의한국어교육연계전공">외국어로서의한국어교육연계전공</option><option value="융복합소프트웨어연계전공">융복합소프트웨어연계전공</option>
+                        <option value="융복합일본지역전공">융복합일본지역전공</option><option value="융복합일본지역학부">융복합일본지역학부</option>
+                        <option value="이란어과">이란어과</option><option value="이탈리아어과">이탈리아어과</option>
+                        <option value="인도어과">인도어과</option><option value="일본문학전공">일본문학전공</option>
+                        <option value="일본어학전공">일본어학전공</option><option value="일본언어문화전공">일본언어문화전공</option>
+                        <option value="일본언어문화학부">일본언어문화학부</option><option value="일본지역학전공">일본지역학전공</option>
+                        <option value="일본학부">일본학부</option><option value="정치외교학과">정치외교학과</option>
+                        <option value="중국문학전공">중국문학전공</option><option value="중국어학전공">중국어학전공</option>
+                        <option value="중국언어문화전공">중국언어문화전공</option><option value="중국언어문화학부">중국언어문화학부</option>
+                        <option value="중국외교통상전공">중국외교통상전공</option><option value="중국외교통상학부">중국외교통상학부</option>
+                        <option value="중국지역학전공">중국지역학전공</option><option value="철학과">철학과</option>
+                        <option value="태국어과">태국어과</option><option value="터키,아제르바이잔어과">터키,아제르바이잔어과</option>
+                        <option value="포르투갈어과">포르투갈어과</option><option value="프랑스어과">프랑스어과</option>
+                        <option value="프랑스교육과">프랑스교육과</option><option value="한국어교육과">한국어교육과</option>
+                        <option value="행정학과">행정학과</option>
+
+
+                    </select>
+
+                    <select name="category2" class="free col-md-2" style="display: none">
+                        <option value="0" >교양 선택!</option>
+                        <option value="인문강좌">인문강좌</option><option value="교양외국어">교양외국어</option>
+                        <option value="HUFS CAREER">HUFS CAREER</option>
+                        <option value="건강과레포츠">건강과레포츠</option><option value="특별교양">특별교양</option>
+                        <option value="실용외국어">실용외국어</option><option value="외국인을 위한 한국학">외국인을 위한 한국학</option>
+                        <option value="공동교양(한예종)">공동교양(한예종)</option><option value="언어와문학">언어와문학</option>
+                        <option value="문화와예술">문화와예술</option><option value="역사와철학">역사와철학</option>
+                        <option value="국가와사회">국가와사회</option><option value="과학과기술">과학과기술</option>
+                        <option value="군사학">군사학</option>
+
+                    </select>
+                    <span class="col-md-2">
+                    <button type="submit" class="btn btn-primary btn-md">
+                        검색하기
+                    </button>
+                    </span>
+                </form>
             </div>
-        </form>
-
-
-
+        </div>
         <br/>
+        <div class="text-center" style="font-size:17px;"><span style="color: #1473b3;">"{{ category }}"</span> 검색결과 입니다.</div>
 
+        {% for i in lecture %}
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <span class="col-md-9">
+                                <span style="color:#1473b3; font-size: 18px;">{{i.name}}</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span style="font-family: Hanna;">{{i.professor}} 교수님 / {{ i.get_grade }} 학점</span>
+                            </span>
+                            <span class="col-md-3">
+                                <span style="font-family: Hanna;">{{ i.year }}-{{ i.semester }}학기 / {{ i.category }} </span>
+                            </span>
+                            </div>
+                    </div>
+                    <div class="panel-body average_box">
+                        <div class="row">
+                                <span class="col-md-4"><span style="color: #000000">총평 :</span>
+                                    {{'%0.2f'|format(i.ev1()|float) }} 점</span>
+                            <span class="col-md-4"><span style="color: #000000">난이도 :</span>  {{'%0.2f'|format(i.ev2()|float) }} 점</span>
+                            <span class="col-md-4"><span style="color: #000000">학습량 :</span>  {{'%0.2f'|format(i.ev3()|float) }} 점</span>
+                        </div>
+                        <div class="row">
+                            <span class="col-md-4"><span style="color: #000000">출첵 :</span>  {{'%0.2f'|format(i.ev4()|float) }} 점</span>
+                            <span class="col-md-4"><span style="color: #000000">학점 :</span>  {{'%0.2f'|format(i.ev5()|float) }} 점</span>
+                            <span class="col-md-4"><span style="color: #000000">성취감 :</span>  {{'%0.2f'|format(i.ev6()|float) }} 점</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <a href="/detail/{{ i.id }}">
+                            <button type="submit" class="btn btn-primary btn-md"style="font-weight: bold;">
+                                제대로 평가보기<span> ({{ i.count }} 개)</span>
+                            </button>
+                        </a>
+                        <a href="/evaluate/{{ i.id }}">
+                            <button class="btn btn-danger btn-md" style="font-weight: bold;">
+                                평가하러 가기
+                            </button>
+                        </a>
 
-        {% for k in lecture %}
+                    </div>
 
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail text-center">
-                    <span>{{k.name}}</span>
                 </div>
             </div>
         {% endfor %}
+
     </div>
 
     <div class="col-md-1"></div>

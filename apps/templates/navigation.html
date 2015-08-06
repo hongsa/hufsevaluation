@@ -1,10 +1,136 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="Ue06MRXA8_8x1ytglA2ddYKuIE-q-VhKbBZ3WyFGyTs" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>외대강의평가</title>
+
+    <meta property="og:title" content="외대강평 : 외대인은 평가로 뭉친다!" />
+    <meta property="og:site_name" content="좋은 건 공유합시다 이젠" />
+    <meta property="og:image" content="http://storage.googleapis.com/jikbakguri/image/hufsev.png" />
+    <meta property="og:url" content="http://www.hufsev.com/" />
+    <meta property="og:type" content="website" />
+    <!--<meta property="fb:app_id" content="149190165235116" />-->
+    <meta property="og:description" content="우리는 외대인이다. 좋은 정보는 공유한다."/>
+    <link rel="shortcut icon" href="{{url_for('static', filename='img/favicon.ico')}}" />
+
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/toastr.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+
+    <script type='text/javascript' src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/toastr.js')}}"></script>
+    <script type='text/javascript' src="{{url_for('static', filename='js/jquery-2.1.3.js')}}"></script>
+
+    {% block css %}
+    {% endblock css%}
+
+    <style type=text/css>
+        nav{
+            font-family: 'Nanum Gothic';
+            font-weight: bold;
+
+        }
+    </style>
+
+    <style type=text/css>
+        @media only screen and (max-width : 768px) {
+            .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+                color: white;
+            }
+        }
+    </style>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-65814730-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
 </head>
+
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.4&appId=735497843177342";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<nav class="navbar navbar-default" role="navigation" style="background-color:#f5f5f5;">
+    <!-- 모바일 전환시 생기는 네비게이션 바 -->
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="background-color: rgba(1, 12, 84, 1)">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- 웹사이트 네비게이션 바 안의 로고 부분부터 -->
+            <a class="navbar-brand"  href="/index">
+                <img src="{{url_for('static', filename='img/logo.png')}}"  class="img-responsive" alt="Responsive image" style="height: 2.778em;">
+            </a>
+        </div>
+
+        <!-- 네비게이션 링크 제목들 -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <!--검색 창 부분-->
+            <form class="navbar-form navbar-left" action="/search" method="POST">
+                <div class="form-group">
+                    <input type="text" name="search" class="form-control" placeholder="강의명 혹은 교수님으로 검색해주세요!" style="width: 30em; border: 1px solid;">
+                </div>
+                <!--디비 검색 버튼-->
+                <button name="submitbutton" value="first" type="submit" class="btn btn-default btn-xs" style="background-color:transparent;border-color:transparent;">
+                    <span class="glyphicon glyphicon-search" style="color:; font-size: 20px;"></span>
+                </button>
+
+            </form>
+            <!--검색 창 부분 끝-->
+
+            <ul class="nav navbar-nav navbar-right" >
+                <li>
+                    <div class="fb-share-button" data-href="http://www.hufsev.com/" data-layout="button_count" style="padding-top: 1em;"></div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span style="color: #000000">{{session.session_user_nickname}}&nbsp;님</span>
+                        <b class="caret" style="color: #000000"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/my_rating/1">내가 쓴 평가</a></li>
+                        <li><a href="{{url_for('modify_password')}}">회원정보 수정</a></li>
+                        <li><a href="/logout">로그아웃</a></li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="/contact" style="color: #000000">문의&수정</a>
+                </li>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div>
+</nav>
+
+{% block content %}
+{% endblock %}
+
 
 </body>
+{% block js %}
+{% endblock js %}
+
 </html>

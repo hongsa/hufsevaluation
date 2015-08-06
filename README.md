@@ -1,4 +1,0 @@
-Jikbakguri
-==========
-
-jikbakguri for christmas

@@ -12,7 +12,7 @@ class Production(Config):
     DEBUG = True
     CSRF_ENABLED = True
     ADMIN = "ydproject777@gmail.com"
-    SQLALCHEMY_DATABASE_URI = 'mysql+gaerdbms:///jikbakguri?instance=yd-project777:group-project'
+    SQLALCHEMY_DATABASE_URI = 'mysql+gaerdbms:///hufsev?instance=hufsev-1015:hufs'
     # SQLALCHEMY_ECHO = True
     migration_directory = 'migrations'
     PERMANENT_SESSION_LIFETIME = timedelta(days=1)
