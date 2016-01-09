@@ -3,12 +3,14 @@
   <component name="FacetManager">
     <facet type="google-appengine-python" name="Google App Engine (Python)">
       <configuration>
-        <option name="rootFolder" value="$USER_HOME$/Documents/Hufsev" />
+        <option name="rootFolder" value="$MODULE_DIR$" />
         <option name="sdkFolder" value="/usr/local/google_appengine" />
         <option name="templatesFolder" value="" />
         <option name="email" value="hsasung@gmail.com" />
         <option name="gp" value="df9bdf99df98df9edf9fdf9cdfcddfc2dfce" />
-        <option name="oauth2" value="false" />
+        <option name="oauth2" value="true" />
+        <option name="deployConfigured" value="true" />
+        <option name="saveCredentials" value="true" />
       </configuration>
     </facet>
   </component>

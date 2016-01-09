@@ -191,6 +191,7 @@ def search2():
         if semester == 3:
             lecture = Lecture.query.filter(Lecture.category==category, Lecture.year == year).all()
 
+
         else:
             lecture = Lecture.query.filter(Lecture.category==category, Lecture.year == year, Lecture.semester == semester).all()
 
