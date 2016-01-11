@@ -122,9 +122,9 @@ select{
     margin-bottom: 1em;
     /*border-radius: 100px;*/
     border: solid 1px;
-    font-family: Hanna;
-    font-size: 16px;
-    color: #008000;
+    /*font-family: Hanna;*/
+    /*font-size: 16px;*/
+    /*color: #008000;*/
 }
 .search_box{
     background-color:#e1ebec;
@@ -137,8 +137,8 @@ select{
     padding: 1.5em;
 }
 .average_box{
-    font-family: Hanna;
-    color: rgba(2, 167, 255, 0.73);
+    /*font-family: Hanna;*/
+    /*color: rgba(2, 167, 255, 0.73);*/
 }
 .text_box{
     padding: 2em;

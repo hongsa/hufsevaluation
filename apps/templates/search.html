@@ -18,9 +18,9 @@
               </div>
               <!-- body -->
               <div class="modal-body">
-                   <span style="color: #1473b3;font-size: 16px;font-family: Hanna;">1. 외대 강의평가 사이트가 오픈했습니다! </span><br/>
-                   <span style="color: #1473b3;font-size: 16px;font-family: Hanna;">2. 정성스레 강의평을 작성해주세요!<br/>
-                   <span class="text-center" style="color: red;font-size: 20px;font-family: Hanna;">친구들에게 공유 많이 부탁드려요!!!</span><br/>
+                   <span style="color: #1473b3;font-size: 16px;">1. 외대 강의평가 사이트가 오픈했습니다! </span><br/>
+                   <span style="color: #1473b3;font-size: 16px;">2. 정성스레 강의평을 작성해주세요!<br/>
+                   <span class="text-center" style="color: red;font-size: 20px;">친구들에게 공유 많이 부탁드려요!!!</span><br/>
               </div>
               <!-- Footer -->
               <div class="modal-footer text-center" style="font-family: Hanna;">
@@ -34,29 +34,24 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <div class="search_box col-md-12">
+            <div class="row" style="font-weight: bold;font-size: 13px;line-height: 1.7;">
+                1. 평가를 <span style="color: red">5개 이상</span> 해야 볼 권한이 생깁니다!<br>
+                2. 외대인다운 <span style="color: red">정성스런 평가</span>부탁해요!<br>
+                3. 허위 혹은 무성의한 평가는 <span style="color: red">제재</span>가 있을 수 있어요!
+            </div>
+            <br>
             <div class="row">
-                <div class="col-md-7">
-                    <span style="font-weight: bold;font-family: Hanna;font-size: 18px;">1. "강의명" 혹은 "교수님" 으로 검색</span>
-                    <div class="row">
-                        <form role="search" action="/search" method="POST">
-                            <div class="form-group">
-                                <input type="text" name="search" class="form-control col-md-10" placeholder="강의명 혹은 교수님으로 검색해주세요!" style="width: 20em; display: inline">
-                                <!--디비 검색 버튼-->
-                                <button type="submit" class="btn btn-primary btn-md col-md-2">
-                                    검색하기
-                                </button>
-                            </div>
-                        </form>
+                <form role="search" action="/search" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="search" class="form-control" placeholder="강의명 혹은 교수님으로 검색해주세요!" style="width: 40%; display: inline">
+                        <!--디비 검색 버튼-->
+                        <button type="submit" class="btn btn-primary btn-md">
+                            검색
+                        </button>
                     </div>
-                </div>
-                <div class="col-md-5" style="font-weight: bold;font-family: Hanna;font-size: 17px;">
-                    1. 평가를 <span style="color: red">5개 이상</span> 해야 볼 권한이 생깁니다!<br>
-                    2. 외대인다운 <span style="color: red">정성스런 평가</span>부탁해요!<br>
-                    3. 허위평가나 너무 무성의하면 <span style="color: red">제재</span>가 있을 수 있어요!
-                </div>
+                </form>
             </div>
 
-            <span style="font-weight: bold;font-family: Hanna;font-size: 18px;">2. 구분 검색</span>
             <div class="row">
                 <form role="search" action="/search2" method="POST">
                     &nbsp;&nbsp;&nbsp;
@@ -70,12 +65,13 @@
                         <option value="2">2학기</option>
                     </select>
 
-                    <span class="col-md-3">
-                    <button type="button" id="show_major" class="btn btn-danger btn-sm"><span>전공/부전공</span></button>
-                    <button type="button" id="show_free" class="btn btn-warning btn-sm"><span >실용외국어/교양과목</span></button>
-                    </span>
+                    <select class="col-md-3" onchange="categoryChange(value);">
+                        <option value="major">전공/부전공</option>
+                        <option value="free">실용외국어/교양과목</option>
+                    </select>
 
-                    <select name="category1" class="major col-md-2">
+
+                    <select name="category1" class="major col-md-2" >
                         <option value="0" >전공 선택!</option>
                         <option value="EICC학과">EICC학과</option><option value="EU전공">EU전공</option>
                         <option value="LD전공">LD전공</option><option value="LD학부">LD학부</option>
@@ -134,7 +130,7 @@
                     </select>
                     <span class="col-md-2">
                     <button type="submit" class="btn btn-primary btn-md">
-                        검색하기
+                        검색
                     </button>
                     </span>
                 </form>
@@ -209,17 +205,12 @@
                     </div>
                 {% endfor %}
 
-
-
-
-
-
             {% endif %}
 
 
         {% else %}
             <br>
-            <div class="text-center" style="font-size:17px;"><span style="color: #1473b3;">"{{search}}"</span> 검색결과 입니다.</div>
+            <div class="text-center" style="font-size:15px;"><span style="color: #1473b3;">"{{search}}"</span> 검색결과 입니다.</div>
             <br>
 
             {% for i in lecture['name'] %}
@@ -229,7 +220,7 @@
                             <div class="row">
 
                             <span class="col-md-9">
-                                <span style="color:#1473b3; font-size: 18px;">{{i.name}}</span>
+                                <span style="color:#1473b3; font-size: 15px;">{{i.name}}</span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <span style="font-family: Hanna;">{{i.professor}} 교수님 / {{ i.get_grade }} 학점</span>
                             </span>
@@ -335,6 +326,10 @@
                 $('div.modal').modal();
                 Cookies.set('name', 'exist', { expires: 1 });
             }
-        })
+        });
     </script>
+
+
+
+
 {% endblock %}

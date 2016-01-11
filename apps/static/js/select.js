@@ -1,12 +1,11 @@
-$(document).ready(function(){
+function categoryChange(val){
 
-    $("#show_major").click(function () {
+    if (val == "major"){
         $(".major").show();
         $(".free").hide();
-    });
-
-    $("#show_free").click(function () {
+    }
+    else{
         $(".major").hide();
         $(".free").show();
-    });
-});
+    }
+};

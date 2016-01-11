@@ -9,12 +9,12 @@
         <div class="detail_box">
             <div class="row">
                             <span class="col-md-9">
-                                <span style="color:#1473b3; font-size: 18px;">{{detail.name}}</span>
+                                <span style="color:#1473b3; font-size: 15px;">{{detail.name}}</span>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <span style="font-family: Hanna;">{{detail.professor}} 교수님 / {{ detail.get_grade }} 학점</span>
+                                <span>{{detail.professor}} 교수님 / {{ detail.get_grade }} 학점</span>
                             </span>
                             <span class="col-md-3">
-                                <span style="font-family: Hanna;">{{ detail.year }}-{{ detail.semester }}학기 / {{ detail.category }} </span>
+                                <span>{{ detail.year }}-{{ detail.semester }}학기 / {{ detail.category }} </span>
                             </span>
             </div>
             <hr style="border-color: #000000"/>
@@ -35,7 +35,7 @@
             <div class="text-center">
                 <a href="/evaluate/{{ detail.id }}">
                     <button class="btn btn-danger btn-md" style="font-weight: bold;">
-                        평가하러 가기
+                        평가하기
                     </button>
                 </a>
             </div>
