@@ -14,10 +14,10 @@ def get_current_time():
 
 
 def index():
-    number = random.randint(1,4)
+    # number = random.randint(1,4)
     if not 'session_user_code' in session:
         form=forms.LoginForm()
-        return render_template("index.html", form=form, number=number)
+        return render_template("index.html", form=form)
     return redirect(url_for('search'))
 
 

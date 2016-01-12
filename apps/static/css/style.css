@@ -20,23 +20,20 @@ html,body{
     margin: 0;
     height: 100%;
     width: 100%;
-    /*font-family: 'Hanna';*/
-    font-family: Nanum Gothic;
-    font-weight: bold;
-    /*background-color: #f6f3f3;*/
+    background-color: #f1f1f1;
 }
 .symbol {
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 32px;
+    height: 7px;
 }
 
 .symbol-empty {
-    background-image: url(../img/star_off2.png);
+    background-image: url(../img/000.png);
 }
 
 .symbol-filled {
-    background-image: url(../img/star_on2.png);
+    background-image: url(../img/100.png);
 }
 
 
@@ -44,10 +41,6 @@ li>a{
     color:white;
 }
 
-
-.navbar-brand{
-    padding: 0px;
-}
 
 
 .thumbnail{
@@ -127,9 +120,9 @@ select{
     /*color: #008000;*/
 }
 .search_box{
-    background-color:#e1ebec;
-    border-style: ridge;
-    padding: 2.5em;
+    background-color:#6CD2DF;
+    padding: 1em 1em 1em 3em;
+    border-color: #2eb1c1;
 }
 .detail_box{
     background-color:#e1ebec;
@@ -137,16 +130,101 @@ select{
     padding: 1.5em;
 }
 .average_box{
-    /*font-family: Hanna;*/
-    /*color: rgba(2, 167, 255, 0.73);*/
+    color: #999999;
 }
 .text_box{
     padding: 2em;
 }
 .text_sign{
-    font-family: Hanna;
     font-weight: bold;
     font-size: 18px;
     color: blue;
 
+}
+.form-control{
+    border-radius: 0px;
+}
+
+.search_button{
+    background-color: #175B60;
+    color: #FFFFFF;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+.upper_color{
+    background-color: #d3f1f5;
+    border-color: #cccccc;
+    padding: 1.5em;
+}
+.subject_name{
+    font-size: 18px;
+    color: #333333;
+}
+.subject_detail{
+    color: #999999;
+}
+.eval_btn{
+    background-color: #6cd3df;
+    color: #175b60;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+.total_rating{
+    font-size: 18px;
+    color: #333333;
+    padding-top: 7px;
+    padding-left: 0px;
+}
+.total_btn{
+    background-color: white;
+    border-color: #999999;
+    color: #666666;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+.total_score{
+    color: black;font-size: 25px;font-weight: bold;
+}
+
+.rating_bar{
+    background-image: url(../img/zero.png);
+    width: 168px;
+    height: 7px;
+    display: block;
+
+}
+.rating_bar_in{
+    position: absolute;
+    /*left: 0;*/
+    /*top: 0;*/
+    height: 7px;
+    width: 168px;
+    text-indent: -100000px;
+    background-image: url(../img/full.png);
+}
+
+.latest{
+    background-color: #cccccc;
+    color: #ffffff;
+    border-right: 2px;
+    text-align: center;
+    width: 10%;
+}
+.total_underline{
+    color: #cccccc;
+    border: solid 0.5px;
+}
+.nickname{
+    color: #6cd2df;
+}
+
+.cd-user-modal {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.cd-user-modal.is-visible {
+  visibility: visible;
+  opacity: 1;
 }

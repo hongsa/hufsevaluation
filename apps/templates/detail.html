@@ -6,67 +6,112 @@
 
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <div class="detail_box">
-            <div class="row">
-                            <span class="col-md-9">
-                                <span style="color:#1473b3; font-size: 15px;">{{detail.name}}</span>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <span>{{detail.professor}} 교수님 / {{ detail.get_grade }} 학점</span>
-                            </span>
-                            <span class="col-md-3">
-                                <span>{{ detail.year }}-{{ detail.semester }}학기 / {{ detail.category }} </span>
-                            </span>
-            </div>
-            <hr style="border-color: #000000"/>
+        <div class="row">
+            <div class="panel">
+                <div class="panel-heading upper_color">
+                    <div class="row">
+                                <span class="col-md-10">
+                                    <span class="subject_name">{{detail.name}}</span><br>
+                                    <span class="subject_detail">{{detail.professor}} 교수님 / {{ detail.year }}-{{ detail.semester }}학기 / {{ detail.category }}</span>
+                                </span>
+                                <span class="col-md-2">
+                                    <a href="/evaluate/{{ detail.id }}">
+                                        <button class="btn btn-default eval_btn">
+                                            <span style="color: #175b60;">평가하기</span>
+                                        </button>
+                                    </a>
+                                </span>
+                    </div>
+                </div>
 
-            <div class="average_box" style="font-size: 15px;">
-                <div class="row">
-                                <span class="col-md-4"><span style="color: #000000">총평 :</span>
-                                    {{'%0.2f'|format(detail.ev1()|float) }} 점</span>
-                    <span class="col-md-4"><span style="color: #000000">난이도 :</span>  {{'%0.2f'|format(detail.ev2()|float) }} 점</span>
-                    <span class="col-md-4"><span style="color: #000000">학습량 :</span>  {{'%0.2f'|format(detail.ev3()|float) }} 점</span>
+                <div class="panel-body average_box">
+                    <div class="row">
+                        <div class="col-md-3">
+                                    <span>
+                                    <span class="total_rating col-md-4">총평</span>
+                                        <span class="col-md-2"></span>
+                                    <span class="col-md-6 total_score">{{'%0.2f'|format(detail.ev1()|float) }}</span>
+                                    </span>
+
+                            <hr class="total_underline">
+
+                            <span>난이도</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{detail.ev2()}}%;"></span>
+                                    </span><br>
+                            <span>학습량</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{detail.ev3()}}%;"></span>
+                                    </span><br>
+
+                            <span>출첵</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{detail.ev4()}}%;"></span>
+                                    </span><br>
+                            <span>학점</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{detail.ev5()}}%;"></span>
+                                    </span><br>
+                            <span>성취감</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{detail.ev6()}}%;"></span>
+                                    </span><br>
+                        </div>
+
+                        <div class="col-md-9">
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
-                    <span class="col-md-4"><span style="color: #000000">출첵 :</span>  {{'%0.2f'|format(detail.ev4()|float) }} 점</span>
-                    <span class="col-md-4"><span style="color: #000000">학점 :</span>  {{'%0.2f'|format(detail.ev5()|float) }} 점</span>
-                    <span class="col-md-4"><span style="color: #000000">성취감 :</span>  {{'%0.2f'|format(detail.ev6()|float) }} 점</span>
-                </div>
-            </div>
-            <div class="text-center">
-                <a href="/evaluate/{{ detail.id }}">
-                    <button class="btn btn-danger btn-md" style="font-weight: bold;">
-                        평가하기
-                    </button>
-                </a>
             </div>
         </div>
 
         <br/><br/>
 
         {% for each in rating %}
-            <div class="row panel panel-default">
-                <div class="panel-heading">
-                    <span style="color:#1473b3; font-size: 15px;">{{each.user.nickname}}</span>
-                    <span>({{ each.user.college }} / {{ '%0.1f'|format(each.user.code/100000) |int }})님의 의견</span>
-                </div>
-                <div class="panel-body">
-                    <div class="col-md-6 text_box">
-                        {{ each.opinion }}
-                    </div>
-
-                    <div class="col-md-6 rating_box">
+            <div class="row">
+                <div class="panel">
+                    <div class="panel-body average_box">
                         <div class="row">
-                            <span class="col-md-4">총평 :  {{ each.total }} 점</span>
-                            <span class="col-md-4">난이도 :  {{ each.difficulty }} 점</span>
-                            <span class="col-md-4">학습량 :  {{ each.study_time }} 점</span>
-                        </div>
-                        <div class="row">
-                            <span class="col-md-4">출첵 :  {{ each.attendance }} 점</span>
-                            <span class="col-md-4">학점 :  {{ each.grade }} 점</span>
-                            <span class="col-md-4">성취감 :  {{ each.achievement }} 점</span>
-                        </div>
-                    </div>
+                            <div class="col-md-3">
+                                    <span>
+                                    <span class="total_rating col-md-4">총평</span>
+                                        <span class="col-md-2"></span>
+                                    <span class="col-md-6 total_score">{{each.total}}</span>
+                                    </span>
 
+                                <hr class="total_underline">
+
+                                <span>난이도</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{each.difficulty /5  * 67}}%;"></span>
+                                    </span><br>
+                                <span>학습량</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{each.study_time /5  * 67}}%;"></span>
+                                    </span><br>
+
+                                <span>출첵</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{each.attendance /5  * 67}}%;"></span>
+                                    </span><br>
+                                <span>학점</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{each.grade /5  * 67}}%;"></span>
+                                    </span><br>
+                                <span>성취감</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{each.achievement /5  * 67}}%;"></span>
+                                    </span><br>
+                            </div>
+                            <br><br>
+                            <div class="col-md-9">
+                                <div class="nickname">{{ each.user.nickname }}({{ each.user.college }} / {{ '%0.1f'|format(each.user.code/100000) |int }})</div>
+                                <span style="color: #666666;">{{ each.opinion}}</span>
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         {% endfor %}

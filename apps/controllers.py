@@ -7,6 +7,8 @@ from sqlalchemy import desc
 import math
 import logging
 
+
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -153,8 +155,9 @@ def search():
             return render_template("search.html", empty=empty,search=search)
 
         lecture={}
-        lecture['name'] = Lecture.query.filter(Lecture.name.like("%"+search+"%")).all()
-        lecture['professor'] = Lecture.query.filter(Lecture.professor.like("%"+search+"%")).all()
+
+        lecture['name'] = Lecture.query.filter(Lecture.name.like("%"+search+"%")).join(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).all()
+        lecture['professor'] = Lecture.query.filter(Lecture.professor.like("%"+search+"%")).join(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).all()
 
         if lecture['name'] == [] and lecture['professor']==[]:
             empty = 0
@@ -163,10 +166,8 @@ def search():
         else:
             return render_template("search.html", lecture=lecture, search=search)
 
-    rating = Rating.query.order_by(desc(Rating.joinDATE)).limit(10)
-
     empty=1
-    return render_template("search.html", empty=empty,rating=rating)
+    return render_template("search.html", empty=empty)
 
 
 @app.route('/search2',methods=['GET', 'POST'])
@@ -189,11 +190,11 @@ def search2():
             category = category1
 
         if semester == 3:
-            lecture = Lecture.query.filter(Lecture.category==category, Lecture.year == year).all()
+            lecture = Lecture.query.filter(Lecture.category==category, Lecture.year == year).join(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).all()
 
 
         else:
-            lecture = Lecture.query.filter(Lecture.category==category, Lecture.year == year, Lecture.semester == semester).all()
+            lecture = Lecture.query.filter(Lecture.category==category, Lecture.year == year, Lecture.semester == semester).join(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).all()
 
 
         return render_template("search2.html",lecture=lecture,category=category)

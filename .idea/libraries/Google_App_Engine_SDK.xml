@@ -10,11 +10,6 @@
       <root url="file:///usr/local/google_appengine/lib/concurrent" />
       <root url="file:///usr/local/google_appengine/lib/deprecated_enum" />
       <root url="file:///usr/local/google_appengine/lib/distutils" />
-      <root url="file:///usr/local/google_appengine/lib/django-0.96" />
-      <root url="file:///usr/local/google_appengine/lib/django-1.2" />
-      <root url="file:///usr/local/google_appengine/lib/django-1.3" />
-      <root url="file:///usr/local/google_appengine/lib/django-1.4" />
-      <root url="file:///usr/local/google_appengine/lib/django-1.5" />
       <root url="file:///usr/local/google_appengine/lib/docker" />
       <root url="file:///usr/local/google_appengine/lib/endpoints-1.0" />
       <root url="file:///usr/local/google_appengine/lib/fancy_urllib" />
@@ -42,12 +37,10 @@
       <root url="file:///usr/local/google_appengine/lib/six" />
       <root url="file:///usr/local/google_appengine/lib/sqlcmd" />
       <root url="file:///usr/local/google_appengine/lib/uritemplate" />
-      <root url="file:///usr/local/google_appengine/lib/webapp2-2.3" />
-      <root url="file:///usr/local/google_appengine/lib/webapp2-2.5.1" />
-      <root url="file:///usr/local/google_appengine/lib/webapp2-2.5.2" />
-      <root url="file:///usr/local/google_appengine/lib/webob_0_9" />
       <root url="file:///usr/local/google_appengine/lib/websocket" />
-      <root url="file:///usr/local/google_appengine/lib/yaml" />
+      <root url="file:///usr/local/google_appengine/lib/django-1.5" />
+      <root url="file:///usr/local/google_appengine/lib/webapp2-2.5.2" />
+      <root url="file:///usr/local/google_appengine/lib/webob-1.2.3" />
       <root url="file:///usr/local/google_appengine/lib/yaml-3.10" />
     </CLASSES>
     <SOURCES />

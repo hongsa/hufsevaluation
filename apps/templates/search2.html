@@ -34,30 +34,24 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <div class="search_box col-md-12">
-            <div class="row">
-                <div class="col-md-7">
-                    <span style="font-weight: bold;font-size: 14px;">강의 검색</span>
-                    <div class="row">
-                        <form role="search" action="/search" method="POST">
-                            <div class="form-group">
-                                <input type="text" name="search" class="form-control col-md-10" placeholder="강의명 혹은 교수님으로 검색해주세요!" style="width: 20em; display: inline">
-                                <!--디비 검색 버튼-->
-                                <button type="submit" class="btn btn-primary btn-md col-md-2">
-                                    검색하기
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-5" style="font-weight: bold;font-size: 13px;">
-                    1. 평가를 <span style="color: red">5개 이상</span> 해야 볼 권한이 생깁니다!<br>
-                    2. 외대인다운 <span style="color: red">정성스런 평가</span>부탁해요!<br>
-                    3. 허위 혹은 무성의한 평가는 <span style="color: red">제재</span>가 있을 수 있어요!
-                </div>
+            <div class="row" style="font-size: 13px;line-height: 1.7; color: #666666;">
+                1. 평가를 <span style="color: #FFFFFF;">5개 이상</span> 해야 볼 권한이 생깁니다!<br>
+                2. 외대인다운 <span style="color: #FFFFFF;">정성스런 평가</span>부탁해요!<br>
+                3. 허위 혹은 무성의한 평가는 <span style="color: #FFFFFF;">제재</span>가 있을 수 있어요!
             </div>
             <br>
+            <div class="row">
+                <form role="search" action="/search" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="search" class="form-control" placeholder="강의명 혹은 교수님으로 검색해주세요!" style="width: 40%; display: inline">
+                        <!--디비 검색 버튼-->
+                        <button type="submit" class="btn btn-default search_button">
+                            검색
+                        </button>
+                    </div>
+                </form>
+            </div>
 
-            {#            <span style="font-weight: bold;font-size: 14px;">2. 구분 검색</span>#}
             <div class="row">
                 <form role="search" action="/search2" method="POST">
                     &nbsp;&nbsp;&nbsp;
@@ -137,60 +131,88 @@
 
                     </select>
                     <span class="col-md-2">
-                    <button type="submit" class="btn btn-primary btn-md">
-                        검색하기
+                    <button type="submit" class="btn btn-default search_button">
+                        검색
                     </button>
                     </span>
                 </form>
             </div>
         </div>
         <br/><br>
-        <div class="text-center" style="font-size:15px;">
-            <span style="color: #1473b3;">"{{ category }}"</span> 검색결과 입니다.
+        <div class="text-center" style="color: #666666;">
+            <span style="color: #6cd2df;">"{{ category }}"</span> 검색결과 입니다.
         </div>
         <br/>
         {% for i in lecture %}
             <div class="row">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="panel">
+                    <div class="panel-heading upper_color">
                         <div class="row">
-                            <span class="col-md-9">
-                                <span style="color:#1473b3; font-size: 15px;">{{i.name}}</span>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <span>{{i.professor}} 교수님 / {{ i.get_grade }} 학점</span>
-                            </span>
-                            <span class="col-md-3">
-                                <span>{{ i.year }}-{{ i.semester }}학기 / {{ i.category }} </span>
-                            </span>
+                                <span class="col-md-10">
+                                    <span class="subject_name">{{i[0].name}}</span><br>
+                                    <span class="subject_detail">{{i[0].professor}} 교수님 / {{ i[0].year }}-{{ i[0].semester }}학기 / {{ i[0].category }}</span>
+                                </span>
+                                <span class="col-md-2">
+                                    <a href="/evaluate/{{ i[0].id }}">
+                                        <button class="btn btn-default eval_btn">
+                                            <span style="color: #175b60;">평가하기</span>
+                                        </button>
+                                    </a>
+                                </span>
                         </div>
                     </div>
+
                     <div class="panel-body average_box">
                         <div class="row">
-                                <span class="col-md-4"><span style="color: #000000">총평 :</span>
-                                    {{'%0.2f'|format(i.ev1()|float) }} 점</span>
-                            <span class="col-md-4"><span style="color: #000000">난이도 :</span>  {{'%0.2f'|format(i.ev2()|float) }} 점</span>
-                            <span class="col-md-4"><span style="color: #000000">학습량 :</span>  {{'%0.2f'|format(i.ev3()|float) }} 점</span>
+                            <div class="col-md-3">
+                                    <span>
+                                    <span class="total_rating col-md-4">총평</span>
+                                        <span class="col-md-2"></span>
+                                    <span class="col-md-6 total_score">{{'%0.2f'|format(i[0].ev1()|float) }}</span>
+                                    </span>
+
+                                <hr class="total_underline">
+
+                                <span>난이도</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{i[0].ev2()}}%;"></span>
+                                    </span><br>
+                                <span>학습량</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{i[0].ev3()}}%;"></span>
+                                    </span><br>
+
+                                <span>출첵</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{i[0].ev4()}}%;"></span>
+                                    </span><br>
+                                <span>학점</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{i[0].ev5()}}%;"></span>
+                                    </span><br>
+                                <span>성취감</span>
+                                    <span class="rating_bar">
+                                        <span class="rating_bar_in" style="width:{{i[0].ev6()}}%;"></span>
+                                    </span><br>
+                            </div>
+
+                            <div class="col-md-9">
+                                <div class="latest">최신글</div>
+                                <br>
+                                <span style="color: #666666;">{{ i[1]}}</span>
+
+                            </div>
                         </div>
-                        <div class="row">
-                            <span class="col-md-4"><span style="color: #000000">출첵 :</span>  {{'%0.2f'|format(i.ev4()|float) }} 점</span>
-                            <span class="col-md-4"><span style="color: #000000">학점 :</span>  {{'%0.2f'|format(i.ev5()|float) }} 점</span>
-                            <span class="col-md-4"><span style="color: #000000">성취감 :</span>  {{'%0.2f'|format(i.ev6()|float) }} 점</span>
+                        <div class="text-right">
+                            <a href="/detail/{{ i[0].id }}">
+                                <button type="submit" class="btn btn-default total_btn">
+                                    전체보기<span> ({{ i[0].count }} 개)</span>
+                                </button>
+                            </a>
+
                         </div>
-                    </div>
-                    <div class="text-center">
-                        <a href="/detail/{{ i.id }}">
-                            <button type="submit" class="btn btn-primary btn-md"style="font-weight: bold;">
-                                평가보기<span> ({{ i.count }} 개)</span>
-                            </button>
-                        </a>
-                        <a href="/evaluate/{{ i.id }}">
-                            <button class="btn btn-danger btn-md" style="font-weight: bold;">
-                                평가하기
-                            </button>
-                        </a>
 
                     </div>
-
                 </div>
             </div>
         {% endfor %}
