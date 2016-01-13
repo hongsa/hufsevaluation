@@ -54,7 +54,7 @@ class Lecture(db.Model):
         if self.count == 0:
             ev2=0
         else:
-            ev2 = (self.difficulty/self.count) /5  * 70
+            ev2 = (self.difficulty/self.count) /5  * 100
         return ev2
 
     def ev3(self):
@@ -62,28 +62,28 @@ class Lecture(db.Model):
         if self.count == 0:
             ev3=0
         else:
-            ev3 = self.study_time/self.count /5  * 70
+            ev3 = self.study_time/self.count /5  * 100
         return ev3
     def ev4(self):
         ev4=""
         if self.count == 0:
             ev4=0
         else:
-            ev4 = self.attendance/self.count/5  * 70
+            ev4 = self.attendance/self.count/5  * 100
         return ev4
     def ev5(self):
         ev5=""
         if self.count == 0:
             ev5=0
         else:
-            ev5 = self.grade/self.count/5  * 70
+            ev5 = self.grade/self.count/5  * 100
         return ev5
     def ev6(self):
         ev6=""
         if self.count == 0:
             ev6=0
         else:
-            ev6 = self.achievement/self.count /5  * 70
+            ev6 = self.achievement/self.count /5  * 100
         return ev6
 
 
@@ -104,23 +104,21 @@ class Rating(db.Model):
     joinDATE = db.Column(db.DateTime(),default = get_current_time)
 
     def ev2(self):
-        ev2 = self.difficulty /5  * 67
-        logging.error(ev2)
+        ev2 = self.difficulty /5  * 100
         return ev2
 
     def ev3(self):
-        ev3 = self.study_time /5  * 67
-        logging.error(ev3)
+        ev3 = self.study_time /5  * 100
         return ev3
 
     def ev4(self):
-        ev4 = self.attendance /5  * 67
+        ev4 = self.attendance /5  * 100
         return ev4
 
     def ev5(self):
-        ev5 = self.grade /5  * 67
+        ev5 = self.grade /5  * 100
         return ev5
 
     def ev6(self):
-        ev6 = self.achievement /5  * 67
+        ev6 = self.achievement /5  * 100
         return ev6

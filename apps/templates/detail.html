@@ -26,39 +26,41 @@
 
                 <div class="panel-body average_box">
                     <div class="row">
-                        <div class="col-md-3">
-                                    <span>
-                                    <span class="total_rating col-md-4">총평</span>
-                                        <span class="col-md-2"></span>
-                                    <span class="col-md-6 total_score">{{'%0.2f'|format(detail.ev1()|float) }}</span>
-                                    </span>
+                        <div class="col-md-3 rating_line">
+                            <div>
+                                <span class="total_rating col-md-4">총평</span>
+                                <span class="col-md-2"></span>
+                                <span class="col-md-6 total_score">{{'%0.2f'|format(detail.ev1()|float) }}</span><br>
+                                <hr class="total_underline">
+                            </div>
 
-                            <hr class="total_underline">
+                            <div class="img-responsive">
+                                <span>난이도</span>&nbsp;&nbsp;{{ '%0.2f'|format(detail.difficulty/detail.count|float)}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{detail.ev2()}}%;"></span>
 
-                            <span>난이도</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{detail.ev2()}}%;"></span>
-                                    </span><br>
-                            <span>학습량</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{detail.ev3()}}%;"></span>
-                                    </span><br>
+                                        </span><br>
+                                <span>학습량</span>&nbsp;&nbsp;{{ '%0.2f'|format(detail.study_time/detail.count|float)}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{detail.ev3()}}%;"></span>
+                                        </span><br>
 
-                            <span>출첵</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{detail.ev4()}}%;"></span>
-                                    </span><br>
-                            <span>학점</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{detail.ev5()}}%;"></span>
-                                    </span><br>
-                            <span>성취감</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{detail.ev6()}}%;"></span>
-                                    </span><br>
+                                <span>출첵</span>&nbsp;&nbsp;{{ '%0.2f'|format(detail.attendance/detail.count|float)}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{detail.ev4()}}%;"></span>
+                                        </span><br>
+                                <span>학점</span>&nbsp;&nbsp;{{ '%0.2f'|format(detail.grade/detail.count|float)}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{detail.ev5()}}%;"></span>
+                                        </span><br>
+                                <span>성취감</span>&nbsp;&nbsp;{{ '%0.2f'|format(detail.achievement/detail.count|float)}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{detail.ev6()}}%;"></span>
+                                        </span>
+                            </div>
                         </div>
 
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                         </div>
                     </div>
                 </div>
@@ -72,39 +74,41 @@
                 <div class="panel">
                     <div class="panel-body average_box">
                         <div class="row">
-                            <div class="col-md-3">
-                                    <span>
+                            <div class="col-md-3 rating_line">
+                                <div>
                                     <span class="total_rating col-md-4">총평</span>
-                                        <span class="col-md-2"></span>
-                                    <span class="col-md-6 total_score">{{each.total}}</span>
-                                    </span>
+                                    <span class="col-md-2"></span>
+                                    <span class="col-md-6 total_score">{{each.total }}</span><br>
+                                    <hr class="total_underline">
+                                </div>
 
-                                <hr class="total_underline">
+                                <div class="img-responsive">
+                                    <span>난이도</span>&nbsp;&nbsp;{{ each.difficulty}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{each.difficulty/5 * 100}}%;"></span>
 
-                                <span>난이도</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{each.difficulty /5  * 67}}%;"></span>
-                                    </span><br>
-                                <span>학습량</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{each.study_time /5  * 67}}%;"></span>
-                                    </span><br>
+                                        </span><br>
+                                    <span>학습량</span>&nbsp;&nbsp;{{ each.study_time}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{each.study_time/5 * 100}}%;"></span>
+                                        </span><br>
 
-                                <span>출첵</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{each.attendance /5  * 67}}%;"></span>
-                                    </span><br>
-                                <span>학점</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{each.grade /5  * 67}}%;"></span>
-                                    </span><br>
-                                <span>성취감</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{each.achievement /5  * 67}}%;"></span>
-                                    </span><br>
+                                    <span>출첵</span>&nbsp;&nbsp;{{ each.attendance}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{each.attendance/5 * 100}}%;"></span>
+                                        </span><br>
+                                    <span>학점</span>&nbsp;&nbsp;{{ each.grade}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{each.grade/5 * 100}}%;"></span>
+                                        </span><br>
+                                    <span>성취감</span>&nbsp;&nbsp;{{ each.achievement}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{each.achievement/5 * 100}}%;"></span>
+                                        </span>
+                                </div>
                             </div>
                             <br><br>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <div class="nickname">{{ each.user.nickname }}({{ each.user.college }} / {{ '%0.1f'|format(each.user.code/100000) |int }})</div>
                                 <span style="color: #666666;">{{ each.opinion}}</span>
 
@@ -123,5 +127,4 @@
 {% endblock %}
 
 {% block js %}
-    <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap-rating.js')}}"></script>
 {% endblock %}

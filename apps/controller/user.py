@@ -16,8 +16,8 @@ def get_current_time():
 def index():
     # number = random.randint(1,4)
     if not 'session_user_code' in session:
-        form=forms.LoginForm()
-        return render_template("index.html", form=form)
+        # form=forms.LoginForm()
+        return render_template("index.html")
     return redirect(url_for('search'))
 
 
@@ -74,13 +74,13 @@ def signup():
 
 #로그인
 def login():
-    
+
     form = forms.LoginForm()
 
     try:
         if session['session_user_code']:
             flash(u'이미 로그인 하셨습니다!', "error")
-            return redirect(url_for('begin'))
+            return redirect(url_for('search'))
 
     except Exception, e:
         pass
@@ -93,10 +93,10 @@ def login():
             user = User.query.filter_by(code=code).first()
             if user is None:
                 flash(u"존재하지 않는 학번입니다.", "error")
-                return render_template("index.html", form=form)
+                return render_template("login.html", form=form)
             elif not check_password_hash(user.password, pwd):
                 flash(u"비밀번호가 틀렸습니다!", "error")
-                return render_template("index.html", form=form)
+                return render_template("login.html", form=form)
             else:
                 session.permanent = True
                 session['session_user_code'] = user.code
@@ -104,7 +104,7 @@ def login():
                 return redirect(url_for('search'))
 
 
-    return render_template("index.html", form=form)
+    return render_template("login.html", form=form)
 
 #로그아웃 부분.
 def logout():

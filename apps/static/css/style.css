@@ -123,11 +123,12 @@ select{
     background-color:#6CD2DF;
     padding: 1em 1em 1em 3em;
     border-color: #2eb1c1;
+    border-radius: 2px;
 }
 .detail_box{
     background-color:#e1ebec;
-    border-style: ridge;
     padding: 1.5em;
+    border-radius: 2px;
 }
 .average_box{
     color: #999999;
@@ -187,8 +188,9 @@ select{
 }
 
 .rating_bar{
-    background-image: url(../img/zero.png);
-    width: 168px;
+    background-image: url(../img/rankzero.png);
+    /*width: 168px;*/
+    width: 100%;
     height: 7px;
     display: block;
 
@@ -198,9 +200,9 @@ select{
     /*left: 0;*/
     /*top: 0;*/
     height: 7px;
-    width: 168px;
-    text-indent: -100000px;
-    background-image: url(../img/full.png);
+    /*max-width: 168px;*/
+    /*text-indent: -100000px;*/
+    background-image: url(../img/rankfull.png);
 }
 
 .latest{
@@ -212,7 +214,7 @@ select{
 }
 .total_underline{
     color: #cccccc;
-    border: solid 0.5px;
+    border: solid 1px;
 }
 .nickname{
     color: #6cd2df;
@@ -227,4 +229,8 @@ select{
 .cd-user-modal.is-visible {
   visibility: visible;
   opacity: 1;
+}
+
+.rating_line{
+    padding: 0; margin-left: 20px; margin-right: 20px;
 }

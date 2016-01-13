@@ -6,12 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="Ue06MRXA8_8x1ytglA2ddYKuIE-q-VhKbBZ3WyFGyTs" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>외대강의평가</title>
+    <title>외대강평</title>
 
+    <meta property="og:title" content="외대강평 : 외대인은 평가로 뭉친다!" />
+    <meta property="og:site_name" content="좋은 건 공유합시다 이젠" />
+    <meta property="og:image" content="https://storage.googleapis.com/jikbakguri/image/hufsev.png" />
+    <meta property="og:url" content="http://www.hufsev.com/" />
+    <meta property="og:type" content="website" />
+    <!--<meta property="fb:app_id" content="149190165235116" />-->
+    <meta property="og:description" content="우리는 외대인이다. 좋은 정보는 공유한다."/>
     <link rel="shortcut icon" href="{{url_for('static', filename='img/favicon.ico')}}" />
+
+
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
     <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
-    <link href='http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+        <link href='http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
     <link href='http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
 
     <style>
@@ -19,14 +28,12 @@
 
     </style>
     <style type=text/css>
-
         @media only screen and (min-width : 1000px) {
+
             .main_top{
                 margin-top: 6em;
             }
-
         }
-
 
     </style>
     <script>
@@ -39,9 +46,18 @@
         ga('send', 'pageview');
 
     </script>
-
 </head>
+
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.4&appId=735497843177342";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <div class="main_top">
     <div class="col-md-2" ></div>
     <div class="col-md-8">
@@ -56,12 +72,11 @@
                     </a>
                         </span>
                     <span class="col-md-2"></span>
-
-
                 </div>
 
+                <!--contents 시작-->
                 <div class="col-md-12">
-                    <form action='{{url_for("signup")}}' method="POST">
+                    <form action='{{url_for("login")}}' method="POST">
                         <fieldset>
                             <div class="row">
                                 <div class="col-md-12">
@@ -89,26 +104,37 @@
                             </div>
                             <div class="row">
                                 <div class="control-group col-md-offset-1 col-md-10">
-                                    <div style="display:block;">
-
-                                        <button class="btn btn-default total_btn" style="margin-top:5%;width:100%;">
-                                            가입하기!
+                                    <div>
+                                        <button class="btn btn-default search_button" style="margin-top:5%;width:100%;">
+                                            로그인
                                         </button>
-
                                     </div>
                                 </div>
                             </div>
                         </fieldset>
                     </form>
 
+                    <div class="row">
+                        <div class="control-group col-md-offset-1 col-md-10">
+                            <div style="display:block;">
+                                <a href="{{url_for('signup')}}">
+                                    <button class="btn btn-default total_btn" style="margin-top:5%;width:100%;">
+                                        회원가입
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    </p>
                 </div>
             </div>
-            <!--contents 끝-->
         </div>
 
+    </div>
+    <div class="col-md-2"></div>
 
-        <div class="col-md-1"></div>
-
-
-
+</div>
 </body>
+
+
+</html>

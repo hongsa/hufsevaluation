@@ -164,45 +164,49 @@
 
                     <div class="panel-body average_box">
                         <div class="row">
-                            <div class="col-md-3">
-                                    <span>
+                            <div class="col-md-3 rating_line">
+                                <div>
                                     <span class="total_rating col-md-4">총평</span>
-                                        <span class="col-md-2"></span>
-                                    <span class="col-md-6 total_score">{{'%0.2f'|format(i[0].ev1()|float) }}</span>
-                                    </span>
+                                    <span class="col-md-2"></span>
+                                    <span class="col-md-6 total_score">{{'%0.2f'|format(i[0].ev1()|float) }}</span><br>
+                                    <hr class="total_underline">
+                                </div>
 
-                                <hr class="total_underline">
+                                <div class="img-responsive">
+                                    <span>난이도</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].difficulty/i[0].count|float)}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{i[0].ev2()}}%;"></span>
 
-                                <span>난이도</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{i[0].ev2()}}%;"></span>
-                                    </span><br>
-                                <span>학습량</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{i[0].ev3()}}%;"></span>
-                                    </span><br>
+                                        </span><br>
+                                    <span>학습량</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].study_time/i[0].count|float)}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{i[0].ev3()}}%;"></span>
+                                        </span><br>
 
-                                <span>출첵</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{i[0].ev4()}}%;"></span>
-                                    </span><br>
-                                <span>학점</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{i[0].ev5()}}%;"></span>
-                                    </span><br>
-                                <span>성취감</span>
-                                    <span class="rating_bar">
-                                        <span class="rating_bar_in" style="width:{{i[0].ev6()}}%;"></span>
-                                    </span><br>
+                                    <span>출첵</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].attendance/i[0].count|float)}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{i[0].ev4()}}%;"></span>
+                                        </span><br>
+                                    <span>학점</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].grade/i[0].count|float)}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{i[0].ev5()}}%;"></span>
+                                        </span><br>
+                                    <span>성취감</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].achievement/i[0].count|float)}}
+                                        <span class="rating_bar">
+                                            <span class="rating_bar_in" style="width:{{i[0].ev6()}}%;"></span>
+                                        </span>
+                                </div>
                             </div>
 
-                            <div class="col-md-9">
+
+                            <div class="col-md-8">
                                 <div class="latest">최신글</div>
                                 <br>
                                 <span style="color: #666666;">{{ i[1]}}</span>
 
                             </div>
                         </div>
+
                         <div class="text-right">
                             <a href="/detail/{{ i[0].id }}">
                                 <button type="submit" class="btn btn-default total_btn">
