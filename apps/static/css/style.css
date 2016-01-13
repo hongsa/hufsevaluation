@@ -210,7 +210,8 @@ select{
     color: #ffffff;
     border-right: 2px;
     text-align: center;
-    width: 10%;
+    width: 15%;
+    border-radius: 2px;
 }
 .total_underline{
     color: #cccccc;

@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99f552ff-af89-4145-b5d0-53b0403b084f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/static/img/logo.png" afterPath="$PROJECT_DIR$/apps/static/img/logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/detail.html" afterPath="$PROJECT_DIR$/apps/templates/detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/evaluate.html" afterPath="$PROJECT_DIR$/apps/templates/evaluate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/index.html" afterPath="$PROJECT_DIR$/apps/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/models.py" afterPath="$PROJECT_DIR$/apps/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/modify_rating.html" afterPath="$PROJECT_DIR$/apps/templates/modify_rating.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/my_rating.html" afterPath="$PROJECT_DIR$/apps/templates/my_rating.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/navigation.html" afterPath="$PROJECT_DIR$/apps/templates/navigation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/controllers.py" afterPath="$PROJECT_DIR$/apps/controllers.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/search.html" afterPath="$PROJECT_DIR$/apps/templates/search.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/search2.html" afterPath="$PROJECT_DIR$/apps/templates/search2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/signup.html" afterPath="$PROJECT_DIR$/apps/templates/signup.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/static/css/style.css" afterPath="$PROJECT_DIR$/apps/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/controller/user.py" afterPath="$PROJECT_DIR$/apps/controller/user.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Hufsev.iws" />
@@ -41,12 +31,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="controllers.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apps/controllers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6666667">
+              <caret line="273" column="42" selection-start-line="273" selection-start-column="42" selection-end-line="273" selection-end-column="42" />
+              <folding>
+                <element signature="e#24#107#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="210" column="22" selection-start-line="210" selection-start-column="22" selection-end-line="210" selection-end-column="22" />
+              <caret line="209" column="19" selection-start-line="209" selection-start-column="19" selection-end-line="209" selection-end-column="19" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/templates/search.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.375">
+              <caret line="154" column="33" selection-start-line="154" selection-start-column="33" selection-end-line="154" selection-end-column="33" />
+              <folding>
+                <element signature="e#8955#8978#0#HTML" expanded="true" />
+                <element signature="e#9006#9029#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -54,72 +69,8 @@
       <file leaf-file-name="search2.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/templates/search2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.375">
-              <caret line="198" column="34" selection-start-line="166" selection-start-column="27" selection-end-line="198" selection-end-column="34" />
-              <folding>
-                <element signature="e#9320#9343#0#HTML" expanded="true" />
-                <element signature="e#10437#10467#0#HTML" expanded="true" />
-                <element signature="e#10785#10815#0#HTML" expanded="true" />
-                <element signature="e#11132#11162#0#HTML" expanded="true" />
-                <element signature="e#11473#11503#0#HTML" expanded="true" />
-                <element signature="e#11821#11851#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/templates/detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.125">
-              <caret line="76" column="60" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="60" />
-              <folding>
-                <element signature="e#2021#2053#0#HTML" expanded="true" />
-                <element signature="e#2371#2403#0#HTML" expanded="true" />
-                <element signature="e#2720#2752#0#HTML" expanded="true" />
-                <element signature="e#3063#3095#0#HTML" expanded="true" />
-                <element signature="e#3413#3445#0#HTML" expanded="true" />
-                <element signature="e#4687#4730#0#HTML" expanded="true" />
-                <element signature="e#5015#5058#0#HTML" expanded="true" />
-                <element signature="e#5342#5385#0#HTML" expanded="true" />
-                <element signature="e#5663#5701#0#HTML" expanded="true" />
-                <element signature="e#5986#6030#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="my_rating.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/templates/my_rating.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-30.0">
-              <caret line="48" column="44" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
-              <folding>
-                <element signature="e#1068#1111#0#HTML" expanded="true" />
-                <element signature="e#1392#1435#0#HTML" expanded="true" />
-                <element signature="e#1715#1758#0#HTML" expanded="true" />
-                <element signature="e#2032#2070#0#HTML" expanded="true" />
-                <element signature="e#2351#2395#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="evaluate.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/templates/evaluate.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.25">
-              <caret line="27" column="44" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="modify_rating.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/templates/modify_rating.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1285956">
-              <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
+            <state vertical-scroll-proportion="-38.125">
+              <caret line="202" column="36" selection-start-line="202" selection-start-column="36" selection-end-line="202" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -156,21 +107,21 @@
         <option value="$PROJECT_DIR$/apps/static/js/select.js" />
         <option value="$PROJECT_DIR$/apps/templates/contact.html" />
         <option value="$PROJECT_DIR$/app.yaml" />
-        <option value="$PROJECT_DIR$/apps/controllers.py" />
         <option value="$PROJECT_DIR$/apps/controller/user.py" />
         <option value="$PROJECT_DIR$/apps/templates/navigation.html" />
         <option value="$PROJECT_DIR$/apps/static/css/landing-page.css" />
-        <option value="$PROJECT_DIR$/apps/templates/index.html" />
         <option value="$PROJECT_DIR$/apps/templates/login.html" />
         <option value="$PROJECT_DIR$/apps/templates/signup.html" />
-        <option value="$PROJECT_DIR$/apps/static/css/style.css" />
-        <option value="$PROJECT_DIR$/apps/templates/search.html" />
-        <option value="$PROJECT_DIR$/apps/templates/search2.html" />
         <option value="$PROJECT_DIR$/apps/models.py" />
         <option value="$PROJECT_DIR$/apps/templates/detail.html" />
         <option value="$PROJECT_DIR$/apps/templates/my_rating.html" />
         <option value="$PROJECT_DIR$/apps/templates/evaluate.html" />
         <option value="$PROJECT_DIR$/apps/templates/modify_rating.html" />
+        <option value="$PROJECT_DIR$/apps/templates/index.html" />
+        <option value="$PROJECT_DIR$/apps/templates/search.html" />
+        <option value="$PROJECT_DIR$/apps/templates/search2.html" />
+        <option value="$PROJECT_DIR$/apps/static/css/style.css" />
+        <option value="$PROJECT_DIR$/apps/controllers.py" />
       </list>
     </option>
   </component>
@@ -701,18 +652,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="230" column="42" selection-start-line="230" selection-start-column="42" selection-end-line="230" selection-end-column="42" />
           <folding>
-            <element signature="e#11383#11413#0#HTML" expanded="true" />
-            <element signature="e#11735#11765#0#HTML" expanded="true" />
-            <element signature="e#12086#12116#0#HTML" expanded="true" />
-            <element signature="e#12431#12461#0#HTML" expanded="true" />
-            <element signature="e#12783#12813#0#HTML" expanded="true" />
-            <element signature="e#13157#13180#0#HTML" expanded="true" />
-            <element signature="e#16059#16089#0#HTML" expanded="true" />
-            <element signature="e#16411#16441#0#HTML" expanded="true" />
-            <element signature="e#16762#16792#0#HTML" expanded="true" />
-            <element signature="e#17107#17137#0#HTML" expanded="true" />
-            <element signature="e#17459#17489#0#HTML" expanded="true" />
-            <element signature="e#17834#17857#0#HTML" expanded="true" />
+            <element signature="e#8955#8978#0#HTML" expanded="true" />
+            <element signature="e#9006#9029#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -756,18 +697,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#11383#11413#0#HTML" expanded="true" />
-            <element signature="e#11735#11765#0#HTML" expanded="true" />
-            <element signature="e#12086#12116#0#HTML" expanded="true" />
-            <element signature="e#12431#12461#0#HTML" expanded="true" />
-            <element signature="e#12783#12813#0#HTML" expanded="true" />
-            <element signature="e#13157#13180#0#HTML" expanded="true" />
-            <element signature="e#16059#16089#0#HTML" expanded="true" />
-            <element signature="e#16411#16441#0#HTML" expanded="true" />
-            <element signature="e#16762#16792#0#HTML" expanded="true" />
-            <element signature="e#17107#17137#0#HTML" expanded="true" />
-            <element signature="e#17459#17489#0#HTML" expanded="true" />
-            <element signature="e#17834#17857#0#HTML" expanded="true" />
+            <element signature="e#8955#8978#0#HTML" expanded="true" />
+            <element signature="e#9006#9029#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -803,18 +734,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="205" column="61" selection-start-line="205" selection-start-column="61" selection-end-line="205" selection-end-column="61" />
           <folding>
-            <element signature="e#11383#11413#0#HTML" expanded="true" />
-            <element signature="e#11735#11765#0#HTML" expanded="true" />
-            <element signature="e#12086#12116#0#HTML" expanded="true" />
-            <element signature="e#12431#12461#0#HTML" expanded="true" />
-            <element signature="e#12783#12813#0#HTML" expanded="true" />
-            <element signature="e#13157#13180#0#HTML" expanded="true" />
-            <element signature="e#16059#16089#0#HTML" expanded="true" />
-            <element signature="e#16411#16441#0#HTML" expanded="true" />
-            <element signature="e#16762#16792#0#HTML" expanded="true" />
-            <element signature="e#17107#17137#0#HTML" expanded="true" />
-            <element signature="e#17459#17489#0#HTML" expanded="true" />
-            <element signature="e#17834#17857#0#HTML" expanded="true" />
+            <element signature="e#8955#8978#0#HTML" expanded="true" />
+            <element signature="e#9006#9029#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -840,18 +761,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#11383#11413#0#HTML" expanded="true" />
-            <element signature="e#11735#11765#0#HTML" expanded="true" />
-            <element signature="e#12086#12116#0#HTML" expanded="true" />
-            <element signature="e#12431#12461#0#HTML" expanded="true" />
-            <element signature="e#12783#12813#0#HTML" expanded="true" />
-            <element signature="e#13157#13180#0#HTML" expanded="true" />
-            <element signature="e#16059#16089#0#HTML" expanded="true" />
-            <element signature="e#16411#16441#0#HTML" expanded="true" />
-            <element signature="e#16762#16792#0#HTML" expanded="true" />
-            <element signature="e#17107#17137#0#HTML" expanded="true" />
-            <element signature="e#17459#17489#0#HTML" expanded="true" />
-            <element signature="e#17834#17857#0#HTML" expanded="true" />
+            <element signature="e#8955#8978#0#HTML" expanded="true" />
+            <element signature="e#9006#9029#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -927,16 +838,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35532996">
-          <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/templates/navigation.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5076142">
@@ -965,52 +866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/templates/search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51945853">
-          <caret line="275" column="30" selection-start-line="259" selection-start-column="16" selection-end-line="275" selection-end-column="30" />
-          <folding>
-            <element signature="e#11383#11413#0#HTML" expanded="true" />
-            <element signature="e#11735#11765#0#HTML" expanded="true" />
-            <element signature="e#12086#12116#0#HTML" expanded="true" />
-            <element signature="e#12431#12461#0#HTML" expanded="true" />
-            <element signature="e#12783#12813#0#HTML" expanded="true" />
-            <element signature="e#13157#13180#0#HTML" expanded="true" />
-            <element signature="e#16059#16089#0#HTML" expanded="true" />
-            <element signature="e#16411#16441#0#HTML" expanded="true" />
-            <element signature="e#16762#16792#0#HTML" expanded="true" />
-            <element signature="e#17107#17137#0#HTML" expanded="true" />
-            <element signature="e#17459#17489#0#HTML" expanded="true" />
-            <element signature="e#17834#17857#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/controllers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36260164">
-          <caret line="257" column="19" selection-start-line="257" selection-start-column="19" selection-end-line="257" selection-end-column="19" />
-          <folding>
-            <element signature="e#24#107#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/templates/search2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.375">
-          <caret line="198" column="34" selection-start-line="166" selection-start-column="27" selection-end-line="198" selection-end-column="34" />
-          <folding>
-            <element signature="e#9320#9343#0#HTML" expanded="true" />
-            <element signature="e#10437#10467#0#HTML" expanded="true" />
-            <element signature="e#10785#10815#0#HTML" expanded="true" />
-            <element signature="e#11132#11162#0#HTML" expanded="true" />
-            <element signature="e#11473#11503#0#HTML" expanded="true" />
-            <element signature="e#11821#11851#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5609756">
@@ -1019,17 +874,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/static/css/style.css">
+    <entry file="file://$PROJECT_DIR$/apps/templates/modify_rating.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="210" column="22" selection-start-line="210" selection-start-column="22" selection-end-line="210" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.964467">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/templates/evaluate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2538071">
+          <caret line="27" column="44" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/templates/my_rating.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-30.0">
+        <state vertical-scroll-proportion="1.2182741">
           <caret line="48" column="44" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
           <folding>
             <element signature="e#1068#1111#0#HTML" expanded="true" />
@@ -1043,7 +906,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/templates/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.125">
+        <state vertical-scroll-proportion="0.08629441">
           <caret line="76" column="60" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="60" />
           <folding>
             <element signature="e#2021#2053#0#HTML" expanded="true" />
@@ -1060,19 +923,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/templates/evaluate.html">
+    <entry file="file://$PROJECT_DIR$/apps/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.25">
-          <caret line="27" column="44" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.14213198">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/templates/modify_rating.html">
+    <entry file="file://$PROJECT_DIR$/apps/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1285956">
-          <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="209" column="19" selection-start-line="209" selection-start-column="19" selection-end-line="209" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/templates/search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.375">
+          <caret line="154" column="33" selection-start-line="154" selection-start-column="33" selection-end-line="154" selection-end-column="33" />
+          <folding>
+            <element signature="e#8955#8978#0#HTML" expanded="true" />
+            <element signature="e#9006#9029#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/templates/search2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-38.125">
+          <caret line="202" column="36" selection-start-line="202" selection-start-column="36" selection-end-line="202" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/controllers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6666667">
+          <caret line="273" column="42" selection-start-line="273" selection-start-column="42" selection-end-line="273" selection-end-column="42" />
+          <folding>
+            <element signature="e#24#107#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

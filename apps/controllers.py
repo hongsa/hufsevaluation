@@ -263,8 +263,14 @@ def detail(id):
         return redirect(url_for('index'))
 
     user = User.query.filter_by(code=session['session_user_code']).first()
-    if user.count < 5:
-        flash(u"평가를 5개 이상 해주세요!!!", "error")
+
+    list = [str(i) for i in str(user.code)]
+
+    if int(list[2]+list[3]) == 16:
+        pass
+
+    elif user.count < 5:
+        flash(u"평가를 5개 이상 해주세요.", "error")
         return redirect(url_for('search'))
 
     detail = Lecture.query.get(id)
