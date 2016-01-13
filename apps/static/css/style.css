@@ -188,7 +188,7 @@ select{
 }
 
 .rating_bar{
-    background-image: url(../img/rankzero.png);
+    background-image: url(../img/rankzeroBg.png);
     /*width: 168px;*/
     width: 100%;
     height: 7px;
@@ -202,7 +202,7 @@ select{
     height: 7px;
     /*max-width: 168px;*/
     /*text-indent: -100000px;*/
-    background-image: url(../img/rankfull.png);
+    background-image: url(../img/rankfullBg.png);
 }
 
 .latest{

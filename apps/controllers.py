@@ -8,7 +8,6 @@ import math
 import logging
 
 
-
 @app.route('/')
 @app.route('/index')
 def index():
