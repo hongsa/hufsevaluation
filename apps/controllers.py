@@ -93,7 +93,7 @@ def search2():
 @app.route('/detail/<int:id>',methods=['GET', 'POST'])
 def detail(id):
 
-    return main.detail(id)
+    return main.detail()
 
 #관리자 - 강의 입력
 @app.route('/admin',methods=['GET', 'POST'])

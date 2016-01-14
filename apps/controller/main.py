@@ -21,7 +21,7 @@ def search():
         lecture['name'] = Lecture.query.filter(Lecture.name.like("%"+search+"%")).join(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).all()
         lecture['professor'] = Lecture.query.filter(Lecture.professor.like("%"+search+"%")).join(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).all()
 
-        if lecture['name'] == [] & lecture['professor']==[]:
+        if lecture['name'] == [] and lecture['professor']==[]:
             empty = 0
             return render_template("search.html", empty=empty, search=search)
 
