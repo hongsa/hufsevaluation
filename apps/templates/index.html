@@ -22,8 +22,8 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/landing-page.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/landing-page.css')}}">
 
     <link href='http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
     <link href='http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
@@ -53,18 +53,64 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="intro-message">
-                    <br><br>
                     <img src="../static/img/logobig.png" alt="" class="img-responsive" style="margin: 0 auto;">
-                    <h3>외대인의 솔직한 강의평가 꿀팁 사이트</h3>
+                    <h3 class="text-center">외대인의 솔직한 강의평가 꿀팁 사이트</h3>
                     <hr class="intro-divider">
-                    <ul class="list-inline intro-social-buttons">
-                        <li>
-                            <a href="/login"><button type="submit" class="btn btn-default search_button">로그인</button></a>
-                        </li>
-                        <li>
-                            <a href="/signup"><button type="submit" class="btn btn-default total_btn">회원가입</button></a>
-                        </li>
-                    </ul>
+
+                    <div class="col-md-6 col-md-offset-3">
+                        <form action='{{url_for("login")}}' method="POST">
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="error_message" style="text-align:center;">
+                                            {% with errors = get_flashed_messages(category_filter=["error"]) %}
+                                                {% if errors %}
+                                                    {% for msg in errors %}
+                                                        {{ msg }}
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endwith %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9 col-md-offset-3 col-xs-9 col-xs-offset-3">
+                                        {{ form.hidden_tag() }}
+                                        {% from "_form_field.html" import render_field %}
+                                        {% for field in form %}
+                                            {% if field.widget.input_type != 'hidden' %}
+                                                {{ render_field(field, class="form-control",style="width:60%;") }}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9 col-md-offset-3 col-xs-9 col-xs-offset-3">
+                                        <div>
+                                            <button class="btn btn-default search_button" style="margin-top:5%;width:60%;">
+                                                로그인
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+
+                        <div class="row">
+                            <div class="col-md-9 col-md-offset- col-xs-9 col-xs-offset-3">
+                                <div style="display:block;">
+                                    <a href="{{url_for('signup')}}">
+                                        <button class="btn btn-default total_btn" style="margin-top:5%;width:60%;">
+                                            회원가입
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        </p>
+                    </div>
+
+
+
+
                 </div>
             </div>
         </div>
@@ -127,58 +173,10 @@
 </div>
 <!-- /.content-section-b -->
 
-<a  name="contact"></a>
-{#<div class="banner">#}
-{##}
-{#    <div class="container">#}
-{##}
-{#        <div class="row">#}
-{#            <div class="col-lg-6">#}
-{#                <h2>Connect to Start Bootstrap:</h2>#}
-{#            </div>#}
-{#            <div class="col-lg-6">#}
-{#                <ul class="list-inline banner-social-buttons">#}
-{#                    <li>#}
-{#                        <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>#}
-{#                    </li>#}
-{#                    <li>#}
-{#                        <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>#}
-{#                    </li>#}
-{#                    <li>#}
-{#                        <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>#}
-{#                    </li>#}
-{#                </ul>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#    </div>#}
-{#    <!-- /.container -->#}
-{##}
-{#</div>#}
-<!-- /.banner -->
-
-<!-- Footer -->
 <footer>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-{#                <ul class="list-inline">#}
-{#                    <li>#}
-{#                        <a href="#">Home</a>#}
-{#                    </li>#}
-{#                    <li class="footer-menu-divider">&sdot;</li>#}
-{#                    <li>#}
-{#                        <a href="#about">About</a>#}
-{#                    </li>#}
-{#                    <li class="footer-menu-divider">&sdot;</li>#}
-{#                    <li>#}
-{#                        <a href="#services">Services</a>#}
-{#                    </li>#}
-{#                    <li class="footer-menu-divider">&sdot;</li>#}
-{#                    <li>#}
-{#                        <a href="#contact">Contact</a>#}
-{#                    </li>#}
-{#                </ul>#}
                 <p class="copyright text-muted small">Copyright &copy; 외대강평팀 & HUVE 2016. All Rights Reserved</p>
             </div>
         </div>

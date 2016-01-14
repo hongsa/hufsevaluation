@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import redirect, url_for, render_template, request, flash, session
+from flask import redirect, url_for, render_template, request, flash, session,g
 from apps import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from apps.models import User
@@ -7,6 +7,17 @@ from apps import forms
 import random
 import pytz
 import datetime
+import logging
+
+
+def before_request():
+    g.user = None
+    if 'session_user_code' in session:
+        g.user = User.query.filter_by(code=session['session_user_code']).first()
+
+        # flash(u"로그인 되어있지 않습니다.", "error")
+        # return redirect(url_for('search'))
+
 
 def get_current_time():
     return datetime.datetime.now(pytz.timezone('Asia/Seoul'))
@@ -14,7 +25,8 @@ def get_current_time():
 
 def index():
     if not 'session_user_code' in session:
-        return render_template("index.html")
+        form = forms.LoginForm()
+        return render_template("index.html",form=form)
     return redirect(url_for('search'))
 
 
@@ -82,10 +94,10 @@ def login():
             user = User.query.filter_by(code=code).first()
             if user is None:
                 flash(u"존재하지 않는 학번입니다.", "error")
-                return render_template("login.html", form=form)
+                return render_template("index.html", form=form)
             elif not check_password_hash(user.password, pwd):
                 flash(u"비밀번호가 틀렸습니다!", "error")
-                return render_template("login.html", form=form)
+                return render_template("index.html", form=form)
             else:
                 session.permanent = True
                 session['session_user_code'] = user.code
@@ -106,10 +118,8 @@ def logout():
 
 def modify_password():
 
-    user = User.query.filter_by(code=session['session_user_code']).first()
-
     if request.method == 'POST':
-        user.password = generate_password_hash(request.form['password'])
+        g.user.password = generate_password_hash(request.form['password'])
         db.session.commit()
         flash(u"변경 완료되었습니다.", "password")
         return redirect(url_for('modify_password'))
@@ -117,8 +127,6 @@ def modify_password():
     return render_template("modify.html")
 
 def modify_nickname():
-
-    user = User.query.filter_by(code=session['session_user_code']).first()
 
     if request.method == 'POST':
         nickname=request.form['nickname']
@@ -131,9 +139,9 @@ def modify_nickname():
             flash(u"이미 사용 중인 닉네임 입니다.", "nickname")
             return redirect(url_for('modify_nickname'))
 
-        user.nickname=nickname
+        g.user.nickname=nickname
         db.session.commit()
-        session['session_user_nickname'] = user.nickname
+        session['session_user_nickname'] = g.user.nickname
         flash(u"변경 완료되었습니다.", "nickname")
         return redirect(url_for('modify_nickname'))
 

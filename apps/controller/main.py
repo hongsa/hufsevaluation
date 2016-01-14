@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
-from flask import redirect, url_for, render_template,flash, session, request
-from apps.models import Rating,Lecture,User
+from flask import redirect, url_for, render_template,flash, session, request,g
+from apps.models import Rating,Lecture
 from apps import db
 
-def search():
 
-    if not 'session_user_code' in session:
-        flash(u"로그인 되어있지 않습니다.", "error")
-        return redirect(url_for('index'))
+def search():
 
     if request.method == "POST":
 
@@ -34,10 +31,6 @@ def search():
 
 def search2():
 
-    if not 'session_user_code' in session:
-        flash(u"로그인 되어있지 않습니다.", "error")
-        return redirect(url_for('index'))
-
     if request.method == "POST":
         year = int(request.form['year'])
         semester = int(request.form['semester'])
@@ -53,28 +46,24 @@ def search2():
         if semester == 3:
             lecture = Lecture.query.filter(Lecture.category==category, Lecture.year == year).join(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).all()
 
-
         else:
             lecture = Lecture.query.filter(Lecture.category==category, Lecture.year == year, Lecture.semester == semester).join(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).all()
 
 
         return render_template("search2.html",lecture=lecture,category=category)
 
+    return redirect(url_for('search'))
+
 
 def detail(id):
 
-    if not 'session_user_code' in session:
-        flash(u"로그인 되어있지 않습니다.", "error")
-        return redirect(url_for('index'))
 
-    user = User.query.filter_by(code=session['session_user_code']).first()
-
-    list = [str(i) for i in str(user.code)]
+    list = [str(i) for i in str(g.user.code)]
 
     if int(list[2]+list[3]) == 16:
         pass
 
-    elif user.count < 5:
+    elif g.user.count < 5:
         flash(u"평가를 5개 이상 해주세요.", "error")
         return redirect(url_for('search'))
 

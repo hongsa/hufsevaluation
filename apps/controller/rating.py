@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-from flask import redirect, url_for, render_template,flash, session, request,jsonify
+from flask import redirect, url_for, render_template,flash, session, request,jsonify,g
 from sqlalchemy import desc
 from apps.models import Rating,User,Lecture
-import pagination
 from apps.controller.pagination import pagination
 from apps import db
-import math
 
 
 def my_rating(page):
@@ -84,12 +82,7 @@ def modify(id):
 
 def evaluate(id):
 
-    if not 'session_user_code' in session:
-        flash(u"로그인 되어있지 않습니다.", "error")
-        return redirect(url_for('index'))
-
     lecture = Lecture.query.get(id)
-
 
     return render_template("evaluate.html",lecture=lecture)
 
@@ -98,9 +91,8 @@ def ev_input():
     if request.method == "POST":
         id = int(request.form.get('id'))
         lecture = Lecture.query.get(id)
-        user = User.query.filter_by(code = session['session_user_code']).first()
 
-        exist = user.rating_user.filter_by(lecture_id=lecture.id).first()
+        exist = g.user.rating_user.filter_by(lecture_id=lecture.id).first()
 
         if exist:
             return jsonify(success=False)
@@ -117,7 +109,7 @@ def ev_input():
             return jsonify(success=False)
 
         rating = Rating(total=total,difficulty=difficulty,study_time=study_time,attendance=attendance,
-                        grade=grade,achievement=achievement,lecture_id = lecture.id,user_id=user.id,opinion = content)
+                        grade=grade,achievement=achievement,lecture_id = lecture.id,user_id=g.user.id,opinion = content)
 
         lecture.count+=1
         lecture.total+=total
@@ -126,7 +118,7 @@ def ev_input():
         lecture.attendance+=attendance
         lecture.grade+=grade
         lecture.achievement+=achievement
-        user.count+=1
+        g.user.count+=1
 
         db.session.add(rating)
         db.session.commit()
