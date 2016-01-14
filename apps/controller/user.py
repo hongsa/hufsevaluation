@@ -7,16 +7,13 @@ from apps import forms
 import random
 import pytz
 import datetime
-import logging
 
 def get_current_time():
     return datetime.datetime.now(pytz.timezone('Asia/Seoul'))
 
 
 def index():
-    # number = random.randint(1,4)
     if not 'session_user_code' in session:
-        # form=forms.LoginForm()
         return render_template("index.html")
     return redirect(url_for('search'))
 
@@ -41,12 +38,6 @@ def signup():
         if not len(form.code.data) ==9:
             flash(u"제대로된 학번이 아닙니다!", "error")
             return render_template("signup.html", form=form)
-        # if User.query.filter_by(email=form.email.data).first():
-        #     flash(u"이미 등록된 메일 주소 입니다!", "error")
-        #     return render_template("signup.html", form=form)
-        # if not "@hufs.ac.kr" in form.email.data:
-        #     flash(u"외대 메일이 아닙니다.", "error")
-        #     return render_template("signup.html", form=form)
 
         if User.query.filter_by(nickname=form.nickname.data).first():
             flash(u"이미 사용중인 닉네임입니다!", "error")
@@ -61,8 +52,6 @@ def signup():
         db.session.add(user)
         db.session.commit()
 
-
-        # flash(u"회원가입 되셨습니다!")
         session['session_user_code'] = form.code.data
         session['session_user_nickname'] = form.nickname.data
 
@@ -111,7 +100,6 @@ def logout():
 
     if "session_user_code" in session:
         session.clear()
-        # flash(u"로그아웃 되었습니다.")
     else:
         flash(u"로그인 되어있지 않습니다.", "error")
     return redirect(url_for('index'))
