@@ -132,3 +132,14 @@ def detail(id):
 @login_required
 def admin():
     return main.admin()
+
+
+@app.route('/admin_pw',methods=['GET', 'POST'])
+@login_required
+def admin_pw():
+    return main.admin_pw()
+
+@app.route('/admin_auth',methods=['GET', 'POST'])
+@login_required
+def admin_auth():
+    return main.admin_auth()

@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask import redirect, url_for, render_template,flash, session, request,g
-from apps.models import Rating,Lecture
+from apps.models import Rating,Lecture,User
 from apps import db,app
-import logging
-engine = db.get_engine(app)
-conn = engine.connect()
-
+from werkzeug.security import generate_password_hash, check_password_hash
 
 def search():
 
@@ -105,6 +102,38 @@ def admin():
 
         flash(name + professor)
         return render_template("admin.html")
-    return render_template("admin.html")
+
+    if g.user.level == 1:
+
+        return render_template("admin.html")
+
+    else:
+        return redirect(url_for('index'))
+
+def admin_pw():
+
+    if request.method == "POST":
+
+        code = request.form['code']
+        pw = request.form['pw']
+
+        print code
+        print pw
+        reset = User.query.filter(User.code == code).first()
+        reset.password =generate_password_hash(pw)
+
+        db.session.commit()
+        return redirect(url_for('admin'))
 
 
+def admin_auth():
+
+     if request.method == "POST":
+
+        auth = request.form['auth']
+
+        level = User.query.filter(User.code == auth).first()
+        level.level = 1
+
+        db.session.commit()
+        return redirect(url_for('admin'))
