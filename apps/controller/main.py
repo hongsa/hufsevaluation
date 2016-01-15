@@ -1,22 +1,27 @@
 # -*- coding: utf-8 -*-
 from flask import redirect, url_for, render_template,flash, session, request,g
 from apps.models import Rating,Lecture
-from apps import db
+from apps import db,app
+import logging
+engine = db.get_engine(app)
+conn = engine.connect()
 
 
 def search():
 
     if request.method == "POST":
+        search = str(request.form['search'])
+        print search
 
-        search = request.form['search']
         if len(search) == 0:
             empty = 0
             return render_template("search.html", empty=empty,search=search)
 
         lecture={}
 
-        lecture['name'] = Lecture.query.filter(Lecture.name.like("%"+search+"%")).join(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).all()
-        lecture['professor'] = Lecture.query.filter(Lecture.professor.like("%"+search+"%")).join(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).all()
+        lecture['name'] = Lecture.query.filter(Lecture.name.like("%"+search+"%")).outerjoin(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).group_by(Lecture.id).all()
+        lecture['professor'] = Lecture.query.filter(Lecture.professor.like("%"+search+"%")).outerjoin(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).group_by(Lecture.id).all()
+
 
         if lecture['name'] == [] and lecture['professor']==[]:
             empty = 0
@@ -37,17 +42,23 @@ def search2():
         category1 = request.form['category1']
         category2 = request.form['category2']
         category=""
+        print year
+        print semester
+        print category1
+        print category2
 
         if category1 == "0":
             category = category2
         else :
             category = category1
 
+        print category
+
         if semester == 3:
-            lecture = Lecture.query.filter(Lecture.category==category, Lecture.year == year).join(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).all()
+            lecture = Lecture.query.filter(Lecture.category==category, Lecture.year == year).outerjoin(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).group_by(Lecture.id).all()
 
         else:
-            lecture = Lecture.query.filter(Lecture.category==category, Lecture.year == year, Lecture.semester == semester).join(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).all()
+            lecture = Lecture.query.filter(Lecture.category==category,Lecture.semester == semester,Lecture.year == year).outerjoin(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).group_by(Lecture.id).all()
 
 
         return render_template("search2.html",lecture=lecture,category=category)

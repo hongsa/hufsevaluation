@@ -14,7 +14,7 @@
             </div>
             <br>
             <div class="row">
-                <form role="search" action="/search" method="POST">
+                <form action="/search" method="POST">
                     <div class="form-group">
                         <input type="text" name="search" class="form-control" placeholder="강의명 혹은 교수님으로 검색해주세요!" style="width: 40%; display: inline">
                         <!--디비 검색 버튼-->
@@ -170,25 +170,25 @@
                                     </div>
 
                                     <div class="img-responsive">
-                                        <span>난이도</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].difficulty/i[0].count|float)}}
+                                        <span>난이도</span>
                                         <span class="rating_bar">
                                             <span class="rating_bar_in" style="width:{{i[0].ev2()}}%;"></span>
 
                                         </span><br>
-                                        <span>학습량</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].study_time/i[0].count|float)}}
+                                        <span>학습량</span>
                                         <span class="rating_bar">
                                             <span class="rating_bar_in" style="width:{{i[0].ev3()}}%;"></span>
                                         </span><br>
 
-                                        <span>출첵</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].attendance/i[0].count|float)}}
+                                        <span>출첵</span>
                                         <span class="rating_bar">
                                             <span class="rating_bar_in" style="width:{{i[0].ev4()}}%;"></span>
                                         </span><br>
-                                        <span>학점</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].grade/i[0].count|float)}}
+                                        <span>학점</span>
                                         <span class="rating_bar">
                                             <span class="rating_bar_in" style="width:{{i[0].ev5()}}%;"></span>
                                         </span><br>
-                                        <span>성취감</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].achievement/i[0].count|float)}}
+                                        <span>성취감</span>
                                         <span class="rating_bar">
                                             <span class="rating_bar_in" style="width:{{i[0].ev6()}}%;"></span>
                                         </span>
@@ -249,25 +249,25 @@
                                     </div>
 
                                     <div class="img-responsive">
-                                        <span>난이도</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].difficulty/i[0].count|float)}}
+                                        <span>난이도</span>
                                         <span class="rating_bar">
                                             <span class="rating_bar_in" style="width:{{i[0].ev2()}}%;"></span>
 
                                         </span><br>
-                                        <span>학습량</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].study_time/i[0].count|float)}}
+                                        <span>학습량</span>
                                         <span class="rating_bar">
                                             <span class="rating_bar_in" style="width:{{i[0].ev3()}}%;"></span>
                                         </span><br>
 
-                                        <span>출첵</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].attendance/i[0].count|float)}}
+                                        <span>출첵</span>
                                         <span class="rating_bar">
                                             <span class="rating_bar_in" style="width:{{i[0].ev4()}}%;"></span>
                                         </span><br>
-                                        <span>학점</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].grade/i[0].count|float)}}
+                                        <span>학점</span>
                                         <span class="rating_bar">
                                             <span class="rating_bar_in" style="width:{{i[0].ev5()}}%;"></span>
                                         </span><br>
-                                        <span>성취감</span>&nbsp;&nbsp;{{ '%0.2f'|format(i[0].achievement/i[0].count|float)}}
+                                        <span>성취감</span>
                                         <span class="rating_bar">
                                             <span class="rating_bar_in" style="width:{{i[0].ev6()}}%;"></span>
                                         </span>
