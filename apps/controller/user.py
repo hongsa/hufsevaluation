@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import redirect, url_for, render_template, request, flash, session,g
+from flask import redirect, url_for, render_template, request, flash, session, g
 from apps import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from apps.models import User
@@ -26,13 +26,13 @@ def get_current_time():
 def index():
     if not 'session_user_code' in session:
         form = forms.LoginForm()
-        return render_template("index.html",form=form)
+        return render_template("index.html", form=form)
     return redirect(url_for('search'))
 
 
 # 회원가입
 def signup():
-    number = random.randint(1,4)
+    number = random.randint(1, 4)
     form = forms.JoinForm()
 
     try:
@@ -42,12 +42,11 @@ def signup():
     except Exception, e:
         pass
 
-
     if request.method == 'POST':
         if User.query.filter_by(code=form.code.data).first():
             flash(u"이미 등록된 학번 입니다!", "error")
             return render_template("signup.html", form=form)
-        if not len(form.code.data) ==9:
+        if not len(form.code.data) == 9:
             flash(u"제대로된 학번이 아닙니다!", "error")
             return render_template("signup.html", form=form)
 
@@ -58,8 +57,9 @@ def signup():
             flash(u"올바른 형식으로 입력해주세요!", "error")
             return render_template("signup.html", form=form)
 
-        user = User(code = form.code.data, password=generate_password_hash(form.password.data),
-                    nickname=form.nickname.data, sex=form.sex.data,college= form.college.data,joinDATE=get_current_time())
+        user = User(code=form.code.data, password=generate_password_hash(form.password.data),
+                    nickname=form.nickname.data, sex=form.sex.data, college=form.college.data,
+                    joinDATE=get_current_time())
 
         db.session.add(user)
         db.session.commit()
@@ -69,13 +69,11 @@ def signup():
 
         return redirect(url_for('search'))
 
-    return render_template("signup.html", form=form,number=number)
+    return render_template("signup.html", form=form, number=number)
 
 
-
-#로그인
+# 로그인
 def login():
-
     form = forms.LoginForm()
 
     try:
@@ -85,7 +83,6 @@ def login():
 
     except Exception, e:
         pass
-
 
     if request.method == "POST":
         if form.validate_on_submit():
@@ -104,20 +101,19 @@ def login():
                 session['session_user_nickname'] = user.nickname
                 return redirect(url_for('search'))
 
-
     return render_template("login.html", form=form)
 
-#로그아웃 부분.
-def logout():
 
+# 로그아웃 부분.
+def logout():
     if "session_user_code" in session:
         session.clear()
     else:
         flash(u"로그인 되어있지 않습니다.", "error")
     return redirect(url_for('index'))
 
-def modify_password():
 
+def modify_password():
     if request.method == 'POST':
         g.user.password = generate_password_hash(request.form['password'])
         db.session.commit()
@@ -126,20 +122,19 @@ def modify_password():
 
     return render_template("modify.html")
 
-def modify_nickname():
 
+def modify_nickname():
     if request.method == 'POST':
-        nickname=request.form['nickname']
-        if len(nickname) >=8:
+        nickname = request.form['nickname']
+        if len(nickname) >= 8:
             flash(u"7자 이내로 입력해주세요.", "nickname")
             return redirect(url_for('modify_nickname'))
-
 
         if User.query.filter_by(nickname=nickname).first():
             flash(u"이미 사용 중인 닉네임 입니다.", "nickname")
             return redirect(url_for('modify_nickname'))
 
-        g.user.nickname=nickname
+        g.user.nickname = nickname
         db.session.commit()
         session['session_user_nickname'] = g.user.nickname
         flash(u"변경 완료되었습니다.", "nickname")

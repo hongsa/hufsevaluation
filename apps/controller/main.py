@@ -128,7 +128,7 @@ def admin_pw():
 
 def admin_auth():
 
-     if request.method == "POST":
+    if request.method == "POST":
 
         auth = request.form['auth']
 
