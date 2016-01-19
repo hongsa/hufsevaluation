@@ -5,50 +5,52 @@
 {% block content %}
 
     <div class="col-md-8">
-    <div class="col-md-12">
-    <div class="search_box" style="font-size: 13px;line-height: 1.7; color: #666666;">
-        1. 평가를 <span style="color: #FFFFFF;">5개 이상</span> 해야 볼 권한이 생깁니다!<br>
-        2. 외대인다운 <span style="color: #FFFFFF;">정성스런 평가</span>부탁해요!<br>
-        3. 허위 혹은 무성의한 평가는 <span style="color: #FFFFFF;">제재</span>가 있을 수 있어요!
-    </div>
-    <br>
-
-    <div class="panel">
-    <div class="panel-heading upper_color">
-        <div class="row">
-            <span class="subject_name">{{lecture.name}}</span><br>
-            <span class="subject_detail">{{lecture.professor}} 교수님 / {{ lecture.year }}-{{ lecture.semester }}학기 / {{ lecture.category }}</span>
-        </div>
-
-    </div>
-    <div class="panel-body average_box">
-
-        <div class="row average_box">
-            <div class="col-md-3 rating_line">
-                <span class="total_rating">총평</span>
-                <input name ="total" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
-                <span>난이도(얼마나 어렵나요)</span><input name ="difficulty" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
-                <span>학습량(공부량은 어떤가요)</span><input name ="study_time" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
-                <span>출첵(안하시면 1점!, 항상 하면 5점)</span><input name ="attendance" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
-                <span>학점(받기 어려우면 1점!, 쉬우면 5점)</span><input name ="grade" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
-                <span>성취감(배우는 것이 많나요)</span><input name ="achievement" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+        <div class="col-md-12">
+            <div class="search_box" style="font-size: 13px;line-height: 1.7; color: #666666;">
+                1. 평가를 <span style="color: #FFFFFF;">5개 이상</span> 해야 볼 권한이 생깁니다!<br>
+                2. 외대인다운 <span style="color: #FFFFFF;">정성스런 평가</span>부탁해요!<br>
+                3. 허위 혹은 무성의한 평가는 <span style="color: #FFFFFF;">제재</span>가 있을 수 있어요!
             </div>
             <br>
-            <div class="col-md-8">
 
-            <input name="id" type="hidden" value="{{ lecture.id }}">
+            <div class="panel">
+                <div class="panel-heading upper_color">
+                    <div class="row">
+                        <span class="subject_name">{{lecture.name}}</span><br>
+                        <span class="subject_detail">{{lecture.professor}} 교수님 / {{ lecture.year }}-{{ lecture.semester }}학기 / {{ lecture.category }}</span>
+                    </div>
 
-            <textarea class="form-control" rows="7" name = "content" placeholder="평가 내용을 입력해주세요."></textarea>
+                </div>
+                <div class="panel-body average_box">
+
+                    <div class="row average_box">
+                        <div class="col-md-3 rating_line">
+                            <span class="total_rating">총평</span>
+                            <input name ="total" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                            <span>난이도(얼마나 어렵나요)</span><input name ="difficulty" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                            <span>학습량(공부량은 어떤가요)</span><input name ="study_time" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                            <span>출첵(안하시면 1점!, 항상 하면 5점)</span><input name ="attendance" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                            <span>학점(받기 어려우면 1점!, 쉬우면 5점)</span><input name ="grade" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                            <span>성취감(배우는 것이 많나요)</span><input name ="achievement" type="hidden" class="rating" data-filled="symbol symbol-filled" data-empty="symbol symbol-empty"/>
+                        </div>
+                        <br>
+                        <div class="col-md-8">
+
+                            <input name="id" type="hidden" value="{{ lecture.id }}">
+
+                            <textarea class="form-control" rows="7" name = "content" placeholder="평가 내용을 입력해주세요."></textarea>
+                        </div>
+
+                        <br>
+
+                        <button type="submit" class="btn btn-default eval_btn btn-block" id="lec_ev">
+                            <span style="color: #175b60;">평가하기</span>
+                        </button>
+                    </div>
+                </div>
             </div>
-
-            <br>
-
-            <button type="submit" class="btn btn-default eval_btn btn-block" id="lec_ev">
-                <span style="color: #175b60;">평가하기</span>
-            </button>
         </div>
     </div>
-
 
 
 {% endblock %}
