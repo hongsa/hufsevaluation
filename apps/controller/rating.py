@@ -22,8 +22,7 @@ def delete(id):
 
     rating = Rating.query.get(id)
     lecture = Lecture.query.get(rating.lecture_id)
-    user = User.query.filter_by(code=session['session_user_code']).first()
-    user.count-=1
+    g.user.count-=1
 
     lecture.total -=rating.total
     lecture.difficulty-=rating.difficulty
