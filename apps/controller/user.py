@@ -9,26 +9,19 @@ import pytz
 import datetime
 import logging
 
-
 def before_request():
     g.user = None
     if 'session_user_code' in session:
         g.user = User.query.filter_by(code=session['session_user_code']).first()
 
-        # flash(u"로그인 되어있지 않습니다.", "error")
-        # return redirect(url_for('search'))
-
-
 def get_current_time():
     return datetime.datetime.now(pytz.timezone('Asia/Seoul'))
-
 
 def index():
     if not 'session_user_code' in session:
         form = forms.LoginForm()
         return render_template("index.html", form=form)
     return redirect(url_for('search'))
-
 
 # 회원가입
 def signup():
@@ -71,7 +64,6 @@ def signup():
 
     return render_template("signup.html", form=form, number=number)
 
-
 # 로그인
 def login():
     form = forms.LoginForm()
@@ -103,7 +95,6 @@ def login():
 
     return render_template("login.html", form=form)
 
-
 # 로그아웃 부분.
 def logout():
     if "session_user_code" in session:
@@ -111,7 +102,6 @@ def logout():
     else:
         flash(u"로그인 되어있지 않습니다.", "error")
     return redirect(url_for('index'))
-
 
 def modify_password():
     if request.method == 'POST':
@@ -121,7 +111,6 @@ def modify_password():
         return redirect(url_for('modify_password'))
 
     return render_template("modify.html")
-
 
 def modify_nickname():
     if request.method == 'POST':
@@ -141,7 +130,6 @@ def modify_nickname():
         return redirect(url_for('modify_nickname'))
 
     return render_template("modify.html")
-
 
 def contact():
     return render_template("contact.html")

@@ -8,28 +8,23 @@ def search():
 
     if request.method == "POST":
         search = str(request.form['search'])
-        print search
 
         if len(search) == 0:
             empty = 0
             return render_template("search.html", empty=empty,search=search)
 
         lecture={}
-
         lecture['name'] = Lecture.query.filter(Lecture.name.like("%"+search+"%")).outerjoin(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).group_by(Lecture.id).all()
         lecture['professor'] = Lecture.query.filter(Lecture.professor.like("%"+search+"%")).outerjoin(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).group_by(Lecture.id).all()
-
 
         if lecture['name'] == [] and lecture['professor']==[]:
             empty = 0
             return render_template("search.html", empty=empty, search=search)
-
         else:
             return render_template("search.html", lecture=lecture, search=search)
 
     empty=1
     return render_template("search.html", empty=empty)
-
 
 def search2():
 
@@ -39,27 +34,18 @@ def search2():
         category1 = request.form['category1']
         category2 = request.form['category2']
         category=""
-        print year
-        print semester
-        print category1
-        print category2
 
         if category1 == "0":
             category = category2
         else :
             category = category1
 
-        print category
-
         if semester == 3:
             lecture = Lecture.query.filter(Lecture.category==category, Lecture.year == year).outerjoin(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).group_by(Lecture.id).all()
-
         else:
             lecture = Lecture.query.filter(Lecture.category==category,Lecture.semester == semester,Lecture.year == year).outerjoin(Rating, Lecture.id==Rating.lecture_id).add_columns(Rating.opinion).group_by(Lecture.id).all()
 
-
         return render_template("search2.html",lecture=lecture,category=category)
-
     return redirect(url_for('search'))
 
 
@@ -70,7 +56,6 @@ def detail(id):
 
     if int(list[2]+list[3]) == 16:
         pass
-
     elif g.user.count < 5:
         flash(u"평가를 5개 이상 해주세요.", "error")
         return redirect(url_for('search'))
@@ -116,12 +101,8 @@ def admin_pw():
 
         code = request.form['code']
         pw = request.form['pw']
-
-        print code
-        print pw
         reset = User.query.filter(User.code == code).first()
         reset.password =generate_password_hash(pw)
-
         db.session.commit()
         return redirect(url_for('admin'))
 
@@ -131,9 +112,7 @@ def admin_auth():
     if request.method == "POST":
 
         auth = request.form['auth']
-
         level = User.query.filter(User.code == auth).first()
         level.level = 1
-
         db.session.commit()
         return redirect(url_for('admin'))

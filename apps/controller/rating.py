@@ -37,14 +37,12 @@ def delete(id):
 
     return redirect(url_for("my_rating",page=1))
 
-
 def modify(id):
 
     rating = Rating.query.get(id)
 
     if request.method == "POST":
         lecture = Lecture.query.get(rating.lecture_id)
-
 
         total = int(request.form.get('total'))
         difficulty = int(request.form.get('difficulty'))
@@ -61,7 +59,6 @@ def modify(id):
         lecture.grade+=grade-rating.grade
         lecture.achievement+=achievement-rating.achievement
 
-
         rating.total = total
         rating.difficulty = difficulty
         rating.study_time = study_time
@@ -73,15 +70,12 @@ def modify(id):
         db.session.commit()
 
         return redirect(url_for("my_rating",page=1))
-
-
     return render_template("modify_rating.html",lecture=rating)
 
 
 def evaluate(id):
 
     lecture = Lecture.query.get(id)
-
     return render_template("evaluate.html",lecture=lecture)
 
 def ev_input():
@@ -89,7 +83,6 @@ def ev_input():
     if request.method == "POST":
         id = int(request.form.get('id'))
         lecture = Lecture.query.get(id)
-
         exist = g.user.rating_user.filter_by(lecture_id=lecture.id).first()
 
         if exist:

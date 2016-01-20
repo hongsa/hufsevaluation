@@ -13,12 +13,10 @@ class pagination:
         if self.total_page > self.count*8:
             self.total_page = self.count * 8
             up = int(self.total_page+1)
-
         else:
             up = int(self.total_page)
 
         return up
-
 
     def down(self):
         if self.count ==1:
@@ -27,7 +25,6 @@ class pagination:
             down = int((self.count-1) * 8)
 
         return down
-
 
     def totalCount(self):
         total = range(1+(8*(int(self.count)-1)), int(self.total_page+1))
