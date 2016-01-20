@@ -8,9 +8,8 @@ from apps import db
 
 def my_rating(page):
 
-    user = User.query.filter_by(code=session['session_user_code']).first()
-    my_rating = user.rating_user.order_by(desc(Rating.joinDATE)).offset((page - 1) * 8).limit(8)
-    total = user.rating_user.count()
+    my_rating = g.user.rating_user.order_by(desc(Rating.joinDATE)).offset((page - 1) * 8).limit(8)
+    total = g.user.rating_user.count()
 
     paging = pagination(total,page)
     up = paging.up()
