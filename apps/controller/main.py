@@ -116,3 +116,13 @@ def admin_auth():
         level.level = 1
         db.session.commit()
         return redirect(url_for('admin'))
+
+def admin_bokhak():
+
+    if request.method == "POST":
+
+        code = request.form['code']
+        user = User.query.filter(User.code == code).first()
+        user.count = 5
+        db.session.commit()
+        return redirect(url_for('admin'))

@@ -4,8 +4,6 @@ from apps import app
 from controller import user,main,rating
 from functools import wraps
 
-
-
 #랜딩 페이지
 @app.route('/')
 @app.route('/index')
@@ -143,3 +141,8 @@ def admin_pw():
 @login_required
 def admin_auth():
     return main.admin_auth()
+
+@app.route('/admin_bokhak',methods=['GET', 'POST'])
+@login_required
+def admin_bokhak():
+    return main.admin_bokhak()

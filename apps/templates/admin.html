@@ -112,8 +112,12 @@
             <span>운영자 권한 주기</span>
             <input type="text" name="auth" placeholder="학번">
             <input type="submit" value="권한주기">
+        </form>
 
-
+        <form action="{{url_for("admin_bokhak")}}" method="post">
+            <span>복학생 읽게 해주기</span>
+            <input type="text" name="code" placeholder="학번">
+            <input type="submit" value="읽게 해주기">
         </form>
 
     </div>
