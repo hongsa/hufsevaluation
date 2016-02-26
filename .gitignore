@@ -1,1 +1,12 @@
 apps/.DS_Store
+*.pyc
+__pycache__
+lib
+migrations
+hufsev.wsgi
+manager.py
+templates
+__init__.py
+settings.py
+static
+apps/toSendEmail.py

@@ -3,7 +3,7 @@ from flask import g, request, redirect, url_for
 from apps import app
 from controller import user,main,rating
 from functools import wraps
-
+from urllib2 import Request, urlopen
 #랜딩 페이지
 @app.route('/')
 @app.route('/index')

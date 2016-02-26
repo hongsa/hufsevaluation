@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import math
-
-class pagination:
+from collections import deque
+class pagination(object):
     def __init__(self, total,page):
         self.total = total
         self.calculate = float(float(self.total) / 8)
