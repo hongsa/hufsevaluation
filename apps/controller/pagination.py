@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import math
-from collections import deque
+
 class pagination(object):
     def __init__(self, total,page):
         self.total = total

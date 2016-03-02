@@ -10,3 +10,4 @@ __init__.py
 settings.py
 static
 apps/toSendEmail.py
+.idea
