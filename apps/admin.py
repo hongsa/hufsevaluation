@@ -21,7 +21,6 @@ class UserModelView(ModelView):
     can_edit = False
     column_exclude_list = ['password','email']
     column_searchable_list = ['code',]
-    column_editable_list = ['nickname']
     column_filters = ['college', 'count', 'joinDATE']
     form_excluded_columns = ['code']
 
@@ -49,6 +48,6 @@ class RatingModelView(ModelView):
     can_create = False
 
 
-admin = Admin(app, name='static', template_mode='bootstrap3', url='/static')
+admin = Admin(app, name='통계', template_mode='bootstrap3', url='/statistics')
 admin.add_view(UserModelView(User, db.session))
 admin.add_view(LectureModelView(Lecture, db.session))
