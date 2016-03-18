@@ -22,11 +22,11 @@ class User(db.Model):
 
 class Lecture(db.Model):
     id = db.Column(db.Integer,primary_key=True)
-    name = db.Column(db.String(255))
-    professor = db.Column(db.String(255))
-    category = db.Column(db.String(255))
-    year = db.Column(db.Integer, default = 0)
-    semester = db.Column(db.Integer, default =0)
+    name = db.Column(db.String(255), index=True)
+    professor = db.Column(db.String(255), index=True)
+    category = db.Column(db.String(255),index=True)
+    year = db.Column(db.Integer, default = 0, index=True)
+    semester = db.Column(db.Integer, default =0, index=True)
     get_grade = db.Column(db.Integer, default = 0)
 
     count = db.Column(db.Float, default = 0)

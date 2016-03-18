@@ -1,0 +1,8 @@
+Flask
+Flask-Migrate
+Flask-SQLAlchemy
+WTForms
+pytz
+flask-wtf
+MySQL-python
+flask-admin

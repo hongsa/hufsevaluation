@@ -4,10 +4,11 @@ __pycache__
 lib
 migrations
 hufsev.wsgi
-manager.py
+manage.py
 templates
 __init__.py
 settings.py
 static
 apps/toSendEmail.py
 .idea
+myvenv
