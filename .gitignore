@@ -11,4 +11,4 @@ settings.py
 static
 apps/toSendEmail.py
 .idea
-myvenv
+venv

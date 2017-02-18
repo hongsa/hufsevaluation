@@ -51,14 +51,15 @@ def search2():
 
 def detail(id):
 
-
     list = [str(i) for i in str(g.user.code)]
-
-    if int(list[2]+list[3]) == 16:
-        pass
-    elif g.user.count < 5:
-        flash(u"평가를 5개 이상 해주세요.", "error")
-        return redirect(url_for('search'))
+    print list
+    print int(list[2] + list[3])
+    if g.user.count < 4:
+        if int(list[2]+list[3]) == 17:
+            pass
+        else:
+            flash(u"직전 학기 평가를 4개 이상 해주세요. \n 복학 경우 외대강평 페이스북 메시지 혹은 scvhss@naver.com으로 메일 보내주세요", "error")
+            return redirect(url_for('search'))
 
     detail = Lecture.query.get(id)
     rating = detail.rating_lecture.all()
